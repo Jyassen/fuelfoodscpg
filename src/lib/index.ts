@@ -141,12 +141,7 @@ export {
 } from './product-utils';
 
 // Base utilities (existing)
-export {
-  cn,
-  formatCurrency,
-  formatDate,
-  slugify,
-} from './utils';
+export { cn, formatCurrency, formatDate, slugify } from './utils';
 
 // ============================================================================
 // CONSTANT EXPORTS
@@ -196,16 +191,16 @@ export function initializeFuelFoodsApp() {
     // Initialize search index
     const { initializeSearchIndex } = require('./search');
     initializeSearchIndex();
-    
+
     console.log('✅ FuelFoods CPG utilities initialized successfully');
-    
+
     return {
       success: true,
       message: 'All systems ready',
     };
   } catch (error) {
     console.error('❌ Failed to initialize FuelFoods utilities:', error);
-    
+
     return {
       success: false,
       message: 'Initialization failed',
@@ -221,8 +216,12 @@ export function getSiteData() {
   const { getAllProducts, getFeaturedProducts } = require('./product-utils');
   const { getHeroImages } = require('./image-utils');
   const { getContentStatistics } = require('./content-parser');
-  const { SITE_CONFIG, NAVIGATION_ITEMS, TESTIMONIALS } = require('./constants');
-  
+  const {
+    SITE_CONFIG,
+    NAVIGATION_ITEMS,
+    TESTIMONIALS,
+  } = require('./constants');
+
   return {
     config: SITE_CONFIG,
     navigation: NAVIGATION_ITEMS,
@@ -242,35 +241,39 @@ export function getSiteData() {
 /**
  * Get product catalog data with filtering and search
  */
-export function getProductCatalogData(options: {
-  category?: string;
-  search?: string;
-  featured?: boolean;
-} = {}) {
-  const { 
-    getAllProducts, 
-    getProductsByCategory, 
-    getFeaturedProducts 
+export function getProductCatalogData(
+  options: {
+    category?: string;
+    search?: string;
+    featured?: boolean;
+  } = {}
+) {
+  const {
+    getAllProducts,
+    getProductsByCategory,
+    getFeaturedProducts,
   } = require('./product-utils');
   const { searchProducts } = require('./search');
-  
+
   let products = getAllProducts();
-  
+
   if (options.category) {
     products = getProductsByCategory(options.category);
   }
-  
+
   if (options.search) {
     const searchResults = searchProducts(options.search);
-    products = searchResults.map((result: any) => result.entry).filter(Boolean) as any[];
+    products = searchResults
+      .map((result: any) => result.entry)
+      .filter(Boolean) as any[];
   }
-  
+
   if (options.featured) {
     products = getFeaturedProducts();
   }
-  
+
   const { PRODUCT_CATEGORIES, SUBSCRIPTION_PLANS } = require('./constants');
-  
+
   return {
     products,
     categories: Object.values(PRODUCT_CATEGORIES),
@@ -288,7 +291,7 @@ export function getUtilityStatus() {
   const { getContentStatistics } = require('./content-parser');
   const { getAllProducts } = require('./product-utils');
   const { MICROGREENS_PRODUCTS, MICROGREEN_TYPES } = require('./constants');
-  
+
   return {
     timestamp: new Date().toISOString(),
     utilities: {

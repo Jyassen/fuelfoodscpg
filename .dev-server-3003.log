@@ -1,0 +1,222 @@
+
+> fuelfoodscpg@0.1.0 dev
+> next dev --turbopack --port=3003
+
+[?25h
+Next.js 15.4.5 (Turbopack)
+   - Local:        http://localhost:3003
+   - Network:      http://192.168.1.219:3003
+   - Experiments (use with caution):
+     ✓ optimizeCss
+     · optimizePackageImports
+
+ ✓ Starting...
+Slow filesystem detected. The benchmark took 136ms. If /Users/base/Desktop/fuelfoodscpg/.next is a network drive, consider moving it to a local folder. If you have an antivirus enabled, consider excluding your project directory.
+ ✓ Ready in 27.9s
+ ⚠ Webpack is configured while Turbopack is not, which may cause problems.
+ ⚠ See instructions if you need to configure Turbopack:
+  https://nextjs.org/docs/app/api-reference/next-config-js/turbopack
+
+ ○ Compiling / ...
+ ✓ Compiled / in 51.8s
+ HEAD / 200 in 57978ms
+ GET / 200 in 11615ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 7.9s
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 9177ms
+ ✓ Compiled in 10ms
+ GET / 200 in 9193ms
+ GET / 200 in 4072ms
+ ○ Compiling /packs ...
+ ✓ Compiled /packs in 5.7s
+ GET /packs/ 200 in 7909ms
+ ○ Compiling /_not-found/page ...
+ GET / 200 in 5049ms
+ GET / 200 in 1033ms
+ ✓ Compiled /_not-found/page in 7s
+ GET /packs/ 404 in 7807ms
+ GET /packs/ 404 in 1599ms
+ GET /packs/ 404 in 4578ms
+ GET / 200 in 2345ms
+ ✓ Compiled in 9.4s
+ ✓ Compiled in 5.1s
+ ○ Compiling / ...
+ ✓ Compiled / in 577ms
+ GET / 200 in 5228ms
+ GET /images/logo_v2.png 404 in 4033ms
+ GET /images/3-pack-Product-img.png 404 in 3090ms
+ GET /images/5-pack-Product-img.png 404 in 3068ms
+ GET /images/logo_v2.png 404 in 350ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 1068ms
+ GET /favicon.ico 200 in 384ms
+ ✓ Compiled in 4.3s
+ ○ Compiling / ...
+ ✓ Compiled / in 1013ms
+ GET / 200 in 6210ms
+ GET / 200 in 5004ms
+ GET /images/logo_v2.png 404 in 3591ms
+ GET /images/3-pack-Product-img.png 404 in 4507ms
+ GET /images/5-pack-Product-img.png 404 in 5273ms
+ GET /images/logo_v2.png 404 in 1569ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 861ms
+ ✓ Compiled in 1401ms
+ ○ Compiling / ...
+ ✓ Compiled / in 536ms
+ GET / 200 in 10210ms
+ ✓ Compiled in 1190ms
+ ✓ Compiled / in 317ms
+ GET / 200 in 5198ms
+ ✓ Compiled in 8.1s
+ ○ Compiling / ...
+ ✓ Compiled / in 1404ms
+ GET / 200 in 6460ms
+ ✓ Compiled in 9.8s
+ ✓ Compiled in 2ms
+ ○ Compiling / ...
+ ✓ Compiled / in 3.4s
+ GET / 200 in 19103ms
+ GET / 200 in 1196ms
+ GET /images/logo_v2.png 404 in 4257ms
+ GET /images/3-pack-Product-img.png 404 in 4581ms
+ GET /images/5-pack-Product-img.png 404 in 4578ms
+ GET /images/logo_v2.png 404 in 997ms
+ ✓ Compiled in 2.8s
+ ○ Compiling / ...
+ ✓ Compiled / in 512ms
+ GET / 200 in 13156ms
+ GET / 200 in 10126ms
+ GET /images/logo_v2.png 404 in 5972ms
+ GET /images/5-pack-Product-img.png 404 in 5530ms
+ GET /images/3-pack-Product-img.png 404 in 5973ms
+ GET /images/logo_v2.png 404 in 2129ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 2856ms
+ ✓ Compiled in 4.4s
+ ○ Compiling / ...
+ ✓ Compiled / in 1761ms
+ GET / 200 in 18255ms
+ ✓ Compiled in 2s
+ ✓ Compiled in 2.2s
+ ✓ Compiled / in 273ms
+ GET / 200 in 8775ms
+ GET / 200 in 5678ms
+ ✓ Compiled in 1964ms
+ ✓ Compiled / in 468ms
+ GET / 200 in 8608ms
+ ✓ Compiled in 1466ms
+ ✓ Compiled / in 479ms
+ GET / 200 in 8303ms
+ ✓ Compiled in 1183ms
+ ✓ Compiled / in 173ms
+ GET / 200 in 4277ms
+ ✓ Compiled in 490ms
+ ✓ Compiled / in 138ms
+ GET / 200 in 2163ms
+ ✓ Compiled in 1657ms
+ ✓ Compiled / in 353ms
+ GET / 200 in 9795ms
+ ✓ Compiled in 1878ms
+ ✓ Compiled / in 361ms
+ GET / 200 in 4321ms
+ ○ Compiling /_not-found/page ...
+ ✓ Compiled /_not-found/page in 764ms
+ GET / 200 in 3447ms
+ GET /images/5-pack-Product-img.png 404 in 1287ms
+ GET /images/logo_v2.png 404 in 2009ms
+ GET /images/3-pack-Product-img.png 404 in 2041ms
+ GET /images/logo_v2.png 404 in 510ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 658ms
+ ✓ Compiled in 2s
+ ○ Compiling / ...
+ ✓ Compiled / in 651ms
+ GET / 200 in 9739ms
+ ✓ Compiled in 1624ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1757ms
+ GET / 200 in 8388ms
+ ✓ Compiled in 1336ms
+ ○ Compiling / ...
+ ✓ Compiled / in 843ms
+ GET / 200 in 13690ms
+ ✓ Compiled in 15.1s
+ ✓ Compiled in 2.7s
+ ○ Compiling / ...
+ ✓ Compiled / in 1468ms
+ GET / 200 in 5061ms
+ ✓ Compiled in 1748ms
+ ✓ Compiled / in 268ms
+ GET / 200 in 2771ms
+ ✓ Compiled in 676ms
+ ✓ Compiled in 968ms
+ ✓ Compiled / in 97ms
+ GET / 200 in 1833ms
+ GET / 200 in 1633ms
+ ✓ Compiled in 1388ms
+ ✓ Compiled / in 262ms
+ GET / 200 in 3653ms
+ ✓ Compiled in 1061ms
+ ✓ Compiled / in 368ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/base/Desktop/fuelfoodscpg/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/base/Desktop/fuelfoodscpg/.next/server/app/page/app-build-manifest.json'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 25.3s
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.naad7pkgrij'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.naad7pkgrij'
+}
+[Error: ENOENT: no such file or directory, open '/Users/base/Desktop/fuelfoodscpg/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/base/Desktop/fuelfoodscpg/.next/server/app/page/app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.ncarojfy66s'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.ncarojfy66s'
+}
+[Error: ENOENT: no such file or directory, open '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.k41a1nc8a9s'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.k41a1nc8a9s'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/base/Desktop/fuelfoodscpg/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/base/Desktop/fuelfoodscpg/.next/server/app/page/app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.f93xizcxm3'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.f93xizcxm3'
+}
+[Error: ENOENT: no such file or directory, open '/Users/base/Desktop/fuelfoodscpg/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/base/Desktop/fuelfoodscpg/.next/server/app/page/app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.xziv5d3cyeo'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.xziv5d3cyeo'
+}
+[Error: ENOENT: no such file or directory, open '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.ipnugj7otq'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/base/Desktop/fuelfoodscpg/.next/static/development/_buildManifest.js.tmp.ipnugj7otq'
+}
+ ✓ Compiled in 361ms
+ ✓ Compiled in 2.4s
+[?25h

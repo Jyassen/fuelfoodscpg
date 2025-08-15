@@ -1,0 +1,14 @@
+
+> fuelfoodscpg@0.1.0 dev
+> next dev --turbopack --port=3002
+
+   ▲ Next.js 15.4.5 (Turbopack)
+   - Local:        http://localhost:3002
+   - Network:      http://192.168.1.219:3002
+   - Experiments (use with caution):
+     ✓ optimizeCss
+     · optimizePackageImports
+
+ ✓ Starting...
+Slow filesystem detected. The benchmark took 105ms. If /Users/base/Desktop/fuelfoodscpg/.next is a network drive, consider moving it to a local folder. If you have an antivirus enabled, consider excluding your project directory.
+ ✓ Ready in 9.8s

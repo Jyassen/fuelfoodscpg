@@ -1,9 +1,9 @@
-import type { 
-  SearchIndexEntry, 
-  SearchResult, 
+import type {
+  SearchIndexEntry,
+  SearchResult,
   SearchMatch,
   WordPressPage,
-  FuelFoodsProduct 
+  FuelFoodsProduct,
 } from './types';
 import { buildContentSearchIndex } from './content-parser';
 
@@ -14,13 +14,13 @@ import { buildContentSearchIndex } from './content-parser';
 export const SEARCH_CONFIG = {
   // Minimum query length
   minQueryLength: 2,
-  
+
   // Maximum results to return
   maxResults: 20,
-  
+
   // Score thresholds
   minScore: 0.1,
-  
+
   // Field weights for scoring
   fieldWeights: {
     title: 3.0,
@@ -28,7 +28,7 @@ export const SEARCH_CONFIG = {
     excerpt: 1.5,
     content: 1.0,
   },
-  
+
   // Boost factors
   boostFactors: {
     exactMatch: 2.0,
@@ -73,7 +73,7 @@ export function getSearchIndex(): SearchIndexEntry[] {
  */
 export function addToSearchIndex(entry: SearchIndexEntry): void {
   const existingIndex = searchIndex.findIndex(item => item.id === entry.id);
-  
+
   if (existingIndex >= 0) {
     searchIndex[existingIndex] = entry;
   } else {
@@ -116,14 +116,14 @@ export function searchContent(
 
   const normalizedQuery = normalizeQuery(query);
   const queryTerms = extractQueryTerms(normalizedQuery);
-  
+
   if (queryTerms.length === 0) {
     return [];
   }
 
   // Get relevant index entries
   let relevantEntries = getSearchIndex();
-  
+
   if (type !== 'all') {
     relevantEntries = relevantEntries.filter(entry => entry.type === type);
   }
@@ -286,13 +286,17 @@ function findMatches(
       if (index === -1) break;
 
       // Avoid duplicate matches with exact phrase
-      if (exactIndex === -1 || index < exactIndex || index >= exactIndex + fullQuery.length) {
-        const isPartialWord = (
+      if (
+        exactIndex === -1 ||
+        index < exactIndex ||
+        index >= exactIndex + fullQuery.length
+      ) {
+        const isPartialWord =
           (index > 0 && /\w/.test(lowerText[index - 1])) ||
-          (index + term.length < lowerText.length && /\w/.test(lowerText[index + term.length]))
-        );
+          (index + term.length < lowerText.length &&
+            /\w/.test(lowerText[index + term.length]));
 
-        const score = isPartialWord 
+        const score = isPartialWord
           ? SEARCH_CONFIG.boostFactors.partialMatch * 0.7
           : SEARCH_CONFIG.boostFactors.partialMatch;
 
@@ -316,16 +320,24 @@ function findMatches(
 /**
  * Get context around a match
  */
-function getContext(text: string, startIndex: number, matchLength: number, contextLength: number = 100): string {
+function getContext(
+  text: string,
+  startIndex: number,
+  matchLength: number,
+  contextLength: number = 100
+): string {
   const contextStart = Math.max(0, startIndex - contextLength);
-  const contextEnd = Math.min(text.length, startIndex + matchLength + contextLength);
-  
+  const contextEnd = Math.min(
+    text.length,
+    startIndex + matchLength + contextLength
+  );
+
   let context = text.substring(contextStart, contextEnd);
-  
+
   // Add ellipsis if we're not at the beginning/end
   if (contextStart > 0) context = '...' + context;
   if (contextEnd < text.length) context = context + '...';
-  
+
   return context.trim();
 }
 
@@ -349,12 +361,23 @@ function normalizeQuery(query: string): string {
  */
 function extractQueryTerms(query: string): string[] {
   const terms = query.split(' ').filter(term => term.length >= 2);
-  
+
   // Remove common stop words
   const stopWords = new Set([
-    'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by'
+    'the',
+    'and',
+    'or',
+    'but',
+    'in',
+    'on',
+    'at',
+    'to',
+    'for',
+    'of',
+    'with',
+    'by',
   ]);
-  
+
   return terms.filter(term => !stopWords.has(term));
 }
 
@@ -368,37 +391,39 @@ function extractQueryTerms(query: string): string[] {
 export function searchByNutrition(nutrients: string[]): SearchResult[] {
   const nutritionTerms = nutrients.map(n => n.toLowerCase());
   const query = nutritionTerms.join(' ');
-  
-  return searchContent(query, { type: 'product' })
-    .filter(result => {
-      const entry = result.entry;
-      return nutritionTerms.some(term => 
+
+  return searchContent(query, { type: 'product' }).filter(result => {
+    const entry = result.entry;
+    return nutritionTerms.some(
+      term =>
         entry.keywords.some(keyword => keyword.includes(term)) ||
         entry.content.toLowerCase().includes(term)
-      );
-    });
+    );
+  });
 }
 
 /**
  * Search for content by category
  */
-export function searchByCategory(category: string, query?: string): SearchResult[] {
+export function searchByCategory(
+  category: string,
+  query?: string
+): SearchResult[] {
   let baseQuery = category;
   if (query) {
     baseQuery += ' ' + query;
   }
 
-  return searchContent(baseQuery, { limit: 15 })
-    .filter(result => {
-      const entry = result.entry;
-      const categoryLower = category.toLowerCase();
-      
-      return (
-        entry.keywords.some(keyword => keyword.includes(categoryLower)) ||
-        entry.url.includes(categoryLower) ||
-        entry.title.toLowerCase().includes(categoryLower)
-      );
-    });
+  return searchContent(baseQuery, { limit: 15 }).filter(result => {
+    const entry = result.entry;
+    const categoryLower = category.toLowerCase();
+
+    return (
+      entry.keywords.some(keyword => keyword.includes(categoryLower)) ||
+      entry.url.includes(categoryLower) ||
+      entry.title.toLowerCase().includes(categoryLower)
+    );
+  });
 }
 
 /**
@@ -406,7 +431,7 @@ export function searchByCategory(category: string, query?: string): SearchResult
  */
 export function getPopularSearchTerms(limit: number = 10): string[] {
   const termFrequency = new Map<string, number>();
-  
+
   getSearchIndex().forEach(entry => {
     entry.keywords.forEach(keyword => {
       if (keyword.length > 3) {
@@ -426,7 +451,7 @@ export function getPopularSearchTerms(limit: number = 10): string[] {
  */
 export function getSearchAnalytics() {
   const index = getSearchIndex();
-  
+
   return {
     totalEntries: index.length,
     entriesByType: {
@@ -439,7 +464,8 @@ export function getSearchAnalytics() {
       index.reduce((sum, entry) => sum + entry.content.length, 0) / index.length
     ),
     averageKeywords: Math.round(
-      index.reduce((sum, entry) => sum + entry.keywords.length, 0) / index.length
+      index.reduce((sum, entry) => sum + entry.keywords.length, 0) /
+        index.length
     ),
     topKeywords: getPopularSearchTerms(20),
   };

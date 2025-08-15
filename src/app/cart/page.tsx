@@ -4,14 +4,15 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Shopping Cart - FuelFoods CPG',
-  description: 'Review your microgreens and pet grass selections before checkout.',
+  description:
+    'Review your microgreens and pet grass selections before checkout.',
 };
 
 export default function CartPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
-      
+
       {/* Cart Items */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-8">
         <div className="p-6">
@@ -28,25 +29,51 @@ export default function CartPage() {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900">Mega Mix</h3>
-                <p className="text-sm text-gray-600">Premium Microgreens Blend</p>
+                <p className="text-sm text-gray-600">
+                  Premium Microgreens Blend
+                </p>
                 <p className="text-sm text-green-600">Weekly subscription</p>
               </div>
               <div className="flex items-center space-x-3">
                 <button className="text-gray-400 hover:text-gray-600">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20 12H4"
+                    />
                   </svg>
                 </button>
-                <span className="px-3 py-1 border border-gray-300 rounded text-center min-w-[50px]">1</span>
+                <span className="px-3 py-1 border border-gray-300 rounded text-center min-w-[50px]">
+                  1
+                </span>
                 <button className="text-gray-400 hover:text-gray-600">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    />
                   </svg>
                 </button>
               </div>
               <div className="text-right">
                 <p className="font-semibold text-gray-900">$12.99</p>
-                <button className="text-sm text-red-600 hover:text-red-800">Remove</button>
+                <button className="text-sm text-red-600 hover:text-red-800">
+                  Remove
+                </button>
               </div>
             </div>
 
@@ -60,26 +87,52 @@ export default function CartPage() {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-gray-900">Tummies Pet Grass</h3>
+                <h3 className="font-semibold text-gray-900">
+                  Tummies Pet Grass
+                </h3>
                 <p className="text-sm text-gray-600">3-Pack</p>
                 <p className="text-sm text-blue-600">Weekly subscription</p>
               </div>
               <div className="flex items-center space-x-3">
                 <button className="text-gray-400 hover:text-gray-600">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20 12H4"
+                    />
                   </svg>
                 </button>
-                <span className="px-3 py-1 border border-gray-300 rounded text-center min-w-[50px]">1</span>
+                <span className="px-3 py-1 border border-gray-300 rounded text-center min-w-[50px]">
+                  1
+                </span>
                 <button className="text-gray-400 hover:text-gray-600">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    />
                   </svg>
                 </button>
               </div>
               <div className="text-right">
                 <p className="font-semibold text-gray-900">$24.99</p>
-                <button className="text-sm text-red-600 hover:text-red-800">Remove</button>
+                <button className="text-sm text-red-600 hover:text-red-800">
+                  Remove
+                </button>
               </div>
             </div>
           </div>
@@ -106,12 +159,22 @@ export default function CartPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Continue Shopping */}
         <div className="lg:col-span-2">
-          <Link 
+          <Link
             href="/shop"
             className="inline-flex items-center text-green-600 hover:text-green-700 font-medium"
           >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            <svg
+              className="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 16l-4-4m0 0l4-4m-4 4h18"
+              />
             </svg>
             Continue Shopping
           </Link>
@@ -119,8 +182,10 @@ export default function CartPage() {
 
         {/* Order Summary */}
         <div className="bg-gray-50 p-6 rounded-lg">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h2>
-          
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            Order Summary
+          </h2>
+
           <div className="space-y-3 mb-4">
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">Subtotal</span>
@@ -152,14 +217,30 @@ export default function CartPage() {
           <div className="mt-4 text-center">
             <div className="flex items-center justify-center space-x-4 text-sm text-gray-600">
               <div className="flex items-center">
-                <svg className="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                <svg
+                  className="w-4 h-4 mr-1 text-green-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Secure checkout
               </div>
               <div className="flex items-center">
-                <svg className="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  className="w-4 h-4 mr-1 text-green-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Free shipping
               </div>

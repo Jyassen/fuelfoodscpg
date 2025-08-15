@@ -3,7 +3,8 @@ import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Brassica Blend - Cruciferous Microgreens | FuelFoods CPG',
-  description: 'Power-packed brassica microgreens including broccoli, kale, and cabbage varieties. Rich in sulforaphane and cancer-fighting compounds.',
+  description:
+    'Power-packed brassica microgreens including broccoli, kale, and cabbage varieties. Rich in sulforaphane and cancer-fighting compounds.',
 };
 
 export default function BrassicaBlendPage() {
@@ -52,43 +53,82 @@ export default function BrassicaBlendPage() {
         {/* Product Info */}
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Brassica Blend</h1>
-            <p className="text-xl text-green-600 font-semibold">Cruciferous Powerhouse Microgreens</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Brassica Blend
+            </h1>
+            <p className="text-xl text-green-600 font-semibold">
+              Cruciferous Powerhouse Microgreens
+            </p>
           </div>
 
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-600">
-              Our Brassica Blend features the most nutrient-dense cruciferous microgreens, 
-              including broccoli, kale, cabbage, and mustard varieties. These powerhouse 
-              greens are packed with sulforaphane and other cancer-fighting compounds, 
-              making them one of the most beneficial additions to your daily nutrition.
+              Our Brassica Blend features the most nutrient-dense cruciferous
+              microgreens, including broccoli, kale, cabbage, and mustard
+              varieties. These powerhouse greens are packed with sulforaphane
+              and other cancer-fighting compounds, making them one of the most
+              beneficial additions to your daily nutrition.
             </p>
           </div>
 
           <div className="bg-purple-50 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Health Benefits</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">
+              Health Benefits
+            </h3>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
-                <svg className="w-5 h-5 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-purple-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 High in sulforaphane for cancer protection
               </li>
               <li className="flex items-center">
-                <svg className="w-5 h-5 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-purple-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Supports detoxification processes
               </li>
               <li className="flex items-center">
-                <svg className="w-5 h-5 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-purple-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Rich in glucosinolates
               </li>
               <li className="flex items-center">
-                <svg className="w-5 h-5 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-purple-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Anti-inflammatory properties
               </li>
@@ -97,14 +137,16 @@ export default function BrassicaBlendPage() {
 
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold text-gray-900">From $14.99</span>
+              <span className="text-2xl font-bold text-gray-900">
+                From $14.99
+              </span>
               <span className="text-sm text-gray-500">Weekly delivery</span>
             </div>
-            
+
             <button className="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
               Add to Cart
             </button>
-            
+
             <div className="text-center text-sm text-gray-500">
               <p>🚚 Free delivery on orders over $25</p>
               <p>📦 Fresh weekly deliveries</p>
@@ -116,7 +158,9 @@ export default function BrassicaBlendPage() {
 
       {/* Microgreens Included */}
       <div className="mt-16">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Microgreens in This Blend</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+          Microgreens in This Blend
+        </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="text-center">
             <div className="aspect-square relative bg-gray-100 rounded-lg overflow-hidden mb-3">
@@ -172,7 +216,9 @@ export default function BrassicaBlendPage() {
       {/* Usage Guide */}
       <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Perfect For:</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Perfect For:
+          </h2>
           <ul className="space-y-3 text-gray-600">
             <li className="flex items-start">
               <span className="text-purple-500 mr-2">•</span>
@@ -192,9 +238,11 @@ export default function BrassicaBlendPage() {
             </li>
           </ul>
         </div>
-        
+
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Taste Profile:</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Taste Profile:
+          </h2>
           <ul className="space-y-3 text-gray-600">
             <li className="flex items-start">
               <span className="text-purple-500 mr-2">•</span>

@@ -55,7 +55,7 @@ export interface WordPressMedia {
 /**
  * FuelFoods microgreens product variants
  */
-export type MicrogreensVariant = 
+export type MicrogreensVariant =
   | 'mega-mix'
   | 'brassica-blend'
   | 'green-medley'
@@ -65,7 +65,7 @@ export type MicrogreensVariant =
 /**
  * Individual microgreen types found in blends
  */
-export type MicrogreenType = 
+export type MicrogreenType =
   | 'arugula'
   | 'beet'
   | 'broccoli'
@@ -148,16 +148,20 @@ export interface FuelFoodsCategory extends Category {
 /**
  * Subscription frequency options
  */
-export type SubscriptionFrequency = 
-  | 'weekly' 
-  | 'bi-weekly' 
-  | 'monthly' 
+export type SubscriptionFrequency =
+  | 'weekly'
+  | 'bi-weekly'
+  | 'monthly'
   | 'bi-monthly';
 
 /**
  * Subscription tier levels
  */
-export type SubscriptionTier = 'starter' | 'family' | 'enthusiast' | 'commercial';
+export type SubscriptionTier =
+  | 'starter'
+  | 'family'
+  | 'enthusiast'
+  | 'commercial';
 
 /**
  * Subscription option for products
@@ -245,7 +249,11 @@ export interface SEOMetadata {
   description: string;
   keywords: string[];
   canonicalUrl?: string;
-  robots?: 'index,follow' | 'noindex,nofollow' | 'index,nofollow' | 'noindex,follow';
+  robots?:
+    | 'index,follow'
+    | 'noindex,nofollow'
+    | 'index,nofollow'
+    | 'noindex,follow';
   openGraph: OpenGraphData;
   twitter: TwitterCardData;
   structuredData?: StructuredData;
@@ -292,7 +300,7 @@ export interface StructuredData {
 }
 
 // ============================================================================
-// ENHANCED EXISTING TYPES  
+// ENHANCED EXISTING TYPES
 // ============================================================================
 
 export interface Product {

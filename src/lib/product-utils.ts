@@ -1,16 +1,16 @@
-import type { 
-  FuelFoodsProduct, 
+import type {
+  FuelFoodsProduct,
   PackageSize,
   SubscriptionOption,
   MicrogreensVariant,
   MicrogreenType,
-  OptimizedImage 
+  OptimizedImage,
 } from './types';
-import { 
-  MICROGREENS_PRODUCTS, 
-  MICROGREEN_TYPES, 
-  SUBSCRIPTION_PLANS, 
-  PRICING 
+import {
+  MICROGREENS_PRODUCTS,
+  MICROGREEN_TYPES,
+  SUBSCRIPTION_PLANS,
+  PRICING,
 } from './constants';
 import { getProductImages } from './image-utils';
 
@@ -22,7 +22,7 @@ import { getProductImages } from './image-utils';
  * Get all FuelFoods products
  */
 export function getAllProducts(): FuelFoodsProduct[] {
-  return Object.values(MICROGREENS_PRODUCTS).map(productData => 
+  return Object.values(MICROGREENS_PRODUCTS).map(productData =>
     transformToFuelFoodsProduct(productData)
   );
 }
@@ -34,9 +34,9 @@ export function getProductBySlug(slug: string): FuelFoodsProduct | null {
   const productData = Object.values(MICROGREENS_PRODUCTS).find(
     product => product.slug === slug || product.id === slug
   );
-  
+
   if (!productData) return null;
-  
+
   return transformToFuelFoodsProduct(productData);
 }
 
@@ -45,10 +45,10 @@ export function getProductBySlug(slug: string): FuelFoodsProduct | null {
  */
 export function getProductsByCategory(category: string): FuelFoodsProduct[] {
   const allProducts = getAllProducts();
-  
-  return allProducts.filter(product => 
-    product.categories.some(cat => 
-      cat.slug === category || cat.type === category
+
+  return allProducts.filter(product =>
+    product.categories.some(
+      cat => cat.slug === category || cat.type === category
     )
   );
 }
@@ -58,12 +58,13 @@ export function getProductsByCategory(category: string): FuelFoodsProduct[] {
  */
 export function getFeaturedProducts(): FuelFoodsProduct[] {
   const allProducts = getAllProducts();
-  
+
   // Prioritize products with popular package sizes or specific variants
   return allProducts
-    .filter(product => 
-      product.packageSizes.some(size => size.isPopular) ||
-      ['mega-mix', 'brassica-blend'].includes(product.variant)
+    .filter(
+      product =>
+        product.packageSizes.some(size => size.isPopular) ||
+        ['mega-mix', 'brassica-blend'].includes(product.variant)
     )
     .slice(0, 4);
 }
@@ -71,10 +72,12 @@ export function getFeaturedProducts(): FuelFoodsProduct[] {
 /**
  * Search products by microgreen types
  */
-export function getProductsByMicrogreenType(types: MicrogreenType[]): FuelFoodsProduct[] {
+export function getProductsByMicrogreenType(
+  types: MicrogreenType[]
+): FuelFoodsProduct[] {
   const allProducts = getAllProducts();
-  
-  return allProducts.filter(product => 
+
+  return allProducts.filter(product =>
     types.some(type => product.microgreenTypes.includes(type))
   );
 }
@@ -88,9 +91,10 @@ export function getProductsByMicrogreenType(types: MicrogreenType[]): FuelFoodsP
  */
 function transformToFuelFoodsProduct(productData: any): FuelFoodsProduct {
   const images = getProductImages(productData.id);
-  const primaryImage = images.find(img => 
-    img.url.includes(productData.images.primary.replace(/\.[^/.]+$/, ''))
-  ) || images[0];
+  const primaryImage =
+    images.find(img =>
+      img.url.includes(productData.images.primary.replace(/\.[^/.]+$/, ''))
+    ) || images[0];
 
   return {
     id: productData.id,
@@ -100,48 +104,57 @@ function transformToFuelFoodsProduct(productData: any): FuelFoodsProduct {
     shortDescription: productData.shortDescription,
     variant: productData.id as MicrogreensVariant,
     microgreenTypes: productData.microgreenTypes,
-    
+
     // Transform package sizes to full product structure
     price: productData.packageSizes[0]?.price || 0,
-    salePrice: calculateSubscriptionPrice(productData.packageSizes[0]?.price || 0),
-    
+    salePrice: calculateSubscriptionPrice(
+      productData.packageSizes[0]?.price || 0
+    ),
+
     images: images,
-    
-    categories: [{
-      id: 'microgreens',
-      name: 'Microgreens',
-      slug: 'microgreens',
-      type: 'microgreens' as const,
-      nutritionalFocus: productData.nutritionalHighlights || [],
-    }],
-    
+
+    categories: [
+      {
+        id: 'microgreens',
+        name: 'Microgreens',
+        slug: 'microgreens',
+        type: 'microgreens' as const,
+        nutritionalFocus: productData.nutritionalHighlights || [],
+      },
+    ],
+
     inStock: true, // Assume in stock
     sku: `FF-${productData.id.toUpperCase()}`,
     weight: parseWeight(productData.packageSizes[0]?.weight),
-    
-    packageSizes: productData.packageSizes.map((pkg: any): PackageSize => ({
-      id: `${productData.id}-${pkg.size}`,
-      name: pkg.size,
-      quantity: pkg.quantity,
-      price: pkg.price,
-      salePrice: calculateSubscriptionPrice(pkg.price),
-      weight: parseWeight(pkg.weight),
-      dimensions: { length: 8, width: 6, height: 2, unit: 'in' },
-      isPopular: pkg.isPopular || false,
-    })),
-    
+
+    packageSizes: productData.packageSizes.map(
+      (pkg: any): PackageSize => ({
+        id: `${productData.id}-${pkg.size}`,
+        name: pkg.size,
+        quantity: pkg.quantity,
+        price: pkg.price,
+        salePrice: calculateSubscriptionPrice(pkg.price),
+        weight: parseWeight(pkg.weight),
+        dimensions: { length: 8, width: 6, height: 2, unit: 'in' },
+        isPopular: pkg.isPopular || false,
+      })
+    ),
+
     subscriptionOptions: generateSubscriptionOptions(productData),
-    
+
     nutritionalInfo: {
       vitamins: extractNutritionalInfo(productData.microgreenTypes, 'vitamins'),
       minerals: extractNutritionalInfo(productData.microgreenTypes, 'minerals'),
-      antioxidants: extractNutritionalInfo(productData.microgreenTypes, 'antioxidants'),
+      antioxidants: extractNutritionalInfo(
+        productData.microgreenTypes,
+        'antioxidants'
+      ),
       protein: calculateProteinContent(productData.microgreenTypes),
       fiber: '2-4g per serving',
       calories: 15,
       servingSize: '1 oz (28g)',
     },
-    
+
     growingInfo: {
       growthTime: '7-14 days',
       difficulty: 'easy',
@@ -154,15 +167,15 @@ function transformToFuelFoodsProduct(productData: any): FuelFoodsProduct {
         'Rinse gently before eating',
       ],
     },
-    
+
     freshnessDuration: '7-10 days refrigerated',
-    
+
     attributes: [
       { name: 'Organic', value: 'Yes', visible: true },
       { name: 'Locally Grown', value: 'Yes', visible: true },
       { name: 'Harvest to Delivery', value: '24-48 hours', visible: true },
     ],
-    
+
     createdAt: new Date(),
     updatedAt: new Date(),
   };
@@ -175,8 +188,11 @@ function transformToFuelFoodsProduct(productData: any): FuelFoodsProduct {
 /**
  * Calculate subscription price with discount
  */
-function calculateSubscriptionPrice(basePrice: number, discount: number = 15): number {
-  return Math.round((basePrice * (1 - discount / 100)) * 100) / 100;
+function calculateSubscriptionPrice(
+  basePrice: number,
+  discount: number = 15
+): number {
+  return Math.round(basePrice * (1 - discount / 100) * 100) / 100;
 }
 
 /**
@@ -185,30 +201,37 @@ function calculateSubscriptionPrice(basePrice: number, discount: number = 15): n
 function generateSubscriptionOptions(productData: any): SubscriptionOption[] {
   const basePrice = productData.packageSizes[0]?.price || 0;
   const subscriptionDiscount = productData.subscriptionDiscount || 15;
-  
-  return Object.entries(PRICING.SUBSCRIPTION_DISCOUNTS).map(([frequency, discount]) => ({
-    id: `${productData.id}-${frequency}`,
-    frequency: frequency as SubscriptionOption['frequency'],
-    tier: 'family', // Default tier
-    discount: Math.max(discount, subscriptionDiscount),
-    price: calculateSubscriptionPrice(basePrice, Math.max(discount, subscriptionDiscount)),
-    originalPrice: basePrice,
-    benefits: [
-      `${Math.max(discount, subscriptionDiscount)}% off regular price`,
-      'Free shipping on all orders',
-      'Flexible delivery schedule',
-      'Cancel anytime',
-    ],
-  }));
+
+  return Object.entries(PRICING.SUBSCRIPTION_DISCOUNTS).map(
+    ([frequency, discount]) => ({
+      id: `${productData.id}-${frequency}`,
+      frequency: frequency as SubscriptionOption['frequency'],
+      tier: 'family', // Default tier
+      discount: Math.max(discount, subscriptionDiscount),
+      price: calculateSubscriptionPrice(
+        basePrice,
+        Math.max(discount, subscriptionDiscount)
+      ),
+      originalPrice: basePrice,
+      benefits: [
+        `${Math.max(discount, subscriptionDiscount)}% off regular price`,
+        'Free shipping on all orders',
+        'Flexible delivery schedule',
+        'Cancel anytime',
+      ],
+    })
+  );
 }
 
 /**
  * Calculate best subscription deal
  */
-export function getBestSubscriptionDeal(product: FuelFoodsProduct): SubscriptionOption | null {
+export function getBestSubscriptionDeal(
+  product: FuelFoodsProduct
+): SubscriptionOption | null {
   if (product.subscriptionOptions.length === 0) return null;
-  
-  return product.subscriptionOptions.reduce((best, current) => 
+
+  return product.subscriptionOptions.reduce((best, current) =>
     current.discount > best.discount ? current : best
   );
 }
@@ -217,8 +240,8 @@ export function getBestSubscriptionDeal(product: FuelFoodsProduct): Subscription
  * Calculate total savings with subscription
  */
 export function calculateSubscriptionSavings(
-  originalPrice: number, 
-  subscriptionPrice: number, 
+  originalPrice: number,
+  subscriptionPrice: number,
   frequency: string,
   months: number = 12
 ): { totalSavings: number; savingsPerOrder: number; ordersPerYear: number } {
@@ -228,12 +251,13 @@ export function calculateSubscriptionSavings(
     monthly: 12,
     'bi-monthly': 6,
   };
-  
-  const ordersPerYear = frequencyMap[frequency as keyof typeof frequencyMap] || 12;
+
+  const ordersPerYear =
+    frequencyMap[frequency as keyof typeof frequencyMap] || 12;
   const actualOrders = Math.round((ordersPerYear * months) / 12);
   const savingsPerOrder = originalPrice - subscriptionPrice;
   const totalSavings = savingsPerOrder * actualOrders;
-  
+
   return {
     totalSavings: Math.round(totalSavings * 100) / 100,
     savingsPerOrder: Math.round(savingsPerOrder * 100) / 100,
@@ -249,33 +273,39 @@ export function calculateSubscriptionSavings(
  * Extract nutritional information for microgreen types
  */
 function extractNutritionalInfo(
-  microgreenTypes: MicrogreenType[], 
+  microgreenTypes: MicrogreenType[],
   category: 'vitamins' | 'minerals' | 'antioxidants'
 ): string[] {
   const nutrients = new Set<string>();
-  
+
   microgreenTypes.forEach(type => {
-    const microgreenData = MICROGREEN_TYPES[type.toUpperCase().replace('-', '_') as keyof typeof MICROGREEN_TYPES];
+    const microgreenData =
+      MICROGREEN_TYPES[
+        type.toUpperCase().replace('-', '_') as keyof typeof MICROGREEN_TYPES
+      ];
     if (microgreenData?.nutrients) {
       microgreenData.nutrients.forEach(nutrient => nutrients.add(nutrient));
     }
   });
-  
+
   // Categorize nutrients (simplified logic)
   const vitaminKeywords = ['Vitamin', 'Folate', 'Beta'];
   const mineralKeywords = ['Calcium', 'Iron', 'Magnesium', 'Potassium'];
-  const antioxidantKeywords = ['Sulforaphane', 'Anthocyanins', 'Rutin', 'Betaine'];
-  
+  const antioxidantKeywords = [
+    'Sulforaphane',
+    'Anthocyanins',
+    'Rutin',
+    'Betaine',
+  ];
+
   const categoryKeywords = {
     vitamins: vitaminKeywords,
     minerals: mineralKeywords,
     antioxidants: antioxidantKeywords,
   };
-  
-  return Array.from(nutrients).filter(nutrient => 
-    categoryKeywords[category].some(keyword => 
-      nutrient.includes(keyword)
-    )
+
+  return Array.from(nutrients).filter(nutrient =>
+    categoryKeywords[category].some(keyword => nutrient.includes(keyword))
   );
 }
 
@@ -284,10 +314,10 @@ function extractNutritionalInfo(
  */
 function calculateProteinContent(microgreenTypes: MicrogreenType[]): string {
   const highProteinTypes = ['peas', 'sunflowers', 'buckwheat'];
-  const hasHighProtein = microgreenTypes.some(type => 
+  const hasHighProtein = microgreenTypes.some(type =>
     highProteinTypes.includes(type)
   );
-  
+
   return hasHighProtein ? '3-5g per serving' : '2-3g per serving';
 }
 
@@ -299,8 +329,10 @@ function calculateProteinContent(microgreenTypes: MicrogreenType[]): string {
  * Compare multiple products
  */
 export function compareProducts(productIds: string[]) {
-  const products = productIds.map(id => getProductBySlug(id)).filter(Boolean) as FuelFoodsProduct[];
-  
+  const products = productIds
+    .map(id => getProductBySlug(id))
+    .filter(Boolean) as FuelFoodsProduct[];
+
   return {
     products,
     comparison: {
@@ -310,14 +342,21 @@ export function compareProducts(productIds: string[]) {
       },
       microgreenTypes: {
         all: Array.from(new Set(products.flatMap(p => p.microgreenTypes))),
-        common: products[0]?.microgreenTypes.filter(type => 
-          products.every(p => p.microgreenTypes.includes(type))
-        ) || [],
+        common:
+          products[0]?.microgreenTypes.filter(type =>
+            products.every(p => p.microgreenTypes.includes(type))
+          ) || [],
       },
       nutritionalHighlights: {
-        vitamins: Array.from(new Set(products.flatMap(p => p.nutritionalInfo.vitamins))),
-        minerals: Array.from(new Set(products.flatMap(p => p.nutritionalInfo.minerals))),
-        antioxidants: Array.from(new Set(products.flatMap(p => p.nutritionalInfo.antioxidants))),
+        vitamins: Array.from(
+          new Set(products.flatMap(p => p.nutritionalInfo.vitamins))
+        ),
+        minerals: Array.from(
+          new Set(products.flatMap(p => p.nutritionalInfo.minerals))
+        ),
+        antioxidants: Array.from(
+          new Set(products.flatMap(p => p.nutritionalInfo.antioxidants))
+        ),
       },
       bestFor: products.map(product => ({
         id: product.id,
@@ -333,19 +372,35 @@ export function compareProducts(productIds: string[]) {
  */
 function generateBestForRecommendation(product: FuelFoodsProduct): string[] {
   const recommendations: string[] = [];
-  
+
   if (product.variant === 'mega-mix') {
-    recommendations.push('First-time buyers', 'Variety seekers', 'General nutrition');
+    recommendations.push(
+      'First-time buyers',
+      'Variety seekers',
+      'General nutrition'
+    );
   } else if (product.variant === 'brassica-blend') {
-    recommendations.push('Cancer prevention', 'Anti-inflammatory diet', 'Detox support');
+    recommendations.push(
+      'Cancer prevention',
+      'Anti-inflammatory diet',
+      'Detox support'
+    );
   } else if (product.variant === 'green-medley') {
-    recommendations.push('Kids and families', 'Mild flavor preference', 'Smoothie ingredients');
+    recommendations.push(
+      'Kids and families',
+      'Mild flavor preference',
+      'Smoothie ingredients'
+    );
   } else if (product.variant === 'sunnies-snacks') {
     recommendations.push('High protein needs', 'Snacking', 'Texture lovers');
   } else if (product.variant === 'tummies-pet-grass') {
-    recommendations.push('Cat owners', 'Pet digestive health', 'Natural pet treats');
+    recommendations.push(
+      'Cat owners',
+      'Pet digestive health',
+      'Natural pet treats'
+    );
   }
-  
+
   return recommendations;
 }
 
@@ -356,7 +411,10 @@ function generateBestForRecommendation(product: FuelFoodsProduct): string[] {
 /**
  * Check product availability
  */
-export function checkProductAvailability(productId: string, quantity: number = 1): {
+export function checkProductAvailability(
+  productId: string,
+  quantity: number = 1
+): {
   available: boolean;
   stock: number;
   estimatedRestockDate?: Date;
@@ -364,31 +422,35 @@ export function checkProductAvailability(productId: string, quantity: number = 1
 } {
   // Simplified availability check - in real implementation, this would check actual inventory
   const product = getProductBySlug(productId);
-  
+
   if (!product) {
     return { available: false, stock: 0 };
   }
-  
+
   // Mock inventory logic
   const mockStock = Math.floor(Math.random() * 100) + 50; // 50-150 units
   const available = mockStock >= quantity;
-  
+
   let alternativeProducts: FuelFoodsProduct[] = [];
   if (!available) {
     // Suggest similar products
     alternativeProducts = getAllProducts()
-      .filter(p => 
-        p.id !== productId && 
-        p.microgreenTypes.some(type => product.microgreenTypes.includes(type))
+      .filter(
+        p =>
+          p.id !== productId &&
+          p.microgreenTypes.some(type => product.microgreenTypes.includes(type))
       )
       .slice(0, 3);
   }
-  
+
   return {
     available,
     stock: mockStock,
-    estimatedRestockDate: available ? undefined : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-    alternativeProducts: alternativeProducts.length > 0 ? alternativeProducts : undefined,
+    estimatedRestockDate: available
+      ? undefined
+      : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    alternativeProducts:
+      alternativeProducts.length > 0 ? alternativeProducts : undefined,
   };
 }
 
@@ -401,19 +463,23 @@ export function checkProductAvailability(productId: string, quantity: number = 1
  */
 function parseWeight(weightStr: string): number {
   if (!weightStr) return 0;
-  
+
   const match = weightStr.match(/(\d+(?:\.\d+)?)\s*(oz|lb|g|kg)?/i);
   if (!match) return 0;
-  
+
   const value = parseFloat(match[1]);
   const unit = (match[2] || 'oz').toLowerCase();
-  
+
   // Convert to oz
   switch (unit) {
-    case 'lb': return value * 16;
-    case 'g': return value * 0.035274;
-    case 'kg': return value * 35.274;
-    default: return value; // assume oz
+    case 'lb':
+      return value * 16;
+    case 'g':
+      return value * 0.035274;
+    case 'kg':
+      return value * 35.274;
+    default:
+      return value; // assume oz
   }
 }
 
@@ -462,7 +528,9 @@ export function generateProductSchema(product: FuelFoodsProduct) {
       '@type': 'Offer',
       price: product.price,
       priceCurrency: 'USD',
-      availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      availability: product.inStock
+        ? 'https://schema.org/InStock'
+        : 'https://schema.org/OutOfStock',
       seller: {
         '@type': 'Organization',
         name: 'FuelFoods CPG',

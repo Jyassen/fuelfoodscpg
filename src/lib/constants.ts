@@ -1,14 +1,20 @@
 // Application constants for FuelFoods CPG
 
 export const SITE_CONFIG = {
-  name: 'FuelFoods CPG',
+  name: 'fuelfoods.store',
   tagline: 'Fuel Your Life with Fresh Microgreens',
-  description: 'Premium microgreens and pet grass delivered fresh to your door. Packed with nutrients, grown locally, and delivered within 48 hours of harvest.',
-  longDescription: 'FuelFoods CPG specializes in growing and delivering the freshest, most nutritious microgreens directly to your door. Our microgreens are packed with vitamins, minerals, and antioxidants - containing up to 40 times more nutrients than their mature counterparts. From our signature Mega Mix to specialized blends like Brassica Blend, we offer a variety of flavors and nutritional profiles to suit every taste and dietary need.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://fuelfoodscpg.com',
+  description:
+    'Premium microgreens and pet grass delivered fresh to your door. Packed with nutrients, grown locally, and delivered within 48 hours of harvest.',
+  longDescription:
+    'FuelFoods CPG specializes in growing and delivering the freshest, most nutritious microgreens directly to your door. Our microgreens are packed with vitamins, minerals, and antioxidants - containing up to 40 times more nutrients than their mature counterparts. From our signature Mega Mix to specialized blends like Brassica Blend, we offer a variety of flavors and nutritional profiles to suit every taste and dietary need.',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://fuelfoods.store',
+  imagesBaseUrl:
+    process.env.NEXT_PUBLIC_IMAGES_BASE_URL ||
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    'https://fuelfoods.store',
   ogImage: '/images/Hero_Image.png',
-  logo: '/images/logo_v2.png',
-  favicon: '/favicon.ico',
+  logo: '/images/logo.png',
+  favicon: '/images/logo.png',
   links: {
     github: 'https://github.com/Jyassen/fuelfoodscpg',
   },
@@ -30,53 +36,49 @@ export const NAVIGATION_ITEMS = [
   {
     title: 'Shop',
     href: '/shop',
-    description: 'Browse all products',
-  },
-  {
-    title: 'Products',
-    href: '/shop',
-    description: 'Our microgreens collection',
+    description: 'Browse our products',
     children: [
+      {
+        title: 'Subscription Plans',
+        href: '/subscriptions',
+        description: 'Weekly delivery plans',
+      },
       {
         title: 'Mega Mix',
         href: '/products/mega-mix',
         description: 'Our signature blend',
-        image: 'Mega-Product-img.png',
       },
       {
         title: 'Brassica Blend',
         href: '/products/brassica-blend',
-        description: 'Cancer-fighting compounds',
-        image: 'Brassica-Product-img.png',
+        description: 'Spicy microgreens mix',
       },
       {
-        title: 'Green Medley',
-        href: '/products/green-medley',
-        description: 'Mild and kid-friendly',
-        image: 'green-med-Product-pg-img.png',
-      },
-      {
-        title: 'Pet Grass',
-        href: '/products/tummies-pet-grass',
-        description: 'Fresh cat grass',
-        image: 'Live-Cat-Grass.jpg',
+        title: 'Sunnies Snacks',
+        href: '/products/sunnies-snacks',
+        description: 'Sweet microgreens',
       },
     ],
   },
   {
-    title: 'Offers',
-    href: '/offers',
-    description: 'Special deals and discounts',
+    title: 'About',
+    href: '/about',
+    description: 'Learn about FuelFoods',
   },
   {
-    title: 'About',
-    href: '/about-us',
-    description: 'Our story and mission',
+    title: 'Culinary',
+    href: 'https://culinary.fuelfoods.store/',
+    description: 'Recipes and cooking tips',
   },
   {
     title: 'Contact',
-    href: '/contact-us',
-    description: 'Get in touch',
+    href: '/contact',
+    description: 'Get in touch with us',
+  },
+  {
+    title: 'My Account',
+    href: '/account',
+    description: 'Manage your account',
   },
 ];
 
@@ -84,18 +86,33 @@ export const FOOTER_LINKS = {
   company: [
     {
       title: 'About Us',
-      href: '/about-us',
+      href: '/about',
       description: 'Learn about our mission and story',
     },
     {
       title: 'Contact',
-      href: '/contact-us',
+      href: '/contact',
       description: 'Get in touch with our team',
     },
     {
-      title: 'Fulfillment Policy',
-      href: '/fulfillment-policy',
-      description: 'Our shipping and fulfillment terms',
+      title: 'Shipping Policy',
+      href: '/shipping-policy',
+      description: 'Our shipping and delivery terms',
+    },
+    {
+      title: 'Privacy Policy',
+      href: '/privacy-policy',
+      description: 'How we protect your information',
+    },
+    {
+      title: 'Terms of Service',
+      href: '/terms-of-service',
+      description: 'Our terms and conditions',
+    },
+    {
+      title: 'Refund Policy',
+      href: '/refund-policy',
+      description: 'Our refund and return policy',
     },
   ],
   products: [
@@ -154,8 +171,16 @@ export const MICROGREENS_PRODUCTS = {
     name: 'Mega Mix',
     slug: 'mega-mix',
     shortDescription: 'Our signature blend of premium microgreens',
-    description: 'A carefully curated mix of the most nutritious and flavorful microgreens including broccoli, kale, arugula, and more. Perfect for salads, smoothies, and garnishing.',
-    microgreenTypes: ['broccoli', 'kale', 'arugula', 'red-cabbage', 'mustard', 'radish'],
+    description:
+      'A carefully curated mix of the most nutritious and flavorful microgreens including broccoli, kale, arugula, and more. Perfect for salads, smoothies, and garnishing.',
+    microgreenTypes: [
+      'broccoli',
+      'kale',
+      'arugula',
+      'red-cabbage',
+      'mustard',
+      'radish',
+    ],
     nutritionalHighlights: [
       'High in Vitamin C and K',
       'Rich in antioxidants',
@@ -164,22 +189,40 @@ export const MICROGREENS_PRODUCTS = {
     ],
     packageSizes: [
       { size: '3-pack', quantity: 3, price: 24.99, weight: '6 oz' },
-      { size: '5-pack', quantity: 5, price: 39.99, weight: '10 oz', isPopular: true },
+      {
+        size: '5-pack',
+        quantity: 5,
+        price: 39.99,
+        weight: '10 oz',
+        isPopular: true,
+      },
     ],
     images: {
       primary: 'Mega-Mix-Product-Pg.png',
-      gallery: ['Mega-Mix-Product-Pg-2.png', 'Mega-Product-img.png', 'Mega-popup2.png'],
+      gallery: [
+        'Mega-Mix-Product-Pg-2.png',
+        'Mega-Product-img.png',
+        'Mega-popup2.png',
+      ],
     },
     subscriptionDiscount: 15, // 15% off for subscriptions
   },
-  
+
   BRASSICA_BLEND: {
     id: 'brassica-blend',
     name: 'Brassica Blend',
     slug: 'brassica-blend',
     shortDescription: 'Nutrient-dense brassica microgreens blend',
-    description: 'A powerhouse blend of brassica family microgreens including broccoli, kale, cabbage, and mustard. Known for their high sulforaphane content and cancer-fighting properties.',
-    microgreenTypes: ['broccoli', 'kale', 'red-cabbage', 'mustard', 'kohlrabi', 'pak-choi'],
+    description:
+      'A powerhouse blend of brassica family microgreens including broccoli, kale, cabbage, and mustard. Known for their high sulforaphane content and cancer-fighting properties.',
+    microgreenTypes: [
+      'broccoli',
+      'kale',
+      'red-cabbage',
+      'mustard',
+      'kohlrabi',
+      'pak-choi',
+    ],
     nutritionalHighlights: [
       'Highest sulforaphane content',
       'Cancer-fighting compounds',
@@ -188,21 +231,32 @@ export const MICROGREENS_PRODUCTS = {
     ],
     packageSizes: [
       { size: '3-pack', quantity: 3, price: 26.99, weight: '6 oz' },
-      { size: '5-pack', quantity: 5, price: 42.99, weight: '10 oz', isPopular: true },
+      {
+        size: '5-pack',
+        quantity: 5,
+        price: 42.99,
+        weight: '10 oz',
+        isPopular: true,
+      },
     ],
     images: {
       primary: 'Brassica-Blend-Product-Pg.png',
-      gallery: ['Brassica-Blend-Product-Pg-2.png', 'Brassica-Product-img.png', 'Brasspopup2.png'],
+      gallery: [
+        'Brassica-Blend-Product-Pg-2.png',
+        'Brassica-Product-img.png',
+        'Brasspopup2.png',
+      ],
     },
     subscriptionDiscount: 15,
   },
-  
+
   GREEN_MEDLEY: {
     id: 'green-medley',
     name: 'Green Medley',
     slug: 'green-medley',
     shortDescription: 'Mild and versatile green microgreens',
-    description: 'A gentle introduction to microgreens with mild, sweet flavors. Perfect for beginners and children. Includes peas, sunflowers, and other mild greens.',
+    description:
+      'A gentle introduction to microgreens with mild, sweet flavors. Perfect for beginners and children. Includes peas, sunflowers, and other mild greens.',
     microgreenTypes: ['peas', 'sunflowers', 'buckwheat', 'mizuna'],
     nutritionalHighlights: [
       'High protein from peas',
@@ -212,7 +266,13 @@ export const MICROGREENS_PRODUCTS = {
     ],
     packageSizes: [
       { size: '3-pack', quantity: 3, price: 22.99, weight: '6 oz' },
-      { size: '5-pack', quantity: 5, price: 36.99, weight: '10 oz', isPopular: true },
+      {
+        size: '5-pack',
+        quantity: 5,
+        price: 36.99,
+        weight: '10 oz',
+        isPopular: true,
+      },
     ],
     images: {
       primary: 'Green-Medley-Product-Pg.png',
@@ -220,13 +280,14 @@ export const MICROGREENS_PRODUCTS = {
     },
     subscriptionDiscount: 15,
   },
-  
+
   SUNNIES_SNACKS: {
     id: 'sunnies-snacks',
     name: 'Sunnies Snacks',
     slug: 'sunnies-snacks',
     shortDescription: 'Pure sunflower microgreens',
-    description: 'Crunchy, nutty sunflower microgreens that are perfect for snacking. High in protein and vitamin E, with a satisfying crunch and mild nutty flavor.',
+    description:
+      'Crunchy, nutty sunflower microgreens that are perfect for snacking. High in protein and vitamin E, with a satisfying crunch and mild nutty flavor.',
     microgreenTypes: ['sunflowers'],
     nutritionalHighlights: [
       'Highest protein content',
@@ -236,7 +297,13 @@ export const MICROGREENS_PRODUCTS = {
     ],
     packageSizes: [
       { size: '3-pack', quantity: 3, price: 19.99, weight: '6 oz' },
-      { size: '5-pack', quantity: 5, price: 31.99, weight: '10 oz', isPopular: true },
+      {
+        size: '5-pack',
+        quantity: 5,
+        price: 31.99,
+        weight: '10 oz',
+        isPopular: true,
+      },
     ],
     images: {
       primary: 'Sunnies-Product-img.jpg',
@@ -244,13 +311,14 @@ export const MICROGREENS_PRODUCTS = {
     },
     subscriptionDiscount: 15,
   },
-  
+
   TUMMIES_PET_GRASS: {
     id: 'tummies-pet-grass',
     name: 'Tummies Pet Grass',
     slug: 'tummies-pet-grass',
     shortDescription: 'Fresh cat grass for healthy digestion',
-    description: 'Live cat grass pots that provide natural digestive aid for cats and small pets. Easy to grow and maintain, providing fresh grass for weeks.',
+    description:
+      'Live cat grass pots that provide natural digestive aid for cats and small pets. Easy to grow and maintain, providing fresh grass for weeks.',
     microgreenTypes: ['cat-grass'],
     benefits: [
       'Aids digestion',
@@ -260,7 +328,13 @@ export const MICROGREENS_PRODUCTS = {
     ],
     packageSizes: [
       { size: '3-pack', quantity: 3, price: 18.99, weight: '3 lbs' },
-      { size: '5-pack', quantity: 5, price: 29.99, weight: '5 lbs', isPopular: true },
+      {
+        size: '5-pack',
+        quantity: 5,
+        price: 29.99,
+        weight: '5 lbs',
+        isPopular: true,
+      },
     ],
     images: {
       primary: 'Live-Cat-Grass.jpg',
@@ -334,7 +408,7 @@ export const MICROGREEN_TYPES = {
     nutrients: ['Vitamin A', 'Vitamin C', 'Calcium'],
     image: 'Pak-Choi.png',
   },
-  
+
   // Other families
   PEAS: {
     name: 'Peas',
@@ -476,7 +550,7 @@ export const SUBSCRIPTION_PLANS = {
 // ============================================================================
 
 export const PRICING = {
-  FREE_SHIPPING_THRESHOLD: 35.00,
+  FREE_SHIPPING_THRESHOLD: 35.0,
   STANDARD_SHIPPING: 8.99,
   EXPRESS_SHIPPING: 15.99,
   TAX_RATE: 0.08, // 8% default tax rate
@@ -582,7 +656,8 @@ export const TESTIMONIALS = [
     id: 1,
     name: 'Sarah Johnson',
     role: 'Health Coach',
-    content: 'FuelFoods microgreens have transformed my nutrition routine. The freshness and flavor are unmatched!',
+    content:
+      'FuelFoods microgreens have transformed my nutrition routine. The freshness and flavor are unmatched!',
     rating: 5,
     image: 'testimonial-1.jpg',
   },
@@ -590,7 +665,8 @@ export const TESTIMONIALS = [
     id: 2,
     name: 'Chef Michael Torres',
     role: 'Restaurant Owner',
-    content: 'We use FuelFoods microgreens in all our signature dishes. Our customers love the vibrant flavors and colors.',
+    content:
+      'We use FuelFoods microgreens in all our signature dishes. Our customers love the vibrant flavors and colors.',
     rating: 5,
     image: 'testimonial-2.jpg',
   },
@@ -598,7 +674,8 @@ export const TESTIMONIALS = [
     id: 3,
     name: 'Lisa Chen',
     role: 'Busy Mom',
-    content: 'The subscription service is perfect for our family. Fresh, nutritious greens delivered right to our door!',
+    content:
+      'The subscription service is perfect for our family. Fresh, nutritious greens delivered right to our door!',
     rating: 5,
     image: 'testimonial-3.jpg',
   },
@@ -634,7 +711,7 @@ export const SEO_DEFAULTS = {
     siteName: SITE_CONFIG.name,
     images: [
       {
-        url: SITE_CONFIG.ogImage,
+        url: `${SITE_CONFIG.imagesBaseUrl}${SITE_CONFIG.ogImage}`,
         width: 1200,
         height: 630,
         alt: SITE_CONFIG.name,
@@ -645,7 +722,7 @@ export const SEO_DEFAULTS = {
     card: 'summary_large_image',
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
-    images: [SITE_CONFIG.ogImage],
+    images: [`${SITE_CONFIG.imagesBaseUrl}${SITE_CONFIG.ogImage}`],
   },
   structuredData: {
     '@context': 'https://schema.org',
@@ -653,7 +730,7 @@ export const SEO_DEFAULTS = {
     name: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
     url: SITE_CONFIG.url,
-    logo: `${SITE_CONFIG.url}/images/logo_v2.png`,
+    logo: `${SITE_CONFIG.imagesBaseUrl}${SITE_CONFIG.logo}`,
     sameAs: [
       // Add social media URLs when available
     ],

@@ -21,18 +21,21 @@ src/lib/
 ## 🎯 Core Features
 
 ### 1. WordPress Content Migration
+
 - **Frontmatter Parsing**: Extract metadata from WordPress markdown files
 - **Content Processing**: Convert markdown to HTML with SEO optimization
 - **Image Management**: Handle 200+ WordPress images with optimization
 - **Search Indexing**: Full-text search across all content
 
 ### 2. FuelFoods Product System
+
 - **5 Product Variants**: Mega Mix, Brassica Blend, Green Medley, Sunnies Snacks, Pet Grass
 - **14 Microgreen Types**: Individual microgreen nutrition and growing data
 - **Subscription Plans**: 4 tiers with automatic pricing calculations
 - **Package Sizes**: Multiple size options per product
 
 ### 3. Advanced Features
+
 - **SEO Optimization**: Structured data, Open Graph, Twitter Cards
 - **Image Processing**: Responsive images with WebP/AVIF support
 - **Search Engine**: Fuzzy search with scoring and suggestions
@@ -43,11 +46,11 @@ src/lib/
 ### Basic Usage
 
 ```typescript
-import { 
-  getAllProducts, 
-  searchContent, 
+import {
+  getAllProducts,
+  searchContent,
   parseWordPressPage,
-  initializeFuelFoodsApp 
+  initializeFuelFoodsApp,
 } from '@/lib';
 
 // Initialize the library
@@ -66,11 +69,11 @@ const page = parseWordPressPage('/path/to/page.md');
 ### Product Management
 
 ```typescript
-import { 
-  getProductBySlug, 
+import {
+  getProductBySlug,
   getFeaturedProducts,
   calculateSubscriptionSavings,
-  compareProducts 
+  compareProducts,
 } from '@/lib';
 
 // Get specific product
@@ -89,11 +92,11 @@ const comparison = compareProducts(['mega-mix', 'brassica-blend']);
 ### Content and Search
 
 ```typescript
-import { 
+import {
   getAllWordPressPages,
   searchByCategory,
   getSearchSuggestions,
-  buildContentSearchIndex 
+  buildContentSearchIndex,
 } from '@/lib';
 
 // Get all WordPress pages
@@ -112,11 +115,11 @@ const searchIndex = buildContentSearchIndex();
 ### Image Processing
 
 ```typescript
-import { 
+import {
   getAllContentImages,
   getProductImages,
   generateSrcSet,
-  analyzeContentImages 
+  analyzeContentImages,
 } from '@/lib';
 
 // Get all images
@@ -136,26 +139,27 @@ const analysis = analyzeContentImages();
 
 ### Product Variants
 
-| Variant | Description | Microgreens | Price Range |
-|---------|-------------|-------------|-------------|
-| **Mega Mix** | Signature blend | 6 types | $24.99 - $39.99 |
-| **Brassica Blend** | Cancer-fighting compounds | 6 types | $26.99 - $42.99 |
-| **Green Medley** | Mild, kid-friendly | 4 types | $22.99 - $36.99 |
-| **Sunnies Snacks** | Pure sunflower greens | 1 type | $19.99 - $31.99 |
-| **Pet Grass** | Live cat grass | 1 type | $18.99 - $29.99 |
+| Variant            | Description               | Microgreens | Price Range     |
+| ------------------ | ------------------------- | ----------- | --------------- |
+| **Mega Mix**       | Signature blend           | 6 types     | $24.99 - $39.99 |
+| **Brassica Blend** | Cancer-fighting compounds | 6 types     | $26.99 - $42.99 |
+| **Green Medley**   | Mild, kid-friendly        | 4 types     | $22.99 - $36.99 |
+| **Sunnies Snacks** | Pure sunflower greens     | 1 type      | $19.99 - $31.99 |
+| **Pet Grass**      | Live cat grass            | 1 type      | $18.99 - $29.99 |
 
 ### Subscription Plans
 
-| Plan | Discount | Min Products | Features |
-|------|----------|--------------|----------|
-| **Starter** | 10% | 1-2 | Basic delivery |
-| **Family** | 15% | 2-4 | Free shipping, popular |
-| **Enthusiast** | 20% | 4-8 | Early access |
-| **Commercial** | 25% | 10+ | Dedicated support |
+| Plan           | Discount | Min Products | Features               |
+| -------------- | -------- | ------------ | ---------------------- |
+| **Starter**    | 10%      | 1-2          | Basic delivery         |
+| **Family**     | 15%      | 2-4          | Free shipping, popular |
+| **Enthusiast** | 20%      | 4-8          | Early access           |
+| **Commercial** | 25%      | 10+          | Dedicated support      |
 
 ### Microgreen Nutrition
 
 Each microgreen type includes:
+
 - **Nutritional Profile**: Vitamins, minerals, antioxidants
 - **Flavor Profile**: Taste description and intensity
 - **Growing Info**: Time, difficulty, care instructions
@@ -166,6 +170,7 @@ Each microgreen type includes:
 ### Core Functions
 
 #### `initializeFuelFoodsApp()`
+
 Initializes all library systems including search indexing.
 
 ```typescript
@@ -174,6 +179,7 @@ const result = initializeFuelFoodsApp();
 ```
 
 #### `getSiteData()`
+
 Comprehensive site data for layouts and homepage.
 
 ```typescript
@@ -182,73 +188,91 @@ const siteData = getSiteData();
 ```
 
 #### `getProductCatalogData(options)`
+
 Product catalog with filtering and search.
 
 ```typescript
 const catalog = getProductCatalogData({
   category: 'microgreens',
   search: 'vitamin c',
-  featured: true
+  featured: true,
 });
 ```
 
 ### Product Functions
 
 #### `getAllProducts(): FuelFoodsProduct[]`
+
 Returns all products with full data.
 
 #### `getProductBySlug(slug: string): FuelFoodsProduct | null`
+
 Get specific product by slug or ID.
 
 #### `getFeaturedProducts(): FuelFoodsProduct[]`
+
 Get featured/popular products (max 4).
 
 #### `compareProducts(productIds: string[])`
+
 Compare multiple products side by side.
 
 #### `calculateSubscriptionSavings(originalPrice, subscriptionPrice, frequency, months)`
+
 Calculate total savings with subscription.
 
 ### Content Functions
 
 #### `parseWordPressPage(filePath: string): WordPressPage`
+
 Parse WordPress markdown file with frontmatter.
 
 #### `getAllWordPressPages(): WordPressPage[]`
+
 Get all WordPress pages sorted by date.
 
 #### `markdownToHtml(markdown: string): Promise<string>`
+
 Convert markdown content to HTML.
 
 #### `generateExcerpt(content: string, maxLength?: number): string`
+
 Generate excerpt from content.
 
 ### Search Functions
 
 #### `searchContent(query: string, options?): SearchResult[]`
+
 Full-text search across all content.
 
 #### `searchProducts(query: string): SearchResult[]`
+
 Product-specific search.
 
 #### `getSearchSuggestions(partialQuery: string, limit?: number): string[]`
+
 Get search suggestions for autocomplete.
 
 #### `searchByNutrition(nutrients: string[]): SearchResult[]`
+
 Search products by nutritional content.
 
 ### Image Functions
 
 #### `getAllContentImages(): WordPressMedia[]`
+
 Get all images from WordPress migration.
 
 #### `getProductImages(variantName: string): OptimizedImage[]`
+
 Get images for specific product variant.
 
 #### `generateSrcSet(optimizedImage: OptimizedImage): string`
+
 Generate responsive image srcSet attribute.
 
 #### `analyzeContentImages()`
+
 Analyze image usage and optimization opportunities.
 
 ## 🔧 Configuration
@@ -291,18 +315,21 @@ export const IMAGE_CONFIG = {
 ## 📈 Performance Features
 
 ### Search Optimization
+
 - **Indexed Search**: Pre-built search index for fast queries
 - **Fuzzy Matching**: Tolerant of typos and partial matches
 - **Weighted Results**: Relevance scoring with boosting
 - **Cached Suggestions**: Fast autocomplete responses
 
 ### Image Optimization
+
 - **Multiple Formats**: WebP, AVIF, JPEG fallbacks
 - **Responsive Sizing**: 5 different sizes per image
 - **Lazy Loading**: Blur placeholders and lazy loading
 - **Compression Analysis**: Track optimization opportunities
 
 ### Content Processing
+
 - **Markdown Caching**: Processed content caching
 - **Reading Time**: Automatic calculation
 - **SEO Extraction**: Automated meta tag generation

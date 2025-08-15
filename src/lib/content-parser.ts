@@ -5,12 +5,12 @@ import { remark } from 'remark';
 import remarkHtml from 'remark-html';
 import remarkGfm from 'remark-gfm';
 import { visit } from 'unist-util-visit';
-import type { 
-  WordPressFrontmatter, 
-  WordPressPage, 
-  ParsedContent, 
+import type {
+  WordPressFrontmatter,
+  WordPressPage,
+  ParsedContent,
   ContentHeading,
-  SearchIndexEntry 
+  SearchIndexEntry,
 } from './types';
 
 // ============================================================================
@@ -19,7 +19,7 @@ import type {
 
 export const CONTENT_PATHS = {
   pages: path.join(process.cwd(), '../../content/pages'),
-  posts: path.join(process.cwd(), '../../content/posts'), 
+  posts: path.join(process.cwd(), '../../content/posts'),
   images: path.join(process.cwd(), '../../content/images'),
   root: path.join(process.cwd(), '../../content'),
 } as const;
@@ -36,13 +36,19 @@ export function parseMarkdownFile<T = WordPressFrontmatter>(
 ): ParsedContent<T> {
   try {
     const fileContent = fs.readFileSync(filePath, 'utf8');
-    const { data: frontmatter, content, excerpt } = matter(fileContent, {
+    const {
+      data: frontmatter,
+      content,
+      excerpt,
+    } = matter(fileContent, {
       excerpt: true,
-      excerpt_separator: '<!-- more -->'
+      excerpt_separator: '<!-- more -->',
     });
 
     // Calculate reading time (average 200 words per minute)
-    const wordCount = content.split(/\s+/).filter(word => word.length > 0).length;
+    const wordCount = content
+      .split(/\s+/)
+      .filter(word => word.length > 0).length;
     const readingTime = Math.ceil(wordCount / 200);
 
     // Extract headings for table of contents
@@ -66,7 +72,7 @@ export function parseMarkdownFile<T = WordPressFrontmatter>(
  */
 export function parseWordPressPage(filePath: string): WordPressPage {
   const parsed = parseMarkdownFile<WordPressFrontmatter>(filePath);
-  
+
   return {
     frontmatter: parsed.frontmatter,
     content: parsed.content,
@@ -82,7 +88,7 @@ export function parseWordPressPage(filePath: string): WordPressPage {
 export function getAllWordPressPages(): WordPressPage[] {
   try {
     const pagesDir = CONTENT_PATHS.pages;
-    
+
     if (!fs.existsSync(pagesDir)) {
       console.warn(`Pages directory not found: ${pagesDir}`);
       return [];
@@ -95,8 +101,10 @@ export function getAllWordPressPages(): WordPressPage[] {
         const filePath = path.join(pagesDir, fileName);
         return parseWordPressPage(filePath);
       })
-      .sort((a, b) => 
-        new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+      .sort(
+        (a, b) =>
+          new Date(b.frontmatter.date).getTime() -
+          new Date(a.frontmatter.date).getTime()
       );
 
     return pages;
@@ -112,7 +120,7 @@ export function getAllWordPressPages(): WordPressPage[] {
 export function getWordPressPageBySlug(slug: string): WordPressPage | null {
   try {
     const filePath = path.join(CONTENT_PATHS.pages, `${slug}.md`);
-    
+
     if (!fs.existsSync(filePath)) {
       return null;
     }
@@ -220,18 +228,21 @@ export function generateExcerpt(content: string, maxLength = 160): string {
   // Find the last complete word within the limit
   const truncated = plainText.substring(0, maxLength);
   const lastSpaceIndex = truncated.lastIndexOf(' ');
-  
+
   if (lastSpaceIndex > maxLength * 0.8) {
     return truncated.substring(0, lastSpaceIndex) + '...';
   }
-  
+
   return truncated + '...';
 }
 
 /**
  * Calculate reading time for content
  */
-export function calculateReadingTime(content: string, wordsPerMinute = 200): number {
+export function calculateReadingTime(
+  content: string,
+  wordsPerMinute = 200
+): number {
   const wordCount = content.split(/\s+/).filter(word => word.length > 0).length;
   return Math.ceil(wordCount / wordsPerMinute);
 }
@@ -257,7 +268,7 @@ function slugify(text: string): string {
  */
 export function createSearchIndexEntry(page: WordPressPage): SearchIndexEntry {
   const keywords = extractKeywords(page.content, page.frontmatter.title);
-  
+
   return {
     id: page.frontmatter.slug,
     type: 'page',
@@ -277,11 +288,14 @@ export function createSearchIndexEntry(page: WordPressPage): SearchIndexEntry {
  */
 function extractKeywords(content: string, title: string): string[] {
   const keywords = new Set<string>();
-  
+
   // Add title words
-  title.toLowerCase().split(/\s+/).forEach(word => {
-    if (word.length > 2) keywords.add(word);
-  });
+  title
+    .toLowerCase()
+    .split(/\s+/)
+    .forEach(word => {
+      if (word.length > 2) keywords.add(word);
+    });
 
   // Extract important words from content
   const words = content
@@ -297,8 +311,40 @@ function extractKeywords(content: string, title: string): string[] {
   });
 
   // Get top 15 most frequent words (excluding common stop words)
-  const stopWords = new Set(['that', 'with', 'have', 'this', 'will', 'your', 'from', 'they', 'know', 'want', 'been', 'good', 'much', 'some', 'time', 'very', 'when', 'come', 'here', 'just', 'like', 'long', 'make', 'many', 'over', 'such', 'take', 'than', 'them', 'well', 'were']);
-  
+  const stopWords = new Set([
+    'that',
+    'with',
+    'have',
+    'this',
+    'will',
+    'your',
+    'from',
+    'they',
+    'know',
+    'want',
+    'been',
+    'good',
+    'much',
+    'some',
+    'time',
+    'very',
+    'when',
+    'come',
+    'here',
+    'just',
+    'like',
+    'long',
+    'make',
+    'many',
+    'over',
+    'such',
+    'take',
+    'than',
+    'them',
+    'well',
+    'were',
+  ]);
+
   const topWords = Array.from(wordFreq.entries())
     .filter(([word]) => !stopWords.has(word))
     .sort((a, b) => b[1] - a[1])
@@ -317,15 +363,26 @@ function calculateSearchWeight(title: string, keywords: string[]): number {
   let weight = 1;
 
   // Boost for certain keywords
-  const importantKeywords = ['microgreens', 'organic', 'fresh', 'delivery', 'subscription', 'healthy', 'nutrition'];
-  const hasImportantKeywords = keywords.some(keyword => 
+  const importantKeywords = [
+    'microgreens',
+    'organic',
+    'fresh',
+    'delivery',
+    'subscription',
+    'healthy',
+    'nutrition',
+  ];
+  const hasImportantKeywords = keywords.some(keyword =>
     importantKeywords.some(important => keyword.includes(important))
   );
-  
+
   if (hasImportantKeywords) weight += 0.5;
 
   // Boost for product pages
-  if (title.toLowerCase().includes('mix') || title.toLowerCase().includes('blend')) {
+  if (
+    title.toLowerCase().includes('mix') ||
+    title.toLowerCase().includes('blend')
+  ) {
     weight += 0.3;
   }
 
@@ -355,13 +412,16 @@ export function buildContentSearchIndex(): SearchIndexEntry[] {
  */
 export function getContentStatistics() {
   const pages = getAllWordPressPages();
-  
+
   const stats = {
     totalPages: pages.length,
-    publishedPages: pages.filter(p => p.frontmatter.status === 'publish').length,
+    publishedPages: pages.filter(p => p.frontmatter.status === 'publish')
+      .length,
     draftPages: pages.filter(p => p.frontmatter.status === 'draft').length,
     totalWords: pages.reduce((sum, page) => {
-      const wordCount = page.content.split(/\s+/).filter(word => word.length > 0).length;
+      const wordCount = page.content
+        .split(/\s+/)
+        .filter(word => word.length > 0).length;
       return sum + wordCount;
     }, 0),
     averageReadingTime: 0,
@@ -369,7 +429,11 @@ export function getContentStatistics() {
     recentPages: pages
       .filter(p => p.frontmatter.status === 'publish')
       .slice(0, 5)
-      .map(p => ({ title: p.frontmatter.title, slug: p.frontmatter.slug, date: p.frontmatter.date })),
+      .map(p => ({
+        title: p.frontmatter.title,
+        slug: p.frontmatter.slug,
+        date: p.frontmatter.date,
+      })),
   };
 
   stats.averageReadingTime = Math.ceil(stats.totalWords / pages.length / 200);
@@ -377,7 +441,8 @@ export function getContentStatistics() {
   // Group by template
   pages.forEach(page => {
     const template = page.frontmatter.wp_page_template || 'default';
-    stats.pagesByTemplate[template] = (stats.pagesByTemplate[template] || 0) + 1;
+    stats.pagesByTemplate[template] =
+      (stats.pagesByTemplate[template] || 0) + 1;
   });
 
   return stats;

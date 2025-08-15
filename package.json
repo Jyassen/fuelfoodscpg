@@ -10,7 +10,11 @@
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,css}\""
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
+    "deploy-check": "node scripts/deploy-check.js",
+    "pre-deploy": "npm run type-check && npm run lint && npm run format:check && npm run deploy-check",
+    "build:analyze": "cross-env ANALYZE=true npm run build",
+    "clean": "rm -rf .next out dist"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -23,6 +27,7 @@
     "@radix-ui/react-tabs": "^1.1.12",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "critters": "^0.0.23",
     "embla-carousel-react": "^8.6.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.536.0",
@@ -40,12 +45,14 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.4.5",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
     "eslint-config-prettier": "^9.1.0",

@@ -1,11 +1,13 @@
 # shadcn/ui Setup for FuelFoods CPG
 
 ## Overview
+
 This document outlines the installation and configuration of shadcn/ui components for the FuelFoods CPG ecommerce website.
 
 ## Installation Summary
 
 ### Core Dependencies Installed
+
 - `tailwindcss-animate` - Animation utilities for Tailwind CSS
 - `class-variance-authority` - For component variants
 - `lucide-react` - Icon library
@@ -21,6 +23,7 @@ This document outlines the installation and configuration of shadcn/ui component
 - `sonner` - Toast notification library
 
 ### Components Installed
+
 The following shadcn/ui components have been installed and configured:
 
 1. **Button** (`/src/components/ui/button.tsx`)
@@ -74,18 +77,21 @@ The following shadcn/ui components have been installed and configured:
 ## Theme Configuration
 
 ### Custom FuelFoods Theme
+
 A custom theme has been configured specifically for the health food/CPG industry:
 
 #### Color Palette
+
 - **Primary**: Fresh green (#22c55e) - represents health, growth, and nature
 - **Secondary**: Warm cream/yellow (#fef3c7) - adds warmth and natural feel
-- **Accent Colors**: 
+- **Accent Colors**:
   - Success: #10b981 (green)
   - Warning: #f59e0b (amber)
   - Error: #ef4444 (red)
   - Info: #3b82f6 (blue)
 
 #### CSS Variables (in `/src/app/globals.css`)
+
 ```css
 :root {
   --primary: 142 76% 36%; /* Fresh green */
@@ -97,10 +103,12 @@ A custom theme has been configured specifically for the health food/CPG industry
 ```
 
 ### Dark Mode Support
+
 - Configured with class-based dark mode
 - Earthy tones for dark theme that maintain brand consistency
 
 ## File Structure
+
 ```
 src/
 ├── components/
@@ -131,6 +139,7 @@ src/
 ## Configuration Files
 
 ### `components.json`
+
 ```json
 {
   "$schema": "https://ui.shadcn.com/schema.json",
@@ -155,6 +164,7 @@ src/
 ```
 
 ### `tailwind.config.ts`
+
 - Configured with shadcn/ui requirements
 - Extended color palette for health food branding
 - Custom animations and border radius
@@ -163,6 +173,7 @@ src/
 ## Usage Examples
 
 ### Basic Button Usage
+
 ```tsx
 import { Button } from '@/components/ui/button';
 
@@ -172,8 +183,15 @@ import { Button } from '@/components/ui/button';
 ```
 
 ### Product Card Example
+
 ```tsx
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 <Card>
@@ -185,21 +203,25 @@ import { Badge } from '@/components/ui/badge';
     <Badge variant="secondary">Organic</Badge>
     <p className="text-2xl font-bold text-primary">$29.99</p>
   </CardContent>
-</Card>
+</Card>;
 ```
 
 ### Importing Components
+
 Use the barrel export for clean imports:
+
 ```tsx
 import { Button, Card, CardContent, Badge } from '@/components/ui';
 ```
 
 ## Integration with Existing Components
+
 - The home page (`/src/app/page.tsx`) has been updated to demonstrate shadcn/ui integration
 - Components use the custom FuelFoods color scheme
 - Icons from Lucide React enhance the visual design
 
 ## Benefits for FuelFoods CPG
+
 1. **Consistent Design**: Professional, cohesive UI components
 2. **Accessibility**: Built on Radix UI primitives with excellent a11y
 3. **Performance**: Optimized components with minimal bundle impact
@@ -208,6 +230,7 @@ import { Button, Card, CardContent, Badge } from '@/components/ui';
 6. **Brand Alignment**: Custom theme reflects health/organic food industry
 
 ## Next Steps
+
 1. Implement product listing pages using Card components
 2. Create forms using Input, Label, and Select components
 3. Build navigation using NavigationMenu component
@@ -216,6 +239,7 @@ import { Button, Card, CardContent, Badge } from '@/components/ui';
 6. Set up toast notifications for user feedback
 
 ## Maintenance
+
 - Components are self-contained and can be updated individually
 - Theme can be customized by modifying CSS variables in `globals.css`
 - New components can be added using `npx shadcn@latest add [component-name]`

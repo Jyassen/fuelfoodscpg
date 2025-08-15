@@ -71,14 +71,16 @@ export function ShadcnShowcase() {
 
       {/* Product Cards Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[1, 2, 3].map((item) => (
+        {[1, 2, 3].map(item => (
           <Card key={item} className="overflow-hidden">
             <div className="aspect-square bg-secondary/20 flex items-center justify-center">
               <Leaf className="h-12 w-12 text-primary" />
             </div>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg">Organic Superfood {item}</CardTitle>
+                <CardTitle className="text-lg">
+                  Organic Superfood {item}
+                </CardTitle>
                 <Badge variant="secondary">
                   <Award className="h-3 w-3 mr-1" />
                   Organic
@@ -121,11 +123,7 @@ export function ShadcnShowcase() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="your@email.com"
-              />
+              <Input id="email" type="email" placeholder="your@email.com" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="category">Product Category</Label>
@@ -149,9 +147,7 @@ export function ShadcnShowcase() {
       <Card>
         <CardHeader>
           <CardTitle>Product Information</CardTitle>
-          <CardDescription>
-            Tabbed content for product details
-          </CardDescription>
+          <CardDescription>Tabbed content for product details</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="description" className="w-full">
@@ -163,9 +159,10 @@ export function ShadcnShowcase() {
             </TabsList>
             <TabsContent value="description" className="mt-4">
               <p className="text-muted-foreground">
-                Our premium organic superfoods are carefully sourced from sustainable farms
-                around the world. Each product is tested for purity and packed with essential
-                nutrients to fuel your healthy lifestyle.
+                Our premium organic superfoods are carefully sourced from
+                sustainable farms around the world. Each product is tested for
+                purity and packed with essential nutrients to fuel your healthy
+                lifestyle.
               </p>
             </TabsContent>
             <TabsContent value="ingredients" className="mt-4">
@@ -186,8 +183,8 @@ export function ShadcnShowcase() {
             </TabsContent>
             <TabsContent value="reviews" className="mt-4">
               <p className="text-muted-foreground">
-                4.8/5 stars based on 127 customer reviews. Customers love the taste
-                and nutritional benefits of our superfoods.
+                4.8/5 stars based on 127 customer reviews. Customers love the
+                taste and nutritional benefits of our superfoods.
               </p>
             </TabsContent>
           </Tabs>
@@ -200,9 +197,7 @@ export function ShadcnShowcase() {
       <Card>
         <CardHeader>
           <CardTitle>Interactive Elements</CardTitle>
-          <CardDescription>
-            Modals and interactive components
-          </CardDescription>
+          <CardDescription>Modals and interactive components</CardDescription>
         </CardHeader>
         <CardContent>
           <Dialog>

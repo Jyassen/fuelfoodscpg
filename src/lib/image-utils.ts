@@ -1,10 +1,10 @@
 import path from 'path';
 import fs from 'fs';
-import type { 
-  WordPressMedia, 
-  OptimizedImage, 
-  ImageVersion, 
-  ImageProcessingMeta 
+import type {
+  WordPressMedia,
+  OptimizedImage,
+  ImageVersion,
+  ImageProcessingMeta,
 } from './types';
 
 // ============================================================================
@@ -20,7 +20,7 @@ export const IMAGE_CONFIG = {
     large: { width: 1200, height: 1200 },
     hero: { width: 1920, height: 1080 },
   },
-  
+
   // Quality settings for different formats
   quality: {
     webp: 85,
@@ -31,7 +31,7 @@ export const IMAGE_CONFIG = {
 
   // Supported formats in order of preference
   formats: ['avif', 'webp', 'jpeg', 'png'] as const,
-  
+
   // Maximum file size in bytes (2MB)
   maxFileSize: 2 * 1024 * 1024,
 } as const;
@@ -43,13 +43,15 @@ export const IMAGE_CONFIG = {
 /**
  * Extract image metadata from file path
  */
-export function extractImageMetadata(filePath: string): Partial<WordPressMedia> {
+export function extractImageMetadata(
+  filePath: string
+): Partial<WordPressMedia> {
   const fileName = path.basename(filePath);
   const ext = path.extname(fileName).toLowerCase();
-  
+
   try {
     const stats = fs.statSync(filePath);
-    
+
     return {
       filename: fileName,
       path: filePath,
@@ -85,8 +87,73 @@ function getMimeType(extension: string): string {
     '.tiff': 'image/tiff',
     '.tif': 'image/tiff',
   };
-  
+
   return mimeTypes[extension] || 'application/octet-stream';
+}
+
+// ============================================================================
+// URL UTILITIES FOR DEPLOYMENT
+// ============================================================================
+
+/**
+ * Get the base URL for images based on deployment environment
+ */
+export function getImageBaseUrl(): string {
+  // Check for custom images base URL first
+  if (process.env.NEXT_PUBLIC_IMAGES_BASE_URL) {
+    return process.env.NEXT_PUBLIC_IMAGES_BASE_URL;
+  }
+
+  // Fallback to site URL
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+
+  // Development fallback
+  return 'http://localhost:3000';
+}
+
+/**
+ * Get full image URL with proper base URL
+ */
+export function getImageUrl(imagePath: string): string {
+  // If it's already a full URL, return as is
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    return imagePath;
+  }
+
+  // If it doesn't start with /, add it
+  const normalizedPath = imagePath.startsWith('/')
+    ? imagePath
+    : `/${imagePath}`;
+
+  return `${getImageBaseUrl()}${normalizedPath}`;
+}
+
+/**
+ * Get optimized image URL for social media
+ */
+export function getSocialImageUrl(imagePath: string): string {
+  const baseUrl = getImageBaseUrl();
+  const normalizedPath = imagePath.startsWith('/')
+    ? imagePath
+    : `/${imagePath}`;
+
+  return `${baseUrl}${normalizedPath}`;
+}
+
+/**
+ * Generate Open Graph image URL
+ */
+export function getOpenGraphImageUrl(imagePath: string): string {
+  return getSocialImageUrl(imagePath);
+}
+
+/**
+ * Generate Twitter card image URL
+ */
+export function getTwitterImageUrl(imagePath: string): string {
+  return getSocialImageUrl(imagePath);
 }
 
 /**
@@ -94,7 +161,7 @@ function getMimeType(extension: string): string {
  */
 function generateAltTextFromFilename(filename: string): string {
   const nameWithoutExt = path.parse(filename).name;
-  
+
   return nameWithoutExt
     .replace(/[-_]/g, ' ')
     .replace(/([a-z])([A-Z])/g, '$1 $2')
@@ -108,7 +175,7 @@ function generateAltTextFromFilename(filename: string): string {
  */
 export function getAllContentImages(): WordPressMedia[] {
   const imagesDir = path.join(process.cwd(), '../../content/images');
-  
+
   if (!fs.existsSync(imagesDir)) {
     console.warn(`Images directory not found: ${imagesDir}`);
     return [];
@@ -116,8 +183,16 @@ export function getAllContentImages(): WordPressMedia[] {
 
   try {
     const files = fs.readdirSync(imagesDir);
-    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.avif', '.svg'];
-    
+    const imageExtensions = [
+      '.jpg',
+      '.jpeg',
+      '.png',
+      '.gif',
+      '.webp',
+      '.avif',
+      '.svg',
+    ];
+
     return files
       .filter(file => {
         const ext = path.extname(file).toLowerCase();
@@ -126,7 +201,7 @@ export function getAllContentImages(): WordPressMedia[] {
       .map((file, index) => {
         const filePath = path.join(imagesDir, file);
         const metadata = extractImageMetadata(filePath);
-        
+
         return {
           original_id: String(index + 1),
           title: generateAltTextFromFilename(file),
@@ -155,19 +230,19 @@ export function createOptimizedImageMetadata(
   processingMeta?: ImageProcessingMeta
 ): OptimizedImage {
   const baseUrl = `/images/optimized/${path.parse(originalImage.filename).name}`;
-  
+
   // Generate different size versions
-  const optimizedVersions: ImageVersion[] = Object.entries(IMAGE_CONFIG.sizes).map(
-    ([sizeName, dimensions]) => ({
-      size: sizeName as ImageVersion['size'],
-      width: dimensions.width,
-      height: dimensions.height,
-      url: `${baseUrl}-${sizeName}.webp`,
-      format: 'webp',
-      quality: IMAGE_CONFIG.quality.webp,
-      fileSize: Math.floor((originalImage.fileSize || 0) * 0.6), // Estimated
-    })
-  );
+  const optimizedVersions: ImageVersion[] = Object.entries(
+    IMAGE_CONFIG.sizes
+  ).map(([sizeName, dimensions]) => ({
+    size: sizeName as ImageVersion['size'],
+    width: dimensions.width,
+    height: dimensions.height,
+    url: `${baseUrl}-${sizeName}.webp`,
+    format: 'webp',
+    quality: IMAGE_CONFIG.quality.webp,
+    fileSize: Math.floor((originalImage.fileSize || 0) * 0.6), // Estimated
+  }));
 
   return {
     id: originalImage.original_id,
@@ -200,7 +275,7 @@ function extractDominantColors(filename: string): string[] {
   };
 
   const lowerFilename = filename.toLowerCase();
-  
+
   for (const [key, colorArray] of Object.entries(colors)) {
     if (lowerFilename.includes(key)) {
       return colorArray;
@@ -228,7 +303,7 @@ function generateBlurDataURL(): string {
  */
 export function getProductImages(variantName: string): OptimizedImage[] {
   const allImages = getAllContentImages();
-  const productImages = allImages.filter(image => 
+  const productImages = allImages.filter(image =>
     image.filename.toLowerCase().includes(variantName.toLowerCase())
   );
 
@@ -241,11 +316,9 @@ export function getProductImages(variantName: string): OptimizedImage[] {
 export function getHeroImages(): OptimizedImage[] {
   const allImages = getAllContentImages();
   const heroKeywords = ['hero', 'banner', 'home', 'main', 'header'];
-  
-  const heroImages = allImages.filter(image => 
-    heroKeywords.some(keyword => 
-      image.filename.toLowerCase().includes(keyword)
-    )
+
+  const heroImages = allImages.filter(image =>
+    heroKeywords.some(keyword => image.filename.toLowerCase().includes(keyword))
   );
 
   return heroImages.map(image => createOptimizedImageMetadata(image));
@@ -257,9 +330,9 @@ export function getHeroImages(): OptimizedImage[] {
 export function getImagesByCategory(category: string): OptimizedImage[] {
   const allImages = getAllContentImages();
   const categoryKeywords = getCategoryKeywords(category);
-  
-  const categoryImages = allImages.filter(image => 
-    categoryKeywords.some(keyword => 
+
+  const categoryImages = allImages.filter(image =>
+    categoryKeywords.some(keyword =>
       image.filename.toLowerCase().includes(keyword.toLowerCase())
     )
   );
@@ -272,7 +345,15 @@ export function getImagesByCategory(category: string): OptimizedImage[] {
  */
 function getCategoryKeywords(category: string): string[] {
   const keywordMap: Record<string, string[]> = {
-    microgreens: ['mega', 'brassica', 'green', 'medley', 'mix', 'blend', 'microgreen'],
+    microgreens: [
+      'mega',
+      'brassica',
+      'green',
+      'medley',
+      'mix',
+      'blend',
+      'microgreen',
+    ],
     'pet-products': ['tummies', 'cat', 'grass', 'pet'],
     lifestyle: ['community', 'fresh', 'delivery', 'healthy', 'organic'],
     about: ['about', 'team', 'story', 'mission'],
@@ -296,7 +377,7 @@ export function validateImage(filePath: string): {
   metadata?: WordPressMedia;
 } {
   const errors: string[] = [];
-  
+
   if (!fs.existsSync(filePath)) {
     errors.push('File does not exist');
     return { isValid: false, errors };
@@ -305,14 +386,24 @@ export function validateImage(filePath: string): {
   try {
     const stats = fs.statSync(filePath);
     const ext = path.extname(filePath).toLowerCase();
-    const supportedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.avif', '.svg'];
+    const supportedExtensions = [
+      '.jpg',
+      '.jpeg',
+      '.png',
+      '.gif',
+      '.webp',
+      '.avif',
+      '.svg',
+    ];
 
     if (!supportedExtensions.includes(ext)) {
       errors.push(`Unsupported file format: ${ext}`);
     }
 
     if (stats.size > IMAGE_CONFIG.maxFileSize) {
-      errors.push(`File size (${formatFileSize(stats.size)}) exceeds maximum (${formatFileSize(IMAGE_CONFIG.maxFileSize)})`);
+      errors.push(
+        `File size (${formatFileSize(stats.size)}) exceeds maximum (${formatFileSize(IMAGE_CONFIG.maxFileSize)})`
+      );
     }
 
     if (stats.size === 0) {
@@ -338,7 +429,7 @@ export function validateImage(filePath: string): {
 function formatFileSize(bytes: number): string {
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];
   if (bytes === 0) return '0 Bytes';
-  
+
   const i = Math.floor(Math.log(bytes) / Math.log(1024));
   return Math.round((bytes / Math.pow(1024, i)) * 100) / 100 + ' ' + sizes[i];
 }
@@ -355,7 +446,9 @@ export function generateSrcSet(optimizedImage: OptimizedImage): string {
 /**
  * Generate sizes attribute for responsive images
  */
-export function generateSizesAttribute(breakpoints?: Record<string, string>): string {
+export function generateSizesAttribute(
+  breakpoints?: Record<string, string>
+): string {
   const defaultBreakpoints = {
     '(max-width: 640px)': '100vw',
     '(max-width: 768px)': '50vw',
@@ -364,7 +457,9 @@ export function generateSizesAttribute(breakpoints?: Record<string, string>): st
   };
 
   const sizes = breakpoints || defaultBreakpoints;
-  const sizeStrings = Object.entries(sizes).map(([query, size]) => `${query} ${size}`);
+  const sizeStrings = Object.entries(sizes).map(
+    ([query, size]) => `${query} ${size}`
+  );
   sizeStrings.push('20vw'); // Default size
 
   return sizeStrings.join(', ');
@@ -379,7 +474,7 @@ export function generateSizesAttribute(breakpoints?: Record<string, string>): st
  */
 export function analyzeContentImages() {
   const images = getAllContentImages();
-  
+
   const stats = {
     totalImages: images.length,
     totalSize: images.reduce((sum, img) => sum + (img.fileSize || 0), 0),
@@ -413,9 +508,15 @@ export function analyzeContentImages() {
     stats.potentialOptimizations.push('Compress large images (>500KB)');
   }
 
-  const oldFormats = ['.jpg', '.jpeg', '.png'].reduce((sum, ext) => sum + (stats.byFormat[ext] || 0), 0);
-  const modernFormats = ['.webp', '.avif'].reduce((sum, ext) => sum + (stats.byFormat[ext] || 0), 0);
-  
+  const oldFormats = ['.jpg', '.jpeg', '.png'].reduce(
+    (sum, ext) => sum + (stats.byFormat[ext] || 0),
+    0
+  );
+  const modernFormats = ['.webp', '.avif'].reduce(
+    (sum, ext) => sum + (stats.byFormat[ext] || 0),
+    0
+  );
+
   if (oldFormats > modernFormats) {
     stats.potentialOptimizations.push('Use modern image formats (WebP, AVIF)');
   }

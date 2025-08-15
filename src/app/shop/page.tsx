@@ -21,7 +21,9 @@ export default function ShopPage() {
 
       {/* Featured Products */}
       <div className="mb-16">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">Featured Products</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">
+          Featured Products
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Mega Mix */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
@@ -35,7 +37,9 @@ export default function ShopPage() {
             </div>
             <div className="p-4">
               <h3 className="font-semibold text-gray-900 mb-1">Mega Mix</h3>
-              <p className="text-sm text-gray-600 mb-2">Premium blend of microgreens</p>
+              <p className="text-sm text-gray-600 mb-2">
+                Premium blend of microgreens
+              </p>
               <div className="flex items-center justify-between">
                 <span className="font-bold text-green-600">$12.99</span>
                 <Link
@@ -59,8 +63,12 @@ export default function ShopPage() {
               />
             </div>
             <div className="p-4">
-              <h3 className="font-semibold text-gray-900 mb-1">Brassica Blend</h3>
-              <p className="text-sm text-gray-600 mb-2">Cruciferous powerhouse</p>
+              <h3 className="font-semibold text-gray-900 mb-1">
+                Brassica Blend
+              </h3>
+              <p className="text-sm text-gray-600 mb-2">
+                Cruciferous powerhouse
+              </p>
               <div className="flex items-center justify-between">
                 <span className="font-bold text-purple-600">$14.99</span>
                 <Link
@@ -87,10 +95,10 @@ export default function ShopPage() {
               <h3 className="font-semibold text-gray-900 mb-1">Green Medley</h3>
               <p className="text-sm text-gray-600 mb-2">Mild & sweet blend</p>
               <div className="flex items-center justify-between">
-                <span className="font-bold text-emerald-600">$11.99</span>
+                <span className="font-bold text-fuelfoods-green-500">$11.99</span>
                 <Link
                   href="/products/green-medley"
-                  className="bg-emerald-600 text-white px-3 py-1 rounded text-sm hover:bg-emerald-700 transition-colors"
+                  className="bg-fuelfoods-green-500 text-white px-3 py-1 rounded text-sm hover:bg-fuelfoods-green-600 transition-colors"
                 >
                   View
                 </Link>
@@ -109,7 +117,9 @@ export default function ShopPage() {
               />
             </div>
             <div className="p-4">
-              <h3 className="font-semibold text-gray-900 mb-1">Tummies Pet Grass</h3>
+              <h3 className="font-semibold text-gray-900 mb-1">
+                Tummies Pet Grass
+              </h3>
               <p className="text-sm text-gray-600 mb-2">Fresh cat grass</p>
               <div className="flex items-center justify-between">
                 <span className="font-bold text-blue-600">$8.99</span>
@@ -142,13 +152,22 @@ export default function ShopPage() {
               Nutrient-dense microgreens packed with vitamins and minerals.
             </p>
             <div className="flex flex-wrap gap-2 mb-4">
-              <Link href="/products/mega-mix" className="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">
+              <Link
+                href="/products/mega-mix"
+                className="text-sm bg-green-100 text-green-800 px-2 py-1 rounded"
+              >
                 Mega Mix
               </Link>
-              <Link href="/products/brassica-blend" className="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded">
+              <Link
+                href="/products/brassica-blend"
+                className="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded"
+              >
                 Brassica Blend
               </Link>
-              <Link href="/products/green-medley" className="text-sm bg-emerald-100 text-emerald-800 px-2 py-1 rounded">
+              <Link
+                href="/products/green-medley"
+                className="text-sm bg-fuelfoods-green-100 text-fuelfoods-green-800 px-2 py-1 rounded"
+              >
                 Green Medley
               </Link>
             </div>
@@ -207,7 +226,8 @@ export default function ShopPage() {
           <div className="p-6">
             <h3 className="text-xl font-semibold mb-2">Value Bundles</h3>
             <p className="text-gray-600 mb-4">
-              Save money with our carefully curated product bundles and subscription packages.
+              Save money with our carefully curated product bundles and
+              subscription packages.
             </p>
             <div className="flex flex-wrap gap-2 mb-4">
               <span className="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded">

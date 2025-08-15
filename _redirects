@@ -1,0 +1,44 @@
+# Netlify redirects file
+# https://docs.netlify.com/routing/redirects/
+
+# Primary domain redirects (update when you have your custom domain)
+# https://fuelfoodscpg.netlify.app/* https://www.fuelfoodscpg.com/:splat 301!
+
+# Old URL patterns to new structure
+/home                       /                         301
+/index.html                 /                         301
+/index                      /                         301
+
+# Product redirects (in case URLs change)
+/product/mega-mix          /products/mega-mix         301
+/product/brassica-blend    /products/brassica-blend   301
+/product/green-medley      /products/green-medley     301
+/product/pet-grass         /products/tummies-pet-grass 301
+
+# WordPress migration redirects (block old admin routes)
+/wp-admin/*                /404                      404
+/wp-content/*              /404                      404
+/wp-includes/*             /404                      404
+/xmlrpc.php                /404                      404
+/wp-login.php              /404                      404
+
+# Common spam/bot redirects
+/.well-known/security.txt  /404                      404
+/phpmyadmin/*              /404                      404
+/admin/*                   /404                      404
+/administrator/*           /404                      404
+
+# API routes (for future serverless functions)
+/api/sitemap               /.netlify/functions/sitemap 200
+/api/robots                /.netlify/functions/robots  200
+/api/contact               /.netlify/functions/contact 200
+
+# File extensions redirects (force clean URLs)
+/*.html                    /:splat                   301
+
+# Force HTTPS (when custom domain is configured)
+# http://fuelfoodscpg.com/* https://fuelfoodscpg.com/:splat 301!
+# http://www.fuelfoodscpg.com/* https://www.fuelfoodscpg.com/:splat 301!
+
+# Catch-all for client-side routing (SPA fallback)
+/*                         /404                      404

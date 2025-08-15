@@ -16,10 +16,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: SEO_DEFAULTS.title,
+  title: {
+    default: SEO_DEFAULTS.title,
+    template: '%s | fuelfoods.store',
+  },
   description: SEO_DEFAULTS.description,
   openGraph: SEO_DEFAULTS.openGraph,
   twitter: SEO_DEFAULTS.twitter,
+  icons: {
+    icon: '/images/logo.png',
+    shortcut: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
 };
 
 export default function RootLayout({

@@ -3,7 +3,8 @@ import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Mega Mix - Premium Microgreens | FuelFoods CPG',
-  description: 'Our signature Mega Mix combines the finest microgreens for maximum nutrition and flavor. Perfect for salads, smoothies, and healthy meals.',
+  description:
+    'Our signature Mega Mix combines the finest microgreens for maximum nutrition and flavor. Perfect for salads, smoothies, and healthy meals.',
 };
 
 export default function MegaMixPage() {
@@ -53,42 +54,79 @@ export default function MegaMixPage() {
         <div className="space-y-6">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Mega Mix</h1>
-            <p className="text-xl text-green-600 font-semibold">Premium Microgreens Blend</p>
+            <p className="text-xl text-green-600 font-semibold">
+              Premium Microgreens Blend
+            </p>
           </div>
 
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-600">
-              Our signature Mega Mix is a carefully curated blend of the finest microgreens, 
-              providing you with an explosion of flavors and nutrients in every bite. This 
-              premium blend includes a variety of microgreens that complement each other 
-              perfectly, creating a balance of taste and nutrition.
+              Our signature Mega Mix is a carefully curated blend of the finest
+              microgreens, providing you with an explosion of flavors and
+              nutrients in every bite. This premium blend includes a variety of
+              microgreens that complement each other perfectly, creating a
+              balance of taste and nutrition.
             </p>
           </div>
 
           <div className="bg-green-50 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Nutritional Benefits</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">
+              Nutritional Benefits
+            </h3>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
-                <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 High in vitamins A, C, and K
               </li>
               <li className="flex items-center">
-                <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Rich in antioxidants and minerals
               </li>
               <li className="flex items-center">
-                <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Contains essential amino acids
               </li>
               <li className="flex items-center">
-                <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Low calorie, nutrient-dense superfood
               </li>
@@ -97,14 +135,16 @@ export default function MegaMixPage() {
 
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold text-gray-900">From $12.99</span>
+              <span className="text-2xl font-bold text-gray-900">
+                From $12.99
+              </span>
               <span className="text-sm text-gray-500">Weekly delivery</span>
             </div>
-            
+
             <button className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors">
               Add to Cart
             </button>
-            
+
             <div className="text-center text-sm text-gray-500">
               <p>🚚 Free delivery on orders over $25</p>
               <p>📦 Fresh weekly deliveries</p>
@@ -117,7 +157,9 @@ export default function MegaMixPage() {
       {/* Additional Info Section */}
       <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Perfect For:</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Perfect For:
+          </h2>
           <ul className="space-y-3 text-gray-600">
             <li className="flex items-start">
               <span className="text-green-500 mr-2">•</span>
@@ -137,9 +179,11 @@ export default function MegaMixPage() {
             </li>
           </ul>
         </div>
-        
+
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Storage Tips:</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Storage Tips:
+          </h2>
           <ul className="space-y-3 text-gray-600">
             <li className="flex items-start">
               <span className="text-green-500 mr-2">•</span>

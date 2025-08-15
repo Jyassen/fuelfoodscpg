@@ -14,9 +14,11 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-green-600">
-                FuelFoods CPG
-              </span>
+              <img 
+                src="/images/logo.png" 
+                alt="FuelFoods Logo" 
+                className="h-16 w-16 rounded-full"
+              />
             </Link>
           </div>
 
@@ -26,7 +28,7 @@ export default function Header() {
               <div key={item.title} className="relative group">
                 <Link
                   href={item.href}
-                  className="text-gray-700 hover:text-green-600 px-3 py-2 text-sm font-medium transition-colors"
+                  className="text-gray-700 hover:text-fuelfoods-green-500 px-3 py-2 text-sm font-medium transition-colors uppercase"
                 >
                   {item.title}
                 </Link>
@@ -37,7 +39,7 @@ export default function Header() {
                         <Link
                           key={child.title}
                           href={child.href}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-fuelfoods-green-500"
                         >
                           {child.title}
                         </Link>
@@ -49,11 +51,11 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Cart and User Actions */}
+          {/* User Actions */}
           <div className="flex items-center space-x-4">
             <Link
               href="/cart"
-              className="text-gray-700 hover:text-green-600 transition-colors"
+              className="text-gray-700 hover:text-fuelfoods-green-500 transition-colors"
             >
               <span className="sr-only">Cart</span>
               <svg
@@ -70,11 +72,17 @@ export default function Header() {
                 />
               </svg>
             </Link>
+                    <Link
+          href="/offers"
+          className="bg-fuelfoods-green-500 text-white px-6 py-3 rounded-full hover:bg-fuelfoods-green-600 transition-colors text-sm font-bold uppercase"
+        >
+          ORDER NOW
+        </Link>
 
             {/* Mobile menu button */}
             <button
               type="button"
-              className="md:hidden text-gray-700 hover:text-green-600"
+              className="md:hidden text-gray-700 hover:text-fuelfoods-green-500"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -107,7 +115,7 @@ export default function Header() {
                 <div key={item.title}>
                   <Link
                     href={item.href}
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-md"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-fuelfoods-green-500 hover:bg-green-50 rounded-md"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.title}
@@ -118,7 +126,7 @@ export default function Header() {
                         <Link
                           key={child.title}
                           href={child.href}
-                          className="block px-3 py-2 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-md"
+                          className="block px-3 py-2 text-sm text-gray-600 hover:text-fuelfoods-green-500 hover:bg-green-50 rounded-md"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {child.title}
