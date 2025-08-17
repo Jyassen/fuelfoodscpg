@@ -1,24 +1,55 @@
+"use client";
 import Link from 'next/link';
-import { FOOTER_LINKS, SITE_CONFIG } from '@/lib/constants';
+import { useState, type FormEvent } from 'react';
 
 export default function Footer() {
+  const [firstName, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus('error');
+      setMessage('Please enter a valid email.');
+      return;
+    }
+    try {
+      setStatus('loading');
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, email }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || 'Failed to subscribe');
+      setStatus('success');
+      setMessage("Thanks! You're on the list.");
+      setFirstName('');
+      setEmail('');
+    } catch (err: any) {
+      setStatus('error');
+      setMessage(err?.message || 'Something went wrong. Please try again later.');
+    }
+  };
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="col-span-1 md:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Left: Logo + Disclaimer */}
+          <div>
             <Link href="/" className="flex items-center mb-4">
-              <img 
-                src="/images/logo_v2.png" 
-                alt="FuelFoods Logo" 
-                className="h-12 w-12 rounded-full"
+              <img
+                src="/images/logo.png"
+                alt="FuelFoods Logo"
+                className="h-14 w-14 rounded-full"
               />
             </Link>
-            <p className="text-gray-300 mb-4 max-w-md">
-              {SITE_CONFIG.description}
+            <p className="text-gray-300 mb-6 max-w-xl">
+              Not evaluated by the FDA. This product isn’t designed to diagnose, treat, cure, or prevent any disease. Information here is for informational purposes. Not a substitute for medical advice. Consult a medical professional before using our products or if health concerns arise.
             </p>
             <div className="flex space-x-4">
               <a
@@ -39,12 +70,10 @@ export default function Footer() {
                 className="text-gray-400 hover:text-fuelfoods-green-500 transition-colors"
               >
                 <span className="sr-only">Instagram</span>
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-2.243 0-4.062-1.819-4.062-4.062s1.819-4.062 4.062-4.062 4.062 1.819 4.062 4.062-1.819 4.062-4.062 4.062zm7.138 0c-2.243 0-4.062-1.819-4.062-4.062s1.819-4.062 4.062-4.062 4.062 1.819 4.062 4.062-1.819 4.062-4.062 4.062z" />
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" />
                 </svg>
               </a>
               <a
@@ -63,59 +92,74 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Company Links */}
+          {/* Middle: Useful Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              {FOOTER_LINKS.company.map(link => (
-                <li key={link.title}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors"
-                  >
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
+            <h3 className="text-xl font-semibold mb-4">Useful Links</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/about-us" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">ABOUT US</Link>
+              </li>
+              <li>
+                <Link href="/contact-us" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">CONTACT US</Link>
+              </li>
+              <li>
+                <Link href="/shop" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">GET YOUR GREENS</Link>
+              </li>
+              <li>
+                <Link href="/culinary" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">CULINARY</Link>
+              </li>
+              <li>
+                <Link href="/fulfillment-policy" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">FULFILLMENT POLICY</Link>
+              </li>
             </ul>
           </div>
 
-          {/* Support Links */}
+          {/* Right: Newsletter */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Support</h3>
-            <ul className="space-y-2">
-              {FOOTER_LINKS.support.map(link => (
-                <li key={link.title}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors"
-                  >
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h3 className="text-xl font-semibold mb-2">Subscribe To Our Newsletter</h3>
+            <p className="text-gray-300 mb-4">Get notified about health tips, new releases, and deals!</p>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <input
+                type="text"
+                placeholder="First name"
+                className="px-4 py-2 rounded-md text-gray-900 bg-white placeholder-gray-500 w-full"
+                name="firstName"
+                autoComplete="given-name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="px-4 py-2 rounded-md text-gray-900 bg-white placeholder-gray-500 w-full"
+                name="email"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="bg-[#e56322] hover:bg-[#cc4f16] disabled:opacity-60 disabled:cursor-not-allowed text-white px-6 py-2 rounded-md transition-colors w-full"
+              >
+                {status === 'loading' ? 'Sending…' : 'Send'}
+              </button>
+              <div aria-live="polite" className="min-h-[20px] text-sm">
+                {status === 'error' && (
+                  <p className="text-red-400">{message}</p>
+                )}
+                {status === 'success' && (
+                  <p className="text-green-400">{message}</p>
+                )}
+              </div>
+              <p className="text-xs text-gray-400">Powered by Mailchimp</p>
+            </form>
           </div>
         </div>
-
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
-            © {currentYear} FuelFoods Industries. All rights reserved.
-          </p>
-          <div className="flex space-x-6 mt-4 sm:mt-0">
-            <Link
-              href="/privacy"
-              className="text-gray-400 hover:text-fuelfoods-green-500 text-sm transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-gray-400 hover:text-fuelfoods-green-500 text-sm transition-colors"
-            >
-              Terms of Service
-            </Link>
-          </div>
+      </div>
+      <div className="bg-black text-white text-center py-3 border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 text-sm">
+          Copyright © {currentYear} FuelFoods Industries. All rights reserved.
         </div>
       </div>
     </footer>

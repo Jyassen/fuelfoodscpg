@@ -19,6 +19,8 @@ type CarouselProps = {
   plugins?: CarouselPlugin;
   orientation?: 'horizontal' | 'vertical';
   setApi?: (api: CarouselApi) => void;
+  autoplay?: boolean;
+  autoplayInterval?: number; // ms
 };
 
 type CarouselContextProps = {
@@ -47,6 +49,8 @@ function Carousel({
   opts,
   setApi,
   plugins,
+  autoplay = false,
+  autoplayInterval = 5000,
   className,
   children,
   ...props
@@ -103,6 +107,15 @@ function Carousel({
       api?.off('select', onSelect);
     };
   }, [api, onSelect]);
+
+  // Simple autoplay using setInterval. Pauses when not mounted.
+  React.useEffect(() => {
+    if (!api || !autoplay) return;
+    const id = setInterval(() => {
+      api.scrollNext();
+    }, Math.max(2000, autoplayInterval));
+    return () => clearInterval(id);
+  }, [api, autoplay, autoplayInterval]);
 
   return (
     <CarouselContext.Provider

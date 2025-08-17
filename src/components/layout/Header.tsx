@@ -23,12 +23,12 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {NAVIGATION_ITEMS.map(item => (
+          <nav className="hidden md:flex space-x-6">
+            {NAVIGATION_ITEMS.slice(0, 5).map(item => (
               <div key={item.title} className="relative group">
                 <Link
                   href={item.href}
-                  className="text-gray-700 hover:text-fuelfoods-green-500 px-3 py-2 text-sm font-medium transition-colors uppercase"
+                  className="text-gray-800 hover:text-fuelfoods-green-500 px-3 py-2 text-sm font-semibold transition-colors uppercase tracking-wide"
                 >
                   {item.title}
                 </Link>
@@ -54,30 +54,17 @@ export default function Header() {
           {/* User Actions */}
           <div className="flex items-center space-x-4">
             <Link
-              href="/cart"
-              className="text-gray-700 hover:text-fuelfoods-green-500 transition-colors"
+              href="/login"
+              className="text-gray-800 hover:text-fuelfoods-green-500 px-3 py-2 text-sm font-semibold transition-colors uppercase tracking-wide"
             >
-              <span className="sr-only">Cart</span>
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v0"
-                />
-              </svg>
+              LOGIN
             </Link>
-                    <Link
-          href="/offers"
-          className="bg-fuelfoods-green-500 text-white px-6 py-3 rounded-full hover:bg-fuelfoods-green-600 transition-colors text-sm font-bold uppercase"
-        >
-          ORDER NOW
-        </Link>
+            <Link
+              href="/offers"
+              className="bg-fuelfoods-green-500 text-white px-6 py-3 rounded-full hover:bg-fuelfoods-green-600 transition-colors text-sm font-bold uppercase tracking-wide"
+            >
+              ORDER NOW
+            </Link>
 
             {/* Mobile menu button */}
             <button
@@ -111,7 +98,7 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-              {NAVIGATION_ITEMS.map(item => (
+              {NAVIGATION_ITEMS.slice(0, 4).map(item => (
                 <div key={item.title}>
                   <Link
                     href={item.href}
@@ -136,6 +123,20 @@ export default function Header() {
                   )}
                 </div>
               ))}
+              <Link
+                href="/login"
+                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-fuelfoods-green-500 hover:bg-green-50 rounded-md"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                LOGIN
+              </Link>
+              <Link
+                href="/offers"
+                className="block px-3 py-2 text-center bg-fuelfoods-green-500 text-white font-bold rounded-md hover:bg-fuelfoods-green-600 transition-colors uppercase"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                ORDER NOW
+              </Link>
             </div>
           </div>
         )}

@@ -29,9 +29,24 @@ export const SITE_CONFIG = {
 
 export const NAVIGATION_ITEMS = [
   {
-    title: 'Home',
+    title: 'HOME',
     href: '/',
     description: 'Welcome to FuelFoods',
+  },
+  {
+    title: 'ABOUT',
+    href: '/about',
+    description: 'Learn about FuelFoods',
+  },
+  {
+    title: 'CULINARY',
+    href: 'https://culinary.fuelfoods.store/',
+    description: 'Recipes and cooking tips',
+  },
+  {
+    title: 'CONTACT US',
+    href: '/contact',
+    description: 'Get in touch with us',
   },
   {
     title: 'Shop',
@@ -59,21 +74,6 @@ export const NAVIGATION_ITEMS = [
         description: 'Sweet microgreens',
       },
     ],
-  },
-  {
-    title: 'About',
-    href: '/about',
-    description: 'Learn about FuelFoods',
-  },
-  {
-    title: 'Culinary',
-    href: 'https://culinary.fuelfoods.store/',
-    description: 'Recipes and cooking tips',
-  },
-  {
-    title: 'Contact',
-    href: '/contact',
-    description: 'Get in touch with us',
   },
   {
     title: 'My Account',
