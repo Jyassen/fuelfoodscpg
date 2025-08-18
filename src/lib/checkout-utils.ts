@@ -688,7 +688,7 @@ export function createCheckoutCartItem(
     unitPrice: pricing.unitPrice,
     totalPrice: pricing.totalPrice,
     discountAmount: pricing.discountAmount,
-    addedAt: new Date(),
+    addedAt: Date.now().toString(),
   };
 }
 
@@ -732,8 +732,8 @@ export function initializeCheckoutData(): CheckoutData {
       general: [],
     },
     currentStep: 'customer_info',
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: Date.now().toString(),
+    updatedAt: Date.now().toString(),
     sessionId: `checkout_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
   };
 }
@@ -748,7 +748,7 @@ export function updateCheckoutData(
   const updatedData = {
     ...currentData,
     ...updates,
-    updatedAt: new Date(),
+    updatedAt: Date.now().toString(),
   };
 
   // Recalculate pricing if items changed

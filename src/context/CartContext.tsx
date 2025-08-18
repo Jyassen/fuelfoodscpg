@@ -35,7 +35,7 @@ interface CartState {
   isLoading: boolean;
   error: string | null;
   sessionId: string;
-  updatedAt: Date;
+  updatedAt: string;
 }
 
 // ============================================================================
@@ -137,7 +137,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
                 ...item,
                 quantity: item.quantity + newItem.quantity,
                 totalPrice: (item.quantity + newItem.quantity) * item.unitPrice,
-                addedAt: new Date(),
+                addedAt: Date.now().toString(),
               }
             : item
         );
@@ -157,7 +157,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         items: updatedItems,
         itemCount,
         pricing,
-        updatedAt: new Date(),
+        updatedAt: Date.now().toString(),
         error: null,
       };
     }
@@ -177,7 +177,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         items: updatedItems,
         itemCount,
         pricing,
-        updatedAt: new Date(),
+        updatedAt: Date.now().toString(),
       };
     }
 
@@ -195,7 +195,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
               ...item,
               quantity,
               totalPrice: quantity * item.unitPrice,
-              addedAt: new Date(),
+              addedAt: Date.now().toString(),
             }
           : item
       );
@@ -211,7 +211,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         items: updatedItems,
         itemCount,
         pricing,
-        updatedAt: new Date(),
+        updatedAt: Date.now().toString(),
       };
     }
 
@@ -233,7 +233,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         items: updatedItems,
         itemCount,
         pricing,
-        updatedAt: new Date(),
+        updatedAt: Date.now().toString(),
       };
     }
 
@@ -243,7 +243,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         items: [],
         itemCount: 0,
         pricing: calculateOrderPricing([]),
-        updatedAt: new Date(),
+        updatedAt: Date.now().toString(),
         error: null,
       };
 
@@ -252,7 +252,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       return {
         ...state,
         pricing,
-        updatedAt: new Date(),
+        updatedAt: Date.now().toString(),
       };
     }
 
@@ -267,7 +267,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         items,
         itemCount,
         pricing,
-        updatedAt: new Date(),
+        updatedAt: Date.now().toString(),
         error: null,
       };
     }
@@ -301,7 +301,7 @@ const initialState: CartState = {
   isLoading: false,
   error: null,
   sessionId: `cart_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-  updatedAt: new Date(),
+  updatedAt: Date.now().toString(),
 };
 
 // ============================================================================
@@ -333,7 +333,7 @@ export function CartProvider({
       const cartData = {
         items: state.items,
         sessionId: state.sessionId,
-        updatedAt: state.updatedAt.toISOString(),
+        updatedAt: state.updatedAt,
       };
       localStorage.setItem('fuelfoods_cart', JSON.stringify(cartData));
     } catch (error) {
@@ -496,7 +496,7 @@ export function CartProvider({
         sku: `SUB-${planType.toUpperCase()}`,
         attributes: [],
         createdAt: new Date(),
-        updatedAt: new Date(),
+        updatedAt: Date.now().toString(),
         variant: 'mega-mix' as const,
         microgreenTypes: ['arugula', 'broccoli', 'kale'] as const,
         nutritionalInfo: {

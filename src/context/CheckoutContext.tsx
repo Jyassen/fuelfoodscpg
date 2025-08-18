@@ -143,7 +143,7 @@ function checkoutReducer(
       return {
         ...state,
         currentStep: action.payload,
-        updatedAt: new Date(),
+        updatedAt: Date.now().toString(),
       };
 
     case 'UPDATE_CUSTOMER_INFO': {

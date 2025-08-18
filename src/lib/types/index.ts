@@ -192,8 +192,8 @@ export interface Subscription {
   startDate: Date;
   pausedUntil?: Date;
   cancelledAt?: Date;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 // ============================================================================
@@ -318,8 +318,8 @@ export interface Product {
   weight?: number;
   dimensions?: ProductDimensions;
   attributes: ProductAttribute[];
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ProductImage {
@@ -397,8 +397,8 @@ export interface Order {
   total: number;
   billingAddress: Address;
   shippingAddress: Address;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface OrderItem {
@@ -470,7 +470,7 @@ export interface CheckoutCartItem extends Omit<CartItem, 'product'> {
   unitPrice: number;
   totalPrice: number;
   discountAmount?: number;
-  addedAt: Date;
+  addedAt: string;
 }
 
 /**
@@ -611,8 +611,8 @@ export interface CheckoutData {
   currentStep: CheckoutStep;
 
   // Metadata
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   sessionId: string;
 }
 
@@ -896,8 +896,8 @@ export interface Page {
   parentId?: string;
   menuOrder?: number;
   isHomePage?: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   // WordPress migration fields
   originalId?: string;
   wordPressData?: WordPressFrontmatter;
@@ -918,8 +918,8 @@ export interface BlogPost {
   tags: string[];
   seo: SEOMetadata;
   publishedAt: Date;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   // WordPress migration fields
   originalId?: string;
   wordPressData?: WordPressFrontmatter;
