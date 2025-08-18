@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  useCart, 
-  useCheckout, 
-  useCartSummary, 
+import {
+  useCart,
+  useCheckout,
+  useCartSummary,
   useCheckoutProgress,
   useDiscounts,
-  useShipping
+  useShipping,
 } from '@/context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -34,35 +34,39 @@ export function CartExample() {
       description: 'Our signature microgreens blend',
       shortDescription: 'Premium microgreens blend',
       price: 12.99,
-      images: [{ 
-        id: '1', 
-        url: '/images/mega-mix-product.png', 
-        alt: 'Mega Mix', 
-        width: 400, 
-        height: 400, 
-        isPrimary: true 
-      }],
-      categories: [{ 
-        id: 'microgreens', 
-        name: 'Microgreens', 
-        slug: 'microgreens',
-        type: 'microgreens' as const
-      }],
+      images: [
+        {
+          id: '1',
+          url: '/images/mega-mix-product.png',
+          alt: 'Mega Mix',
+          width: 400,
+          height: 400,
+          isPrimary: true,
+        },
+      ],
+      categories: [
+        {
+          id: 'microgreens',
+          name: 'Microgreens',
+          slug: 'microgreens',
+          type: 'microgreens' as const,
+        },
+      ],
       inStock: true,
       sku: 'MM-001',
       attributes: [],
       createdAt: new Date(),
       updatedAt: new Date(),
       variant: 'mega-mix' as const,
-      microgreenTypes: ['arugula', 'broccoli', 'kale'] as const,
+      microgreenTypes: ['arugula', 'broccoli', 'kale'],
       nutritionalInfo: {
         vitamins: ['Vitamin C', 'Vitamin K'],
         minerals: ['Iron', 'Calcium'],
-        antioxidants: ['Sulforaphane']
+        antioxidants: ['Sulforaphane'],
       },
       subscriptionOptions: [],
       packageSizes: [],
-      freshnessDuration: '7-10 days refrigerated'
+      freshnessDuration: '7-10 days refrigerated',
     };
 
     addItem(megaMixProduct, 1, 'individual');
@@ -70,7 +74,7 @@ export function CartExample() {
 
   const handleAddSubscription = () => {
     const config = createPlanConfiguration('pro');
-    
+
     // Create subscription product
     const subscriptionProduct = {
       id: 'subscription-pro',
@@ -79,44 +83,54 @@ export function CartExample() {
       description: 'Weekly delivery of 3 microgreens packs',
       shortDescription: 'Pro weekly subscription',
       price: 11.69,
-      images: [{ 
-        id: '1', 
-        url: '/images/mega-mix-product.png', 
-        alt: 'Pro Plan', 
-        width: 400, 
-        height: 400, 
-        isPrimary: true 
-      }],
-      categories: [{ 
-        id: 'subscription', 
-        name: 'Subscriptions', 
-        slug: 'subscriptions',
-        type: 'bundles' as const
-      }],
+      images: [
+        {
+          id: '1',
+          url: '/images/mega-mix-product.png',
+          alt: 'Pro Plan',
+          width: 400,
+          height: 400,
+          isPrimary: true,
+        },
+      ],
+      categories: [
+        {
+          id: 'subscription',
+          name: 'Subscriptions',
+          slug: 'subscriptions',
+          type: 'bundles' as const,
+        },
+      ],
       inStock: true,
       sku: 'SUB-PRO',
       attributes: [],
       createdAt: new Date(),
       updatedAt: new Date(),
       variant: 'mega-mix' as const,
-      microgreenTypes: ['arugula', 'broccoli', 'kale'] as const,
+      microgreenTypes: ['arugula', 'broccoli', 'kale'],
       nutritionalInfo: {
         vitamins: ['Vitamin C', 'Vitamin K'],
         minerals: ['Iron', 'Calcium'],
-        antioxidants: ['Sulforaphane']
+        antioxidants: ['Sulforaphane'],
       },
       subscriptionOptions: [],
       packageSizes: [],
-      freshnessDuration: '7-10 days refrigerated'
+      freshnessDuration: '7-10 days refrigerated',
     };
 
-    addItem(subscriptionProduct, config.totalPacks, 'subscription', config, 'weekly');
+    addItem(
+      subscriptionProduct,
+      config.totalPacks,
+      'subscription',
+      config,
+      'weekly'
+    );
   };
 
   return (
     <Card className="p-6 space-y-4">
       <h3 className="text-lg font-bold">Cart Management</h3>
-      
+
       <div className="flex gap-2">
         <Button onClick={handleAddMegaMix} variant="brand" size="sm">
           Add Mega Mix
@@ -124,7 +138,12 @@ export function CartExample() {
         <Button onClick={handleAddSubscription} variant="orange" size="sm">
           Add Pro Subscription
         </Button>
-        <Button onClick={clearCart} variant="outline" size="sm" disabled={!hasItems}>
+        <Button
+          onClick={clearCart}
+          variant="outline"
+          size="sm"
+          disabled={!hasItems}
+        >
           Clear Cart
         </Button>
       </div>
@@ -137,8 +156,11 @@ export function CartExample() {
       {hasItems && (
         <div className="space-y-2">
           <h4 className="font-semibold">Cart Items:</h4>
-          {items.map((item) => (
-            <div key={item.id} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+          {items.map(item => (
+            <div
+              key={item.id}
+              className="flex items-center justify-between p-2 bg-gray-50 rounded"
+            >
               <div className="flex-1">
                 <div className="font-medium">{item.name}</div>
                 <div className="text-sm text-gray-600">
@@ -151,25 +173,25 @@ export function CartExample() {
                 )}
               </div>
               <div className="flex items-center gap-2">
-                <Button 
+                <Button
                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  variant="outline" 
+                  variant="outline"
                   size="sm"
                   disabled={item.quantity <= 1}
                 >
                   -
                 </Button>
                 <span className="w-8 text-center">{item.quantity}</span>
-                <Button 
+                <Button
                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  variant="outline" 
+                  variant="outline"
                   size="sm"
                 >
                   +
                 </Button>
-                <Button 
+                <Button
                   onClick={() => removeItem(item.id)}
-                  variant="destructive" 
+                  variant="destructive"
                   size="sm"
                 >
                   ×
@@ -199,20 +221,20 @@ export function CheckoutProgressExample() {
     { key: 'payment', label: 'Payment' },
     { key: 'review', label: 'Review' },
     { key: 'processing', label: 'Processing' },
-    { key: 'complete', label: 'Complete' }
+    { key: 'complete', label: 'Complete' },
   ];
 
   return (
     <Card className="p-6 space-y-4">
       <h3 className="text-lg font-bold">Checkout Progress</h3>
-      
+
       <div className="space-y-2">
         <div className="flex justify-between text-sm">
           <span>Progress</span>
           <span>{progress}%</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
-          <div 
+          <div
             className="bg-[#448319] h-2 rounded-full transition-all"
             style={{ width: `${progress}%` }}
           />
@@ -220,7 +242,7 @@ export function CheckoutProgressExample() {
       </div>
 
       <div className="grid grid-cols-4 gap-2">
-        {steps.map((step) => (
+        {steps.map(step => (
           <Button
             key={step.key}
             onClick={() => goToStep(step.key as any)}
@@ -237,9 +259,9 @@ export function CheckoutProgressExample() {
         <Button onClick={goToPreviousStep} variant="outline" size="sm">
           Previous
         </Button>
-        <Button 
-          onClick={goToNextStep} 
-          variant="brand" 
+        <Button
+          onClick={goToNextStep}
+          variant="brand"
           size="sm"
           disabled={!canProceed}
         >
@@ -259,31 +281,35 @@ export function CheckoutProgressExample() {
 // ============================================================================
 
 export function CustomerInfoExample() {
-  const { 
-    customerInfo, 
-    updateCustomerInfo, 
-    errors, 
-    validateCurrentStep 
-  } = useCheckout();
+  const { customerInfo, updateCustomerInfo, errors, validateCurrentStep } =
+    useCheckout();
 
   const customerErrors = errors.customerInfo;
 
   return (
     <Card className="p-6 space-y-4">
       <h3 className="text-lg font-bold">Customer Information</h3>
-      
+
       <div className="space-y-3">
         <div>
           <Input
             type="email"
             placeholder="Email Address"
             value={customerInfo.email || ''}
-            onChange={(e) => updateCustomerInfo({ email: e.target.value })}
-            className={customerErrors.some(e => e.includes('email')) ? 'border-red-500' : ''}
+            onChange={e => updateCustomerInfo({ email: e.target.value })}
+            className={
+              customerErrors.some(e => e.includes('email'))
+                ? 'border-red-500'
+                : ''
+            }
           />
-          {customerErrors.filter(e => e.includes('email')).map((error, i) => (
-            <div key={i} className="text-sm text-red-600 mt-1">{error}</div>
-          ))}
+          {customerErrors
+            .filter(e => e.includes('email'))
+            .map((error, i) => (
+              <div key={i} className="text-sm text-red-600 mt-1">
+                {error}
+              </div>
+            ))}
         </div>
 
         <div className="grid grid-cols-2 gap-3">
@@ -291,24 +317,40 @@ export function CustomerInfoExample() {
             <Input
               placeholder="First Name"
               value={customerInfo.firstName || ''}
-              onChange={(e) => updateCustomerInfo({ firstName: e.target.value })}
-              className={customerErrors.some(e => e.includes('firstName')) ? 'border-red-500' : ''}
+              onChange={e => updateCustomerInfo({ firstName: e.target.value })}
+              className={
+                customerErrors.some(e => e.includes('firstName'))
+                  ? 'border-red-500'
+                  : ''
+              }
             />
-            {customerErrors.filter(e => e.includes('firstName')).map((error, i) => (
-              <div key={i} className="text-sm text-red-600 mt-1">{error}</div>
-            ))}
+            {customerErrors
+              .filter(e => e.includes('firstName'))
+              .map((error, i) => (
+                <div key={i} className="text-sm text-red-600 mt-1">
+                  {error}
+                </div>
+              ))}
           </div>
-          
+
           <div>
             <Input
               placeholder="Last Name"
               value={customerInfo.lastName || ''}
-              onChange={(e) => updateCustomerInfo({ lastName: e.target.value })}
-              className={customerErrors.some(e => e.includes('lastName')) ? 'border-red-500' : ''}
+              onChange={e => updateCustomerInfo({ lastName: e.target.value })}
+              className={
+                customerErrors.some(e => e.includes('lastName'))
+                  ? 'border-red-500'
+                  : ''
+              }
             />
-            {customerErrors.filter(e => e.includes('lastName')).map((error, i) => (
-              <div key={i} className="text-sm text-red-600 mt-1">{error}</div>
-            ))}
+            {customerErrors
+              .filter(e => e.includes('lastName'))
+              .map((error, i) => (
+                <div key={i} className="text-sm text-red-600 mt-1">
+                  {error}
+                </div>
+              ))}
           </div>
         </div>
 
@@ -317,29 +359,35 @@ export function CustomerInfoExample() {
             type="tel"
             placeholder="Phone Number"
             value={customerInfo.phone || ''}
-            onChange={(e) => updateCustomerInfo({ phone: e.target.value })}
-            className={customerErrors.some(e => e.includes('phone')) ? 'border-red-500' : ''}
+            onChange={e => updateCustomerInfo({ phone: e.target.value })}
+            className={
+              customerErrors.some(e => e.includes('phone'))
+                ? 'border-red-500'
+                : ''
+            }
           />
-          {customerErrors.filter(e => e.includes('phone')).map((error, i) => (
-            <div key={i} className="text-sm text-red-600 mt-1">{error}</div>
-          ))}
+          {customerErrors
+            .filter(e => e.includes('phone'))
+            .map((error, i) => (
+              <div key={i} className="text-sm text-red-600 mt-1">
+                {error}
+              </div>
+            ))}
         </div>
 
         <label className="flex items-center gap-2">
           <input
             type="checkbox"
             checked={customerInfo.marketingOptIn || false}
-            onChange={(e) => updateCustomerInfo({ marketingOptIn: e.target.checked })}
+            onChange={e =>
+              updateCustomerInfo({ marketingOptIn: e.target.checked })
+            }
           />
           <span className="text-sm">Subscribe to marketing emails</span>
         </label>
       </div>
 
-      <Button 
-        onClick={validateCurrentStep}
-        variant="brand" 
-        size="sm"
-      >
+      <Button onClick={validateCurrentStep} variant="brand" size="sm">
         Validate Form
       </Button>
     </Card>
@@ -351,15 +399,15 @@ export function CustomerInfoExample() {
 // ============================================================================
 
 export function DiscountExample() {
-  const { 
-    appliedDiscount, 
-    isValidating, 
-    errors, 
-    applyCode, 
-    removeDiscount, 
-    clearErrors 
+  const {
+    appliedDiscount,
+    isValidating,
+    errors,
+    applyCode,
+    removeDiscount,
+    clearErrors,
   } = useDiscounts();
-  
+
   const [discountCode, setDiscountCode] = useState('');
 
   const handleApplyDiscount = async () => {
@@ -372,18 +420,18 @@ export function DiscountExample() {
   return (
     <Card className="p-6 space-y-4">
       <h3 className="text-lg font-bold">Discount Codes</h3>
-      
+
       <div className="flex gap-2">
         <Input
           placeholder="Enter discount code"
           value={discountCode}
-          onChange={(e) => setDiscountCode(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleApplyDiscount()}
+          onChange={e => setDiscountCode(e.target.value)}
+          onKeyPress={e => e.key === 'Enter' && handleApplyDiscount()}
           disabled={isValidating}
         />
-        <Button 
+        <Button
           onClick={handleApplyDiscount}
-          variant="brand" 
+          variant="brand"
           size="sm"
           disabled={isValidating || !discountCode.trim()}
         >
@@ -394,7 +442,9 @@ export function DiscountExample() {
       {errors.length > 0 && (
         <div className="space-y-1">
           {errors.map((error, i) => (
-            <div key={i} className="text-sm text-red-600">{error}</div>
+            <div key={i} className="text-sm text-red-600">
+              {error}
+            </div>
           ))}
           <Button onClick={clearErrors} variant="outline" size="sm">
             Clear Errors
@@ -416,11 +466,7 @@ export function DiscountExample() {
                 Savings: ${appliedDiscount.appliedAmount.toFixed(2)}
               </div>
             </div>
-            <Button 
-              onClick={removeDiscount}
-              variant="outline" 
-              size="sm"
-            >
+            <Button onClick={removeDiscount} variant="outline" size="sm">
               Remove
             </Button>
           </div>
@@ -440,14 +486,9 @@ export function DiscountExample() {
 // ============================================================================
 
 export function ShippingExample() {
-  const { 
-    options, 
-    selected, 
-    isLoading, 
-    loadOptions, 
-    selectOption 
-  } = useShipping();
-  
+  const { options, selected, isLoading, loadOptions, selectOption } =
+    useShipping();
+
   const [zipCode, setZipCode] = useState('');
 
   const handleLoadShipping = () => {
@@ -459,17 +500,17 @@ export function ShippingExample() {
   return (
     <Card className="p-6 space-y-4">
       <h3 className="text-lg font-bold">Shipping Options</h3>
-      
+
       <div className="flex gap-2">
         <Input
           placeholder="Enter ZIP code"
           value={zipCode}
-          onChange={(e) => setZipCode(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleLoadShipping()}
+          onChange={e => setZipCode(e.target.value)}
+          onKeyPress={e => e.key === 'Enter' && handleLoadShipping()}
         />
-        <Button 
+        <Button
           onClick={handleLoadShipping}
-          variant="brand" 
+          variant="brand"
           size="sm"
           disabled={isLoading || !zipCode.trim()}
         >
@@ -480,12 +521,12 @@ export function ShippingExample() {
       {options.length > 0 && (
         <div className="space-y-2">
           <h4 className="font-semibold">Available Options:</h4>
-          {options.map((option) => (
-            <div 
+          {options.map(option => (
+            <div
               key={option.id}
               className={`p-3 border rounded-lg cursor-pointer transition-colors ${
-                selected?.id === option.id 
-                  ? 'border-[#448319] bg-green-50' 
+                selected?.id === option.id
+                  ? 'border-[#448319] bg-green-50'
                   : 'border-gray-200 hover:border-gray-300'
               }`}
               onClick={() => selectOption(option)}
@@ -499,10 +540,14 @@ export function ShippingExample() {
                 </div>
                 <div className="text-right">
                   <div className="font-semibold">
-                    {option.price === 0 ? 'FREE' : `$${option.price.toFixed(2)}`}
+                    {option.price === 0
+                      ? 'FREE'
+                      : `$${option.price.toFixed(2)}`}
                   </div>
                   {option.trackingIncluded && (
-                    <div className="text-xs text-gray-500">Tracking included</div>
+                    <div className="text-xs text-gray-500">
+                      Tracking included
+                    </div>
                   )}
                 </div>
               </div>
@@ -515,7 +560,8 @@ export function ShippingExample() {
         <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
           <div className="font-medium text-blue-800">Selected Shipping:</div>
           <div className="text-sm text-blue-600">
-            {selected.name} - {selected.price === 0 ? 'FREE' : `$${selected.price.toFixed(2)}`}
+            {selected.name} -{' '}
+            {selected.price === 0 ? 'FREE' : `$${selected.price.toFixed(2)}`}
           </div>
         </div>
       )}
@@ -548,8 +594,9 @@ export function CheckoutExample() {
       </div>
 
       <div className="text-center text-sm text-gray-500">
-        This demo showcases the functionality of the FuelFoods context providers.
-        Use the controls above to test cart management, checkout flow, and validation.
+        This demo showcases the functionality of the FuelFoods context
+        providers. Use the controls above to test cart management, checkout
+        flow, and validation.
       </div>
     </div>
   );

@@ -3,29 +3,29 @@
 import { useMemo } from 'react';
 import { ShoppingCart, Check, Truck, Shield, Calendar } from 'lucide-react';
 import { Button, LoadingSpinner } from '@/components/form';
-import { 
-  PlanType, 
-  MicrogreensVarietySelection, 
+import {
+  PlanType,
+  MicrogreensVarietySelection,
   PLAN_CONFIGURATIONS,
-  MICROGREENS_VARIETIES 
+  MICROGREENS_VARIETIES,
 } from '@/lib/types';
 
 interface OrderSummaryProps {
   planType: PlanType;
-  planConfig: typeof PLAN_CONFIGURATIONS[PlanType];
+  planConfig: (typeof PLAN_CONFIGURATIONS)[PlanType];
   varietySelections: MicrogreensVarietySelection[];
   onAddToCart: () => void;
   isLoading: boolean;
   isValid: boolean;
 }
 
-export function OrderSummary({ 
-  planType, 
-  planConfig, 
-  varietySelections, 
-  onAddToCart, 
-  isLoading, 
-  isValid 
+export function OrderSummary({
+  planType,
+  planConfig,
+  varietySelections,
+  onAddToCart,
+  isLoading,
+  isValid,
 }: OrderSummaryProps) {
   // Frequency removed; fixed delivery days
 
@@ -33,7 +33,7 @@ export function OrderSummary({
   const selectedVarieties = varietySelections.filter(s => s.quantity > 0);
   const subtotal = selectedVarieties.reduce((sum, selection) => {
     const variety = MICROGREENS_VARIETIES[selection.varietyId];
-    return sum + (selection.quantity * variety.price);
+    return sum + selection.quantity * variety.price;
   }, 0);
 
   const originalPrice = subtotal;
@@ -55,7 +55,11 @@ export function OrderSummary({
     const delta = diffs[0] ?? 0; // if today is Mon/Thu, show today
     const next = new Date(today);
     next.setDate(today.getDate() + delta);
-    return next.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+    return next.toLocaleDateString('en-US', {
+      weekday: 'long',
+      month: 'short',
+      day: 'numeric',
+    });
   };
 
   return (
@@ -63,26 +67,36 @@ export function OrderSummary({
       <h3 className="text-lg font-semibold text-gray-900 mb-1">Summary</h3>
       {planType !== 'starter' && (
         <p className="text-sm text-gray-600 mb-3">
-          {`Select exactly ${planConfig.packsRequired} packs to continue. ${Math.max(planConfig.packsRequired - selectedVarieties.reduce((s, v)=>s+v.quantity,0),0)} left.`}
+          {`Select exactly ${planConfig.packsRequired} packs to continue. ${Math.max(planConfig.packsRequired - selectedVarieties.reduce((s, v) => s + v.quantity, 0), 0)} left.`}
         </p>
       )}
       <div className="space-y-6">
         {/* Delivery cadence info */}
-        <div className="text-sm text-gray-700">Deliveries Mondays & Thursdays</div>
+        <div className="text-sm text-gray-700">
+          Deliveries Mondays & Thursdays
+        </div>
 
         {/* Selected Items */}
         <div>
-          <h4 className="font-semibold text-gray-900 mb-3">{planType === 'starter' ? 'Your Packs' : 'Your Selection'}</h4>
+          <h4 className="font-semibold text-gray-900 mb-3">
+            {planType === 'starter' ? 'Your Packs' : 'Your Selection'}
+          </h4>
           <div className="space-y-3">
             {selectedVarieties.length > 0 ? (
-              selectedVarieties.map((selection) => {
+              selectedVarieties.map(selection => {
                 const variety = MICROGREENS_VARIETIES[selection.varietyId];
                 return (
-                  <div key={selection.varietyId} className="flex items-center justify-between">
+                  <div
+                    key={selection.varietyId}
+                    className="flex items-center justify-between"
+                  >
                     <div>
-                      <div className="font-medium text-gray-900">{variety.name}</div>
+                      <div className="font-medium text-gray-900">
+                        {variety.name}
+                      </div>
                       <div className="text-sm text-gray-600">
-                        {selection.quantity} pack{selection.quantity !== 1 ? 's' : ''} × ${variety.price}
+                        {selection.quantity} pack
+                        {selection.quantity !== 1 ? 's' : ''} × ${variety.price}
                       </div>
                     </div>
                     <div className="font-semibold text-gray-900">
@@ -105,11 +119,15 @@ export function OrderSummary({
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Subtotal</span>
-                <span className="text-gray-900">${originalPrice.toFixed(2)}</span>
+                <span className="text-gray-900">
+                  ${originalPrice.toFixed(2)}
+                </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Shipping</span>
-                <span className="text-gray-900">${shippingCost.toFixed(2)}</span>
+                <span className="text-gray-900">
+                  ${shippingCost.toFixed(2)}
+                </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Tax (3%)</span>
@@ -133,34 +151,51 @@ export function OrderSummary({
             <div className="flex items-center">
               <Calendar className="w-5 h-5 text-gray-500 mr-3" />
               <div>
-                <div className="text-sm font-medium text-gray-900">Next Delivery</div>
-                <div className="text-xs text-gray-600">{getNextDeliveryDate()}</div>
+                <div className="text-sm font-medium text-gray-900">
+                  Next Delivery
+                </div>
+                <div className="text-xs text-gray-600">
+                  {getNextDeliveryDate()}
+                </div>
               </div>
             </div>
-            
+
             <div className="flex items-center">
               <Truck className="w-5 h-5 text-gray-500 mr-3" />
               <div>
-                <div className="text-sm font-medium text-gray-900">Fresh & Fast</div>
-                <div className="text-xs text-gray-600">Harvested within 24-48 hours</div>
+                <div className="text-sm font-medium text-gray-900">
+                  Fresh & Fast
+                </div>
+                <div className="text-xs text-gray-600">
+                  Harvested within 24-48 hours
+                </div>
               </div>
             </div>
-            
+
             <div className="flex items-center">
               <Shield className="w-5 h-5 text-gray-500 mr-3" />
               <div>
-                <div className="text-sm font-medium text-gray-900">Quality Guarantee</div>
-                <div className="text-xs text-gray-600">Fresh or your money back</div>
+                <div className="text-sm font-medium text-gray-900">
+                  Quality Guarantee
+                </div>
+                <div className="text-xs text-gray-600">
+                  Fresh or your money back
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Add to Cart Button */}
-        <Button onClick={onAddToCart} disabled={!isValid || isLoading} fullWidth className="h-12 text-base font-semibold bg-gray-900 text-white hover:bg-gray-800">
+        <Button
+          onClick={onAddToCart}
+          disabled={!isValid || isLoading}
+          fullWidth
+          className="h-12 text-base font-semibold bg-gray-900 text-white hover:bg-gray-800"
+        >
           {isLoading ? (
             <div className="flex items-center justify-center">
-              <LoadingSpinner size="small" color="white" className="mr-2" />
+              <LoadingSpinner size="sm" color="white" className="mr-2" />
               Adding to Cart...
             </div>
           ) : (

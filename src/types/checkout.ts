@@ -152,7 +152,20 @@ export interface CheckoutFormData {
 }
 
 export interface CheckoutFormErrors {
-  [K in keyof CheckoutFormData]?: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  shippingAddress?: string;
+  billingAddress?: string;
+  paymentMethod?: string;
+  cardNumber?: string;
+  expiryDate?: string;
+  cvv?: string;
+  nameOnCard?: string;
+  termsAccepted?: string;
+  privacyPolicyAccepted?: string;
+  ageConfirmation?: string;
 }
 
 export interface FormFieldOption {
