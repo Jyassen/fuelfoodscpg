@@ -43,8 +43,12 @@ export function OrderSummary({
   const tax = (discountedPrice + shippingCost) * 0.03; // 3%
   const total = discountedPrice + shippingCost + tax;
 
-  // Next delivery is the next upcoming Monday or Thursday
+  // Next delivery is the next upcoming Monday or Thursday (client-side only)
   const getNextDeliveryDate = () => {
+    if (typeof window === 'undefined') {
+      return 'Next delivery day'; // Server-side fallback
+    }
+    
     const today = new Date();
     const day = today.getDay(); // 0 Sun ... 6 Sat
     const targets = [1, 4]; // Monday, Thursday
