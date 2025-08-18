@@ -42,9 +42,9 @@ export default function Footer() {
           {/* Left: Logo + Disclaimer */}
           <div>
             <Link href="/" className="flex items-center mb-4">
-              <img
+              <img 
                 src="/images/logo.png"
-                alt="FuelFoods Logo"
+                alt="FuelFoods Logo" 
                 className="h-14 w-14 rounded-full"
               />
             </Link>
@@ -103,13 +103,16 @@ export default function Footer() {
                 <Link href="/contact-us" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">CONTACT US</Link>
               </li>
               <li>
-                <Link href="/shop" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">GET YOUR GREENS</Link>
+                <a href="/#plans" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">GET YOUR GREENS</a>
               </li>
               <li>
                 <Link href="/culinary" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">CULINARY</Link>
               </li>
               <li>
                 <Link href="/fulfillment-policy" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">FULFILLMENT POLICY</Link>
+              </li>
+              <li>
+                <a href="/Privacy_Policy_FuelFoods.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">PRIVACY POLICY</a>
               </li>
             </ul>
           </div>
@@ -156,7 +159,7 @@ export default function Footer() {
             </form>
           </div>
         </div>
-      </div>
+          </div>
       <div className="bg-black text-white text-center py-3 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 text-sm">
           Copyright © {currentYear} FuelFoods Industries. All rights reserved.

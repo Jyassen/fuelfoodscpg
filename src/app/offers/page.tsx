@@ -42,7 +42,7 @@ export default function OffersPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/shop"
+                  href="/configure/starter"
                   className="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center"
                 >
                   Claim Offer
@@ -223,7 +223,7 @@ export default function OffersPage() {
             </div>
           </div>
           <Link
-            href="/shop"
+            href="/configure/starter"
             className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-purple-700 transition-colors text-center block"
           >
             Shop Bundles
@@ -375,7 +375,7 @@ export default function OffersPage() {
                 </p>
               </div>
               <Link
-                href="/shop"
+                href="/configure/starter"
                 className="bg-orange-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-orange-700 transition-colors"
               >
                 Subscribe

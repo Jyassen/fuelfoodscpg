@@ -419,6 +419,395 @@ export type OrderStatus =
   | 'refunded';
 
 // ============================================================================
+// CHECKOUT FLOW TYPES
+// ============================================================================
+
+/**
+ * Microgreen variety configurations with themes
+ */
+export interface MicrogreensVariety {
+  id: 'mega-mix' | 'brassica-blend' | 'sunnies-snacks';
+  name: string;
+  theme: 'orange' | 'purple' | 'yellow';
+  description: string;
+  image: string;
+  price: number;
+  nutritionalHighlights: string[];
+}
+
+/**
+ * Subscription plan types
+ */
+export type PlanType = 'starter' | 'pro' | 'elite';
+
+/**
+ * Plan configuration for Pro and Elite subscriptions
+ */
+export interface PlanConfiguration {
+  planType: PlanType;
+  totalPacks: number;
+  varieties: MicrogreensVarietySelection[];
+  isValid: boolean;
+}
+
+/**
+ * Individual variety selection for subscription plans
+ */
+export interface MicrogreensVarietySelection {
+  varietyId: 'mega-mix' | 'brassica-blend' | 'sunnies-snacks';
+  quantity: number;
+}
+
+/**
+ * Enhanced cart item supporting both individual products and configured packages
+ */
+export interface CheckoutCartItem extends Omit<CartItem, 'product'> {
+  id: string;
+  type: 'individual' | 'subscription';
+  product: FuelFoodsProduct;
+  packageConfiguration?: PlanConfiguration;
+  subscriptionFrequency?: SubscriptionFrequency;
+  unitPrice: number;
+  totalPrice: number;
+  discountAmount?: number;
+  addedAt: Date;
+}
+
+/**
+ * Customer information for checkout
+ */
+export interface CheckoutCustomerInfo {
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  isNewCustomer: boolean;
+  marketingOptIn: boolean;
+}
+
+/**
+ * Shipping information
+ */
+export interface CheckoutShippingInfo extends Omit<Address, 'id' | 'type' | 'isDefault'> {
+  deliveryInstructions?: string;
+  preferredDeliveryTime?: 'morning' | 'afternoon' | 'evening' | 'anytime';
+}
+
+/**
+ * Billing information
+ */
+export interface CheckoutBillingInfo extends Omit<Address, 'id' | 'type' | 'isDefault'> {
+  sameAsShipping: boolean;
+}
+
+/**
+ * Payment method types
+ */
+export type PaymentMethodType = 'credit_card' | 'debit_card' | 'paypal' | 'apple_pay' | 'google_pay';
+
+/**
+ * Payment information
+ */
+export interface CheckoutPaymentInfo {
+  methodType: PaymentMethodType;
+  cardholderName?: string;
+  cardNumber?: string; // Should be tokenized in production
+  expiryMonth?: string;
+  expiryYear?: string;
+  cvv?: string; // Should never be stored
+  savePaymentMethod: boolean;
+  paymentToken?: string; // For saved payment methods
+}
+
+/**
+ * Discount/coupon application
+ */
+export interface CheckoutDiscount {
+  code: string;
+  type: 'percentage' | 'fixed_amount' | 'free_shipping';
+  value: number;
+  description: string;
+  isValid: boolean;
+  errorMessage?: string;
+  appliedAmount: number;
+  minimumOrderAmount?: number;
+  expiresAt?: Date;
+}
+
+/**
+ * Shipping option
+ */
+export interface ShippingOption {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  estimatedDays: number;
+  carrierName: string;
+  trackingIncluded: boolean;
+  isDefault: boolean;
+}
+
+/**
+ * Tax calculation details
+ */
+export interface TaxCalculation {
+  rate: number;
+  amount: number;
+  taxableAmount: number;
+  jurisdiction: string;
+  isTaxExempt: boolean;
+  exemptionReason?: string;
+}
+
+/**
+ * Order pricing breakdown
+ */
+export interface OrderPricing {
+  subtotal: number;
+  discountAmount: number;
+  discountedSubtotal: number;
+  shippingCost: number;
+  taxCalculation: TaxCalculation;
+  total: number;
+  savings?: number;
+}
+
+/**
+ * Comprehensive checkout data
+ */
+export interface CheckoutData {
+  // Cart and items
+  items: CheckoutCartItem[];
+  itemCount: number;
+  
+  // Customer information
+  customerInfo: Partial<CheckoutCustomerInfo>;
+  
+  // Addresses
+  shippingInfo: Partial<CheckoutShippingInfo>;
+  billingInfo: Partial<CheckoutBillingInfo>;
+  
+  // Payment
+  paymentInfo: Partial<CheckoutPaymentInfo>;
+  
+  // Shipping and discounts
+  selectedShippingOption?: ShippingOption;
+  appliedDiscount?: CheckoutDiscount;
+  
+  // Pricing
+  pricing: OrderPricing;
+  
+  // Validation and state
+  isValid: boolean;
+  errors: CheckoutValidationErrors;
+  currentStep: CheckoutStep;
+  
+  // Metadata
+  createdAt: Date;
+  updatedAt: Date;
+  sessionId: string;
+}
+
+/**
+ * Checkout validation errors
+ */
+export interface CheckoutValidationErrors {
+  customerInfo: string[];
+  shippingInfo: string[];
+  billingInfo: string[];
+  paymentInfo: string[];
+  items: string[];
+  discount: string[];
+  general: string[];
+}
+
+/**
+ * Checkout process steps
+ */
+export type CheckoutStep = 
+  | 'cart'
+  | 'customer_info'
+  | 'shipping'
+  | 'billing'
+  | 'payment'
+  | 'review'
+  | 'processing'
+  | 'complete';
+
+/**
+ * Order summary for final review and confirmation
+ */
+export interface OrderSummary {
+  // Items summary
+  items: OrderSummaryItem[];
+  totalItems: number;
+  
+  // Customer and delivery
+  customer: CheckoutCustomerInfo;
+  shippingAddress: CheckoutShippingInfo;
+  billingAddress: CheckoutBillingInfo;
+  shippingOption: ShippingOption;
+  
+  // Payment
+  paymentMethod: {
+    type: PaymentMethodType;
+    lastFour?: string;
+    expiryMonth?: string;
+    expiryYear?: string;
+  };
+  
+  // Pricing breakdown
+  pricing: OrderPricing;
+  appliedDiscount?: CheckoutDiscount;
+  
+  // Subscriptions
+  subscriptions: SubscriptionSummary[];
+  
+  // Estimated delivery
+  estimatedDelivery: {
+    earliest: Date;
+    latest: Date;
+    businessDays: number;
+  };
+  
+  // Order metadata
+  orderNumber?: string;
+  createdAt: Date;
+}
+
+/**
+ * Order summary item
+ */
+export interface OrderSummaryItem {
+  productName: string;
+  productImage: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
+  type: 'individual' | 'subscription';
+  subscriptionDetails?: {
+    frequency: SubscriptionFrequency;
+    planType: PlanType;
+    varietyBreakdown: {
+      varietyName: string;
+      quantity: number;
+    }[];
+  };
+}
+
+/**
+ * Subscription summary for orders containing subscriptions
+ */
+export interface SubscriptionSummary {
+  planType: PlanType;
+  frequency: SubscriptionFrequency;
+  nextDeliveryDate: Date;
+  varieties: {
+    name: string;
+    quantity: number;
+  }[];
+  recurringAmount: number;
+  discountApplied?: number;
+  commitmentPeriod?: number;
+}
+
+/**
+ * Available microgreens varieties with all details
+ */
+export const MICROGREENS_VARIETIES: Record<'mega-mix' | 'brassica-blend' | 'sunnies-snacks', MicrogreensVariety> = {
+  'mega-mix': {
+    id: 'mega-mix',
+    name: 'Mega Mix',
+    theme: 'orange',
+    description: 'A powerful blend of nutrient-dense microgreens for maximum health benefits',
+    image: '/images/mega-mix-product.png',
+    price: 15,
+    nutritionalHighlights: ['High in Vitamin C', 'Rich in Antioxidants', 'Complete Amino Acids']
+  },
+  'brassica-blend': {
+    id: 'brassica-blend',
+    name: 'Brassica Blend',
+    theme: 'purple',
+    description: 'A collection of cruciferous microgreens known for their detox properties',
+    image: '/images/brassica-blend-product.png',
+    price: 15,
+    nutritionalHighlights: ['Sulforaphane Rich', 'Detox Support', 'Anti-inflammatory']
+  },
+  'sunnies-snacks': {
+    id: 'sunnies-snacks',
+    name: 'Sunnies Snacks',
+    theme: 'yellow',
+    description: 'Sweet and crunchy microgreens perfect for snacking and salads',
+    image: '/images/sunnies-snacks-product.png',
+    price: 15,
+    nutritionalHighlights: ['High in Protein', 'Essential Fatty Acids', 'Natural Sweetness']
+  }
+};
+
+/**
+ * Plan requirements and configurations
+ */
+export const PLAN_CONFIGURATIONS: Record<PlanType, { 
+  name: string; 
+  packsRequired: number; 
+  description: string; 
+  features: string[];
+  pricePerPack: number;
+  discountPercentage: number;
+}> = {
+  starter: {
+    name: 'Starter Plan',
+    packsRequired: 0, // Any quantity
+    description: 'Individual packs with flexible quantity',
+    features: ['Choose any quantity', 'No commitment', 'Full price per pack'],
+    pricePerPack: 15,
+    discountPercentage: 0
+  },
+  pro: {
+    name: 'Pro Plan',
+    packsRequired: 3,
+    description: 'Weekly subscription with 3 packs, choose your varieties',
+    features: ['3 packs per week', 'Choose varieties'],
+    pricePerPack: 15,
+    discountPercentage: 0
+  },
+  elite: {
+    name: 'Elite Plan',
+    packsRequired: 5,
+    description: 'Weekly subscription with 5 packs, choose your varieties',
+    features: ['5 packs per week', 'Choose varieties'],
+    pricePerPack: 15,
+    discountPercentage: 0
+  }
+};
+
+// ============================================================================
+// VALIDATION HELPER TYPES
+// ============================================================================
+
+/**
+ * Form validation rules
+ */
+export interface ValidationRule {
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  pattern?: RegExp;
+  custom?: (value: any) => boolean | string;
+}
+
+/**
+ * Validation schema for checkout forms
+ */
+export interface CheckoutValidationSchema {
+  customerInfo: Record<keyof CheckoutCustomerInfo, ValidationRule>;
+  shippingInfo: Record<keyof CheckoutShippingInfo, ValidationRule>;
+  billingInfo: Record<keyof CheckoutBillingInfo, ValidationRule>;
+  paymentInfo: Record<keyof CheckoutPaymentInfo, ValidationRule>;
+}
+
+// ============================================================================
 // UTILITY TYPES
 // ============================================================================
 

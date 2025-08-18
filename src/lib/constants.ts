@@ -35,7 +35,7 @@ export const NAVIGATION_ITEMS = [
   },
   {
     title: 'ABOUT',
-    href: '/about',
+    href: '/about-us',
     description: 'Learn about FuelFoods',
   },
   {
@@ -45,35 +45,13 @@ export const NAVIGATION_ITEMS = [
   },
   {
     title: 'CONTACT US',
-    href: '/contact',
+    href: '/contact-us',
     description: 'Get in touch with us',
   },
   {
-    title: 'Shop',
-    href: '/shop',
-    description: 'Browse our products',
-    children: [
-      {
-        title: 'Subscription Plans',
-        href: '/subscriptions',
-        description: 'Weekly delivery plans',
-      },
-      {
-        title: 'Mega Mix',
-        href: '/products/mega-mix',
-        description: 'Our signature blend',
-      },
-      {
-        title: 'Brassica Blend',
-        href: '/products/brassica-blend',
-        description: 'Spicy microgreens mix',
-      },
-      {
-        title: 'Sunnies Snacks',
-        href: '/products/sunnies-snacks',
-        description: 'Sweet microgreens',
-      },
-    ],
+    title: 'LOGIN',
+    href: '/login',
+    description: 'Access your account',
   },
   {
     title: 'My Account',
@@ -86,12 +64,12 @@ export const FOOTER_LINKS = {
   company: [
     {
       title: 'About Us',
-      href: '/about',
+      href: '/about-us',
       description: 'Learn about our mission and story',
     },
     {
       title: 'Contact',
-      href: '/contact',
+      href: '/contact-us',
       description: 'Get in touch with our team',
     },
     {

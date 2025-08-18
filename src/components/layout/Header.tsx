@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { ShoppingCart } from 'lucide-react';
 import { NAVIGATION_ITEMS } from '@/lib/constants';
 
 export default function Header() {
@@ -54,17 +55,18 @@ export default function Header() {
           {/* User Actions */}
           <div className="flex items-center space-x-4">
             <Link
-              href="/login"
-              className="text-gray-800 hover:text-fuelfoods-green-500 px-3 py-2 text-sm font-semibold transition-colors uppercase tracking-wide"
+              href="/cart"
+              aria-label="Cart"
+              className="text-gray-800 hover:text-fuelfoods-green-500 px-2 py-2 transition-colors"
             >
-              LOGIN
+              <ShoppingCart className="w-6 h-6" />
             </Link>
-            <Link
-              href="/offers"
+            <a
+              href="/#plans"
               className="bg-fuelfoods-green-500 text-white px-6 py-3 rounded-full hover:bg-fuelfoods-green-600 transition-colors text-sm font-bold uppercase tracking-wide"
             >
               ORDER NOW
-            </Link>
+            </a>
 
             {/* Mobile menu button */}
             <button
@@ -124,19 +126,20 @@ export default function Header() {
                 </div>
               ))}
               <Link
-                href="/login"
-                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-fuelfoods-green-500 hover:bg-green-50 rounded-md"
+                href="/cart"
+                className="flex items-center gap-2 px-3 py-2 text-base font-medium text-gray-700 hover:text-fuelfoods-green-500 hover:bg-green-50 rounded-md"
                 onClick={() => setIsMenuOpen(false)}
               >
-                LOGIN
+                <ShoppingCart className="w-5 h-5" />
+                Cart
               </Link>
-              <Link
-                href="/offers"
+              <a
+                href="/#plans"
                 className="block px-3 py-2 text-center bg-fuelfoods-green-500 text-white font-bold rounded-md hover:bg-fuelfoods-green-600 transition-colors uppercase"
                 onClick={() => setIsMenuOpen(false)}
               >
                 ORDER NOW
-              </Link>
+              </a>
             </div>
           </div>
         )}

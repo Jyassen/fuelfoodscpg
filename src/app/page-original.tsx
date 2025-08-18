@@ -26,7 +26,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="text-lg px-8 py-6">
-              <Link href="/shop">
+              <Link href="/configure/starter">
                 <Package className="mr-2 h-5 w-5" />
                 Shop Now
               </Link>
@@ -115,7 +115,7 @@ export default function Home() {
             variant="secondary"
             className="text-lg px-8 py-6"
           >
-            <Link href="/shop">
+            <Link href="/configure/starter">
               <Package className="mr-2 h-5 w-5" />
               Explore Products
             </Link>

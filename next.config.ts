@@ -109,6 +109,22 @@ const nextConfig: NextConfig = {
           destination: '/',
           permanent: true,
         },
+        // Ensure legacy paths still work
+        {
+          source: '/about',
+          destination: '/about-us',
+          permanent: true,
+        },
+        {
+          source: '/contact',
+          destination: '/contact-us',
+          permanent: true,
+        },
+        {
+          source: '/shop',
+          destination: '/configure/starter',
+          permanent: true,
+        },
       ];
     },
   }),

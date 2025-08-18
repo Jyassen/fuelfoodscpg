@@ -59,9 +59,9 @@ export default function HomePage() {
 
               {/* CTA Button - Single Button as in Screenshot */}
               <div>
-                <button className="bg-[#136834] hover:bg-[#0f5429] text-white font-extrabold px-8 py-3 rounded-full text-base uppercase tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 border border-transparent">
+                <a href="#plans" className="inline-flex items-center justify-center bg-[#136834] hover:bg-[#0f5429] text-white font-extrabold px-8 py-3 rounded-full text-base uppercase tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 border border-transparent">
                   Get Your Greens
-                </button>
+                </a>
               </div>
             </div>
 
@@ -177,7 +177,7 @@ export default function HomePage() {
                         </div>
                       </div>
                       <div className="flex gap-4">
-                        <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-colors">Order Now</button>
+                        <a href="#plans" className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block text-center">Order Now</a>
                       </div>
                     </div>
                     <div>
@@ -220,7 +220,7 @@ export default function HomePage() {
                         </div>
                       </div>
                       <div className="flex gap-4">
-                        <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full font-semibold transition-colors">Order Now</button>
+                        <a href="#plans" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block text-center">Order Now</a>
                       </div>
                     </div>
                   </div>
@@ -253,7 +253,7 @@ export default function HomePage() {
                         </div>
                       </div>
                       <div className="flex gap-4">
-                        <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-3 rounded-full font-semibold transition-colors">Order Now</button>
+                        <a href="#plans" className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block text-center">Order Now</a>
                       </div>
                     </div>
                     <div>
@@ -272,7 +272,7 @@ export default function HomePage() {
       </section>
 
       {/* Choose Your Subscription Section - Enhanced Design */}
-      <section className="bg-gradient-to-br from-fuelfoods-green-500 to-fuelfoods-green-600 pt-12 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section id="plans" className="bg-gradient-to-br from-fuelfoods-green-500 to-fuelfoods-green-600 pt-12 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -333,9 +333,9 @@ export default function HomePage() {
                 </div>
               </div>
               
-              <button className="mt-auto w-full bg-gray-900 text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors text-lg">
+              <Link href="/configure/starter" className="mt-auto w-full bg-gray-900 text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors text-lg inline-flex items-center justify-center">
                 Get Started
-              </button>
+              </Link>
             </div>
 
             {/* Pro Plan - Most Popular */}
@@ -397,9 +397,9 @@ export default function HomePage() {
                 </div>
               </div>
               
-              <button className="mt-auto w-full bg-gradient-to-r from-gray-200 to-gray-400 text-gray-900 py-4 rounded-xl font-bold hover:from-gray-300 hover:to-gray-500 transition-all duration-300 text-lg shadow-lg">
+              <Link href="/configure/pro" className="mt-auto w-full bg-gradient-to-r from-gray-200 to-gray-400 text-gray-900 py-4 rounded-xl font-bold hover:from-gray-300 hover:to-gray-500 transition-all duration-300 text-lg shadow-lg inline-flex items-center justify-center">
                 Start Pro Plan
-              </button>
+              </Link>
             </div>
 
             {/* Elite Plan */}
@@ -469,9 +469,9 @@ export default function HomePage() {
             </div>
           </div>
           
-              <button className="mt-auto w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 py-4 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 text-lg shadow-lg">
+              <Link href="/configure/elite" className="mt-auto w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 py-4 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 text-lg shadow-lg inline-flex items-center justify-center">
                 Start Elite Plan
-            </button>
+            </Link>
           </div>
           </div>
           
@@ -488,15 +488,15 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_24px_80px_12px_rgba(229,99,34,0.22)]">
               <img src="/images/bikerider.png" alt="Biker fueling performance with microgreens" className="w-full h-64 object-cover filter drop-shadow-[0_40px_90px_rgba(229,99,34,0.5)]" />
-            </div>
+              </div>
             <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_24px_80px_12px_rgba(229,99,34,0.22)]">
               <img src="/images/gymdrinker.png" alt="Gym-goer recovering with nutrient-dense greens" className="w-full h-64 object-cover filter drop-shadow-[0_40px_90px_rgba(229,99,34,0.5)]" />
             </div>
             <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_24px_80px_12px_rgba(229,99,34,0.22)]">
               <img src="/images/runners.png" alt="Runners energized by whole-food nutrition" className="w-full h-64 object-cover filter drop-shadow-[0_40px_90px_rgba(229,99,34,0.5)]" />
+              </div>
             </div>
-          </div>
-
+            
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
@@ -531,7 +531,7 @@ export default function HomePage() {
             </div>
             <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd"/></svg>
               </div>
               <h4 className="text-base font-bold text-gray-900 mb-1">Gut Health Support</h4>
               <p className="text-gray-700 text-sm">Fiber and phytonutrients that help keep things balanced.</p>
@@ -571,7 +571,7 @@ export default function HomePage() {
                 alt="FuelFoods microgreen packs"
                 className="w-full max-w-2xl h-auto object-contain mx-auto"
               />
-            </div>
+          </div>
 
             {/* Right bullets */}
             <div className="bg-fuelfoods-green-50/80 border border-fuelfoods-green-200 rounded-2xl p-8 lg:p-10 shadow-[0_12px_36px_rgba(23,134,65,0.10)]">
@@ -603,13 +603,13 @@ export default function HomePage() {
               </ul>
 
               <div className="mt-10">
-                <Link
-                  href="/shop"
+                <a
+                  href="#plans"
                   aria-label="Choose Your Greens"
                   className="inline-flex items-center justify-center bg-[#178641] hover:bg-[#136834] text-white font-extrabold text-lg px-10 py-4 rounded-full shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#178641]"
                 >
-                  Choose Your Greens!
-                </Link>
+              Choose Your Greens!
+                </a>
               </div>
             </div>
           </div>
@@ -761,13 +761,13 @@ export default function HomePage() {
           <div className="text-center">
             <p className="text-lg text-gray-600 mb-6">Ready to join our community of health-conscious customers?</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/shop" className="inline-flex items-center justify-center bg-gray-900 text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]">
+              <Link href="/configure/starter" className="inline-flex items-center justify-center bg-gray-900 text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]">
                 Try a Pack
               </Link>
-              <Link href="/shop" className="inline-flex items-center justify-center bg-gradient-to-r from-gray-200 to-gray-400 text-gray-900 px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]">
+              <Link href="/configure/pro" className="inline-flex items-center justify-center bg-gradient-to-r from-gray-200 to-gray-400 text-gray-900 px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]">
                 Go Pro with 3
               </Link>
-              <Link href="/shop" className="inline-flex items-center justify-center bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-10 py-4 rounded-full font-bold text-lg hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]">
+              <Link href="/configure/elite" className="inline-flex items-center justify-center bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-10 py-4 rounded-full font-bold text-lg hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]">
                 Commit, Go Elite
               </Link>
             </div>
@@ -824,22 +824,22 @@ export default function HomePage() {
             <div>
               <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-left">Let Food Be Thy Medicine</h3>
               <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-left">
-                Everyone wants to be healthy but the information and choices available for us is so confusing it leaves us stuck! It's time to make health and nutrition simple so you can be your best you. Here at FuelFoods Industries we are aggressively dedicated to finding the best practices to optimize human health, the natural way.
-              </p>
+              Everyone wants to be healthy but the information and choices available for us is so confusing it leaves us stuck! It's time to make health and nutrition simple so you can be your best you. Here at FuelFoods Industries we are aggressively dedicated to finding the best practices to optimize human health, the natural way.
+            </p>
               <p className="text-base lg:text-lg text-gray-900 font-semibold text-left">Join us on our mission to transform health through nutrition!</p>
               <div className="mt-6 text-left">
                 <Link
                   href="/about-us"
                   className="inline-flex items-center justify-center bg-[#178641] hover:bg-[#136834] text-white font-extrabold text-base md:text-lg px-8 py-3 rounded-full shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#178641]"
                 >
-                  Learn Our Story
+              Learn Our Story
                 </Link>
-              </div>
-            </div>
+          </div>
+        </div>
             <div className="w-full">
               <div className="w-full h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] overflow-hidden rounded-xl shadow-2xl">
-                <video className="w-full h-full object-cover object-center" src="/images/About-Us-tiktok-1.mp4" autoPlay muted loop playsInline />
-              </div>
+                <video suppressHydrationWarning className="w-full h-full object-cover object-center" src="/images/About-Us-tiktok-1.mp4" autoPlay muted loop playsInline />
+          </div>
             </div>
           </div>
           

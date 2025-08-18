@@ -1,4 +1,7 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
+import React from 'react';
+
 
 export const metadata: Metadata = {
   title: 'About Us - FuelFoods CPG',
@@ -8,37 +11,119 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-4xl font-bold text-gray-900 mb-8">About Us</h1>
-      <div className="prose prose-lg max-w-none">
-        <p className="text-xl text-gray-600 mb-6">
-          Welcome to FuelFoods CPG - your trusted source for premium microgreens
-          and pet grass delivered fresh to your door.
-        </p>
-        <p className="mb-6">
-          At FuelFoods CPG, we believe in the power of fresh, organic nutrition
-          for both you and your beloved pets. Our microgreens are carefully
-          cultivated using sustainable growing practices, ensuring maximum
-          nutritional value and incredible flavor.
-        </p>
-        <p className="mb-6">
-          Our mission is simple: to make nutrient-dense superfoods accessible to
-          everyone through convenient weekly deliveries. Whether you&apos;re
-          looking to boost your health with vitamin-packed microgreens or
-          provide your pets with fresh, natural grass, we&apos;ve got you
-          covered.
-        </p>
-        <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
-          Our Commitment
+    <div className="min-h-screen">
+      {/* Hero with split image/content, matching home style */}
+      <section className="relative bg-white py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <h1 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-[1.05] tracking-tight">
+              FuelFoods: A True Pandemic Business Driven by Passion and Purpose
+            </h1>
+            <div className="space-y-5 text-gray-800">
+              <p>
+                In a world turned upside down by the pandemic, I, along with my fellow lifelong vegetarian and recent biohacker, embarked on an extraordinary journey. I'm Jada, and the other half of this sibling duo is Jamal. Together, we founded FuelFoods.
+              </p>
+              <p>
+                Before 2020, I was busy building my own digital marketing agency, while Jamal worked as an insurance broker, helping seniors access quality healthcare. However, when the pandemic struck, both of our businesses suffered setbacks. Witnessing the devastating impact of pre-existing conditions and the lack of overall health, especially in communities of color, filled us with a deep sense of urgency.
+              </p>
+              <p>
+                In the fall of 2020, a door opened, leading us to the fascinating world of indoor farming. Our curiosity was piqued when we discovered the incredible potential of microgreens—these tiny plants boasted up to 40 times more nutrition than their fully grown counterparts. Inspired by this discovery and driven by our desire to make a difference, we embarked on a journey to convert our modest 285-square-foot garage into a thriving indoor farm.
+              </p>
+              <p>
+                Our mission was clear: to combat the chronic disease epidemic plaguing America. With rigorous research and countless trial runs, we honed our skills and transformed our garage into a fully functioning indoor farm. Today, we feel fortunate to supply our nutrient-rich microgreens to several neighborhoods across NYC, partnering with esteemed restaurants and grocery stores.
+              </p>
+              <p>
+                We take immense pride in knowing that thousands of New Yorkers now have access to our fresh produce. FuelFoods has become a symbol of health and empowerment, providing individuals with the opportunity to nourish their bodies with nature's finest offerings.
+              </p>
+              <p>
+                Join us on this transformative journey. Together, let's fuel our bodies, elevate our communities, and make a lasting impact on the health and well-being of all.
+              </p>
+              {/* No CTA in this first panel per request */}
+            </div>
+          </div>
+          <div className="lg:sticky lg:top-24">
+            <div className="w-full h-[260px] sm:h-[360px] lg:h-[520px] overflow-hidden rounded-2xl shadow-2xl">
+              <video suppressHydrationWarning className="w-full h-full object-cover object-center" src="/images/About-Us-tiktok-1.mp4" autoPlay muted loop playsInline />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Restaurant Partnerships */}
+      <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="w-full h-[260px] sm:h-[340px] lg:h-[420px] overflow-hidden rounded-2xl shadow-xl">
+              <img src="/images/Restaurant-Partnerships.jpg" alt="Restaurant partnerships and dishes" className="w-full h-full object-cover object-bottom" />
+            </div>
+          </div>
+          <div>
+            <h3 className="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
+              Restaurant Partnerships: Fueling Culinary Excellence
+            </h3>
+            <p className="text-gray-700 mb-6">
+              FuelFoods collaborates with restaurants that share our commitment to fresh, tasty, and high‑quality foods. For our seasonal catalog and pricing contact us at <a href="mailto:info@fuelfoods.store" className="text-fuelfoods-green-600 underline">info@fuelfoods.store</a>.
+            </p>
+            <p className="text-gray-700 mb-6">
+              We are proud to serve 30+ NYC restaurants across a wide range of cuisines, each with the same passion for fresh, artisan ingredients that elevate any dish.
+            </p>
+            <a href="https://culinary.fuelfoods.store/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-[#178641] hover:bg-[#136834] text-white font-bold px-8 py-3 rounded-full shadow-lg transition-colors">
+              See Our Selection
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Quality + Sustainability block */}
+      <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <div className="w-full h-[300px] sm:h-[340px] lg:h-[400px] overflow-hidden rounded-2xl shadow-xl">
+              <img src="/images/farmpic.jpg" alt="Microgreens growing" className="w-full h-full object-cover object-center" />
+            </div>
+          </div>
+          <div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Where quality meets sustainability, and your health thrives with every bite.
         </h2>
-        <ul className="list-disc list-inside space-y-2 mb-6">
-          <li>100% organic growing methods</li>
-          <li>Fresh weekly deliveries</li>
-          <li>Sustainable farming practices</li>
-          <li>Premium quality guarantee</li>
-          <li>Exceptional customer service</li>
-        </ul>
+            <p className="text-gray-700 mb-4">
+              At FuelFoods, we&apos;re passionate about delivering the best natural foods to your plate. That&apos;s why we prioritize organic and Non-GMO practices, ensuring our microgreens grow in harmony with nature—from seed to soil. With no pesticides or chemical additives, our microgreens are nurtured with pure, filtered water and no inorganic fertilizers.
+            </p>
+            <p className="text-gray-700">
+              But our commitment doesn&apos;t stop there. We&apos;re dedicated to regenerative practices, producing abundant compostable material. Currently, our compost is available for community gardens and special donations. If you&apos;re interested in our compost, please get in touch at <a href="mailto:info@fuelfoods.store" className="text-fuelfoods-green-600 underline">info@fuelfoods.store</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Community + Partnerships */}
+      <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 className="text-3xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+              Community Collaboration
+            </h3>
+            <h4 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Empowering NYC Students</h4>
+            <p className="text-gray-700 mb-4">
+              FuelFoods offers an internship program for NYC students, teaching them to grow whole foods, make healthier choices, and develop essential business skills. We&apos;re committed to equipping the next generation with AI technology and tools for future job markets. We also provide potential job placement for talented interns with culinary interests through our restaurant partners. Join us in empowering our community through the power of choice. For more information email us at <a href="mailto:info@fuelfoods.store" className="text-fuelfoods-green-600 underline">info@fuelfoods.store</a>.
+            </p>
+            <h4 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">MWBE Certification</h4>
+            <p className="text-gray-700">
+              FuelFoods Industries LLC is committed to fostering meaningful partnerships within our community and beyond. As a certified Minority/Women-Owned Business Enterprise (MWBE), we actively collaborate with restaurants across New York City, providing them with premium microgreens, edible flowers, and specialty produce that enhance their culinary offerings. Our three years of proven experience in maintaining consistent, high-quality deliveries has built lasting relationships based on trust, sustainability, and shared commitment to healthier eating. We believe in the power of collaboration to create positive change in our food system, and we&apos;re always seeking new partnerships with like-minded organizations, government agencies, and community groups who share our vision of making nutritious, sustainable food accessible to broader markets.
+            </p>
+            <div className="pt-6">
+              <Link href="/contact-us" className="inline-flex items-center justify-center bg-[#178641] hover:bg-[#136834] text-white font-extrabold px-8 py-3 rounded-full shadow-lg transition-colors">Contact Us</Link>
+            </div>
+          </div>
+          <div>
+            <div className="w-full h-[360px] sm:h-[480px] lg:h-[560px] overflow-hidden rounded-2xl shadow-xl">
+              <img src="/images/Community-Collaboration-1.jpg" alt="Community Collaboration" className="w-full h-full object-cover object-center" />
+            </div>
+          </div>
       </div>
+      </section>
+
+      {/* Removed bottom CTA per request */}
     </div>
   );
 }

@@ -39,7 +39,7 @@ export default function ThankYouPage() {
           to be part of your healthy journey!
         </p>
 
-        {/* Order Details */}
+        {/* Order Details (static demo content, actual checkout uses /checkout/success) */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8 text-left">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
             Order Confirmation #1234
@@ -175,7 +175,7 @@ export default function ThankYouPage() {
             View Order Status
           </Link>
           <Link
-            href="/shop"
+            href="/configure/starter"
             className="border border-green-600 text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors"
           >
             Continue Shopping

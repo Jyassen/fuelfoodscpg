@@ -148,7 +148,7 @@ export default function MyAccountPage() {
 
               <div className="mt-6">
                 <Link
-                  href="/shop"
+                  href="/configure/starter"
                   className="inline-flex items-center text-green-600 hover:text-green-700 font-medium"
                 >
                   <svg

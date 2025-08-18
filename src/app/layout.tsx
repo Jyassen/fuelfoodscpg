@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { SEO_DEFAULTS } from '@/lib/constants';
+import { FuelFoodsProvider } from '@/context';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,15 +37,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </div>
+        <FuelFoodsProvider>
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
+        </FuelFoodsProvider>
       </body>
     </html>
   );
