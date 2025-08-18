@@ -316,7 +316,7 @@ export function validateFormSection<T extends Record<string, any>>(
       if (
         rule.minLength &&
         typeof value === 'string' &&
-        value.length < rule.minLength
+        (value as string).length < rule.minLength
       ) {
         errors.push(
           `${String(field)} must be at least ${rule.minLength} characters`
@@ -326,7 +326,7 @@ export function validateFormSection<T extends Record<string, any>>(
       if (
         rule.maxLength &&
         typeof value === 'string' &&
-        value.length > rule.maxLength
+        (value as string).length > rule.maxLength
       ) {
         errors.push(
           `${String(field)} must be no more than ${rule.maxLength} characters`

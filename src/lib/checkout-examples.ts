@@ -603,12 +603,4 @@ export function runAllExamples() {
   };
 }
 
-// Export individual examples for testing
-export {
-  EXAMPLE_PRODUCTS,
-  createIndividualPurchaseExample,
-  createProSubscriptionExample,
-  createEliteSubscriptionWithDiscountExample,
-  createMixedCartExample,
-  createOrderSummaryExample,
-};
+// Functions are already exported above with 'export function'

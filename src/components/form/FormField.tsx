@@ -210,7 +210,7 @@ const FormField = React.forwardRef<
           <ValidationMessage
             id={`${fieldId}-error`}
             type="error"
-            message={error}
+            message={error || ''}
           />
         )}
 
