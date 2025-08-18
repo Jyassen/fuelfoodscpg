@@ -55,7 +55,7 @@ export const NAVIGATION_ITEMS = [
   },
   {
     title: 'My Account',
-    href: '/account',
+    href: '/my-account',
     description: 'Manage your account',
   },
 ];
