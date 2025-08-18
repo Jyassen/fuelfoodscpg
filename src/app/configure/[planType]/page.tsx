@@ -29,9 +29,7 @@ export default function PackageConfigurationPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
 
-  const planType = params.planType as PlanType;
-
-  // Initialize with empty selections
+  // Initialize with empty selections first
   useEffect(() => {
     const initialSelections: MicrogreensVarietySelection[] = [
       { varietyId: 'mega-mix', quantity: 0 },
@@ -41,13 +39,18 @@ export default function PackageConfigurationPage() {
     setVarietySelections(initialSelections);
   }, []);
 
-  // Validate plan type after all hooks
-  if (!planType || !['starter', 'pro', 'elite'].includes(planType)) {
-    router.push('/');
-    return null;
+  // Extract and validate planType safely
+  const planType = Array.isArray(params.planType) ? params.planType[0] : params.planType;
+  
+  // Early return for invalid plan types
+  if (!planType || !['starter', 'pro', 'elite'].includes(planType as PlanType)) {
+    if (typeof window !== 'undefined') {
+      router.push('/');
+    }
+    return <div>Loading...</div>;
   }
 
-  const planConfig = PLAN_CONFIGURATIONS[planType];
+  const planConfig = PLAN_CONFIGURATIONS[planType as PlanType];
 
   // Calculate totals
   const totalSelectedPacks = varietySelections.reduce(
@@ -163,7 +166,7 @@ export default function PackageConfigurationPage() {
         router.push('/cart');
       } else {
         const configuration: PlanConfiguration = {
-          planType,
+          planType: planType as PlanType,
           totalPacks: planConfig.packsRequired,
           varieties: selectedVarieties,
           isValid: true,
@@ -224,7 +227,7 @@ export default function PackageConfigurationPage() {
           <div className="lg:col-span-2 space-y-6 lg:space-y-8">
             {/* Plan Header */}
             <PlanHeader
-              planType={planType}
+              planType={planType as PlanType}
               planConfig={planConfig}
               totalSelected={totalSelectedPacks}
               remainingPacks={remainingPacks}
@@ -232,7 +235,7 @@ export default function PackageConfigurationPage() {
 
             {/* Variety Selector */}
             <VarietySelector
-              planType={planType}
+              planType={planType as PlanType}
               varietySelections={varietySelections}
               onVarietyChange={handleVarietyChange}
               maxPacks={planType === 'starter' ? 99 : planConfig.packsRequired}
@@ -277,7 +280,7 @@ export default function PackageConfigurationPage() {
           <div className="lg:col-span-1 order-first lg:order-last">
             <div className="sticky top-4 lg:top-8">
               <OrderSummary
-                planType={planType}
+                planType={planType as PlanType}
                 planConfig={planConfig}
                 varietySelections={varietySelections}
                 onAddToCart={handleAddToCart}
