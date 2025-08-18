@@ -349,9 +349,7 @@ function checkoutReducer(
 
 const CHECKOUT_STEPS: CheckoutStep[] = [
   'cart',
-  'customer_info',
   'shipping',
-  'billing',
   'payment',
   'review',
   'processing',
@@ -612,8 +610,6 @@ export function CheckoutProvider({
 
     // Check specific step validation
     switch (state.currentStep) {
-      case 'customer_info':
-        return state.errors.customerInfo.length === 0;
       case 'shipping':
         return state.errors.shippingInfo.length === 0;
       case 'billing':
@@ -630,8 +626,6 @@ export function CheckoutProvider({
       const tempErrors = validateCheckoutData(state);
 
       switch (step) {
-        case 'customer_info':
-          return tempErrors.customerInfo.length === 0;
         case 'shipping':
           return tempErrors.shippingInfo.length === 0;
         case 'billing':

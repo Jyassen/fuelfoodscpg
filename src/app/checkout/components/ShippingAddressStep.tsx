@@ -77,6 +77,7 @@ export default function ShippingAddressStep({
     shippingInfo,
     customerInfo,
     updateShippingInfo,
+    updateCustomerInfo,
     errors,
     validateCurrentStep,
     clearErrors,
@@ -111,9 +112,6 @@ export default function ShippingAddressStep({
     field: keyof CheckoutShippingInfo,
     value: string
   ) => {
-    // Prevent unwanted scrolling during autofill
-    const currentScrollY = window.scrollY;
-    
     const updatedData = { ...formData, [field]: value };
     setFormData(updatedData);
     updateShippingInfo(updatedData);
@@ -125,13 +123,6 @@ export default function ShippingAddressStep({
     if (errors.shippingInfo.length > 0) {
       clearErrors('shippingInfo');
     }
-
-    // Restore scroll position if it changed unexpectedly
-    setTimeout(() => {
-      if (Math.abs(window.scrollY - currentScrollY) > 50) {
-        window.scrollTo(0, currentScrollY);
-      }
-    }, 0);
   };
 
   const handleContinue = () => {
@@ -144,10 +135,39 @@ export default function ShippingAddressStep({
     <FormSection
       title="Shipping Address"
       description="Where should we deliver your fresh microgreens?"
-      className="space-y-6 checkout-form"
+      className="space-y-6"
     >
-      {/* Remove stacked required notices; subtle asterisks only */}
+      {/* Contact Information */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+        <h4 className="font-medium text-blue-900 mb-3">Contact Information</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormField
+            label="Email Address"
+            type="email"
+            value={customerInfo.email || ''}
+            onValueChange={value => updateCustomerInfo({ email: value })}
+            name="email"
+            autoComplete="email"
+            placeholder="Enter your email"
+            required
+            error={errors.customerInfo?.find?.(e => e.includes('email'))}
+          />
+          <FormField
+            label="Phone Number"
+            type="tel"
+            value={customerInfo.phone || ''}
+            onValueChange={value => updateCustomerInfo({ phone: value })}
+            name="phone"
+            autoComplete="tel"
+            placeholder="(555) 123-4567"
+            required
+            error={errors.customerInfo?.find?.(e => e.includes('phone'))}
+          />
+        </div>
+      </div>
 
+      {/* Shipping Address */}
+      <h4 className="font-medium text-gray-900 mb-4">Delivery Address</h4>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <FormField
           label="First Name"

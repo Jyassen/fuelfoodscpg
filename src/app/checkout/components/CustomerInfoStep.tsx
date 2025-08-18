@@ -42,9 +42,6 @@ export default function CustomerInfoStep({
     field: keyof CheckoutCustomerInfo,
     value: string | boolean
   ) => {
-    // Prevent unwanted scrolling during autofill
-    const currentScrollY = window.scrollY;
-    
     const updatedData = { ...formData, [field]: value };
     setFormData(updatedData);
     updateCustomerInfo(updatedData);
@@ -52,13 +49,6 @@ export default function CustomerInfoStep({
     if (errors.customerInfo.length > 0) {
       clearErrors('customerInfo');
     }
-
-    // Restore scroll position if it changed unexpectedly
-    setTimeout(() => {
-      if (Math.abs(window.scrollY - currentScrollY) > 50) {
-        window.scrollTo(0, currentScrollY);
-      }
-    }, 0);
   };
 
   const handleContinue = () => {
@@ -71,7 +61,7 @@ export default function CustomerInfoStep({
     <FormSection
       title="Customer Information"
       description="We'll use this information to process your order and send updates"
-      className="space-y-6 checkout-form"
+      className="space-y-6"
     >
       {/* Remove stacked required notices; subtle asterisks only */}
 

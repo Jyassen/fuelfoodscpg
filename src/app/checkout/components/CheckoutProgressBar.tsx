@@ -11,10 +11,9 @@ interface CheckoutProgressBarProps {
 }
 
 const CHECKOUT_STEPS = [
-  { id: 'customer_info', label: 'Customer Info', number: 1 },
-  { id: 'shipping', label: 'Shipping', number: 2 },
-  { id: 'payment', label: 'Payment', number: 3 },
-  { id: 'review', label: 'Review', number: 4 },
+  { id: 'shipping', label: 'Shipping', number: 1 },
+  { id: 'payment', label: 'Payment', number: 2 },
+  { id: 'review', label: 'Review', number: 3 },
 ] as const;
 
 export default function CheckoutProgressBar({

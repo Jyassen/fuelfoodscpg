@@ -731,7 +731,7 @@ export function initializeCheckoutData(): CheckoutData {
       discount: [],
       general: [],
     },
-    currentStep: 'customer_info',
+    currentStep: 'shipping',
     createdAt: Date.now().toString(),
     updatedAt: Date.now().toString(),
     sessionId: `checkout_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,

@@ -64,10 +64,13 @@ export default function CheckoutPage() {
 
   const renderCurrentStep = () => {
     switch (currentStep) {
-      case 'customer_info':
-        return <CombinedInfo />;
       case 'shipping':
-        return <CombinedInfo />;
+        return (
+          <ShippingAddressStep
+            onContinue={handleContinue}
+            onBack={() => (window.location.href = '/cart')}
+          />
+        );
       case 'payment':
         return (
           <PaymentInfoStep
@@ -84,7 +87,7 @@ export default function CheckoutPage() {
         );
       default:
         return (
-          <CustomerInfoStep
+          <ShippingAddressStep
             onContinue={handleContinue}
             onBack={() => (window.location.href = '/cart')}
           />
