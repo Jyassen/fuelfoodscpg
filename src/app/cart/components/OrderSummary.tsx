@@ -92,7 +92,7 @@ export default function OrderSummary({ pricing, appliedCoupon, itemCount }: Orde
       {/* Checkout Button */}
       <Button
         asChild
-        variant="brand"
+        variant="primary"
         size="lg"
         fullWidth
         className="mb-4 bg-[#178641] hover:bg-[#136834] text-white"
