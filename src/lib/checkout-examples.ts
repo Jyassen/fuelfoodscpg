@@ -121,8 +121,8 @@ const EXAMPLE_PRODUCTS: Record<string, FuelFoodsProduct> = {
       },
     ],
     freshnessDuration: '7-10 days refrigerated',
-    createdAt: new Date('2024-01-01'),
-    updatedAt: new Date('2024-01-15'),
+    createdAt: new Date('2024-01-01').toISOString(),
+    updatedAt: new Date('2024-01-15').toISOString(),
   },
   // Additional products would follow the same pattern
 };
@@ -548,7 +548,7 @@ export function createOrderSummaryExample(
       businessDays: 6,
     },
     orderNumber: `FF${Date.now().toString().slice(-6)}`,
-    createdAt: new Date(),
+    createdAt: Date.now().toString(),
   };
 
   console.log('Generated order summary:', {

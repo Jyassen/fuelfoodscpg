@@ -176,8 +176,8 @@ function transformToFuelFoodsProduct(productData: any): FuelFoodsProduct {
       { name: 'Harvest to Delivery', value: '24-48 hours', visible: true },
     ],
 
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: Date.now().toString(),
+    updatedAt: Date.now().toString(),
   };
 }
 

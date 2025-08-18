@@ -680,7 +680,7 @@ export interface OrderSummary {
 
   // Order metadata
   orderNumber?: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 /**

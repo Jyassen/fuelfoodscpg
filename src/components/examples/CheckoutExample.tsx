@@ -55,8 +55,8 @@ export function CartExample() {
       inStock: true,
       sku: 'MM-001',
       attributes: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: Date.now().toString(),
+      updatedAt: Date.now().toString(),
       variant: 'mega-mix' as const,
       microgreenTypes: ['arugula', 'broccoli', 'kale'] as MicrogreenType[],
       nutritionalInfo: {
@@ -104,8 +104,8 @@ export function CartExample() {
       inStock: true,
       sku: 'SUB-PRO',
       attributes: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: Date.now().toString(),
+      updatedAt: Date.now().toString(),
       variant: 'mega-mix' as const,
       microgreenTypes: ['arugula', 'broccoli', 'kale'] as MicrogreenType[],
       nutritionalInfo: {

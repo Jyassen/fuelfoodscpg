@@ -219,7 +219,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       const { id, config } = action.payload;
 
       const updatedItems = state.items.map(item =>
-        item.id === id ? { ...item, ...config, addedAt: new Date() } : item
+        item.id === id ? { ...item, ...config, addedAt: Date.now().toString() } : item
       );
 
       const itemCount = updatedItems.reduce(
@@ -495,7 +495,7 @@ export function CartProvider({
         inStock: true,
         sku: `SUB-${planType.toUpperCase()}`,
         attributes: [],
-        createdAt: new Date(),
+        createdAt: Date.now().toString(),
         updatedAt: Date.now().toString(),
         variant: 'mega-mix' as const,
         microgreenTypes: ['arugula', 'broccoli', 'kale'] as const,
