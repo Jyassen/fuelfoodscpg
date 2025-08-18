@@ -232,10 +232,10 @@ export default function OrderReviewStep({ onPlaceOrder, onBack }: OrderReviewSte
               <span>Tax</span>
               <span>${pricing.taxCalculation.amount.toFixed(2)}</span>
             </div>
-            {pricing.savings > 0 && (
+            {typeof pricing.savings === 'number' && pricing.savings > 0 && (
               <div className="flex justify-between text-sm text-green-600 font-medium">
                 <span>Total Savings</span>
-                <span>-${pricing.savings.toFixed(2)}</span>
+                <span>-${(pricing.savings || 0).toFixed(2)}</span>
               </div>
             )}
             <div className="border-t border-gray-300 pt-2">
