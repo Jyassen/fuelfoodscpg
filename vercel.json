@@ -3,11 +3,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
-  "functions": {
-    "src/app/api/**/*.ts": {
-      "runtime": "nodejs18.x"
-    }
+  "env": {
+    "NEXT_RUNTIME": "edge"
   },
+  
   "rewrites": [
     {
       "source": "/sitemap.xml",
