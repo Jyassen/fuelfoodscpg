@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useCheckout } from '@/context';
-import { FormSection, Button, LoadingSpinner } from '@/components/form';
+import { FormSection, Button, LoadingSpinner, ValidationMessage } from '@/components/form';
 import { CheckoutCartItem } from '@/lib/types';
 
 interface OrderReviewStepProps {
