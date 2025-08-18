@@ -21,6 +21,7 @@ export default function OrderReviewStep({ onPlaceOrder, onBack }: OrderReviewSte
     pricing,
     selectedShippingOption,
     appliedDiscount,
+    errors,
     isProcessing,
     processOrder
   } = useCheckout();
