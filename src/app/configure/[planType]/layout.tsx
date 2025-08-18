@@ -1,24 +1,10 @@
 import { Metadata } from 'next';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ planType: string }>;
-}): Promise<Metadata> {
-  const { planType } = await params;
-
-  const planNames = {
-    starter: 'Starter Plan',
-    pro: 'Pro Plan',
-    elite: 'Elite Plan',
-  };
-
-  const planName =
-    planNames[planType as keyof typeof planNames] || 'Subscription Plan';
-
+// Use a simpler metadata approach that doesn't rely on async params
+export function generateMetadata(): Metadata {
   return {
-    title: `Configure Your ${planName} | FuelFoods`,
-    description: `Customize your ${planName} microgreens subscription. Choose from our three delicious varieties: Mega Mix, Brassica Blend, and Sunnies Snacks. Fresh, nutrient-dense microgreens delivered weekly.`,
+    title: 'Configure Your Subscription Plan | FuelFoods',
+    description: 'Customize your microgreens subscription. Choose from our three delicious varieties: Mega Mix, Brassica Blend, and Sunnies Snacks. Fresh, nutrient-dense microgreens delivered weekly.',
     keywords: [
       'microgreens subscription',
       'healthy eating',
@@ -26,12 +12,11 @@ export async function generateMetadata({
       'nutrition',
       'superfood',
       'weekly delivery',
-      planType,
       'FuelFoods',
     ],
     openGraph: {
-      title: `Configure Your ${planName} | FuelFoods`,
-      description: `Customize your ${planName} microgreens subscription with your choice of varieties.`,
+      title: 'Configure Your Subscription Plan | FuelFoods',
+      description: 'Customize your microgreens subscription with your choice of varieties.',
       type: 'website',
       images: ['/images/mega-mix-product.png'],
     },
