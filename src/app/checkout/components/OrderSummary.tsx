@@ -237,10 +237,10 @@ export default function OrderSummary({
           <span className="text-gray-900">${pricing.taxCalculation.amount.toFixed(2)}</span>
         </div>
         
-        {pricing.savings > 0 && (
+        {typeof pricing.savings === 'number' && pricing.savings > 0 && (
           <div className="flex justify-between text-sm border-t border-gray-200 pt-3">
             <span className="text-green-600 font-medium">Total Savings</span>
-            <span className="text-green-600 font-medium">-${pricing.savings.toFixed(2)}</span>
+            <span className="text-green-600 font-medium">-${(pricing.savings || 0).toFixed(2)}</span>
           </div>
         )}
         
