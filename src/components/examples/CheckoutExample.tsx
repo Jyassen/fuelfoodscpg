@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { MICROGREENS_VARIETIES, PLAN_CONFIGURATIONS } from '@/lib/types';
+import { MICROGREENS_VARIETIES, PLAN_CONFIGURATIONS, MicrogreenType } from '@/lib/types';
 import { createPlanConfiguration } from '@/lib/checkout-utils';
 
 // ============================================================================
@@ -58,7 +58,7 @@ export function CartExample() {
       createdAt: new Date(),
       updatedAt: new Date(),
       variant: 'mega-mix' as const,
-      microgreenTypes: ['arugula', 'broccoli', 'kale'],
+      microgreenTypes: ['arugula', 'broccoli', 'kale'] as MicrogreenType[],
       nutritionalInfo: {
         vitamins: ['Vitamin C', 'Vitamin K'],
         minerals: ['Iron', 'Calcium'],
@@ -107,7 +107,7 @@ export function CartExample() {
       createdAt: new Date(),
       updatedAt: new Date(),
       variant: 'mega-mix' as const,
-      microgreenTypes: ['arugula', 'broccoli', 'kale'],
+      microgreenTypes: ['arugula', 'broccoli', 'kale'] as MicrogreenType[],
       nutritionalInfo: {
         vitamins: ['Vitamin C', 'Vitamin K'],
         minerals: ['Iron', 'Calcium'],

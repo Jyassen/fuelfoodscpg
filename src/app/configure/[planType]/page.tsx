@@ -22,24 +22,14 @@ export default function PackageConfigurationPage() {
   const { addSubscriptionPlan, addItem } = useCart();
   const { startCheckout } = useFuelFoods();
 
-  const planType = params.planType as PlanType;
-
-  // Validate plan type
-  if (!planType || !['starter', 'pro', 'elite'].includes(planType)) {
-    router.push('/');
-    return null;
-  }
-
-  // Starter plan is handled here (no redirect)
-
-  const planConfig = PLAN_CONFIGURATIONS[planType];
-
-  // State for variety selections
+  // State for variety selections - must be before any conditional logic
   const [varietySelections, setVarietySelections] = useState<
     MicrogreensVarietySelection[]
   >([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+
+  const planType = params.planType as PlanType;
 
   // Initialize with empty selections
   useEffect(() => {
@@ -50,6 +40,14 @@ export default function PackageConfigurationPage() {
     ];
     setVarietySelections(initialSelections);
   }, []);
+
+  // Validate plan type after all hooks
+  if (!planType || !['starter', 'pro', 'elite'].includes(planType)) {
+    router.push('/');
+    return null;
+  }
+
+  const planConfig = PLAN_CONFIGURATIONS[planType];
 
   // Calculate totals
   const totalSelectedPacks = varietySelections.reduce(
