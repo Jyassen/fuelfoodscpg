@@ -82,13 +82,13 @@ const nextConfig: NextConfig = {
               key: 'X-XSS-Protection',
               value: '1; mode=block',
             },
-            // Add CSP that allows Next.js development
+            // Add CSP that allows Next.js to function properly
             {
               key: 'Content-Security-Policy',
               value:
                 process.env.NODE_ENV === 'development'
                   ? "default-src 'self' 'unsafe-eval' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:;"
-                  : "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';",
+                  : "default-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-src 'self';",
             },
           ],
         },
