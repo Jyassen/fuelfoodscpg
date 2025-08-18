@@ -6,12 +6,12 @@ import Link from 'next/link';
 import { ArrowLeft, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/form';
 import { useCart, useFuelFoods } from '@/context';
-import { 
-  PlanType, 
-  MicrogreensVarietySelection, 
+import {
+  PlanType,
+  MicrogreensVarietySelection,
   PlanConfiguration,
   PLAN_CONFIGURATIONS,
-  MICROGREENS_VARIETIES 
+  MICROGREENS_VARIETIES,
 } from '@/lib/types';
 import { PlanHeader, VarietySelector, OrderSummary } from './components';
 import { validatePlanConfiguration } from '@/lib/checkout-utils';
@@ -21,9 +21,9 @@ export default function PackageConfigurationPage() {
   const router = useRouter();
   const { addSubscriptionPlan, addItem } = useCart();
   const { startCheckout } = useFuelFoods();
-  
+
   const planType = params.planType as PlanType;
-  
+
   // Validate plan type
   if (!planType || !['starter', 'pro', 'elite'].includes(planType)) {
     router.push('/');
@@ -33,9 +33,11 @@ export default function PackageConfigurationPage() {
   // Starter plan is handled here (no redirect)
 
   const planConfig = PLAN_CONFIGURATIONS[planType];
-  
+
   // State for variety selections
-  const [varietySelections, setVarietySelections] = useState<MicrogreensVarietySelection[]>([]);
+  const [varietySelections, setVarietySelections] = useState<
+    MicrogreensVarietySelection[]
+  >([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
 
@@ -44,20 +46,26 @@ export default function PackageConfigurationPage() {
     const initialSelections: MicrogreensVarietySelection[] = [
       { varietyId: 'mega-mix', quantity: 0 },
       { varietyId: 'brassica-blend', quantity: 0 },
-      { varietyId: 'sunnies-snacks', quantity: 0 }
+      { varietyId: 'sunnies-snacks', quantity: 0 },
     ];
     setVarietySelections(initialSelections);
   }, []);
 
   // Calculate totals
-  const totalSelectedPacks = varietySelections.reduce((sum, selection) => sum + selection.quantity, 0);
+  const totalSelectedPacks = varietySelections.reduce(
+    (sum, selection) => sum + selection.quantity,
+    0
+  );
   const remainingPacks = planConfig.packsRequired - totalSelectedPacks;
 
   // Handle variety quantity change
-  const handleVarietyChange = (varietyId: 'mega-mix' | 'brassica-blend' | 'sunnies-snacks', quantity: number) => {
-    setVarietySelections(prev => 
-      prev.map(selection => 
-        selection.varietyId === varietyId 
+  const handleVarietyChange = (
+    varietyId: 'mega-mix' | 'brassica-blend' | 'sunnies-snacks',
+    quantity: number
+  ) => {
+    setVarietySelections(prev =>
+      prev.map(selection =>
+        selection.varietyId === varietyId
           ? { ...selection, quantity: Math.max(0, quantity) }
           : selection
       )
@@ -68,20 +76,26 @@ export default function PackageConfigurationPage() {
   // Validate current configuration
   const validateConfiguration = (): boolean => {
     const newErrors: string[] = [];
-    
+
     if (planType === 'starter') {
       if (totalSelectedPacks <= 0) {
         newErrors.push('Please select at least 1 pack');
       }
     } else {
-    if (totalSelectedPacks !== planConfig.packsRequired) {
-      newErrors.push(`Please select exactly ${planConfig.packsRequired} packs for the ${planConfig.name}`);
-    }
-    if (totalSelectedPacks > planConfig.packsRequired) {
-      newErrors.push(`You've selected ${totalSelectedPacks} packs. Please remove ${totalSelectedPacks - planConfig.packsRequired} pack(s)`);
-    }
-    if (totalSelectedPacks < planConfig.packsRequired) {
-      newErrors.push(`You need to select ${planConfig.packsRequired - totalSelectedPacks} more pack(s)`);
+      if (totalSelectedPacks !== planConfig.packsRequired) {
+        newErrors.push(
+          `Please select exactly ${planConfig.packsRequired} packs for the ${planConfig.name}`
+        );
+      }
+      if (totalSelectedPacks > planConfig.packsRequired) {
+        newErrors.push(
+          `You've selected ${totalSelectedPacks} packs. Please remove ${totalSelectedPacks - planConfig.packsRequired} pack(s)`
+        );
+      }
+      if (totalSelectedPacks < planConfig.packsRequired) {
+        newErrors.push(
+          `You need to select ${planConfig.packsRequired - totalSelectedPacks} more pack(s)`
+        );
       }
     }
 
@@ -96,7 +110,7 @@ export default function PackageConfigurationPage() {
     }
 
     setIsLoading(true);
-    
+
     try {
       const selectedVarieties = varietySelections.filter(s => s.quantity > 0);
       if (planType === 'starter') {
@@ -104,7 +118,12 @@ export default function PackageConfigurationPage() {
         // Avoid new Date() during render path; just add items with stable fields
         selectedVarieties.forEach(sel => {
           const variety = MICROGREENS_VARIETIES[sel.varietyId];
-          const normalize = (u: string) => (u?.startsWith('http') || u?.startsWith('data:')) ? u : (u?.startsWith('/') ? u : `/${u}`);
+          const normalize = (u: string) =>
+            u?.startsWith('http') || u?.startsWith('data:')
+              ? u
+              : u?.startsWith('/')
+                ? u
+                : `/${u}`;
           const product = {
             id: `variety_${sel.varietyId}`,
             name: variety.name,
@@ -112,8 +131,24 @@ export default function PackageConfigurationPage() {
             description: variety.description,
             shortDescription: variety.description,
             price: variety.price,
-            images: [{ id: sel.varietyId, url: normalize(variety.image), alt: variety.name, width: 400, height: 400, isPrimary: true }],
-            categories: [{ id: 'microgreens', name: 'Microgreens', slug: 'microgreens', type: 'microgreens' as const }],
+            images: [
+              {
+                id: sel.varietyId,
+                url: normalize(variety.image),
+                alt: variety.name,
+                width: 400,
+                height: 400,
+                isPrimary: true,
+              },
+            ],
+            categories: [
+              {
+                id: 'microgreens',
+                name: 'Microgreens',
+                slug: 'microgreens',
+                type: 'microgreens' as const,
+              },
+            ],
             inStock: true,
             sku: `PACK-${sel.varietyId.toUpperCase()}`,
             attributes: [],
@@ -122,25 +157,28 @@ export default function PackageConfigurationPage() {
             nutritionalInfo: { vitamins: [], minerals: [], antioxidants: [] },
             subscriptionOptions: [],
             packageSizes: [],
-            freshnessDuration: '7-10 days refrigerated'
+            freshnessDuration: '7-10 days refrigerated',
           } as any;
           addItem(product, sel.quantity, 'individual');
         });
         startCheckout();
         router.push('/cart');
       } else {
-      const configuration: PlanConfiguration = {
-        planType,
-        totalPacks: planConfig.packsRequired,
+        const configuration: PlanConfiguration = {
+          planType,
+          totalPacks: planConfig.packsRequired,
           varieties: selectedVarieties,
-        isValid: true
-      };
+          isValid: true,
+        };
 
-        await addSubscriptionPlan(planType as 'pro' | 'elite', configuration, 'weekly');
-      startCheckout();
-      router.push('/cart');
+        await addSubscriptionPlan(
+          planType as 'pro' | 'elite',
+          configuration,
+          'weekly'
+        );
+        startCheckout();
+        router.push('/cart');
       }
-      
     } catch (error) {
       setErrors(['Failed to add subscription to cart. Please try again.']);
     } finally {
@@ -155,7 +193,7 @@ export default function PackageConfigurationPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 sm:space-x-4 flex-1 min-w-0">
-              <Link 
+              <Link
                 href="/"
                 className="flex items-center text-gray-600 hover:text-fuelfoods-green-500 transition-colors flex-shrink-0"
               >
@@ -165,11 +203,13 @@ export default function PackageConfigurationPage() {
               </Link>
               <div className="h-6 w-px bg-gray-300 hidden sm:block" />
               <h1 className="text-lg sm:text-xl font-bold text-gray-900 truncate">
-                <span className="hidden lg:inline">Configure Your {planConfig.name}</span>
+                <span className="hidden lg:inline">
+                  Configure Your {planConfig.name}
+                </span>
                 <span className="lg:hidden">{planConfig.name}</span>
               </h1>
             </div>
-            <Link 
+            <Link
               href="/cart"
               className="flex items-center text-gray-600 hover:text-fuelfoods-green-500 transition-colors flex-shrink-0 ml-4"
             >
@@ -185,7 +225,7 @@ export default function PackageConfigurationPage() {
           {/* Main Configuration Area */}
           <div className="lg:col-span-2 space-y-6 lg:space-y-8">
             {/* Plan Header */}
-            <PlanHeader 
+            <PlanHeader
               planType={planType}
               planConfig={planConfig}
               totalSelected={totalSelectedPacks}
@@ -206,8 +246,16 @@ export default function PackageConfigurationPage() {
               <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    <svg
+                      className="h-5 w-5 text-red-400"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
                   <div className="ml-3">
@@ -236,7 +284,11 @@ export default function PackageConfigurationPage() {
                 varietySelections={varietySelections}
                 onAddToCart={handleAddToCart}
                 isLoading={isLoading}
-                isValid={planType === 'starter' ? totalSelectedPacks > 0 : totalSelectedPacks === planConfig.packsRequired}
+                isValid={
+                  planType === 'starter'
+                    ? totalSelectedPacks > 0
+                    : totalSelectedPacks === planConfig.packsRequired
+                }
               />
             </div>
           </div>

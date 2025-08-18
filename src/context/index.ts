@@ -4,19 +4,19 @@
 
 /**
  * Comprehensive context providers for the FuelFoods checkout system
- * 
+ *
  * This module provides:
  * - CartContext: Manages cart items, quantities, pricing
  * - CheckoutContext: Handles checkout state, customer info, shipping, payment
  * - FuelFoodsProvider: Combined provider with automatic cart-checkout sync
  * - Specialized hooks for different use cases
- * 
+ *
  * Usage:
- * 
+ *
  * 1. Wrap your app with FuelFoodsProvider:
  *    ```tsx
  *    import { FuelFoodsProvider } from '@/context';
- *    
+ *
  *    export default function App({ children }) {
  *      return (
  *        <FuelFoodsProvider>
@@ -25,33 +25,33 @@
  *      );
  *    }
  *    ```
- * 
+ *
  * 2. Use hooks in components:
  *    ```tsx
  *    import { useCart, useCheckout, useFuelFoods } from '@/context';
- *    
+ *
  *    function ProductPage() {
  *      const { addItem } = useCart();
  *      const { startCheckout } = useFuelFoods();
- *      
+ *
  *      const handleAddToCart = () => {
  *        addItem(product, 1, 'individual');
  *        startCheckout();
  *      };
- *      
+ *
  *      return <button onClick={handleAddToCart}>Add to Cart</button>;
  *    }
  *    ```
- * 
+ *
  * 3. Use specialized hooks for specific functionality:
  *    ```tsx
  *    import { useCartSummary, useCheckoutProgress } from '@/context';
- *    
+ *
  *    function CartIcon() {
  *      const { itemCount, totalPrice } = useCartSummary();
  *      return <div>Cart ({itemCount}) - ${totalPrice}</div>;
  *    }
- *    
+ *
  *    function CheckoutProgress() {
  *      const { progress, currentStep } = useCheckoutProgress();
  *      return <div>Step: {currentStep} ({progress}%)</div>;
@@ -64,22 +64,13 @@
 // ============================================================================
 
 // Primary provider (recommended)
-export { 
-  FuelFoodsProvider,
-  useFuelFoods 
-} from './FuelFoodsProvider';
+export { FuelFoodsProvider, useFuelFoods } from './FuelFoodsProvider';
 
 // Individual context providers
-export { 
-  CartProvider,
-  CheckoutProvider 
-} from './FuelFoodsProvider';
+export { CartProvider, CheckoutProvider } from './FuelFoodsProvider';
 
 // Core context hooks
-export { 
-  useCart,
-  useCheckout 
-} from './FuelFoodsProvider';
+export { useCart, useCheckout } from './FuelFoodsProvider';
 
 // Specialized hooks
 export {
@@ -88,7 +79,7 @@ export {
   useCartSummary,
   useCheckoutProgress,
   useDiscounts,
-  useShipping
+  useShipping,
 } from './FuelFoodsProvider';
 
 // ============================================================================
@@ -96,39 +87,24 @@ export {
 // ============================================================================
 
 // Context types
-export type { 
-  CartContextType,
-  CheckoutContextType 
-} from './FuelFoodsProvider';
+export type { CartContextType, CheckoutContextType } from './FuelFoodsProvider';
 
 // State types
-export type { 
-  CartState,
-  CartAction 
-} from './CartContext';
+export type { CartState, CartAction } from './CartContext';
 
-export type { 
-  CheckoutState,
-  CheckoutAction 
-} from './CheckoutContext';
+export type { CheckoutState, CheckoutAction } from './CheckoutContext';
 
 // ============================================================================
 // UTILITY EXPORTS
 // ============================================================================
 
 // Checkout steps configuration
-export { 
-  CHECKOUT_STEPS 
-} from './CheckoutContext';
+export { CHECKOUT_STEPS } from './CheckoutContext';
 
 // Direct context references (for advanced usage)
-export { 
-  CartContext 
-} from './CartContext';
+export { CartContext } from './CartContext';
 
-export { 
-  CheckoutContext 
-} from './CheckoutContext';
+export { CheckoutContext } from './CheckoutContext';
 
 // ============================================================================
 // EXAMPLE IMPLEMENTATIONS
@@ -136,24 +112,24 @@ export {
 
 /**
  * Example: Product Add to Cart Component
- * 
+ *
  * ```tsx
  * import { useCart } from '@/context';
  * import { Button } from '@/components/ui/button';
- * 
+ *
  * interface AddToCartProps {
  *   product: FuelFoodsProduct;
  *   quantity?: number;
  *   planConfig?: PlanConfiguration;
  * }
- * 
- * export function AddToCartButton({ 
- *   product, 
- *   quantity = 1, 
- *   planConfig 
+ *
+ * export function AddToCartButton({
+ *   product,
+ *   quantity = 1,
+ *   planConfig
  * }: AddToCartProps) {
  *   const { addItem, isLoading } = useCart();
- *   
+ *
  *   const handleAdd = () => {
  *     if (planConfig) {
  *       addItem(product, quantity, 'subscription', planConfig, 'weekly');
@@ -161,9 +137,9 @@ export {
  *       addItem(product, quantity, 'individual');
  *     }
  *   };
- *   
+ *
  *   return (
- *     <Button 
+ *     <Button
  *       onClick={handleAdd}
  *       disabled={isLoading}
  *       variant="brand"
@@ -177,23 +153,23 @@ export {
 
 /**
  * Example: Cart Summary Component
- * 
+ *
  * ```tsx
  * import { useCartSummary } from '@/context';
  * import { Button } from '@/components/ui/button';
- * 
+ *
  * export function CartSummary() {
- *   const { 
- *     itemCount, 
- *     totalPrice, 
- *     subtotal, 
- *     hasItems 
+ *   const {
+ *     itemCount,
+ *     totalPrice,
+ *     subtotal,
+ *     hasItems
  *   } = useCartSummary();
- *   
+ *
  *   if (!hasItems) {
  *     return <div>Your cart is empty</div>;
  *   }
- *   
+ *
  *   return (
  *     <div className="space-y-4">
  *       <div>Items: {itemCount}</div>
@@ -210,28 +186,28 @@ export {
 
 /**
  * Example: Checkout Form Component
- * 
+ *
  * ```tsx
  * import { useCheckout } from '@/context';
  * import { Button } from '@/components/ui/button';
  * import { Input } from '@/components/ui/input';
- * 
+ *
  * export function CustomerInfoForm() {
- *   const { 
- *     customerInfo, 
- *     updateCustomerInfo, 
+ *   const {
+ *     customerInfo,
+ *     updateCustomerInfo,
  *     errors,
  *     goToNextStep,
  *     validateCurrentStep
  *   } = useCheckout();
- *   
+ *
  *   const handleSubmit = (e: React.FormEvent) => {
  *     e.preventDefault();
  *     if (validateCurrentStep()) {
  *       goToNextStep();
  *     }
  *   };
- *   
+ *
  *   return (
  *     <form onSubmit={handleSubmit} className="space-y-4">
  *       <Input
@@ -258,28 +234,28 @@ export {
 
 /**
  * Example: Subscription Plan Builder
- * 
+ *
  * ```tsx
  * import { useCart } from '@/context';
  * import { createPlanConfiguration } from '@/lib/checkout-utils';
- * 
+ *
  * export function SubscriptionBuilder() {
  *   const { addSubscriptionPlan } = useCart();
- *   
+ *
  *   const handleCreatePlan = (planType: 'pro' | 'elite') => {
  *     const config = createPlanConfiguration(planType);
  *     addSubscriptionPlan(planType, config, 'weekly');
  *   };
- *   
+ *
  *   return (
  *     <div className="grid grid-cols-2 gap-4">
- *       <Button 
+ *       <Button
  *         onClick={() => handleCreatePlan('pro')}
  *         variant="brand"
  *       >
  *         Pro Plan (3 packs/week)
  *       </Button>
- *       <Button 
+ *       <Button
  *         onClick={() => handleCreatePlan('elite')}
  *         variant="orange"
  *       >

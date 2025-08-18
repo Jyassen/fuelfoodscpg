@@ -29,9 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <FuelFoodsProvider>
-          {children}
-        </FuelFoodsProvider>
+        <FuelFoodsProvider>{children}</FuelFoodsProvider>
       </body>
     </html>
   );
@@ -56,11 +54,7 @@ export function ProductCard({ product }: { product: FuelFoodsProduct }) {
     <div className="product-card">
       <h3>{product.name}</h3>
       <p>${product.price}</p>
-      <Button 
-        onClick={handleAddToCart}
-        disabled={isLoading}
-        variant="brand"
-      >
+      <Button onClick={handleAddToCart} disabled={isLoading} variant="brand">
         Add to Cart
       </Button>
     </div>
@@ -83,7 +77,7 @@ export function CheckoutFlow() {
       <div className="progress-bar">
         <div style={{ width: `${progress}%` }} />
       </div>
-      
+
       {currentStep === 'customer_info' && <CustomerInfoForm />}
       {currentStep === 'shipping' && <ShippingForm />}
       {currentStep === 'payment' && <PaymentForm />}
@@ -118,16 +112,16 @@ export function CheckoutFlow() {
 ### Cart Management
 
 ```tsx
-const { 
-  addItem,           // Add product to cart
-  removeItem,        // Remove item by ID
-  updateQuantity,    // Update item quantity
-  clearCart,         // Clear all items
-  items,             // Current cart items
-  itemCount,         // Total item count
-  pricing,           // Price breakdown
-  hasItems,          // Boolean helper
-  addSubscriptionPlan // Add subscription plans
+const {
+  addItem, // Add product to cart
+  removeItem, // Remove item by ID
+  updateQuantity, // Update item quantity
+  clearCart, // Clear all items
+  items, // Current cart items
+  itemCount, // Total item count
+  pricing, // Price breakdown
+  hasItems, // Boolean helper
+  addSubscriptionPlan, // Add subscription plans
 } = useCart();
 ```
 
@@ -135,32 +129,32 @@ const {
 
 ```tsx
 const {
-  currentStep,          // Current checkout step
-  goToStep,            // Navigate to specific step
-  goToNextStep,        // Move to next step
-  goToPreviousStep,    // Move to previous step
-  canProceedToStep,    // Check if step is accessible
-  
+  currentStep, // Current checkout step
+  goToStep, // Navigate to specific step
+  goToNextStep, // Move to next step
+  goToPreviousStep, // Move to previous step
+  canProceedToStep, // Check if step is accessible
+
   // Form data
   customerInfo,
   shippingInfo,
   billingInfo,
   paymentInfo,
-  
+
   // Form updates
   updateCustomerInfo,
   updateShippingInfo,
   updateBillingInfo,
   updatePaymentInfo,
-  
+
   // Validation
   errors,
   validateCurrentStep,
   clearErrors,
-  
+
   // Processing
   processOrder,
-  isProcessing
+  isProcessing,
 } = useCheckout();
 ```
 
@@ -172,7 +166,7 @@ const { addSubscriptionPlan } = useCart();
 // Add Pro Plan (3 packs/week)
 const proConfig = createPlanConfiguration('pro', [
   { varietyId: 'mega-mix', quantity: 2 },
-  { varietyId: 'brassica-blend', quantity: 1 }
+  { varietyId: 'brassica-blend', quantity: 1 },
 ]);
 addSubscriptionPlan('pro', proConfig, 'weekly');
 
@@ -201,12 +195,8 @@ clearErrors('customerInfo');
 ### Discount Codes
 
 ```tsx
-const { 
-  applyCode, 
-  removeDiscount, 
-  appliedDiscount, 
-  isValidating 
-} = useDiscounts();
+const { applyCode, removeDiscount, appliedDiscount, isValidating } =
+  useDiscounts();
 
 // Apply discount code
 const success = await applyCode('SAVE10');
@@ -218,13 +208,8 @@ if (success) {
 ### Shipping Options
 
 ```tsx
-const { 
-  loadOptions, 
-  selectOption, 
-  options, 
-  selected, 
-  isLoading 
-} = useShipping();
+const { loadOptions, selectOption, options, selected, isLoading } =
+  useShipping();
 
 // Load shipping options for ZIP code
 await loadOptions('12345');
@@ -304,7 +289,7 @@ export function CheckoutPage() {
   return (
     <div>
       <ProgressBar progress={progress} />
-      
+
       {currentStep === 'customer_info' && <CustomerInfoStep />}
       {currentStep === 'shipping' && <ShippingStep />}
       {currentStep === 'billing' && <BillingStep />}
@@ -339,11 +324,11 @@ export function CartIcon() {
 All context functions are fully typed using the existing FuelFoods type definitions:
 
 ```tsx
-import type { 
+import type {
   CheckoutCartItem,
   FuelFoodsProduct,
   PlanConfiguration,
-  CheckoutStep 
+  CheckoutStep,
 } from '@/lib/types';
 
 // TypeScript will enforce correct usage
@@ -417,6 +402,7 @@ To integrate with existing pages:
 ## Support
 
 For questions or issues:
+
 1. Check the TypeScript types in `/src/lib/types`
 2. Review utility functions in `/src/lib/checkout-utils`
 3. Test with the example component

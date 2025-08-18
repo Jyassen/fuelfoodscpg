@@ -11,6 +11,7 @@ FuelFoods is a premium microgreens and health food company delivering fresh, nut
 This project represents a complete migration from WordPress to a modern Next.js application, preserving all content while upgrading to cutting-edge web technologies.
 
 ### Migrated Content
+
 - **19 WordPress pages** → Dynamic Next.js routes
 - **202+ images** → Optimized Next.js Image components
 - **Complete product catalog** → Modern e-commerce functionality
@@ -61,12 +62,14 @@ fuelfoodscpg/
 ## 🏪 Core Features
 
 ### Product Catalog
+
 - **Mega Mix** - Premium microgreens blend
 - **Brassica Blend** - Cruciferous powerhouse
 - **Green Medley** - Mild & sweet blend
 - **Tummies Pet Grass** - Fresh cat grass
 
 ### E-commerce Functionality
+
 - Product browsing and filtering
 - Shopping cart management
 - Checkout process
@@ -74,6 +77,7 @@ fuelfoodscpg/
 - Subscription management
 
 ### Advanced Features
+
 - Full-text search across content
 - Responsive image optimization
 - SEO-optimized pages
@@ -83,30 +87,35 @@ fuelfoodscpg/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 - Git
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/Jyassen/fuelfoodscpg.git
    cd fuelfoodscpg
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env.local
    # Edit .env.local with your configuration
    ```
 
 4. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -129,12 +138,14 @@ fuelfoodscpg/
 ## 🎨 Styling & Design
 
 ### Design System
+
 - **Primary Colors**: Fresh greens (#22c55e) for health/nature theme
 - **Secondary Colors**: Warm creams (#fef3c7) for organic feel
 - **Typography**: Modern, readable fonts optimized for e-commerce
 - **Components**: Consistent UI library with shadcn/ui
 
 ### Responsive Design
+
 - Mobile-first approach
 - Optimized for all screen sizes
 - Touch-friendly interfaces
@@ -143,6 +154,7 @@ fuelfoodscpg/
 ## 🔍 SEO & Performance
 
 ### SEO Features
+
 - Meta tags and Open Graph optimization
 - Structured data markup
 - XML sitemap generation
@@ -150,6 +162,7 @@ fuelfoodscpg/
 - Image alt text and captions
 
 ### Performance Optimizations
+
 - Next.js Image optimization
 - Static generation for product pages
 - Code splitting and lazy loading
@@ -159,12 +172,14 @@ fuelfoodscpg/
 ## 🛒 E-commerce Integration
 
 ### Subscription Tiers
+
 - **Starter Pack** - Individual purchases ($15/pack)
 - **Family Plan** - 3 packs monthly ($45/month, 10% savings)
 - **Enthusiast** - 5 packs monthly ($75/month, 17% savings)
 - **Commercial** - Custom bulk orders
 
 ### Payment & Shipping
+
 - Stripe integration ready
 - Multiple payment methods
 - Subscription management
@@ -174,16 +189,19 @@ fuelfoodscpg/
 ## 🌍 Deployment
 
 ### Vercel (Recommended)
+
 1. Connect GitHub repository to Vercel
 2. Configure environment variables
 3. Deploy automatically on push to main
 
 ### Netlify
+
 1. Connect repository in Netlify dashboard
 2. Set build command: `npm run build`
 3. Set publish directory: `.next`
 
 ### Environment Variables
+
 ```bash
 # Site Configuration
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
@@ -200,12 +218,14 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 ## 📊 Content Management
 
 ### WordPress Migration Details
+
 - **Original Site**: https://fuelfoods.store
 - **Migrated Pages**: 19 pages including products, policies, e-commerce
 - **Media Assets**: 202+ images, videos, and documents
 - **Content Types**: Products, marketing pages, legal pages
 
 ### Content Structure
+
 - All content preserved with original metadata
 - SEO data migrated from Yoast
 - Image galleries and product photos optimized
@@ -214,6 +234,7 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 ## 🔧 Development
 
 ### Code Quality
+
 - TypeScript strict mode enabled
 - ESLint with React and Next.js rules
 - Prettier for consistent formatting
@@ -221,6 +242,7 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 - Path aliases for clean imports
 
 ### Testing
+
 - Type checking with TypeScript
 - Linting on commit
 - Build verification
@@ -229,6 +251,7 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 ## 📈 Analytics & Monitoring
 
 ### Tracking Setup
+
 - Google Analytics 4 ready
 - Facebook Pixel integration
 - E-commerce event tracking
@@ -238,12 +261,14 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 ## 🆘 Support & Maintenance
 
 ### Common Issues
+
 - Image optimization troubleshooting
 - Build error resolution
 - Deployment configuration
 - Environment setup
 
 ### Resources
+
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Tailwind CSS Guide](https://tailwindcss.com/docs)
 - [shadcn/ui Components](https://ui.shadcn.com/)
@@ -263,7 +288,7 @@ This project is proprietary to FuelFoods CPG. All rights reserved.
 ✅ **Mobile Responsive** - Works perfectly on all devices  
 ✅ **E-commerce Ready** - Cart, checkout, subscriptions  
 ✅ **Developer Friendly** - Type safe, well documented  
-✅ **Production Ready** - Deployed and optimized  
+✅ **Production Ready** - Deployed and optimized
 
 **Build Date**: August 2025  
 **Migration Status**: Complete ✅  

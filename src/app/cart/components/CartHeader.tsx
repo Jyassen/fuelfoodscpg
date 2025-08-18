@@ -8,7 +8,11 @@ export default function CartHeader() {
   const { itemCount, clearCart, hasItems } = useCart();
 
   const handleClearCart = () => {
-    if (window.confirm('Are you sure you want to clear your cart? This action cannot be undone.')) {
+    if (
+      window.confirm(
+        'Are you sure you want to clear your cart? This action cannot be undone.'
+      )
+    ) {
       clearCart();
     }
   };
@@ -23,7 +27,7 @@ export default function CartHeader() {
           </p>
         )}
       </div>
-      
+
       {hasItems() && (
         <div className="mt-4 sm:mt-0">
           <Button

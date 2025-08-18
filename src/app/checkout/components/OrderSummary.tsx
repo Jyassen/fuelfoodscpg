@@ -14,18 +14,18 @@ interface OrderSummaryProps {
   showEditCart?: boolean;
 }
 
-export default function OrderSummary({ 
-  items, 
-  pricing, 
-  showCouponCode = false, 
-  showEditCart = false 
+export default function OrderSummary({
+  items,
+  pricing,
+  showCouponCode = false,
+  showEditCart = false,
 }: OrderSummaryProps) {
-  const { 
-    appliedDiscount, 
-    applyDiscountCode, 
-    removeDiscount, 
+  const {
+    appliedDiscount,
+    applyDiscountCode,
+    removeDiscount,
     isValidatingDiscount,
-    errors
+    errors,
   } = useCheckout();
 
   const [couponCode, setCouponCode] = useState('');
@@ -40,7 +40,7 @@ export default function OrderSummary({
 
     setCouponError('');
     setCouponSuccess('');
-    
+
     try {
       const success = await applyDiscountCode(couponCode.trim().toUpperCase());
       if (success) {
@@ -77,8 +77,8 @@ export default function OrderSummary({
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold text-gray-900">Order Summary</h2>
         {showEditCart && (
-          <Link 
-            href="/cart" 
+          <Link
+            href="/cart"
             className="text-sm text-green-600 hover:text-green-700 font-medium"
           >
             Edit Cart
@@ -144,7 +144,7 @@ export default function OrderSummary({
                 <input
                   type="text"
                   value={couponCode}
-                  onChange={(e) => {
+                  onChange={e => {
                     setCouponCode(e.target.value);
                     setCouponError('');
                     setCouponSuccess('');
@@ -200,8 +200,18 @@ export default function OrderSummary({
                     onClick={handleRemoveCoupon}
                     className="text-green-600 hover:text-green-700"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   </button>
                 </div>
@@ -217,33 +227,43 @@ export default function OrderSummary({
           <span className="text-gray-600">Subtotal</span>
           <span className="text-gray-900">${pricing.subtotal.toFixed(2)}</span>
         </div>
-        
+
         {pricing.discountAmount > 0 && (
           <div className="flex justify-between text-sm">
             <span className="text-gray-600">Discount</span>
-            <span className="text-green-600">-${pricing.discountAmount.toFixed(2)}</span>
+            <span className="text-green-600">
+              -${pricing.discountAmount.toFixed(2)}
+            </span>
           </div>
         )}
-        
+
         <div className="flex justify-between text-sm">
           <span className="text-gray-600">Shipping</span>
-          <span className={`${pricing.shippingCost === 0 ? 'text-green-600' : 'text-gray-900'}`}>
-            {pricing.shippingCost === 0 ? 'Free' : `$${pricing.shippingCost.toFixed(2)}`}
+          <span
+            className={`${pricing.shippingCost === 0 ? 'text-green-600' : 'text-gray-900'}`}
+          >
+            {pricing.shippingCost === 0
+              ? 'Free'
+              : `$${pricing.shippingCost.toFixed(2)}`}
           </span>
         </div>
-        
+
         <div className="flex justify-between text-sm">
           <span className="text-gray-600">Tax</span>
-          <span className="text-gray-900">${pricing.taxCalculation.amount.toFixed(2)}</span>
+          <span className="text-gray-900">
+            ${pricing.taxCalculation.amount.toFixed(2)}
+          </span>
         </div>
-        
+
         {typeof pricing.savings === 'number' && pricing.savings > 0 && (
           <div className="flex justify-between text-sm border-t border-gray-200 pt-3">
             <span className="text-green-600 font-medium">Total Savings</span>
-            <span className="text-green-600 font-medium">-${(pricing.savings || 0).toFixed(2)}</span>
+            <span className="text-green-600 font-medium">
+              -${(pricing.savings || 0).toFixed(2)}
+            </span>
           </div>
         )}
-        
+
         <div className="border-t border-gray-200 pt-3">
           <div className="flex justify-between">
             <span className="text-lg font-semibold text-gray-900">Total</span>
@@ -258,29 +278,56 @@ export default function OrderSummary({
       <div className="mt-6 pt-6 border-t border-gray-200">
         <div className="flex items-center justify-center space-x-4 text-xs text-gray-600">
           <div className="flex items-center">
-            <svg className="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+            <svg
+              className="w-4 h-4 mr-1 text-green-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                clipRule="evenodd"
+              />
             </svg>
             SSL Encrypted
           </div>
           <div className="flex items-center">
-            <svg className="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            <svg
+              className="w-4 h-4 mr-1 text-green-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clipRule="evenodd"
+              />
             </svg>
             100% Secure
           </div>
         </div>
-        
+
         {/* Money Back Guarantee */}
         <div className="mt-4 bg-green-50 border border-green-200 rounded-lg p-3">
           <div className="flex items-start space-x-2">
-            <svg className="w-4 h-4 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            <svg
+              className="w-4 h-4 text-green-500 mt-0.5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clipRule="evenodd"
+              />
             </svg>
             <div>
-              <h4 className="text-xs font-medium text-green-900">Freshness Guarantee</h4>
+              <h4 className="text-xs font-medium text-green-900">
+                Freshness Guarantee
+              </h4>
               <p className="text-xs text-green-700 mt-1">
-                Not satisfied? We'll replace your order or provide a full refund.
+                Not satisfied? We'll replace your order or provide a full
+                refund.
               </p>
             </div>
           </div>

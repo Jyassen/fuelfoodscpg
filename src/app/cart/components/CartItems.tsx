@@ -26,10 +26,10 @@ export default function CartItems({ items }: CartItemsProps) {
     <div className="bg-white rounded-lg shadow-sm border border-gray-200">
       <div className="p-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-6">Cart Items</h2>
-        
+
         <div className="space-y-6">
-          {items.map((item) => (
-            <CartItemRow 
+          {items.map(item => (
+            <CartItemRow
               key={item.id}
               item={item}
               onRemove={() => handleRemoveItem(item.id, item.product.name)}
@@ -47,8 +47,16 @@ interface CartItemRowProps {
 }
 
 function CartItemRow({ item, onRemove }: CartItemRowProps) {
-  const { product, quantity, type, totalPrice, packageConfiguration, subscriptionFrequency } = item;
-  const primaryImage = product.images.find(img => img.isPrimary) || product.images[0];
+  const {
+    product,
+    quantity,
+    type,
+    totalPrice,
+    packageConfiguration,
+    subscriptionFrequency,
+  } = item;
+  const primaryImage =
+    product.images.find(img => img.isPrimary) || product.images[0];
   const normalize = (u?: string) => {
     if (!u) return '/images/placeholder.png';
     if (u.startsWith('http') || u.startsWith('data:')) return u;
@@ -60,9 +68,15 @@ function CartItemRow({ item, onRemove }: CartItemRowProps) {
     // Subscription plan images
     if (type === 'subscription' && packageConfiguration) {
       const plan = packageConfiguration.planType;
-      if (plan === 'starter') return { src: '/images/imgpsh_fullsize_anim-3-1-1.png', alt: 'Starter Plan' };
-      if (plan === 'pro') return { src: '/images/image-2-4.png', alt: 'Pro Plan' };
-      if (plan === 'elite') return { src: '/images/5-pack1.webp', alt: 'Elite Plan' };
+      if (plan === 'starter')
+        return {
+          src: '/images/imgpsh_fullsize_anim-3-1-1.png',
+          alt: 'Starter Plan',
+        };
+      if (plan === 'pro')
+        return { src: '/images/image-2-4.png', alt: 'Pro Plan' };
+      if (plan === 'elite')
+        return { src: '/images/5-pack1.webp', alt: 'Elite Plan' };
     }
     // Individual variety images (match homepage showcase)
     const idOrSlug = (product.slug || product.id || '').toLowerCase();
@@ -71,13 +85,19 @@ function CartItemRow({ item, onRemove }: CartItemRowProps) {
       return { src: '/images/megamixsidebyside.jpg', alt: 'Mega Mix' };
     }
     if (idOrSlug.includes('brassica') || nameLower.includes('brassica')) {
-      return { src: '/images/brassicablendsidebyside.jpg', alt: 'Brassica Blend' };
+      return {
+        src: '/images/brassicablendsidebyside.jpg',
+        alt: 'Brassica Blend',
+      };
     }
     if (idOrSlug.includes('sunn') || nameLower.includes('sunn')) {
       return { src: '/images/sunniessidebyside.jpg', alt: 'Sunnies Snacks' };
     }
     // Fallback to product image
-    return { src: normalize(primaryImage?.url), alt: primaryImage?.alt || product.name };
+    return {
+      src: normalize(primaryImage?.url),
+      alt: primaryImage?.alt || product.name,
+    };
   };
   const displayImage = resolveDisplayImage();
 
@@ -105,17 +125,19 @@ function CartItemRow({ item, onRemove }: CartItemRowProps) {
           <p className="text-sm text-gray-600 mb-2">
             {product.shortDescription || product.description}
           </p>
-          
+
           {/* Type Badge */}
           <div className="flex items-center space-x-2 mb-3">
-            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-              type === 'subscription' 
-                ? 'bg-fuelfoods-green-100 text-fuelfoods-green-800'
-                : 'bg-blue-100 text-blue-800'
-            }`}>
+            <span
+              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                type === 'subscription'
+                  ? 'bg-fuelfoods-green-100 text-fuelfoods-green-800'
+                  : 'bg-blue-100 text-blue-800'
+              }`}
+            >
               {type === 'subscription' ? 'Subscription' : 'Individual Pack'}
             </span>
-            
+
             {subscriptionFrequency && (
               <span className="text-xs text-gray-500">
                 {subscriptionFrequency.replace('-', ' ')} delivery
@@ -148,12 +170,12 @@ function CartItemRow({ item, onRemove }: CartItemRowProps) {
 
       {/* Quantity Controls */}
       <div className="flex flex-col items-center space-y-4">
-        <QuantityControls 
+        <QuantityControls
           itemId={item.id}
           currentQuantity={quantity}
           disabled={type === 'subscription'} // Subscription quantities are fixed based on plan
         />
-        
+
         {type === 'subscription' && (
           <p className="text-xs text-gray-500 text-center">
             Subscription quantity is fixed by plan
@@ -171,7 +193,7 @@ function CartItemRow({ item, onRemove }: CartItemRowProps) {
             {formatCurrency(totalPrice)}
           </div>
         </div>
-        
+
         <Button
           variant="ghost"
           size="sm"

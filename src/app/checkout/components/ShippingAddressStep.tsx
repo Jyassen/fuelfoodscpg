@@ -2,7 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { useCheckout } from '@/context';
-import { FormField, FormSection, Button, ValidationMessage } from '@/components/form';
+import {
+  FormField,
+  FormSection,
+  Button,
+  ValidationMessage,
+} from '@/components/form';
 import { CheckoutShippingInfo } from '@/lib/types';
 
 interface ShippingAddressStepProps {
@@ -64,7 +69,10 @@ const US_STATES = [
   { value: 'WY', label: 'Wyoming' },
 ];
 
-export default function ShippingAddressStep({ onContinue, onBack }: ShippingAddressStepProps) {
+export default function ShippingAddressStep({
+  onContinue,
+  onBack,
+}: ShippingAddressStepProps) {
   const {
     shippingInfo,
     customerInfo,
@@ -99,7 +107,10 @@ export default function ShippingAddressStep({ onContinue, onBack }: ShippingAddr
     }
   }, [customerInfo.firstName, customerInfo.lastName]);
 
-  const handleInputChange = (field: keyof CheckoutShippingInfo, value: string) => {
+  const handleInputChange = (
+    field: keyof CheckoutShippingInfo,
+    value: string
+  ) => {
     const updatedData = { ...formData, [field]: value };
     setFormData(updatedData);
     updateShippingInfo(updatedData);
@@ -132,24 +143,24 @@ export default function ShippingAddressStep({ onContinue, onBack }: ShippingAddr
           label="First Name"
           type="text"
           value={formData.firstName || ''}
-          onValueChange={(value) => handleInputChange('firstName', value)}
+          onValueChange={value => handleInputChange('firstName', value)}
           name="shippingFirstName"
           autoComplete="given-name"
           placeholder="Enter first name"
           required
-          error={errors.shippingInfo.find((e) => e.includes('firstName'))}
+          error={errors.shippingInfo.find(e => e.includes('firstName'))}
         />
 
         <FormField
           label="Last Name"
           type="text"
           value={formData.lastName || ''}
-          onValueChange={(value) => handleInputChange('lastName', value)}
+          onValueChange={value => handleInputChange('lastName', value)}
           name="shippingLastName"
           autoComplete="family-name"
           placeholder="Enter last name"
           required
-          error={errors.shippingInfo.find((e) => e.includes('lastName'))}
+          error={errors.shippingInfo.find(e => e.includes('lastName'))}
         />
       </div>
 
@@ -157,7 +168,7 @@ export default function ShippingAddressStep({ onContinue, onBack }: ShippingAddr
         label="Company (Optional)"
         type="text"
         value={formData.company || ''}
-        onValueChange={(value) => handleInputChange('company', value)}
+        onValueChange={value => handleInputChange('company', value)}
         name="company"
         autoComplete="organization"
         placeholder="Company name"
@@ -167,19 +178,19 @@ export default function ShippingAddressStep({ onContinue, onBack }: ShippingAddr
         label="Street Address"
         type="text"
         value={formData.address1 || ''}
-        onValueChange={(value) => handleInputChange('address1', value)}
+        onValueChange={value => handleInputChange('address1', value)}
         name="address1"
         autoComplete="address-line1"
         placeholder="Enter your street address"
         required
-        error={errors.shippingInfo.find((e) => e.includes('address1'))}
+        error={errors.shippingInfo.find(e => e.includes('address1'))}
       />
 
       <FormField
         label="Apartment, Suite, etc. (Optional)"
         type="text"
         value={formData.address2 || ''}
-        onValueChange={(value) => handleInputChange('address2', value)}
+        onValueChange={value => handleInputChange('address2', value)}
         name="address2"
         autoComplete="address-line2"
         placeholder="Apt, suite, unit, etc."
@@ -190,31 +201,36 @@ export default function ShippingAddressStep({ onContinue, onBack }: ShippingAddr
           label="City"
           type="text"
           value={formData.city || ''}
-          onValueChange={(value) => handleInputChange('city', value)}
+          onValueChange={value => handleInputChange('city', value)}
           name="city"
           autoComplete="address-level2"
           placeholder="Enter city"
           required
-          error={errors.shippingInfo.find((e) => e.includes('city'))}
+          error={errors.shippingInfo.find(e => e.includes('city'))}
         />
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">State *</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            State *
+          </label>
           <select
             value={formData.state || ''}
-            onChange={(e) => handleInputChange('state', e.target.value)}
+            onChange={e => handleInputChange('state', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white"
             required
           >
             <option value="">Select State</option>
-            {US_STATES.map((state) => (
+            {US_STATES.map(state => (
               <option key={state.value} value={state.value}>
                 {state.label}
               </option>
             ))}
           </select>
-          {errors.shippingInfo.find((e) => e.includes('state')) && (
-            <ValidationMessage message={errors.shippingInfo.find((e) => e.includes('state')) || ''} type="error" />
+          {errors.shippingInfo.find(e => e.includes('state')) && (
+            <ValidationMessage
+              message={errors.shippingInfo.find(e => e.includes('state')) || ''}
+              type="error"
+            />
           )}
         </div>
 
@@ -222,12 +238,12 @@ export default function ShippingAddressStep({ onContinue, onBack }: ShippingAddr
           label="ZIP Code"
           type="text"
           value={formData.zipCode || ''}
-          onValueChange={(value) => handleInputChange('zipCode', value)}
+          onValueChange={value => handleInputChange('zipCode', value)}
           name="postalCode"
           autoComplete="postal-code"
           placeholder="12345"
           required
-          error={errors.shippingInfo.find((e) => e.includes('zipCode'))}
+          error={errors.shippingInfo.find(e => e.includes('zipCode'))}
           helperText={isLoadingShipping ? 'Loading shipping options...' : ''}
         />
       </div>
@@ -236,7 +252,9 @@ export default function ShippingAddressStep({ onContinue, onBack }: ShippingAddr
         label="Delivery Instructions (Optional)"
         type="textarea"
         value={formData.deliveryInstructions || ''}
-        onValueChange={(value) => handleInputChange('deliveryInstructions', value)}
+        onValueChange={value =>
+          handleInputChange('deliveryInstructions', value)
+        }
         name="deliveryInstructions"
         placeholder="Special delivery instructions, gate codes, etc."
         rows={3}
@@ -245,14 +263,20 @@ export default function ShippingAddressStep({ onContinue, onBack }: ShippingAddr
       {/* Delivery Information */}
       <div className="bg-green-50 border border-green-200 rounded-lg p-4">
         <div className="flex items-start space-x-3">
-          <svg className="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+          <svg
+            className="w-5 h-5 text-green-500 mt-0.5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
             <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
           </svg>
           <div>
-            <h4 className="text-sm font-medium text-green-900">Fresh Delivery Guarantee</h4>
+            <h4 className="text-sm font-medium text-green-900">
+              Fresh Delivery Guarantee
+            </h4>
             <p className="text-xs text-green-700 mt-1">
-              Your microgreens are harvested fresh and delivered within 24-48 hours.
-              We deliver Tuesday through Friday to ensure peak freshness.
+              Your microgreens are harvested fresh and delivered within 24-48
+              hours. We deliver Tuesday through Friday to ensure peak freshness.
             </p>
           </div>
         </div>

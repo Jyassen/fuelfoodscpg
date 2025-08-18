@@ -8,18 +8,18 @@ import {
   ValidationMessage,
   LoadingSpinner,
   PageSpinner,
-  InlineSpinner
+  InlineSpinner,
 } from '@/components/form';
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  CreditCard, 
+import {
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  CreditCard,
   ShoppingCart,
   Package,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
 } from 'lucide-react';
 
 export default function FormComponentsShowcase() {
@@ -56,10 +56,13 @@ export default function FormComponentsShowcase() {
     const newErrors: Record<string, string> = {};
 
     if (stepNumber === 1) {
-      if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
-      if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
+      if (!formData.firstName.trim())
+        newErrors.firstName = 'First name is required';
+      if (!formData.lastName.trim())
+        newErrors.lastName = 'Last name is required';
       if (!formData.email.trim()) newErrors.email = 'Email is required';
-      else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Please enter a valid email';
+      else if (!/\S+@\S+\.\S+/.test(formData.email))
+        newErrors.email = 'Please enter a valid email';
       if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
     }
 
@@ -71,8 +74,10 @@ export default function FormComponentsShowcase() {
     }
 
     if (stepNumber === 3) {
-      if (!formData.cardNumber.trim()) newErrors.cardNumber = 'Card number is required';
-      if (!formData.expiryDate.trim()) newErrors.expiryDate = 'Expiry date is required';
+      if (!formData.cardNumber.trim())
+        newErrors.cardNumber = 'Card number is required';
+      if (!formData.expiryDate.trim())
+        newErrors.expiryDate = 'Expiry date is required';
       if (!formData.cvv.trim()) newErrors.cvv = 'CVV is required';
     }
 
@@ -120,27 +125,35 @@ export default function FormComponentsShowcase() {
             FuelFoods Form Components Showcase
           </h1>
           <p className="text-lg text-gray-600">
-            Interactive demo of all form components matching the FuelFoods design language
+            Interactive demo of all form components matching the FuelFoods
+            design language
           </p>
         </div>
 
         {/* Progress Steps */}
         <div className="mb-8">
           <div className="flex items-center justify-center space-x-8">
-            {[1, 2, 3].map((stepNumber) => (
+            {[1, 2, 3].map(stepNumber => (
               <div key={stepNumber} className="flex items-center">
-                <div className={`
+                <div
+                  className={`
                   w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold
-                  ${step >= stepNumber 
-                    ? 'bg-fuelfoods-green-500 text-white' 
-                    : 'bg-gray-200 text-gray-600'
+                  ${
+                    step >= stepNumber
+                      ? 'bg-fuelfoods-green-500 text-white'
+                      : 'bg-gray-200 text-gray-600'
                   }
-                `}>
+                `}
+                >
                   {stepNumber}
                 </div>
-                <span className={`ml-2 text-sm font-medium ${
-                  step >= stepNumber ? 'text-fuelfoods-green-600' : 'text-gray-500'
-                }`}>
+                <span
+                  className={`ml-2 text-sm font-medium ${
+                    step >= stepNumber
+                      ? 'text-fuelfoods-green-600'
+                      : 'text-gray-500'
+                  }`}
+                >
                   {stepNumber === 1 && 'Personal Info'}
                   {stepNumber === 2 && 'Shipping'}
                   {stepNumber === 3 && 'Payment'}
@@ -166,7 +179,7 @@ export default function FormComponentsShowcase() {
                 <FormField
                   label="First Name"
                   value={formData.firstName}
-                  onChange={(e) => handleInputChange('firstName', e.target.value)}
+                  onChange={e => handleInputChange('firstName', e.target.value)}
                   error={errors.firstName}
                   required
                   placeholder="Enter your first name"
@@ -174,30 +187,32 @@ export default function FormComponentsShowcase() {
                 <FormField
                   label="Last Name"
                   value={formData.lastName}
-                  onChange={(e) => handleInputChange('lastName', e.target.value)}
+                  onChange={e => handleInputChange('lastName', e.target.value)}
                   error={errors.lastName}
                   required
                   placeholder="Enter your last name"
                 />
               </div>
-              
+
               <FormField
                 label="Email Address"
                 type="email"
                 value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
+                onChange={e => handleInputChange('email', e.target.value)}
                 error={errors.email}
-                success={formData.email && !errors.email ? 'Valid email address' : ''}
+                success={
+                  formData.email && !errors.email ? 'Valid email address' : ''
+                }
                 required
                 placeholder="your@email.com"
                 helperText="We'll use this to send order updates and nutrition tips"
               />
-              
+
               <FormField
                 label="Phone Number"
                 type="tel"
                 value={formData.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
+                onChange={e => handleInputChange('phone', e.target.value)}
                 error={errors.phone}
                 required
                 placeholder="(555) 123-4567"
@@ -225,17 +240,17 @@ export default function FormComponentsShowcase() {
               <FormField
                 label="Street Address"
                 value={formData.address}
-                onChange={(e) => handleInputChange('address', e.target.value)}
+                onChange={e => handleInputChange('address', e.target.value)}
                 error={errors.address}
                 required
                 placeholder="123 Main Street"
               />
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <FormField
                   label="City"
                   value={formData.city}
-                  onChange={(e) => handleInputChange('city', e.target.value)}
+                  onChange={e => handleInputChange('city', e.target.value)}
                   error={errors.city}
                   required
                   placeholder="New York"
@@ -244,7 +259,7 @@ export default function FormComponentsShowcase() {
                   label="State"
                   fieldType="select"
                   value={formData.state}
-                  onChange={(e) => handleInputChange('state', e.target.value)}
+                  onChange={e => handleInputChange('state', e.target.value)}
                   error={errors.state}
                   options={stateOptions}
                   required
@@ -252,7 +267,7 @@ export default function FormComponentsShowcase() {
                 <FormField
                   label="ZIP Code"
                   value={formData.zipCode}
-                  onChange={(e) => handleInputChange('zipCode', e.target.value)}
+                  onChange={e => handleInputChange('zipCode', e.target.value)}
                   error={errors.zipCode}
                   required
                   placeholder="10001"
@@ -284,10 +299,12 @@ export default function FormComponentsShowcase() {
                   label="Subscription Plan"
                   fieldType="select"
                   value={formData.subscription}
-                  onChange={(e) => handleInputChange('subscription', e.target.value)}
+                  onChange={e =>
+                    handleInputChange('subscription', e.target.value)
+                  }
                   options={subscriptionOptions}
                 />
-                
+
                 <ValidationMessage
                   type="info"
                   message="All subscriptions include free shipping and can be modified or cancelled anytime"
@@ -305,17 +322,21 @@ export default function FormComponentsShowcase() {
                 <FormField
                   label="Card Number"
                   value={formData.cardNumber}
-                  onChange={(e) => handleInputChange('cardNumber', e.target.value)}
+                  onChange={e =>
+                    handleInputChange('cardNumber', e.target.value)
+                  }
                   error={errors.cardNumber}
                   required
                   placeholder="1234 5678 9012 3456"
                 />
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     label="Expiry Date"
                     value={formData.expiryDate}
-                    onChange={(e) => handleInputChange('expiryDate', e.target.value)}
+                    onChange={e =>
+                      handleInputChange('expiryDate', e.target.value)
+                    }
                     error={errors.expiryDate}
                     required
                     placeholder="MM/YY"
@@ -323,18 +344,20 @@ export default function FormComponentsShowcase() {
                   <FormField
                     label="CVV"
                     value={formData.cvv}
-                    onChange={(e) => handleInputChange('cvv', e.target.value)}
+                    onChange={e => handleInputChange('cvv', e.target.value)}
                     error={errors.cvv}
                     required
                     placeholder="123"
                   />
                 </div>
-                
+
                 <FormField
                   label="Special Instructions"
                   fieldType="textarea"
                   value={formData.specialInstructions}
-                  onChange={(e) => handleInputChange('specialInstructions', e.target.value)}
+                  onChange={e =>
+                    handleInputChange('specialInstructions', e.target.value)
+                  }
                   placeholder="Any special delivery instructions..."
                   helperText="Optional: Gate codes, delivery preferences, etc."
                   rows={3}
@@ -344,9 +367,9 @@ export default function FormComponentsShowcase() {
                   <Button variant="secondary" onClick={() => setStep(2)}>
                     Back
                   </Button>
-                  <Button 
-                    onClick={handleSubmit} 
-                    size="lg" 
+                  <Button
+                    onClick={handleSubmit}
+                    size="lg"
                     loading={loading}
                     loadingText="Processing Order..."
                     leftIcon={<ShoppingCart className="w-5 h-5" />}
@@ -369,7 +392,9 @@ export default function FormComponentsShowcase() {
           >
             {/* Button Variants */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold text-gray-900">Button Variants</h4>
+              <h4 className="text-lg font-semibold text-gray-900">
+                Button Variants
+              </h4>
               <div className="flex flex-wrap gap-4">
                 <Button variant="primary">Primary</Button>
                 <Button variant="secondary">Secondary</Button>
@@ -378,13 +403,17 @@ export default function FormComponentsShowcase() {
                 <Button variant="ghost">Ghost</Button>
                 <Button variant="orange">Orange</Button>
                 <Button variant="yellow">Yellow</Button>
-                <Button variant="primary" loading loadingText="Loading...">Loading</Button>
+                <Button variant="primary" loading loadingText="Loading...">
+                  Loading
+                </Button>
               </div>
             </div>
 
             {/* Button Sizes */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold text-gray-900">Button Sizes</h4>
+              <h4 className="text-lg font-semibold text-gray-900">
+                Button Sizes
+              </h4>
               <div className="flex flex-wrap items-center gap-4">
                 <Button size="sm">Small</Button>
                 <Button size="default">Default</Button>
@@ -395,7 +424,9 @@ export default function FormComponentsShowcase() {
 
             {/* Form Field States */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold text-gray-900">Form Field States</h4>
+              <h4 className="text-lg font-semibold text-gray-900">
+                Form Field States
+              </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
                   label="Default State"
@@ -422,18 +453,34 @@ export default function FormComponentsShowcase() {
 
             {/* Validation Messages */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold text-gray-900">Validation Messages</h4>
+              <h4 className="text-lg font-semibold text-gray-900">
+                Validation Messages
+              </h4>
               <div className="space-y-3">
-                <ValidationMessage type="error" message="This is an error message" />
-                <ValidationMessage type="success" message="This is a success message" />
-                <ValidationMessage type="warning" message="This is a warning message" />
-                <ValidationMessage type="info" message="This is an info message" />
+                <ValidationMessage
+                  type="error"
+                  message="This is an error message"
+                />
+                <ValidationMessage
+                  type="success"
+                  message="This is a success message"
+                />
+                <ValidationMessage
+                  type="warning"
+                  message="This is a warning message"
+                />
+                <ValidationMessage
+                  type="info"
+                  message="This is an info message"
+                />
               </div>
             </div>
 
             {/* Loading Spinners */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold text-gray-900">Loading Spinners</h4>
+              <h4 className="text-lg font-semibold text-gray-900">
+                Loading Spinners
+              </h4>
               <div className="flex items-center gap-8">
                 <div className="text-center">
                   <LoadingSpinner size="sm" />
@@ -460,16 +507,18 @@ export default function FormComponentsShowcase() {
 
             {/* Demo Buttons */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold text-gray-900">Interactive Demos</h4>
+              <h4 className="text-lg font-semibold text-gray-900">
+                Interactive Demos
+              </h4>
               <div className="flex flex-wrap gap-4">
-                <Button 
-                  variant="secondary" 
+                <Button
+                  variant="secondary"
                   onClick={() => setShowSpinner(!showSpinner)}
                 >
                   {showSpinner ? 'Hide' : 'Show'} Page Spinner
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => alert('Button clicked!')}
                 >
                   Test Click Handler
@@ -480,9 +529,7 @@ export default function FormComponentsShowcase() {
         </div>
 
         {/* Page Spinner Demo */}
-        {showSpinner && (
-          <PageSpinner label="Loading page content..." />
-        )}
+        {showSpinner && <PageSpinner label="Loading page content..." />}
       </div>
     </div>
   );

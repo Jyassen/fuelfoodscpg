@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import Link from 'next/link';
 import { useState, type FormEvent } from 'react';
 
@@ -30,7 +30,9 @@ export default function Footer() {
       setEmail('');
     } catch (err: any) {
       setStatus('error');
-      setMessage(err?.message || 'Something went wrong. Please try again later.');
+      setMessage(
+        err?.message || 'Something went wrong. Please try again later.'
+      );
     }
   };
   const currentYear = new Date().getFullYear();
@@ -42,14 +44,18 @@ export default function Footer() {
           {/* Left: Logo + Disclaimer */}
           <div>
             <Link href="/" className="flex items-center mb-4">
-              <img 
+              <img
                 src="/images/logo.png"
-                alt="FuelFoods Logo" 
+                alt="FuelFoods Logo"
                 className="h-14 w-14 rounded-full"
               />
             </Link>
             <p className="text-gray-300 mb-6 max-w-xl">
-              Not evaluated by the FDA. This product isn’t designed to diagnose, treat, cure, or prevent any disease. Information here is for informational purposes. Not a substitute for medical advice. Consult a medical professional before using our products or if health concerns arise.
+              Not evaluated by the FDA. This product isn’t designed to diagnose,
+              treat, cure, or prevent any disease. Information here is for
+              informational purposes. Not a substitute for medical advice.
+              Consult a medical professional before using our products or if
+              health concerns arise.
             </p>
             <div className="flex space-x-4">
               <a
@@ -70,10 +76,24 @@ export default function Footer() {
                 className="text-gray-400 hover:text-fuelfoods-green-500 transition-colors"
               >
                 <span className="sr-only">Instagram</span>
-                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <rect x="3" y="3" width="18" height="18" rx="5" />
                   <circle cx="12" cy="12" r="4" />
-                  <circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" />
+                  <circle
+                    cx="17"
+                    cy="7"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
                 </svg>
               </a>
               <a
@@ -97,30 +117,66 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-4">Useful Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/about-us" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">ABOUT US</Link>
+                <Link
+                  href="/about-us"
+                  className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors"
+                >
+                  ABOUT US
+                </Link>
               </li>
               <li>
-                <Link href="/contact-us" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">CONTACT US</Link>
+                <Link
+                  href="/contact-us"
+                  className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors"
+                >
+                  CONTACT US
+                </Link>
               </li>
               <li>
-                <a href="/#plans" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">GET YOUR GREENS</a>
+                <a
+                  href="/#plans"
+                  className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors"
+                >
+                  GET YOUR GREENS
+                </a>
               </li>
               <li>
-                <Link href="/culinary" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">CULINARY</Link>
+                <Link
+                  href="/culinary"
+                  className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors"
+                >
+                  CULINARY
+                </Link>
               </li>
               <li>
-                <Link href="/fulfillment-policy" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">FULFILLMENT POLICY</Link>
+                <Link
+                  href="/fulfillment-policy"
+                  className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors"
+                >
+                  FULFILLMENT POLICY
+                </Link>
               </li>
               <li>
-                <a href="/Privacy_Policy_FuelFoods.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors">PRIVACY POLICY</a>
+                <a
+                  href="/Privacy_Policy_FuelFoods.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors"
+                >
+                  PRIVACY POLICY
+                </a>
               </li>
             </ul>
           </div>
 
           {/* Right: Newsletter */}
           <div>
-            <h3 className="text-xl font-semibold mb-2">Subscribe To Our Newsletter</h3>
-            <p className="text-gray-300 mb-4">Get notified about health tips, new releases, and deals!</p>
+            <h3 className="text-xl font-semibold mb-2">
+              Subscribe To Our Newsletter
+            </h3>
+            <p className="text-gray-300 mb-4">
+              Get notified about health tips, new releases, and deals!
+            </p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
               <input
                 type="text"
@@ -129,7 +185,7 @@ export default function Footer() {
                 name="firstName"
                 autoComplete="given-name"
                 value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={e => setFirstName(e.target.value)}
               />
               <input
                 type="email"
@@ -138,7 +194,7 @@ export default function Footer() {
                 name="email"
                 autoComplete="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
               />
               <button
                 type="submit"
@@ -159,7 +215,7 @@ export default function Footer() {
             </form>
           </div>
         </div>
-          </div>
+      </div>
       <div className="bg-black text-white text-center py-3 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 text-sm">
           Copyright © {currentYear} FuelFoods Industries. All rights reserved.

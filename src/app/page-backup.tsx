@@ -33,7 +33,10 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-4">Available Pages:</h2>
           <ul className="space-y-2">
             <li>
-              <a href="/configure/starter" className="text-blue-600 hover:underline">
+              <a
+                href="/configure/starter"
+                className="text-blue-600 hover:underline"
+              >
                 Get Your Greens
               </a>
             </li>

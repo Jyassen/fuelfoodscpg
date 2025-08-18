@@ -11,13 +11,19 @@ export default function ContactPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 tracking-tight">Contact Us</h1>
-        <p className="text-lg text-gray-700">We’d love to hear from you. Send us a message and we’ll reply shortly.</p>
+        <h1 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 tracking-tight">
+          Contact Us
+        </h1>
+        <p className="text-lg text-gray-700">
+          We’d love to hear from you. Send us a message and we’ll reply shortly.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div>
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-6">General Inquiries</h2>
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-6">
+            General Inquiries
+          </h2>
           <div className="space-y-6">
             <div className="flex items-start">
               <div className="flex-shrink-0">

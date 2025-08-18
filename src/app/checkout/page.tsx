@@ -13,15 +13,15 @@ import { FormSection } from '@/components/form';
 
 export default function CheckoutPage() {
   const { items, pricing, hasItems } = useCart();
-  const { 
-    currentStep, 
-    goToStep, 
-    goToNextStep, 
+  const {
+    currentStep,
+    goToStep,
+    goToNextStep,
     goToPreviousStep,
     canProceedToStep,
     validateCurrentStep,
     isStepCompleted,
-    setCartItems
+    setCartItems,
   } = useCheckout();
 
   // Sync cart items with checkout
@@ -50,8 +50,15 @@ export default function CheckoutPage() {
 
   const CombinedInfo = () => (
     <div className="space-y-8">
-      <CustomerInfoStep onContinue={handleContinue} onBack={() => (window.location.href = '/cart')} hideNavigation />
-      <ShippingAddressStep onContinue={handleContinue} onBack={() => (window.location.href = '/cart')} />
+      <CustomerInfoStep
+        onContinue={handleContinue}
+        onBack={() => (window.location.href = '/cart')}
+        hideNavigation
+      />
+      <ShippingAddressStep
+        onContinue={handleContinue}
+        onBack={() => (window.location.href = '/cart')}
+      />
     </div>
   );
 
@@ -63,23 +70,23 @@ export default function CheckoutPage() {
         return <CombinedInfo />;
       case 'payment':
         return (
-          <PaymentInfoStep 
+          <PaymentInfoStep
             onContinue={handleContinue}
             onBack={goToPreviousStep}
           />
         );
       case 'review':
         return (
-          <OrderReviewStep 
+          <OrderReviewStep
             onPlaceOrder={handleContinue}
             onBack={goToPreviousStep}
           />
         );
       default:
         return (
-          <CustomerInfoStep 
+          <CustomerInfoStep
             onContinue={handleContinue}
-            onBack={() => window.location.href = '/cart'}
+            onBack={() => (window.location.href = '/cart')}
           />
         );
     }
@@ -103,7 +110,7 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Progress Bar */}
-        <CheckoutProgressBar 
+        <CheckoutProgressBar
           currentStep={currentStep}
           onStepClick={handleStepNavigation}
           isStepCompleted={isStepCompleted}
@@ -113,14 +120,12 @@ export default function CheckoutPage() {
         {/* Main Checkout Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
           {/* Checkout Form */}
-          <div className="lg:col-span-2">
-            {renderCurrentStep()}
-          </div>
+          <div className="lg:col-span-2">{renderCurrentStep()}</div>
 
           {/* Order Summary Sidebar */}
           <div className="lg:col-span-1">
             <div className="lg:sticky lg:top-8">
-              <OrderSummary 
+              <OrderSummary
                 items={items}
                 pricing={pricing}
                 showCouponCode={currentStep === 'review'}

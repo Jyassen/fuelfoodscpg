@@ -488,7 +488,8 @@ export interface CheckoutCustomerInfo {
 /**
  * Shipping information
  */
-export interface CheckoutShippingInfo extends Omit<Address, 'id' | 'type' | 'isDefault'> {
+export interface CheckoutShippingInfo
+  extends Omit<Address, 'id' | 'type' | 'isDefault'> {
   deliveryInstructions?: string;
   preferredDeliveryTime?: 'morning' | 'afternoon' | 'evening' | 'anytime';
 }
@@ -496,14 +497,20 @@ export interface CheckoutShippingInfo extends Omit<Address, 'id' | 'type' | 'isD
 /**
  * Billing information
  */
-export interface CheckoutBillingInfo extends Omit<Address, 'id' | 'type' | 'isDefault'> {
+export interface CheckoutBillingInfo
+  extends Omit<Address, 'id' | 'type' | 'isDefault'> {
   sameAsShipping: boolean;
 }
 
 /**
  * Payment method types
  */
-export type PaymentMethodType = 'credit_card' | 'debit_card' | 'paypal' | 'apple_pay' | 'google_pay';
+export type PaymentMethodType =
+  | 'credit_card'
+  | 'debit_card'
+  | 'paypal'
+  | 'apple_pay'
+  | 'google_pay';
 
 /**
  * Payment information
@@ -580,29 +587,29 @@ export interface CheckoutData {
   // Cart and items
   items: CheckoutCartItem[];
   itemCount: number;
-  
+
   // Customer information
   customerInfo: Partial<CheckoutCustomerInfo>;
-  
+
   // Addresses
   shippingInfo: Partial<CheckoutShippingInfo>;
   billingInfo: Partial<CheckoutBillingInfo>;
-  
+
   // Payment
   paymentInfo: Partial<CheckoutPaymentInfo>;
-  
+
   // Shipping and discounts
   selectedShippingOption?: ShippingOption;
   appliedDiscount?: CheckoutDiscount;
-  
+
   // Pricing
   pricing: OrderPricing;
-  
+
   // Validation and state
   isValid: boolean;
   errors: CheckoutValidationErrors;
   currentStep: CheckoutStep;
-  
+
   // Metadata
   createdAt: Date;
   updatedAt: Date;
@@ -625,7 +632,7 @@ export interface CheckoutValidationErrors {
 /**
  * Checkout process steps
  */
-export type CheckoutStep = 
+export type CheckoutStep =
   | 'cart'
   | 'customer_info'
   | 'shipping'
@@ -642,13 +649,13 @@ export interface OrderSummary {
   // Items summary
   items: OrderSummaryItem[];
   totalItems: number;
-  
+
   // Customer and delivery
   customer: CheckoutCustomerInfo;
   shippingAddress: CheckoutShippingInfo;
   billingAddress: CheckoutBillingInfo;
   shippingOption: ShippingOption;
-  
+
   // Payment
   paymentMethod: {
     type: PaymentMethodType;
@@ -656,21 +663,21 @@ export interface OrderSummary {
     expiryMonth?: string;
     expiryYear?: string;
   };
-  
+
   // Pricing breakdown
   pricing: OrderPricing;
   appliedDiscount?: CheckoutDiscount;
-  
+
   // Subscriptions
   subscriptions: SubscriptionSummary[];
-  
+
   // Estimated delivery
   estimatedDelivery: {
     earliest: Date;
     latest: Date;
     businessDays: number;
   };
-  
+
   // Order metadata
   orderNumber?: string;
   createdAt: Date;
@@ -715,54 +722,75 @@ export interface SubscriptionSummary {
 /**
  * Available microgreens varieties with all details
  */
-export const MICROGREENS_VARIETIES: Record<'mega-mix' | 'brassica-blend' | 'sunnies-snacks', MicrogreensVariety> = {
+export const MICROGREENS_VARIETIES: Record<
+  'mega-mix' | 'brassica-blend' | 'sunnies-snacks',
+  MicrogreensVariety
+> = {
   'mega-mix': {
     id: 'mega-mix',
     name: 'Mega Mix',
     theme: 'orange',
-    description: 'A powerful blend of nutrient-dense microgreens for maximum health benefits',
+    description:
+      'A powerful blend of nutrient-dense microgreens for maximum health benefits',
     image: '/images/mega-mix-product.png',
     price: 15,
-    nutritionalHighlights: ['High in Vitamin C', 'Rich in Antioxidants', 'Complete Amino Acids']
+    nutritionalHighlights: [
+      'High in Vitamin C',
+      'Rich in Antioxidants',
+      'Complete Amino Acids',
+    ],
   },
   'brassica-blend': {
     id: 'brassica-blend',
     name: 'Brassica Blend',
     theme: 'purple',
-    description: 'A collection of cruciferous microgreens known for their detox properties',
+    description:
+      'A collection of cruciferous microgreens known for their detox properties',
     image: '/images/brassica-blend-product.png',
     price: 15,
-    nutritionalHighlights: ['Sulforaphane Rich', 'Detox Support', 'Anti-inflammatory']
+    nutritionalHighlights: [
+      'Sulforaphane Rich',
+      'Detox Support',
+      'Anti-inflammatory',
+    ],
   },
   'sunnies-snacks': {
     id: 'sunnies-snacks',
     name: 'Sunnies Snacks',
     theme: 'yellow',
-    description: 'Sweet and crunchy microgreens perfect for snacking and salads',
+    description:
+      'Sweet and crunchy microgreens perfect for snacking and salads',
     image: '/images/sunnies-snacks-product.png',
     price: 15,
-    nutritionalHighlights: ['High in Protein', 'Essential Fatty Acids', 'Natural Sweetness']
-  }
+    nutritionalHighlights: [
+      'High in Protein',
+      'Essential Fatty Acids',
+      'Natural Sweetness',
+    ],
+  },
 };
 
 /**
  * Plan requirements and configurations
  */
-export const PLAN_CONFIGURATIONS: Record<PlanType, { 
-  name: string; 
-  packsRequired: number; 
-  description: string; 
-  features: string[];
-  pricePerPack: number;
-  discountPercentage: number;
-}> = {
+export const PLAN_CONFIGURATIONS: Record<
+  PlanType,
+  {
+    name: string;
+    packsRequired: number;
+    description: string;
+    features: string[];
+    pricePerPack: number;
+    discountPercentage: number;
+  }
+> = {
   starter: {
     name: 'Starter Plan',
     packsRequired: 0, // Any quantity
     description: 'Individual packs with flexible quantity',
     features: ['Choose any quantity', 'No commitment', 'Full price per pack'],
     pricePerPack: 15,
-    discountPercentage: 0
+    discountPercentage: 0,
   },
   pro: {
     name: 'Pro Plan',
@@ -770,7 +798,7 @@ export const PLAN_CONFIGURATIONS: Record<PlanType, {
     description: 'Weekly subscription with 3 packs, choose your varieties',
     features: ['3 packs per week', 'Choose varieties'],
     pricePerPack: 15,
-    discountPercentage: 0
+    discountPercentage: 0,
   },
   elite: {
     name: 'Elite Plan',
@@ -778,8 +806,8 @@ export const PLAN_CONFIGURATIONS: Record<PlanType, {
     description: 'Weekly subscription with 5 packs, choose your varieties',
     features: ['5 packs per week', 'Choose varieties'],
     pricePerPack: 15,
-    discountPercentage: 0
-  }
+    discountPercentage: 0,
+  },
 };
 
 // ============================================================================

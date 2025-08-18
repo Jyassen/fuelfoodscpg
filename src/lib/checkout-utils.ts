@@ -15,7 +15,7 @@ import {
   MICROGREENS_VARIETIES,
   PLAN_CONFIGURATIONS,
   ValidationRule,
-  PaymentMethodType
+  PaymentMethodType,
 } from './types';
 
 // ============================================================================
@@ -58,9 +58,10 @@ export const CHECKOUT_VALIDATION_SCHEMA: CheckoutValidationSchema = {
       custom: (value: string) => {
         if (typeof value !== 'string') return 'Email is required';
         if (!value) return 'Email is required';
-        if (!EMAIL_PATTERN.test(value)) return 'Please enter a valid email address';
+        if (!EMAIL_PATTERN.test(value))
+          return 'Please enter a valid email address';
         return true;
-      }
+      },
     },
     firstName: {
       required: true,
@@ -69,9 +70,10 @@ export const CHECKOUT_VALIDATION_SCHEMA: CheckoutValidationSchema = {
       custom: (value: string) => {
         if (typeof value !== 'string') return 'First name is required';
         if (!value.trim()) return 'First name is required';
-        if (value.trim().length < 2) return 'First name must be at least 2 characters';
+        if (value.trim().length < 2)
+          return 'First name must be at least 2 characters';
         return true;
-      }
+      },
     },
     lastName: {
       required: true,
@@ -80,9 +82,10 @@ export const CHECKOUT_VALIDATION_SCHEMA: CheckoutValidationSchema = {
       custom: (value: string) => {
         if (typeof value !== 'string') return 'Last name is required';
         if (!value.trim()) return 'Last name is required';
-        if (value.trim().length < 2) return 'Last name must be at least 2 characters';
+        if (value.trim().length < 2)
+          return 'Last name must be at least 2 characters';
         return true;
-      }
+      },
     },
     phone: {
       required: true,
@@ -93,26 +96,26 @@ export const CHECKOUT_VALIDATION_SCHEMA: CheckoutValidationSchema = {
         const cleaned = value.replace(/\D/g, '');
         if (cleaned.length < 10) return 'Please enter a valid phone number';
         return true;
-      }
+      },
     },
     isNewCustomer: { required: false },
-    marketingOptIn: { required: false }
+    marketingOptIn: { required: false },
   },
 
   shippingInfo: {
     firstName: {
       required: true,
       minLength: 2,
-      maxLength: 50
+      maxLength: 50,
     },
     lastName: {
       required: true,
       minLength: 2,
-      maxLength: 50
+      maxLength: 50,
     },
     company: {
       required: false,
-      maxLength: 100
+      maxLength: 100,
     },
     address1: {
       required: true,
@@ -122,11 +125,11 @@ export const CHECKOUT_VALIDATION_SCHEMA: CheckoutValidationSchema = {
         if (typeof value !== 'string') return 'Street address is required';
         if (!value.trim()) return 'Street address is required';
         return true;
-      }
+      },
     },
     address2: {
       required: false,
-      maxLength: 100
+      maxLength: 100,
     },
     city: {
       required: true,
@@ -136,7 +139,7 @@ export const CHECKOUT_VALIDATION_SCHEMA: CheckoutValidationSchema = {
         if (typeof value !== 'string') return 'City is required';
         if (!value.trim()) return 'City is required';
         return true;
-      }
+      },
     },
     state: {
       required: true,
@@ -145,9 +148,10 @@ export const CHECKOUT_VALIDATION_SCHEMA: CheckoutValidationSchema = {
       custom: (value: string) => {
         if (typeof value !== 'string') return 'State is required';
         if (!value.trim()) return 'State is required';
-        if (value.trim().length !== 2) return 'Please enter a valid state abbreviation';
+        if (value.trim().length !== 2)
+          return 'Please enter a valid state abbreviation';
         return true;
-      }
+      },
     },
     zipCode: {
       required: true,
@@ -157,7 +161,7 @@ export const CHECKOUT_VALIDATION_SCHEMA: CheckoutValidationSchema = {
         if (!value) return 'ZIP code is required';
         if (!ZIP_PATTERN.test(value)) return 'Please enter a valid ZIP code';
         return true;
-      }
+      },
     },
     country: {
       required: true,
@@ -165,100 +169,107 @@ export const CHECKOUT_VALIDATION_SCHEMA: CheckoutValidationSchema = {
         if (typeof value !== 'string') return 'Country is required';
         if (!value.trim()) return 'Country is required';
         return true;
-      }
+      },
     },
     deliveryInstructions: {
       required: false,
-      maxLength: 500
+      maxLength: 500,
     },
     preferredDeliveryTime: {
-      required: false
-    }
+      required: false,
+    },
   },
 
   billingInfo: {
     firstName: {
       required: true,
       minLength: 2,
-      maxLength: 50
+      maxLength: 50,
     },
     lastName: {
       required: true,
       minLength: 2,
-      maxLength: 50
+      maxLength: 50,
     },
     company: {
       required: false,
-      maxLength: 100
+      maxLength: 100,
     },
     address1: {
       required: true,
       minLength: 5,
-      maxLength: 100
+      maxLength: 100,
     },
     address2: {
       required: false,
-      maxLength: 100
+      maxLength: 100,
     },
     city: {
       required: true,
       minLength: 2,
-      maxLength: 50
+      maxLength: 50,
     },
     state: {
       required: true,
       minLength: 2,
-      maxLength: 2
+      maxLength: 2,
     },
     zipCode: {
       required: true,
-      pattern: ZIP_PATTERN
+      pattern: ZIP_PATTERN,
     },
     country: {
-      required: true
+      required: true,
     },
     sameAsShipping: {
-      required: false
-    }
+      required: false,
+    },
   },
 
   paymentInfo: {
     methodType: {
       required: true,
       custom: (value: PaymentMethodType) => {
-        const validTypes: PaymentMethodType[] = ['credit_card', 'debit_card', 'paypal', 'apple_pay', 'google_pay'];
-        if (!validTypes.includes(value)) return 'Please select a valid payment method';
+        const validTypes: PaymentMethodType[] = [
+          'credit_card',
+          'debit_card',
+          'paypal',
+          'apple_pay',
+          'google_pay',
+        ];
+        if (!validTypes.includes(value))
+          return 'Please select a valid payment method';
         return true;
-      }
+      },
     },
     cardholderName: {
       required: false, // Only required for card payments
       minLength: 2,
-      maxLength: 100
+      maxLength: 100,
     },
     cardNumber: {
       required: false, // Only required for card payments
-      pattern: CREDIT_CARD_PATTERN
+      pattern: CREDIT_CARD_PATTERN,
     },
     expiryMonth: {
       required: false, // Only required for card payments
-      pattern: /^(0[1-9]|1[0-2])$/
+      pattern: /^(0[1-9]|1[0-2])$/,
     },
     expiryYear: {
       required: false, // Only required for card payments
-      pattern: /^\d{4}$/
+      pattern: /^\d{4}$/,
     },
     cvv: {
       required: false, // Only required for card payments
-      pattern: CVV_PATTERN
+      pattern: CVV_PATTERN,
     },
     savePaymentMethod: {
-      required: false
+      required: false,
     },
     paymentToken: {
-      required: false
-    }
-  }
+      required: false,
+    },
+  },
 };
 
 // ============================================================================
@@ -285,31 +296,57 @@ export function validateFormSection<T extends Record<string, any>>(
   }
 
   // Validate each field
-  for (const [field, rule] of Object.entries(schema) as [keyof T, ValidationRule][]) {
+  for (const [field, rule] of Object.entries(schema) as [
+    keyof T,
+    ValidationRule,
+  ][]) {
     const value = data[field];
 
-    if (rule.required && (value === undefined || value === null || (typeof value === 'string' && !value.trim()))) {
+    if (
+      rule.required &&
+      (value === undefined ||
+        value === null ||
+        (typeof value === 'string' && !value.trim()))
+    ) {
       errors.push(`${String(field)} is required`);
       continue;
     }
 
     if (value) {
-      if (rule.minLength && typeof value === 'string' && value.length < rule.minLength) {
-        errors.push(`${String(field)} must be at least ${rule.minLength} characters`);
+      if (
+        rule.minLength &&
+        typeof value === 'string' &&
+        value.length < rule.minLength
+      ) {
+        errors.push(
+          `${String(field)} must be at least ${rule.minLength} characters`
+        );
       }
 
-      if (rule.maxLength && typeof value === 'string' && value.length > rule.maxLength) {
-        errors.push(`${String(field)} must be no more than ${rule.maxLength} characters`);
+      if (
+        rule.maxLength &&
+        typeof value === 'string' &&
+        value.length > rule.maxLength
+      ) {
+        errors.push(
+          `${String(field)} must be no more than ${rule.maxLength} characters`
+        );
       }
 
-      if (rule.pattern && typeof value === 'string' && !rule.pattern.test(value)) {
+      if (
+        rule.pattern &&
+        typeof value === 'string' &&
+        !rule.pattern.test(value)
+      ) {
         errors.push(`${String(field)} format is invalid`);
       }
 
       if (rule.custom) {
         const result = rule.custom(value as any);
         if (result !== true) {
-          errors.push(typeof result === 'string' ? result : `${String(field)} is invalid`);
+          errors.push(
+            typeof result === 'string' ? result : `${String(field)} is invalid`
+          );
         }
       }
     }
@@ -321,7 +358,9 @@ export function validateFormSection<T extends Record<string, any>>(
 /**
  * Validates complete checkout data
  */
-export function validateCheckoutData(data: CheckoutData): CheckoutValidationErrors {
+export function validateCheckoutData(
+  data: CheckoutData
+): CheckoutValidationErrors {
   const errors: CheckoutValidationErrors = {
     customerInfo: [],
     shippingInfo: [],
@@ -329,7 +368,7 @@ export function validateCheckoutData(data: CheckoutData): CheckoutValidationErro
     paymentInfo: [],
     items: [],
     discount: [],
-    general: []
+    general: [],
   };
 
   // Validate customer info
@@ -351,7 +390,15 @@ export function validateCheckoutData(data: CheckoutData): CheckoutValidationErro
     errors.billingInfo = validateFormSection(
       data.billingInfo,
       CHECKOUT_VALIDATION_SCHEMA.billingInfo,
-      ['firstName', 'lastName', 'address1', 'city', 'state', 'zipCode', 'country']
+      [
+        'firstName',
+        'lastName',
+        'address1',
+        'city',
+        'state',
+        'zipCode',
+        'country',
+      ]
     );
   }
 
@@ -363,8 +410,17 @@ export function validateCheckoutData(data: CheckoutData): CheckoutValidationErro
   );
 
   // Additional payment validation for card payments
-  if (data.paymentInfo.methodType === 'credit_card' || data.paymentInfo.methodType === 'debit_card') {
-    const cardFields = ['cardholderName', 'cardNumber', 'expiryMonth', 'expiryYear', 'cvv'] as const;
+  if (
+    data.paymentInfo.methodType === 'credit_card' ||
+    data.paymentInfo.methodType === 'debit_card'
+  ) {
+    const cardFields = [
+      'cardholderName',
+      'cardNumber',
+      'expiryMonth',
+      'expiryYear',
+      'cvv',
+    ] as const;
     for (const field of cardFields) {
       if (!data.paymentInfo[field]) {
         paymentErrors.push(`${field} is required for card payments`);
@@ -382,8 +438,13 @@ export function validateCheckoutData(data: CheckoutData): CheckoutValidationErro
       if (item.quantity <= 0) {
         errors.items.push(`Invalid quantity for ${item.product.name}`);
       }
-      if (item.type === 'subscription' && !validatePlanConfiguration(item.packageConfiguration)) {
-        errors.items.push(`Invalid subscription configuration for ${item.product.name}`);
+      if (
+        item.type === 'subscription' &&
+        !validatePlanConfiguration(item.packageConfiguration)
+      ) {
+        errors.items.push(
+          `Invalid subscription configuration for ${item.product.name}`
+        );
       }
     }
   }
@@ -402,9 +463,12 @@ export function validatePlanConfiguration(config?: PlanConfiguration): boolean {
   if (!config) return false;
 
   const planConfig = PLAN_CONFIGURATIONS[config.planType];
-  
+
   // Check total packs
-  if (planConfig.packsRequired > 0 && config.totalPacks !== planConfig.packsRequired) {
+  if (
+    planConfig.packsRequired > 0 &&
+    config.totalPacks !== planConfig.packsRequired
+  ) {
     return false;
   }
 
@@ -444,31 +508,37 @@ export function createPlanConfiguration(
       finalVarieties = varieties;
     } else {
       // Default: distribute evenly among all varieties
-      const varietyIds = Object.keys(MICROGREENS_VARIETIES) as (keyof typeof MICROGREENS_VARIETIES)[];
+      const varietyIds = Object.keys(
+        MICROGREENS_VARIETIES
+      ) as (keyof typeof MICROGREENS_VARIETIES)[];
       const baseAmount = Math.floor(totalPacks / varietyIds.length);
       const remainder = totalPacks % varietyIds.length;
 
-      finalVarieties = varietyIds.map((id, index) => ({
-        varietyId: id,
-        quantity: baseAmount + (index < remainder ? 1 : 0)
-      })).filter(v => v.quantity > 0);
+      finalVarieties = varietyIds
+        .map((id, index) => ({
+          varietyId: id,
+          quantity: baseAmount + (index < remainder ? 1 : 0),
+        }))
+        .filter(v => v.quantity > 0);
     }
   }
 
   return {
     planType,
-    totalPacks: planType === 'starter' ? 
-      finalVarieties.reduce((sum, v) => sum + v.quantity, 0) : 
-      totalPacks,
+    totalPacks:
+      planType === 'starter'
+        ? finalVarieties.reduce((sum, v) => sum + v.quantity, 0)
+        : totalPacks,
     varieties: finalVarieties,
     isValid: validatePlanConfiguration({
       planType,
-      totalPacks: planType === 'starter' ? 
-        finalVarieties.reduce((sum, v) => sum + v.quantity, 0) : 
-        totalPacks,
+      totalPacks:
+        planType === 'starter'
+          ? finalVarieties.reduce((sum, v) => sum + v.quantity, 0)
+          : totalPacks,
       varieties: finalVarieties,
-      isValid: true
-    })
+      isValid: true,
+    }),
   };
 }
 
@@ -485,13 +555,13 @@ export function calculateTax(
   jurisdiction: string = 'Default'
 ): TaxCalculation {
   const amount = Math.round(taxableAmount * taxRate * 100) / 100;
-  
+
   return {
     rate: taxRate,
     amount,
     taxableAmount,
     jurisdiction,
-    isTaxExempt: false
+    isTaxExempt: false,
   };
 }
 
@@ -517,22 +587,24 @@ export function calculateOrderPricing(
 ): OrderPricing {
   // Calculate subtotal
   const subtotal = items.reduce((sum, item) => sum + item.totalPrice, 0);
-  
+
   // Apply discount
   const discountedSubtotal = Math.max(0, subtotal - discountAmount);
-  
+
   // Calculate shipping
   const shippingCost = calculateShipping(items, zipCode);
-  
+
   // Calculate tax on discounted subtotal + shipping
   const taxableAmount = discountedSubtotal + shippingCost;
   const taxCalculation = calculateTax(taxableAmount, taxRate);
-  
+
   // Calculate total
   const total = discountedSubtotal + shippingCost + taxCalculation.amount;
-  
+
   // Calculate savings
-  const savings = discountAmount + items.reduce((sum, item) => sum + (item.discountAmount || 0), 0);
+  const savings =
+    discountAmount +
+    items.reduce((sum, item) => sum + (item.discountAmount || 0), 0);
 
   return {
     subtotal: Math.round(subtotal * 100) / 100,
@@ -541,7 +613,7 @@ export function calculateOrderPricing(
     shippingCost: Math.round(shippingCost * 100) / 100,
     taxCalculation,
     total: Math.round(total * 100) / 100,
-    savings: Math.round(savings * 100) / 100
+    savings: Math.round(savings * 100) / 100,
   };
 }
 
@@ -580,7 +652,7 @@ export function calculateCartItemPrice(
   return {
     unitPrice: Math.round(unitPrice * 100) / 100,
     totalPrice: Math.round(totalPrice * 100) / 100,
-    discountAmount: Math.round(discountAmount * 100) / 100
+    discountAmount: Math.round(discountAmount * 100) / 100,
   };
 }
 
@@ -595,8 +667,10 @@ export function createCheckoutCartItem(
   packageConfiguration?: PlanConfiguration,
   subscriptionFrequency?: string
 ): CheckoutCartItem {
-  const basePrice = MICROGREENS_VARIETIES[product.variant as keyof typeof MICROGREENS_VARIETIES]?.price || product.price;
-  
+  const basePrice =
+    MICROGREENS_VARIETIES[product.variant as keyof typeof MICROGREENS_VARIETIES]
+      ?.price || product.price;
+
   const pricing = calculateCartItemPrice(
     basePrice,
     quantity,
@@ -614,7 +688,7 @@ export function createCheckoutCartItem(
     unitPrice: pricing.unitPrice,
     totalPrice: pricing.totalPrice,
     discountAmount: pricing.discountAmount,
-    addedAt: new Date()
+    addedAt: new Date(),
   };
 }
 
@@ -643,9 +717,9 @@ export function initializeCheckoutData(): CheckoutData {
         amount: 0,
         taxableAmount: 0,
         jurisdiction: '',
-        isTaxExempt: false
+        isTaxExempt: false,
       },
-      total: 0
+      total: 0,
     },
     isValid: false,
     errors: {
@@ -655,12 +729,12 @@ export function initializeCheckoutData(): CheckoutData {
       paymentInfo: [],
       items: [],
       discount: [],
-      general: []
+      general: [],
     },
     currentStep: 'customer_info',
     createdAt: new Date(),
     updatedAt: new Date(),
-    sessionId: `checkout_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+    sessionId: `checkout_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
   };
 }
 
@@ -674,12 +748,15 @@ export function updateCheckoutData(
   const updatedData = {
     ...currentData,
     ...updates,
-    updatedAt: new Date()
+    updatedAt: new Date(),
   };
 
   // Recalculate pricing if items changed
   if (updates.items) {
-    updatedData.itemCount = updates.items.reduce((sum, item) => sum + item.quantity, 0);
+    updatedData.itemCount = updates.items.reduce(
+      (sum, item) => sum + item.quantity,
+      0
+    );
     updatedData.pricing = calculateOrderPricing(
       updates.items,
       updatedData.appliedDiscount?.appliedAmount || 0,
@@ -689,7 +766,9 @@ export function updateCheckoutData(
 
   // Validate the updated data
   updatedData.errors = validateCheckoutData(updatedData);
-  updatedData.isValid = Object.values(updatedData.errors).every(errors => errors.length === 0);
+  updatedData.isValid = Object.values(updatedData.errors).every(
+    errors => errors.length === 0
+  );
 
   return updatedData;
 }

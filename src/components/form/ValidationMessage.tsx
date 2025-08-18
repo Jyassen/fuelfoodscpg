@@ -11,7 +11,8 @@ const validationMessageVariants = cva(
     variants: {
       type: {
         error: 'text-red-700 bg-red-50 border-red-200',
-        success: 'text-fuelfoods-green-700 bg-fuelfoods-green-50 border-fuelfoods-green-200',
+        success:
+          'text-fuelfoods-green-700 bg-fuelfoods-green-50 border-fuelfoods-green-200',
         warning: 'text-orange-700 bg-orange-50 border-orange-200',
         info: 'text-blue-700 bg-blue-50 border-blue-200',
       },
@@ -49,17 +50,23 @@ export interface ValidationMessageProps
   customIcon?: React.ReactNode;
 }
 
-const ValidationMessage = React.forwardRef<HTMLDivElement, ValidationMessageProps>(
-  ({
-    className,
-    type = 'error',
-    size,
-    variant,
-    message,
-    showIcon = true,
-    customIcon,
-    ...props
-  }, ref) => {
+const ValidationMessage = React.forwardRef<
+  HTMLDivElement,
+  ValidationMessageProps
+>(
+  (
+    {
+      className,
+      type = 'error',
+      size,
+      variant,
+      message,
+      showIcon = true,
+      customIcon,
+      ...props
+    },
+    ref
+  ) => {
     const Icon = iconMap[type!];
 
     if (!message) return null;
@@ -69,7 +76,9 @@ const ValidationMessage = React.forwardRef<HTMLDivElement, ValidationMessageProp
         ref={ref}
         role="alert"
         aria-live="polite"
-        className={cn(validationMessageVariants({ type, size, variant, className }))}
+        className={cn(
+          validationMessageVariants({ type, size, variant, className })
+        )}
         {...props}
       >
         {showIcon && (
@@ -77,9 +86,7 @@ const ValidationMessage = React.forwardRef<HTMLDivElement, ValidationMessageProp
             {customIcon || <Icon className="h-3 w-3" />}
           </div>
         )}
-        <span className="flex-1 leading-relaxed">
-          {message}
-        </span>
+        <span className="flex-1 leading-relaxed">{message}</span>
       </div>
     );
   }

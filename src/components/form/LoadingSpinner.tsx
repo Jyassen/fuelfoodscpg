@@ -28,27 +28,24 @@ const spinnerVariants = cva(
   }
 );
 
-const containerVariants = cva(
-  'flex items-center justify-center',
-  {
-    variants: {
-      fullScreen: {
-        true: 'fixed inset-0 bg-white/80 backdrop-blur-sm z-50',
-        false: '',
-      },
-      padding: {
-        none: '',
-        sm: 'p-2',
-        default: 'p-4',
-        lg: 'p-8',
-      },
+const containerVariants = cva('flex items-center justify-center', {
+  variants: {
+    fullScreen: {
+      true: 'fixed inset-0 bg-white/80 backdrop-blur-sm z-50',
+      false: '',
     },
-    defaultVariants: {
-      fullScreen: false,
-      padding: 'none',
+    padding: {
+      none: '',
+      sm: 'p-2',
+      default: 'p-4',
+      lg: 'p-8',
     },
-  }
-);
+  },
+  defaultVariants: {
+    fullScreen: false,
+    padding: 'none',
+  },
+});
 
 export interface LoadingSpinnerProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -59,16 +56,19 @@ export interface LoadingSpinnerProps
 }
 
 const LoadingSpinner = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
-  ({
-    className,
-    size,
-    variant,
-    fullScreen,
-    padding,
-    label = 'Loading...',
-    showLabel = false,
-    ...props
-  }, ref) => {
+  (
+    {
+      className,
+      size,
+      variant,
+      fullScreen,
+      padding,
+      label = 'Loading...',
+      showLabel = false,
+      ...props
+    },
+    ref
+  ) => {
     const SpinnerComponent = (
       <div className="flex flex-col items-center gap-2">
         <div
@@ -77,9 +77,7 @@ const LoadingSpinner = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
           aria-label={label}
         />
         {showLabel && (
-          <span className="text-sm text-gray-600 font-medium">
-            {label}
-          </span>
+          <span className="text-sm text-gray-600 font-medium">{label}</span>
         )}
       </div>
     );
@@ -111,7 +109,10 @@ const LoadingSpinner = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
 LoadingSpinner.displayName = 'LoadingSpinner';
 
 // Preset spinner components for common use cases
-const ButtonSpinner = ({ className, ...props }: Omit<LoadingSpinnerProps, 'size' | 'variant'>) => (
+const ButtonSpinner = ({
+  className,
+  ...props
+}: Omit<LoadingSpinnerProps, 'size' | 'variant'>) => (
   <LoadingSpinner
     size="sm"
     variant="current"
@@ -120,7 +121,10 @@ const ButtonSpinner = ({ className, ...props }: Omit<LoadingSpinnerProps, 'size'
   />
 );
 
-const PageSpinner = ({ className, ...props }: Omit<LoadingSpinnerProps, 'fullScreen' | 'showLabel'>) => (
+const PageSpinner = ({
+  className,
+  ...props
+}: Omit<LoadingSpinnerProps, 'fullScreen' | 'showLabel'>) => (
   <LoadingSpinner
     fullScreen
     showLabel
@@ -131,7 +135,10 @@ const PageSpinner = ({ className, ...props }: Omit<LoadingSpinnerProps, 'fullScr
   />
 );
 
-const InlineSpinner = ({ className, ...props }: Omit<LoadingSpinnerProps, 'size'>) => (
+const InlineSpinner = ({
+  className,
+  ...props
+}: Omit<LoadingSpinnerProps, 'size'>) => (
   <LoadingSpinner
     size="sm"
     className={cn('inline-block', className)}
@@ -139,4 +146,10 @@ const InlineSpinner = ({ className, ...props }: Omit<LoadingSpinnerProps, 'size'
   />
 );
 
-export { LoadingSpinner, ButtonSpinner, PageSpinner, InlineSpinner, spinnerVariants };
+export {
+  LoadingSpinner,
+  ButtonSpinner,
+  PageSpinner,
+  InlineSpinner,
+  spinnerVariants,
+};

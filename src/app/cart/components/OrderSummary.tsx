@@ -12,8 +12,19 @@ interface OrderSummaryProps {
   itemCount: number;
 }
 
-export default function OrderSummary({ pricing, appliedCoupon, itemCount }: OrderSummaryProps) {
-  const { subtotal, discountAmount, shippingCost, taxCalculation, total, savings } = pricing;
+export default function OrderSummary({
+  pricing,
+  appliedCoupon,
+  itemCount,
+}: OrderSummaryProps) {
+  const {
+    subtotal,
+    discountAmount,
+    shippingCost,
+    taxCalculation,
+    total,
+    savings,
+  } = pricing;
 
   return (
     <div className="bg-gray-50 rounded-lg p-6 sticky top-6">
@@ -47,9 +58,11 @@ export default function OrderSummary({ pricing, appliedCoupon, itemCount }: Orde
         {/* Shipping */}
         <div className="flex justify-between text-sm">
           <span className="text-gray-600">Shipping</span>
-          <span className={`font-medium ${
-            shippingCost === 0 ? 'text-fuelfoods-green-600' : 'text-gray-900'
-          }`}>
+          <span
+            className={`font-medium ${
+              shippingCost === 0 ? 'text-fuelfoods-green-600' : 'text-gray-900'
+            }`}
+          >
             {shippingCost === 0 ? 'Free' : formatCurrency(shippingCost)}
           </span>
         </div>
@@ -57,7 +70,9 @@ export default function OrderSummary({ pricing, appliedCoupon, itemCount }: Orde
         {/* Tax */}
         <div className="flex justify-between text-sm">
           <span className="text-gray-600">
-            Tax {taxCalculation.rate > 0 && `(${(taxCalculation.rate * 100).toFixed(1)}%)`}
+            Tax{' '}
+            {taxCalculation.rate > 0 &&
+              `(${(taxCalculation.rate * 100).toFixed(1)}%)`}
           </span>
           <span className="text-gray-900 font-medium">
             {formatCurrency(taxCalculation.amount)}
@@ -117,7 +132,7 @@ export default function OrderSummary({ pricing, appliedCoupon, itemCount }: Orde
             </svg>
             <span>Secure checkout</span>
           </div>
-          
+
           <div className="flex items-center">
             <svg
               className="w-4 h-4 mr-1.5 text-fuelfoods-green-500"
@@ -137,8 +152,18 @@ export default function OrderSummary({ pricing, appliedCoupon, itemCount }: Orde
         {/* Delivery Estimate */}
         <div className="text-center text-sm text-gray-600">
           <div className="flex items-center justify-center">
-            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg
+              className="w-4 h-4 mr-1.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
             <span>Delivered within 48 hours of harvest</span>
           </div>
@@ -148,8 +173,18 @@ export default function OrderSummary({ pricing, appliedCoupon, itemCount }: Orde
       {/* Money Back Guarantee */}
       <div className="mt-6 text-center">
         <div className="inline-flex items-center px-3 py-2 bg-blue-50 rounded-lg">
-          <svg className="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          <svg
+            className="w-4 h-4 mr-2 text-blue-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+            />
           </svg>
           <span className="text-sm font-medium text-blue-800">
             100% Freshness Guarantee

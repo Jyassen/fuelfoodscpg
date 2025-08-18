@@ -12,12 +12,12 @@ interface QuantityControlsProps {
   minQuantity?: number;
 }
 
-export default function QuantityControls({ 
-  itemId, 
-  currentQuantity, 
+export default function QuantityControls({
+  itemId,
+  currentQuantity,
   disabled = false,
   maxQuantity = 10,
-  minQuantity = 1
+  minQuantity = 1,
 }: QuantityControlsProps) {
   const { updateQuantity } = useCart();
   const [isUpdating, setIsUpdating] = useState(false);
@@ -45,8 +45,10 @@ export default function QuantityControls({
     handleQuantityChange(currentQuantity - 1);
   };
 
-  const canDecrement = !disabled && currentQuantity > minQuantity && !isUpdating;
-  const canIncrement = !disabled && currentQuantity < maxQuantity && !isUpdating;
+  const canDecrement =
+    !disabled && currentQuantity > minQuantity && !isUpdating;
+  const canIncrement =
+    !disabled && currentQuantity < maxQuantity && !isUpdating;
 
   return (
     <div className="flex items-center space-x-3">
@@ -58,19 +60,31 @@ export default function QuantityControls({
         className="h-8 w-8 rounded-full"
         aria-label="Decrease quantity"
       >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M20 12H4"
+          />
         </svg>
       </Button>
-      
+
       <div className="flex items-center justify-center min-w-[60px]">
-        <span className={`text-center font-medium ${
-          disabled ? 'text-gray-400' : 'text-gray-900'
-        }`}>
+        <span
+          className={`text-center font-medium ${
+            disabled ? 'text-gray-400' : 'text-gray-900'
+          }`}
+        >
           {currentQuantity}
         </span>
       </div>
-      
+
       <Button
         variant="outline"
         size="icon"
@@ -79,8 +93,18 @@ export default function QuantityControls({
         className="h-8 w-8 rounded-full"
         aria-label="Increase quantity"
       >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+          />
         </svg>
       </Button>
     </div>

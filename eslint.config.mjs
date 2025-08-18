@@ -1,6 +1,6 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { FlatCompat } from '@eslint/eslintrc';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -10,8 +10,8 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
-  ...compat.plugins("prettier"),
+  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
+  ...compat.plugins('prettier'),
   {
     rules: {
       // Prettier integration
@@ -21,7 +21,7 @@ const eslintConfig = [
           endOfLine: 'auto',
         },
       ],
-      
+
       // TypeScript rules
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -32,23 +32,23 @@ const eslintConfig = [
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-var-requires': 'off',
-      
+
       // React rules
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'react/display-name': 'off',
       'react/no-unescaped-entities': 'off',
-      
+
       // Next.js specific rules
       '@next/next/no-img-element': 'error',
       '@next/next/no-html-link-for-pages': 'error',
-      
+
       // General JavaScript rules
       'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
       'prefer-const': 'error',
       'no-var': 'error',
-      
+
       // Import rules
       'import/order': [
         'error',
@@ -69,7 +69,8 @@ const eslintConfig = [
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      parser: compat.config({ parser: '@typescript-eslint/parser' })[0].languageOptions.parser,
+      parser: compat.config({ parser: '@typescript-eslint/parser' })[0]
+        .languageOptions.parser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',

@@ -15,9 +15,9 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <img 
-                src="/images/logo.png" 
-                alt="FuelFoods Logo" 
+              <img
+                src="/images/logo.png"
+                alt="FuelFoods Logo"
                 className="h-16 w-16 rounded-full"
               />
             </Link>

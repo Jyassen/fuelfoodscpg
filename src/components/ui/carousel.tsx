@@ -111,9 +111,12 @@ function Carousel({
   // Simple autoplay using setInterval. Pauses when not mounted.
   React.useEffect(() => {
     if (!api || !autoplay) return;
-    const id = setInterval(() => {
-      api.scrollNext();
-    }, Math.max(2000, autoplayInterval));
+    const id = setInterval(
+      () => {
+        api.scrollNext();
+      },
+      Math.max(2000, autoplayInterval)
+    );
     return () => clearInterval(id);
   }, [api, autoplay, autoplayInterval]);
 

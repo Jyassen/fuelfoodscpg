@@ -53,9 +53,9 @@ function CartCheckoutSync() {
  * Combined provider that wraps both Cart and Checkout contexts
  * Automatically syncs cart state with checkout state
  */
-export function FuelFoodsProvider({ 
-  children, 
-  persistToStorage = true 
+export function FuelFoodsProvider({
+  children,
+  persistToStorage = true,
 }: FuelFoodsProviderProps) {
   return (
     <CartProvider persistToStorage={persistToStorage}>
@@ -82,13 +82,13 @@ export function useFuelFoods() {
   return {
     cart,
     checkout,
-    
+
     // Combined utilities
     getTotalItems: () => cart.getTotalItems(),
     getTotalPrice: () => cart.getTotalPrice(),
     hasItems: () => cart.hasItems(),
     isCheckoutReady: () => cart.hasItems() && checkout.currentStep !== 'cart',
-    
+
     // Quick actions that affect both contexts
     addToCartAndProceed: (
       product: Parameters<typeof cart.addItem>[0],
@@ -97,21 +97,27 @@ export function useFuelFoods() {
       packageConfiguration?: Parameters<typeof cart.addItem>[3],
       subscriptionFrequency?: Parameters<typeof cart.addItem>[4]
     ) => {
-      cart.addItem(product, quantity, type, packageConfiguration, subscriptionFrequency);
+      cart.addItem(
+        product,
+        quantity,
+        type,
+        packageConfiguration,
+        subscriptionFrequency
+      );
       // Optionally auto-navigate to checkout
       // checkout.goToStep('customer_info');
     },
-    
+
     startCheckout: () => {
       if (cart.hasItems()) {
         checkout.goToStep('customer_info');
       }
     },
-    
+
     clearAll: () => {
       cart.clearCart();
       checkout.resetCheckout();
-    }
+    },
   };
 }
 
@@ -138,7 +144,7 @@ export function useCheckoutOnly() {
  */
 export function useCartSummary() {
   const cart = useCart();
-  
+
   return {
     itemCount: cart.itemCount,
     totalPrice: cart.pricing.total,
@@ -152,8 +158,8 @@ export function useCartSummary() {
       unitPrice: item.unitPrice,
       totalPrice: item.totalPrice,
       image: item.product.images[0]?.url,
-      type: item.type
-    }))
+      type: item.type,
+    })),
   };
 }
 
@@ -162,14 +168,14 @@ export function useCartSummary() {
  */
 export function useCheckoutProgress() {
   const checkout = useCheckout();
-  
+
   return {
     currentStep: checkout.currentStep,
     progress: checkout.getStepProgress(),
     canProceed: checkout.validateCurrentStep(),
     isProcessing: checkout.isProcessing,
     errors: checkout.errors,
-    completedSteps: checkout.completedSteps
+    completedSteps: checkout.completedSteps,
   };
 }
 
@@ -178,14 +184,14 @@ export function useCheckoutProgress() {
  */
 export function useDiscounts() {
   const checkout = useCheckout();
-  
+
   return {
     appliedDiscount: checkout.appliedDiscount,
     isValidating: checkout.isValidatingDiscount,
     errors: checkout.errors.discount,
     applyCode: checkout.applyDiscountCode,
     removeDiscount: checkout.removeDiscount,
-    clearErrors: () => checkout.clearErrors('discount')
+    clearErrors: () => checkout.clearErrors('discount'),
   };
 }
 
@@ -194,13 +200,13 @@ export function useDiscounts() {
  */
 export function useShipping() {
   const checkout = useCheckout();
-  
+
   return {
     options: checkout.availableShippingOptions,
     selected: checkout.selectedShippingOption,
     isLoading: checkout.isLoadingShipping,
     loadOptions: checkout.loadShippingOptions,
-    selectOption: checkout.selectShippingOption
+    selectOption: checkout.selectShippingOption,
   };
 }
 
@@ -208,20 +214,10 @@ export function useShipping() {
 // EXPORTS
 // ============================================================================
 
-export {
-  CartProvider,
-  useCart
-} from './CartContext';
+export { CartProvider, useCart } from './CartContext';
 
-export {
-  CheckoutProvider,
-  useCheckout
-} from './CheckoutContext';
+export { CheckoutProvider, useCheckout } from './CheckoutContext';
 
-export type {
-  CartContextType
-} from './CartContext';
+export type { CartContextType } from './CartContext';
 
-export type {
-  CheckoutContextType
-} from './CheckoutContext';
+export type { CheckoutContextType } from './CheckoutContext';

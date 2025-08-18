@@ -21,8 +21,7 @@ const buttonVariants = cva(
           'bg-red-600 text-white shadow-lg hover:bg-red-700 hover:shadow-xl hover:-translate-y-0.5 focus-visible:ring-red-500/50 active:bg-red-800',
         ghost:
           'text-fuelfoods-green-600 hover:bg-fuelfoods-green-50 hover:text-fuelfoods-green-700 focus-visible:ring-fuelfoods-green-500/50',
-        link:
-          'text-fuelfoods-green-600 underline-offset-4 hover:underline hover:text-fuelfoods-green-700 focus-visible:ring-fuelfoods-green-500/50',
+        link: 'text-fuelfoods-green-600 underline-offset-4 hover:underline hover:text-fuelfoods-green-700 focus-visible:ring-fuelfoods-green-500/50',
         orange:
           'bg-orange-500 text-white shadow-lg hover:bg-orange-600 hover:shadow-xl hover:-translate-y-0.5 focus-visible:ring-orange-500/50 active:bg-orange-700',
         yellow:
@@ -64,20 +63,23 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({
-    className,
-    variant,
-    size,
-    fullWidth,
-    loading = false,
-    loadingText,
-    leftIcon,
-    rightIcon,
-    asChild = false,
-    children,
-    disabled,
-    ...props
-  }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      fullWidth,
+      loading = false,
+      loadingText,
+      leftIcon,
+      rightIcon,
+      asChild = false,
+      children,
+      disabled,
+      ...props
+    },
+    ref
+  ) => {
     const isDisabled = disabled || loading;
 
     // When rendering asChild, Radix Slot requires exactly one React element child.
@@ -85,7 +87,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     if (asChild) {
       return (
         <Slot
-          className={cn(buttonVariants({ variant, size, fullWidth, loading, className }))}
+          className={cn(
+            buttonVariants({ variant, size, fullWidth, loading, className })
+          )}
           {...props}
         >
           {children as React.ReactElement}
@@ -95,7 +99,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        className={cn(buttonVariants({ variant, size, fullWidth, loading, className }))}
+        className={cn(
+          buttonVariants({ variant, size, fullWidth, loading, className })
+        )}
         ref={ref}
         disabled={isDisabled}
         aria-disabled={isDisabled}
@@ -103,13 +109,25 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {loading && (
           <LoadingSpinner
-            size={size === 'sm' ? 'sm' : size === 'lg' || size === 'xl' ? 'lg' : 'default'}
+            size={
+              size === 'sm'
+                ? 'sm'
+                : size === 'lg' || size === 'xl'
+                  ? 'lg'
+                  : 'default'
+            }
             className="text-current"
           />
         )}
-        {!loading && leftIcon && <span className="flex-shrink-0">{leftIcon}</span>}
-        <span className="flex-1 text-center">{loading && loadingText ? loadingText : children}</span>
-        {!loading && rightIcon && <span className="flex-shrink-0">{rightIcon}</span>}
+        {!loading && leftIcon && (
+          <span className="flex-shrink-0">{leftIcon}</span>
+        )}
+        <span className="flex-1 text-center">
+          {loading && loadingText ? loadingText : children}
+        </span>
+        {!loading && rightIcon && (
+          <span className="flex-shrink-0">{rightIcon}</span>
+        )}
       </button>
     );
   }

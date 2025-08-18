@@ -2,15 +2,27 @@
 
 import { useState, useEffect } from 'react';
 import { useCheckout } from '@/context';
-import { FormField, FormSection, Button, ValidationMessage } from '@/components/form';
-import { CheckoutPaymentInfo, CheckoutBillingInfo, PaymentMethodType } from '@/lib/types';
+import {
+  FormField,
+  FormSection,
+  Button,
+  ValidationMessage,
+} from '@/components/form';
+import {
+  CheckoutPaymentInfo,
+  CheckoutBillingInfo,
+  PaymentMethodType,
+} from '@/lib/types';
 
 interface PaymentInfoStepProps {
   onContinue: () => void;
   onBack: () => void;
 }
 
-export default function PaymentInfoStep({ onContinue, onBack }: PaymentInfoStepProps) {
+export default function PaymentInfoStep({
+  onContinue,
+  onBack,
+}: PaymentInfoStepProps) {
   const {
     paymentInfo,
     billingInfo,
@@ -64,14 +76,20 @@ export default function PaymentInfoStep({ onContinue, onBack }: PaymentInfoStepP
     }
   }, [billingData.sameAsShipping, shippingInfo, updateBillingInfo]);
 
-  const handlePaymentChange = (field: keyof CheckoutPaymentInfo, value: string | boolean) => {
+  const handlePaymentChange = (
+    field: keyof CheckoutPaymentInfo,
+    value: string | boolean
+  ) => {
     const updatedData = { ...paymentData, [field]: value };
     setPaymentData(updatedData);
     updatePaymentInfo(updatedData);
     if (errors.paymentInfo.length > 0) clearErrors('paymentInfo');
   };
 
-  const handleBillingChange = (field: keyof CheckoutBillingInfo, value: string | boolean) => {
+  const handleBillingChange = (
+    field: keyof CheckoutBillingInfo,
+    value: string | boolean
+  ) => {
     const updatedData = { ...billingData, [field]: value };
     setBillingData(updatedData);
     updateBillingInfo(updatedData);
@@ -100,7 +118,8 @@ export default function PaymentInfoStep({ onContinue, onBack }: PaymentInfoStepP
     }
   };
 
-  const formatCardNumber = (cardNumber: string) => cardNumber.replace(/(.{4})/g, '$1 ').trim();
+  const formatCardNumber = (cardNumber: string) =>
+    cardNumber.replace(/(.{4})/g, '$1 ').trim();
 
   const formatExpiry = () => {
     const month = paymentData.expiryMonth || '';
@@ -114,7 +133,11 @@ export default function PaymentInfoStep({ onContinue, onBack }: PaymentInfoStepP
 
   return (
     <div className="space-y-8">
-      <FormSection title="Payment Method" description="All transactions are secure and encrypted" className="space-y-6">
+      <FormSection
+        title="Payment Method"
+        description="All transactions are secure and encrypted"
+        className="space-y-6"
+      >
         {/* Remove stacked required notices; subtle asterisks only */}
 
         <div className="space-y-4">
@@ -125,22 +148,43 @@ export default function PaymentInfoStep({ onContinue, onBack }: PaymentInfoStepP
                 name="paymentMethod"
                 value="credit_card"
                 checked={paymentData.methodType === 'credit_card'}
-                onChange={(e) => handlePaymentChange('methodType', e.target.value as PaymentMethodType)}
+                onChange={e =>
+                  handlePaymentChange(
+                    'methodType',
+                    e.target.value as PaymentMethodType
+                  )
+                }
                 className="sr-only"
               />
-              <div className={`p-4 border-2 rounded-lg transition-all ${
-                paymentData.methodType === 'credit_card' ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'
-              }`}>
+              <div
+                className={`p-4 border-2 rounded-lg transition-all ${
+                  paymentData.methodType === 'credit_card'
+                    ? 'border-green-500 bg-green-50'
+                    : 'border-gray-200 hover:border-gray-300'
+                }`}
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <svg className="w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-6 h-6 text-gray-600"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
                     </svg>
                     <span className="font-medium">Credit/Debit Card</span>
                   </div>
                   {paymentData.methodType === 'credit_card' && (
-                    <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    <svg
+                      className="w-5 h-5 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   )}
                 </div>
@@ -153,20 +197,39 @@ export default function PaymentInfoStep({ onContinue, onBack }: PaymentInfoStepP
                 name="paymentMethod"
                 value="paypal"
                 checked={paymentData.methodType === 'paypal'}
-                onChange={(e) => handlePaymentChange('methodType', e.target.value as PaymentMethodType)}
+                onChange={e =>
+                  handlePaymentChange(
+                    'methodType',
+                    e.target.value as PaymentMethodType
+                  )
+                }
                 className="sr-only"
               />
-              <div className={`p-4 border-2 rounded-lg transition-all ${
-                paymentData.methodType === 'paypal' ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'
-              }`}>
+              <div
+                className={`p-4 border-2 rounded-lg transition-all ${
+                  paymentData.methodType === 'paypal'
+                    ? 'border-green-500 bg-green-50'
+                    : 'border-gray-200 hover:border-gray-300'
+                }`}
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">P</div>
+                    <div className="w-6 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">
+                      P
+                    </div>
                     <span className="font-medium">PayPal</span>
                   </div>
                   {paymentData.methodType === 'paypal' && (
-                    <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    <svg
+                      className="w-5 h-5 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   )}
                 </div>
@@ -177,46 +240,158 @@ export default function PaymentInfoStep({ onContinue, onBack }: PaymentInfoStepP
 
         {paymentData.methodType === 'credit_card' && (
           <div className="space-y-6">
-            <FormField label="Cardholder Name" type="text" value={paymentData.cardholderName || ''} onValueChange={(v) => handlePaymentChange('cardholderName', v)} placeholder="Name as it appears on card" required error={errors.paymentInfo.find((e) => e.includes('cardholderName'))} />
-            <FormField label="Card Number" type="text" value={formatCardNumber(paymentData.cardNumber || '')} onValueChange={handleCardNumberChange} placeholder="1234 5678 9012 3456" required error={errors.paymentInfo.find((e) => e.includes('cardNumber'))} />
+            <FormField
+              label="Cardholder Name"
+              type="text"
+              value={paymentData.cardholderName || ''}
+              onValueChange={v => handlePaymentChange('cardholderName', v)}
+              placeholder="Name as it appears on card"
+              required
+              error={errors.paymentInfo.find(e => e.includes('cardholderName'))}
+            />
+            <FormField
+              label="Card Number"
+              type="text"
+              value={formatCardNumber(paymentData.cardNumber || '')}
+              onValueChange={handleCardNumberChange}
+              placeholder="1234 5678 9012 3456"
+              required
+              error={errors.paymentInfo.find(e => e.includes('cardNumber'))}
+            />
             <div className="grid grid-cols-2 gap-6">
-              <FormField label="Expiry Date" type="text" value={formatExpiry()} onValueChange={handleExpiryChange} placeholder="MM/YY" required error={errors.paymentInfo.find((e) => e.includes('expiry'))} />
-              <FormField label="CVV" type="text" value={paymentData.cvv || ''} onValueChange={(v) => v.length <= 4 && handlePaymentChange('cvv', v)} placeholder="123" required error={errors.paymentInfo.find((e) => e.includes('cvv'))} helperText="3 or 4 digit security code" />
+              <FormField
+                label="Expiry Date"
+                type="text"
+                value={formatExpiry()}
+                onValueChange={handleExpiryChange}
+                placeholder="MM/YY"
+                required
+                error={errors.paymentInfo.find(e => e.includes('expiry'))}
+              />
+              <FormField
+                label="CVV"
+                type="text"
+                value={paymentData.cvv || ''}
+                onValueChange={v =>
+                  v.length <= 4 && handlePaymentChange('cvv', v)
+                }
+                placeholder="123"
+                required
+                error={errors.paymentInfo.find(e => e.includes('cvv'))}
+                helperText="3 or 4 digit security code"
+              />
             </div>
             <div className="flex items-center space-x-3">
-              <input type="checkbox" id="save-payment" checked={paymentData.savePaymentMethod || false} onChange={(e) => handlePaymentChange('savePaymentMethod', e.target.checked)} className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded" />
-              <label htmlFor="save-payment" className="text-sm text-gray-700">Save this payment method for future orders</label>
+              <input
+                type="checkbox"
+                id="save-payment"
+                checked={paymentData.savePaymentMethod || false}
+                onChange={e =>
+                  handlePaymentChange('savePaymentMethod', e.target.checked)
+                }
+                className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+              />
+              <label htmlFor="save-payment" className="text-sm text-gray-700">
+                Save this payment method for future orders
+              </label>
             </div>
           </div>
         )}
 
         {paymentData.methodType === 'paypal' && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <p className="text-sm text-blue-800">You'll be redirected to PayPal to complete your payment securely.</p>
+            <p className="text-sm text-blue-800">
+              You'll be redirected to PayPal to complete your payment securely.
+            </p>
           </div>
         )}
       </FormSection>
 
-      <FormSection title="Billing Address" description="Address associated with your payment method" className="space-y-6">
+      <FormSection
+        title="Billing Address"
+        description="Address associated with your payment method"
+        className="space-y-6"
+      >
         {/* Remove stacked required notices; subtle asterisks only */}
 
         <div className="flex items-center space-x-3">
-          <input type="checkbox" id="same-as-shipping" checked={billingData.sameAsShipping || false} onChange={(e) => handleBillingChange('sameAsShipping', e.target.checked)} className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded" />
-          <label htmlFor="same-as-shipping" className="text-sm font-medium text-gray-700">Billing address is the same as shipping address</label>
+          <input
+            type="checkbox"
+            id="same-as-shipping"
+            checked={billingData.sameAsShipping || false}
+            onChange={e =>
+              handleBillingChange('sameAsShipping', e.target.checked)
+            }
+            className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+          />
+          <label
+            htmlFor="same-as-shipping"
+            className="text-sm font-medium text-gray-700"
+          >
+            Billing address is the same as shipping address
+          </label>
         </div>
 
         {!billingData.sameAsShipping && (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField label="First Name" type="text" value={billingData.firstName || ''} onValueChange={(v) => handleBillingChange('firstName', v)} placeholder="Enter first name" required />
-              <FormField label="Last Name" type="text" value={billingData.lastName || ''} onValueChange={(v) => handleBillingChange('lastName', v)} placeholder="Enter last name" required />
+              <FormField
+                label="First Name"
+                type="text"
+                value={billingData.firstName || ''}
+                onValueChange={v => handleBillingChange('firstName', v)}
+                placeholder="Enter first name"
+                required
+              />
+              <FormField
+                label="Last Name"
+                type="text"
+                value={billingData.lastName || ''}
+                onValueChange={v => handleBillingChange('lastName', v)}
+                placeholder="Enter last name"
+                required
+              />
             </div>
-            <FormField label="Street Address" type="text" value={billingData.address1 || ''} onValueChange={(v) => handleBillingChange('address1', v)} placeholder="Enter street address" required />
-            <FormField label="Apartment, Suite, etc. (Optional)" type="text" value={billingData.address2 || ''} onValueChange={(v) => handleBillingChange('address2', v)} placeholder="Apt, suite, unit, etc." />
+            <FormField
+              label="Street Address"
+              type="text"
+              value={billingData.address1 || ''}
+              onValueChange={v => handleBillingChange('address1', v)}
+              placeholder="Enter street address"
+              required
+            />
+            <FormField
+              label="Apartment, Suite, etc. (Optional)"
+              type="text"
+              value={billingData.address2 || ''}
+              onValueChange={v => handleBillingChange('address2', v)}
+              placeholder="Apt, suite, unit, etc."
+            />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <FormField label="City" type="text" value={billingData.city || ''} onValueChange={(v) => handleBillingChange('city', v)} placeholder="Enter city" required />
-              <FormField label="State" type="text" value={billingData.state || ''} onValueChange={(v) => handleBillingChange('state', v)} placeholder="State" required />
-              <FormField label="ZIP Code" type="text" value={billingData.zipCode || ''} onValueChange={(v) => handleBillingChange('zipCode', v)} placeholder="12345" required />
+              <FormField
+                label="City"
+                type="text"
+                value={billingData.city || ''}
+                onValueChange={v => handleBillingChange('city', v)}
+                placeholder="Enter city"
+                required
+              />
+              <FormField
+                label="State"
+                type="text"
+                value={billingData.state || ''}
+                onValueChange={v => handleBillingChange('state', v)}
+                placeholder="State"
+                required
+              />
+              <FormField
+                label="ZIP Code"
+                type="text"
+                value={billingData.zipCode || ''}
+                onValueChange={v => handleBillingChange('zipCode', v)}
+                placeholder="12345"
+                required
+              />
             </div>
           </div>
         )}
@@ -224,12 +399,25 @@ export default function PaymentInfoStep({ onContinue, onBack }: PaymentInfoStepP
 
       <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
         <div className="flex items-start space-x-3">
-          <svg className="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+          <svg
+            className="w-5 h-5 text-green-500 mt-0.5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+              clipRule="evenodd"
+            />
           </svg>
           <div>
-            <h4 className="text-sm font-medium text-gray-900">Secure Payment Processing</h4>
-            <p className="text-xs text-gray-600 mt-1">Your payment information is encrypted and processed securely. We never store your card details.</p>
+            <h4 className="text-sm font-medium text-gray-900">
+              Secure Payment Processing
+            </h4>
+            <p className="text-xs text-gray-600 mt-1">
+              Your payment information is encrypted and processed securely. We
+              never store your card details.
+            </p>
           </div>
         </div>
       </div>
@@ -242,8 +430,18 @@ export default function PaymentInfoStep({ onContinue, onBack }: PaymentInfoStepP
           size="lg"
         >
           Review Order
-          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <svg
+            className="w-4 h-4 ml-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </Button>
       </div>

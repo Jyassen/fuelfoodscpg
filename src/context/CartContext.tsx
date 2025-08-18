@@ -6,7 +6,7 @@ import React, {
   useReducer,
   useCallback,
   useEffect,
-  ReactNode
+  ReactNode,
 } from 'react';
 
 import {
@@ -16,12 +16,12 @@ import {
   SubscriptionFrequency,
   OrderPricing,
   MICROGREENS_VARIETIES,
-  PLAN_CONFIGURATIONS
+  PLAN_CONFIGURATIONS,
 } from '@/lib/types';
 import {
   createCheckoutCartItem,
   calculateOrderPricing,
-  updateCheckoutData
+  updateCheckoutData,
 } from '@/lib/checkout-utils';
 
 // ============================================================================
@@ -48,7 +48,10 @@ type CartAction =
   | { type: 'ADD_ITEM'; payload: CheckoutCartItem }
   | { type: 'REMOVE_ITEM'; payload: string }
   | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
-  | { type: 'UPDATE_ITEM_CONFIG'; payload: { id: string; config: Partial<CheckoutCartItem> } }
+  | {
+      type: 'UPDATE_ITEM_CONFIG';
+      payload: { id: string; config: Partial<CheckoutCartItem> };
+    }
   | { type: 'CLEAR_CART' }
   | { type: 'CALCULATE_PRICING' }
   | { type: 'RESTORE_CART'; payload: CheckoutCartItem[] }
@@ -69,23 +72,26 @@ interface CartContextType extends CartState {
   ) => void;
   removeItem: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
-  updateItemConfiguration: (itemId: string, config: Partial<CheckoutCartItem>) => void;
+  updateItemConfiguration: (
+    itemId: string,
+    config: Partial<CheckoutCartItem>
+  ) => void;
   clearCart: () => void;
-  
+
   // Utility functions
   getItemById: (itemId: string) => CheckoutCartItem | undefined;
   getItemsByProduct: (productId: string) => CheckoutCartItem[];
   getTotalItems: () => number;
   getTotalPrice: () => number;
   hasItems: () => boolean;
-  
+
   // Subscription helpers
   addSubscriptionPlan: (
     planType: 'pro' | 'elite',
     configuration: PlanConfiguration,
     frequency: SubscriptionFrequency
   ) => void;
-  
+
   // Persistence
   saveToStorage: () => void;
   loadFromStorage: () => void;
@@ -100,23 +106,24 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     case 'SET_LOADING':
       return {
         ...state,
-        isLoading: action.payload
+        isLoading: action.payload,
       };
 
     case 'SET_ERROR':
       return {
         ...state,
         error: action.payload,
-        isLoading: false
+        isLoading: false,
       };
 
     case 'ADD_ITEM': {
       const newItem = action.payload;
       const existingItemIndex = state.items.findIndex(
-        item => 
+        item =>
           item.productId === newItem.productId &&
           item.type === newItem.type &&
-          JSON.stringify(item.packageConfiguration) === JSON.stringify(newItem.packageConfiguration) &&
+          JSON.stringify(item.packageConfiguration) ===
+            JSON.stringify(newItem.packageConfiguration) &&
           item.subscriptionFrequency === newItem.subscriptionFrequency
       );
 
@@ -124,13 +131,13 @@ function cartReducer(state: CartState, action: CartAction): CartState {
 
       if (existingItemIndex >= 0) {
         // Update existing item quantity
-        updatedItems = state.items.map((item, index) => 
+        updatedItems = state.items.map((item, index) =>
           index === existingItemIndex
             ? {
                 ...item,
                 quantity: item.quantity + newItem.quantity,
                 totalPrice: (item.quantity + newItem.quantity) * item.unitPrice,
-                addedAt: new Date()
+                addedAt: new Date(),
               }
             : item
         );
@@ -139,7 +146,10 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         updatedItems = [...state.items, newItem];
       }
 
-      const itemCount = updatedItems.reduce((sum, item) => sum + item.quantity, 0);
+      const itemCount = updatedItems.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+      );
       const pricing = calculateOrderPricing(updatedItems);
 
       return {
@@ -148,13 +158,18 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         itemCount,
         pricing,
         updatedAt: new Date(),
-        error: null
+        error: null,
       };
     }
 
     case 'REMOVE_ITEM': {
-      const updatedItems = state.items.filter(item => item.id !== action.payload);
-      const itemCount = updatedItems.reduce((sum, item) => sum + item.quantity, 0);
+      const updatedItems = state.items.filter(
+        item => item.id !== action.payload
+      );
+      const itemCount = updatedItems.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+      );
       const pricing = calculateOrderPricing(updatedItems);
 
       return {
@@ -162,13 +177,13 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         items: updatedItems,
         itemCount,
         pricing,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       };
     }
 
     case 'UPDATE_QUANTITY': {
       const { id, quantity } = action.payload;
-      
+
       if (quantity <= 0) {
         // Remove item if quantity is 0 or negative
         return cartReducer(state, { type: 'REMOVE_ITEM', payload: id });
@@ -180,12 +195,15 @@ function cartReducer(state: CartState, action: CartAction): CartState {
               ...item,
               quantity,
               totalPrice: quantity * item.unitPrice,
-              addedAt: new Date()
+              addedAt: new Date(),
             }
           : item
       );
 
-      const itemCount = updatedItems.reduce((sum, item) => sum + item.quantity, 0);
+      const itemCount = updatedItems.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+      );
       const pricing = calculateOrderPricing(updatedItems);
 
       return {
@@ -193,20 +211,21 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         items: updatedItems,
         itemCount,
         pricing,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       };
     }
 
     case 'UPDATE_ITEM_CONFIG': {
       const { id, config } = action.payload;
-      
+
       const updatedItems = state.items.map(item =>
-        item.id === id
-          ? { ...item, ...config, addedAt: new Date() }
-          : item
+        item.id === id ? { ...item, ...config, addedAt: new Date() } : item
       );
 
-      const itemCount = updatedItems.reduce((sum, item) => sum + item.quantity, 0);
+      const itemCount = updatedItems.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+      );
       const pricing = calculateOrderPricing(updatedItems);
 
       return {
@@ -214,7 +233,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         items: updatedItems,
         itemCount,
         pricing,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       };
     }
 
@@ -225,7 +244,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         itemCount: 0,
         pricing: calculateOrderPricing([]),
         updatedAt: new Date(),
-        error: null
+        error: null,
       };
 
     case 'CALCULATE_PRICING': {
@@ -233,7 +252,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       return {
         ...state,
         pricing,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       };
     }
 
@@ -249,7 +268,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         itemCount,
         pricing,
         updatedAt: new Date(),
-        error: null
+        error: null,
       };
     }
 
@@ -275,14 +294,14 @@ const initialState: CartState = {
       amount: 0,
       taxableAmount: 0,
       jurisdiction: '',
-      isTaxExempt: false
+      isTaxExempt: false,
     },
-    total: 0
+    total: 0,
   },
   isLoading: false,
   error: null,
   sessionId: `cart_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-  updatedAt: new Date()
+  updatedAt: new Date(),
 };
 
 // ============================================================================
@@ -300,21 +319,21 @@ interface CartProviderProps {
   persistToStorage?: boolean;
 }
 
-export function CartProvider({ 
-  children, 
-  persistToStorage = true 
+export function CartProvider({
+  children,
+  persistToStorage = true,
 }: CartProviderProps) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   // Storage helpers
   const saveToStorage = useCallback(() => {
     if (!persistToStorage || typeof window === 'undefined') return;
-    
+
     try {
       const cartData = {
         items: state.items,
         sessionId: state.sessionId,
-        updatedAt: state.updatedAt.toISOString()
+        updatedAt: state.updatedAt.toISOString(),
       };
       localStorage.setItem('fuelfoods_cart', JSON.stringify(cartData));
     } catch (error) {
@@ -324,15 +343,15 @@ export function CartProvider({
 
   const loadFromStorage = useCallback(() => {
     if (!persistToStorage || typeof window === 'undefined') return;
-    
+
     try {
       const stored = localStorage.getItem('fuelfoods_cart');
       if (stored) {
         const cartData = JSON.parse(stored);
         if (cartData.items && Array.isArray(cartData.items)) {
           // Validate and restore items
-          const validItems = cartData.items.filter((item: any) => 
-            item.id && item.productId && item.quantity > 0
+          const validItems = cartData.items.filter(
+            (item: any) => item.id && item.productId && item.quantity > 0
           );
           dispatch({ type: 'RESTORE_CART', payload: validItems });
         }
@@ -355,35 +374,41 @@ export function CartProvider({
   }, [state.items, state.sessionId, saveToStorage]);
 
   // Cart management functions
-  const addItem = useCallback((
-    product: FuelFoodsProduct,
-    quantity: number,
-    type: 'individual' | 'subscription' = 'individual',
-    packageConfiguration?: PlanConfiguration,
-    subscriptionFrequency?: SubscriptionFrequency
-  ) => {
-    try {
-      dispatch({ type: 'SET_LOADING', payload: true });
-      
-      const cartItem = createCheckoutCartItem(
-        product.id,
-        product,
-        quantity,
-        type,
-        packageConfiguration,
-        subscriptionFrequency
-      );
-      
-      dispatch({ type: 'ADD_ITEM', payload: cartItem });
-    } catch (error) {
-      dispatch({ 
-        type: 'SET_ERROR', 
-        payload: error instanceof Error ? error.message : 'Failed to add item to cart'
-      });
-    } finally {
-      dispatch({ type: 'SET_LOADING', payload: false });
-    }
-  }, []);
+  const addItem = useCallback(
+    (
+      product: FuelFoodsProduct,
+      quantity: number,
+      type: 'individual' | 'subscription' = 'individual',
+      packageConfiguration?: PlanConfiguration,
+      subscriptionFrequency?: SubscriptionFrequency
+    ) => {
+      try {
+        dispatch({ type: 'SET_LOADING', payload: true });
+
+        const cartItem = createCheckoutCartItem(
+          product.id,
+          product,
+          quantity,
+          type,
+          packageConfiguration,
+          subscriptionFrequency
+        );
+
+        dispatch({ type: 'ADD_ITEM', payload: cartItem });
+      } catch (error) {
+        dispatch({
+          type: 'SET_ERROR',
+          payload:
+            error instanceof Error
+              ? error.message
+              : 'Failed to add item to cart',
+        });
+      } finally {
+        dispatch({ type: 'SET_LOADING', payload: false });
+      }
+    },
+    []
+  );
 
   const removeItem = useCallback((itemId: string) => {
     dispatch({ type: 'REMOVE_ITEM', payload: itemId });
@@ -393,22 +418,31 @@ export function CartProvider({
     dispatch({ type: 'UPDATE_QUANTITY', payload: { id: itemId, quantity } });
   }, []);
 
-  const updateItemConfiguration = useCallback((itemId: string, config: Partial<CheckoutCartItem>) => {
-    dispatch({ type: 'UPDATE_ITEM_CONFIG', payload: { id: itemId, config } });
-  }, []);
+  const updateItemConfiguration = useCallback(
+    (itemId: string, config: Partial<CheckoutCartItem>) => {
+      dispatch({ type: 'UPDATE_ITEM_CONFIG', payload: { id: itemId, config } });
+    },
+    []
+  );
 
   const clearCart = useCallback(() => {
     dispatch({ type: 'CLEAR_CART' });
   }, []);
 
   // Utility functions
-  const getItemById = useCallback((itemId: string) => {
-    return state.items.find(item => item.id === itemId);
-  }, [state.items]);
+  const getItemById = useCallback(
+    (itemId: string) => {
+      return state.items.find(item => item.id === itemId);
+    },
+    [state.items]
+  );
 
-  const getItemsByProduct = useCallback((productId: string) => {
-    return state.items.filter(item => item.productId === productId);
-  }, [state.items]);
+  const getItemsByProduct = useCallback(
+    (productId: string) => {
+      return state.items.filter(item => item.productId === productId);
+    },
+    [state.items]
+  );
 
   const getTotalItems = useCallback(() => {
     return state.itemCount;
@@ -423,61 +457,68 @@ export function CartProvider({
   }, [state.items.length]);
 
   // Subscription helper
-  const addSubscriptionPlan = useCallback((
-    planType: 'pro' | 'elite',
-    configuration: PlanConfiguration,
-    frequency: SubscriptionFrequency
-  ) => {
-    // Create a representative product for the subscription plan
-    const planConfig = PLAN_CONFIGURATIONS[planType];
-    const baseVariety = MICROGREENS_VARIETIES['mega-mix']; // Use as base
-    
-    const subscriptionProduct: FuelFoodsProduct = {
-      id: `subscription_${planType}`,
-      name: planConfig.name,
-      slug: `subscription-${planType}`,
-      description: planConfig.description,
-      shortDescription: planConfig.description,
-      price: planConfig.pricePerPack,
-      images: [{ 
-        id: 'sub-1', 
-        url: baseVariety.image, 
-        alt: planConfig.name, 
-        width: 400, 
-        height: 400, 
-        isPrimary: true 
-      }],
-      categories: [{ 
-        id: 'subscription', 
-        name: 'Subscription Plans', 
-        slug: 'subscriptions',
-        type: 'bundles' as const
-      }],
-      inStock: true,
-      sku: `SUB-${planType.toUpperCase()}`,
-      attributes: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      variant: 'mega-mix' as const,
-      microgreenTypes: ['arugula', 'broccoli', 'kale'] as const,
-      nutritionalInfo: {
-        vitamins: ['Vitamin C', 'Vitamin K', 'Folate'],
-        minerals: ['Iron', 'Calcium', 'Potassium'],
-        antioxidants: ['Sulforaphane', 'Beta-carotene']
-      },
-      subscriptionOptions: [],
-      packageSizes: [],
-      freshnessDuration: '7-10 days refrigerated'
-    };
+  const addSubscriptionPlan = useCallback(
+    (
+      planType: 'pro' | 'elite',
+      configuration: PlanConfiguration,
+      frequency: SubscriptionFrequency
+    ) => {
+      // Create a representative product for the subscription plan
+      const planConfig = PLAN_CONFIGURATIONS[planType];
+      const baseVariety = MICROGREENS_VARIETIES['mega-mix']; // Use as base
 
-    addItem(
-      subscriptionProduct,
-      configuration.totalPacks,
-      'subscription',
-      configuration,
-      frequency
-    );
-  }, [addItem]);
+      const subscriptionProduct: FuelFoodsProduct = {
+        id: `subscription_${planType}`,
+        name: planConfig.name,
+        slug: `subscription-${planType}`,
+        description: planConfig.description,
+        shortDescription: planConfig.description,
+        price: planConfig.pricePerPack,
+        images: [
+          {
+            id: 'sub-1',
+            url: baseVariety.image,
+            alt: planConfig.name,
+            width: 400,
+            height: 400,
+            isPrimary: true,
+          },
+        ],
+        categories: [
+          {
+            id: 'subscription',
+            name: 'Subscription Plans',
+            slug: 'subscriptions',
+            type: 'bundles' as const,
+          },
+        ],
+        inStock: true,
+        sku: `SUB-${planType.toUpperCase()}`,
+        attributes: [],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        variant: 'mega-mix' as const,
+        microgreenTypes: ['arugula', 'broccoli', 'kale'] as const,
+        nutritionalInfo: {
+          vitamins: ['Vitamin C', 'Vitamin K', 'Folate'],
+          minerals: ['Iron', 'Calcium', 'Potassium'],
+          antioxidants: ['Sulforaphane', 'Beta-carotene'],
+        },
+        subscriptionOptions: [],
+        packageSizes: [],
+        freshnessDuration: '7-10 days refrigerated',
+      };
+
+      addItem(
+        subscriptionProduct,
+        configuration.totalPacks,
+        'subscription',
+        configuration,
+        frequency
+      );
+    },
+    [addItem]
+  );
 
   // Context value
   const contextValue: CartContextType = {
@@ -494,13 +535,11 @@ export function CartProvider({
     hasItems,
     addSubscriptionPlan,
     saveToStorage,
-    loadFromStorage
+    loadFromStorage,
   };
 
   return (
-    <CartContext.Provider value={contextValue}>
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
 }
 

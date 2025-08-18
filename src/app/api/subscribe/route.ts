@@ -18,7 +18,10 @@ const getDataCenter = () => {
 };
 
 async function resolveAudienceId(): Promise<string> {
-  if (process.env.MAILCHIMP_AUDIENCE_ID && process.env.MAILCHIMP_AUDIENCE_ID.trim() !== '') {
+  if (
+    process.env.MAILCHIMP_AUDIENCE_ID &&
+    process.env.MAILCHIMP_AUDIENCE_ID.trim() !== ''
+  ) {
     return process.env.MAILCHIMP_AUDIENCE_ID.trim();
   }
   // Fallback: pick the first list
@@ -47,18 +50,21 @@ export async function POST(req: Request) {
     const listId = await resolveAudienceId();
 
     // Try create new member
-    const createRes = await fetch(`https://${dc}.api.mailchimp.com/3.0/lists/${listId}/members`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: getAuthHeader(),
-      },
-      body: JSON.stringify({
-        email_address: email,
-        status: 'subscribed',
-        merge_fields: { FNAME: firstName ?? '' },
-      }),
-    });
+    const createRes = await fetch(
+      `https://${dc}.api.mailchimp.com/3.0/lists/${listId}/members`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: getAuthHeader(),
+        },
+        body: JSON.stringify({
+          email_address: email,
+          status: 'subscribed',
+          merge_fields: { FNAME: firstName ?? '' },
+        }),
+      }
+    );
 
     if (createRes.ok) {
       return NextResponse.json({ ok: true });
@@ -68,24 +74,40 @@ export async function POST(req: Request) {
     if (error?.title === 'Member Exists') {
       // Update existing member
       const crypto = await import('crypto');
-      const hash = crypto.createHash('md5').update(email.toLowerCase()).digest('hex');
-      const patchRes = await fetch(`https://${dc}.api.mailchimp.com/3.0/lists/${listId}/members/${hash}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: getAuthHeader(),
-        },
-        body: JSON.stringify({ status: 'subscribed', merge_fields: { FNAME: firstName ?? '' } }),
-      });
+      const hash = crypto
+        .createHash('md5')
+        .update(email.toLowerCase())
+        .digest('hex');
+      const patchRes = await fetch(
+        `https://${dc}.api.mailchimp.com/3.0/lists/${listId}/members/${hash}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: getAuthHeader(),
+          },
+          body: JSON.stringify({
+            status: 'subscribed',
+            merge_fields: { FNAME: firstName ?? '' },
+          }),
+        }
+      );
       if (patchRes.ok) return NextResponse.json({ ok: true, updated: true });
       const patchError = await patchRes.text();
-      return NextResponse.json({ error: patchError || 'Failed to update member' }, { status: 500 });
+      return NextResponse.json(
+        { error: patchError || 'Failed to update member' },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json({ error: error?.detail || 'Failed to subscribe' }, { status: 500 });
+    return NextResponse.json(
+      { error: error?.detail || 'Failed to subscribe' },
+      { status: 500 }
+    );
   } catch (e: any) {
-    return NextResponse.json({ error: e?.message || 'Server error' }, { status: 500 });
+    return NextResponse.json(
+      { error: e?.message || 'Server error' },
+      { status: 500 }
+    );
   }
 }
-
-

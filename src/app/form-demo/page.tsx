@@ -6,5 +6,6 @@ export default function FormDemoPage() {
 
 export const metadata = {
   title: 'Form Components Demo | FuelFoods',
-  description: 'Interactive showcase of FuelFoods form components for checkout system',
+  description:
+    'Interactive showcase of FuelFoods form components for checkout system',
 };
