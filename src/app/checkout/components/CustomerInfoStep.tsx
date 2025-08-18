@@ -42,6 +42,9 @@ export default function CustomerInfoStep({
     field: keyof CheckoutCustomerInfo,
     value: string | boolean
   ) => {
+    // Prevent unwanted scrolling during autofill
+    const currentScrollY = window.scrollY;
+    
     const updatedData = { ...formData, [field]: value };
     setFormData(updatedData);
     updateCustomerInfo(updatedData);
@@ -49,6 +52,13 @@ export default function CustomerInfoStep({
     if (errors.customerInfo.length > 0) {
       clearErrors('customerInfo');
     }
+
+    // Restore scroll position if it changed unexpectedly
+    setTimeout(() => {
+      if (Math.abs(window.scrollY - currentScrollY) > 50) {
+        window.scrollTo(0, currentScrollY);
+      }
+    }, 0);
   };
 
   const handleContinue = () => {
@@ -61,7 +71,7 @@ export default function CustomerInfoStep({
     <FormSection
       title="Customer Information"
       description="We'll use this information to process your order and send updates"
-      className="space-y-6"
+      className="space-y-6 checkout-form"
     >
       {/* Remove stacked required notices; subtle asterisks only */}
 
@@ -101,7 +111,6 @@ export default function CustomerInfoStep({
         placeholder="Enter your email address"
         required
         error={errors.customerInfo.find(e => e.includes('email'))}
-        helperText="We'll send order updates and delivery notifications to this email"
       />
 
       <FormField
@@ -114,7 +123,6 @@ export default function CustomerInfoStep({
         placeholder="(555) 123-4567"
         required
         error={errors.customerInfo.find(e => e.includes('phone'))}
-        helperText="For delivery coordination and important order updates"
       />
 
       {/* Marketing Opt-in */}

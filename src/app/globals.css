@@ -1,5 +1,23 @@
 @import 'tailwindcss';
 
+/* Prevent autofill from causing unwanted scrolling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  scroll-margin: 0;
+}
+
+/* Improve form stability during autofill */
+.checkout-form {
+  scroll-behavior: smooth;
+}
+
+.checkout-form input {
+  scroll-margin-top: 2rem;
+}
+
 @layer base {
   :root {
     /* Light theme - Modern health food company colors */

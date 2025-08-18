@@ -111,6 +111,9 @@ export default function ShippingAddressStep({
     field: keyof CheckoutShippingInfo,
     value: string
   ) => {
+    // Prevent unwanted scrolling during autofill
+    const currentScrollY = window.scrollY;
+    
     const updatedData = { ...formData, [field]: value };
     setFormData(updatedData);
     updateShippingInfo(updatedData);
@@ -122,6 +125,13 @@ export default function ShippingAddressStep({
     if (errors.shippingInfo.length > 0) {
       clearErrors('shippingInfo');
     }
+
+    // Restore scroll position if it changed unexpectedly
+    setTimeout(() => {
+      if (Math.abs(window.scrollY - currentScrollY) > 50) {
+        window.scrollTo(0, currentScrollY);
+      }
+    }, 0);
   };
 
   const handleContinue = () => {
@@ -134,7 +144,7 @@ export default function ShippingAddressStep({
     <FormSection
       title="Shipping Address"
       description="Where should we deliver your fresh microgreens?"
-      className="space-y-6"
+      className="space-y-6 checkout-form"
     >
       {/* Remove stacked required notices; subtle asterisks only */}
 
