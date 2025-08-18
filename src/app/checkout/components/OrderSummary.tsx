@@ -161,7 +161,7 @@ export default function OrderSummary({
                   className="whitespace-nowrap"
                 >
                   {isValidatingDiscount ? (
-                    <LoadingSpinner size="xs" />
+                    <LoadingSpinner size="sm" />
                   ) : (
                     'Apply'
                   )}
