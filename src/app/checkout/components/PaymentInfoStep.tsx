@@ -105,15 +105,52 @@ export default function PaymentInfoStep({
   };
 
   const handleExpiryChange = (value: string) => {
-    const cleaned = value.replace(/\D/g, '');
+    // Handle both typed input (MMYY) and autofill format (MM/YY or MM/YYYY)
+    let cleaned = value.replace(/\D/g, '');
+    
+    // If the input contains a slash, split it properly
+    if (value.includes('/')) {
+      const parts = value.split('/');
+      const month = parts[0]?.replace(/\D/g, '') || '';
+      const year = parts[1]?.replace(/\D/g, '') || '';
+      
+      if (month && month.length <= 2) {
+        handlePaymentChange('expiryMonth', month.padStart(2, '0'));
+        
+        if (year) {
+          // Handle both YY and YYYY formats
+          const normalizedYear = year.length === 2 ? `20${year}` : year.slice(0, 4);
+          // Don't accept years like "00" from autofill, use current year + 1 as minimum
+          const currentYear = new Date().getFullYear();
+          const yearNum = parseInt(normalizedYear);
+          
+          if (yearNum >= currentYear) {
+            handlePaymentChange('expiryYear', normalizedYear);
+          } else if (year === '00') {
+            // Handle "00" from broken autofill - default to current year + 1
+            handlePaymentChange('expiryYear', (currentYear + 1).toString());
+          }
+        }
+      }
+      return;
+    }
+    
+    // Handle manual typing (no slash)
     if (cleaned.length <= 4) {
       if (cleaned.length >= 2) {
         const month = cleaned.slice(0, 2);
         const year = cleaned.slice(2);
         handlePaymentChange('expiryMonth', month);
-        if (year) handlePaymentChange('expiryYear', `20${year}`);
+        if (year) {
+          const fullYear = year.length === 1 ? `202${year}` : `20${year}`;
+          handlePaymentChange('expiryYear', fullYear);
+        }
       } else {
         handlePaymentChange('expiryMonth', cleaned);
+        // Clear year if month is being edited
+        if (cleaned.length < 2) {
+          handlePaymentChange('expiryYear', '');
+        }
       }
     }
   };
@@ -248,6 +285,7 @@ export default function PaymentInfoStep({
               placeholder="Name as it appears on card"
               required
               error={errors.paymentInfo.find(e => e.includes('cardholderName'))}
+              autoComplete="cc-name"
             />
             <FormField
               label="Card Number"
@@ -257,6 +295,7 @@ export default function PaymentInfoStep({
               placeholder="1234 5678 9012 3456"
               required
               error={errors.paymentInfo.find(e => e.includes('cardNumber'))}
+              autoComplete="cc-number"
             />
             <div className="grid grid-cols-2 gap-6">
               <FormField
@@ -265,8 +304,10 @@ export default function PaymentInfoStep({
                 value={formatExpiry()}
                 onValueChange={handleExpiryChange}
                 placeholder="MM/YY"
+                maxLength={5}
                 required
                 error={errors.paymentInfo.find(e => e.includes('expiry'))}
+                autoComplete="cc-exp"
               />
               <FormField
                 label="CVV"
@@ -276,9 +317,11 @@ export default function PaymentInfoStep({
                   v.length <= 4 && handlePaymentChange('cvv', v)
                 }
                 placeholder="123"
+                maxLength={4}
                 required
                 error={errors.paymentInfo.find(e => e.includes('cvv'))}
                 helperText="3 or 4 digit security code"
+                autoComplete="cc-csc"
               />
             </div>
             <div className="flex items-center space-x-3">
