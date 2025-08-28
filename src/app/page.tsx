@@ -115,6 +115,10 @@ export default function HomePage() {
                   alt="Brassica Blend, Mega Mix, and Sunnies Snacks packages"
                   className="w-full lg:w-[90%] max-w-none h-auto object-contain drop-shadow-xl lg:translate-x-6"
                 />
+                {/* Feather the image into the page background on the right to remove color seam */}
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-[35%] bg-gradient-to-r from-transparent via-white/85 to-white" />
+                {/* Slight top fade to white to help blend lighter microgreen shadows */}
+                <div className="pointer-events-none absolute -top-2 left-0 right-0 h-24 bg-gradient-to-t from-transparent to-white/90" />
               </div>
             </div>
           </div>
