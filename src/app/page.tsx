@@ -17,9 +17,9 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section - Matching Screenshot Design Exactly */}
-      <section className="relative bg-white min-h-[700px] overflow-hidden">
-        {/* Soft radial blend from light grey (#d5d5d1) to transparent to create a dissipating shadow */}
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(75%_60%_at_75%_50%,#d5d5d1_0%,rgba(213,213,209,0.4)_25%,rgba(213,213,209,0.15)_55%,transparent_85%)]" />
+      <section className="relative bg-[#eeeff1] min-h-[700px] overflow-hidden">
+        {/* Radial blend: white near hero image, fading to the #eeeff1 section bg */}
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(80%_70%_at_75%_50%,white_0%,rgba(255,255,255,0.9)_35%,rgba(255,255,255,0.6)_55%,transparent_85%)]" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex flex-col lg:flex-row items-center lg:justify-start lg:gap-0 min-h-[700px] pt-2 lg:pt-4">
