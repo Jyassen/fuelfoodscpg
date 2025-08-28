@@ -17,14 +17,7 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section - Matching Screenshot Design Exactly */}
-      <section className="relative bg-gray-50 min-h-[700px] overflow-hidden">
-        {/* Background image behind hero - positioned at bottom right */}
-        <img
-          src="/images/herobackground.png"
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none select-none absolute bottom-0 right-0 w-full h-auto opacity-90 z-0"
-        />
+      <section className="relative bg-white min-h-[700px] overflow-hidden">
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex flex-col lg:flex-row items-center lg:justify-start lg:gap-0 min-h-[700px] pt-2 lg:pt-4">
@@ -116,7 +109,7 @@ export default function HomePage() {
             <div className="w-full lg:w-[65%] flex justify-center lg:justify-end items-center mt-8 lg:mt-0 relative lg:-ml-24">
               <div className="relative z-10">
                 <img
-                  src="/images/imgpsh_fullsize_anim-1-1.webp"
+                  src="/images/hero_main.png"
                   alt="Brassica Blend, Mega Mix, and Sunnies Snacks packages"
                   className="w-full lg:w-[125%] max-w-none h-auto object-contain drop-shadow-2xl lg:-translate-x-8"
                 />
