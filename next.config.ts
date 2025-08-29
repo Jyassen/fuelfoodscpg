@@ -100,6 +100,22 @@ const nextConfig: NextConfig = {
   ...(!process.env.STATIC_EXPORT && {
     async redirects() {
       return [
+        // Catalog PDF friendly routes
+        {
+          source: '/catalog',
+          destination: '/images/FuelFoods%20Catalog%202025%20NEW%20.pdf',
+          permanent: true,
+        },
+        {
+          source: '/catalog.pdf',
+          destination: '/images/FuelFoods%20Catalog%202025%20NEW%20.pdf',
+          permanent: true,
+        },
+        {
+          source: '/FuelFoods-Catalog-2025-NEW.pdf',
+          destination: '/images/FuelFoods%20Catalog%202025%20NEW%20.pdf',
+          permanent: true,
+        },
         {
           source: '/home',
           destination: '/',

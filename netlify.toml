@@ -97,6 +97,22 @@
   to = "/.netlify/functions/robots"
   status = 200
 
+# Catalog PDF friendly routes
+[[redirects]]
+  from = "/catalog"
+  to = "/images/FuelFoods%20Catalog%202025%20NEW%20.pdf"
+  status = 301
+
+[[redirects]]
+  from = "/catalog.pdf"
+  to = "/images/FuelFoods%20Catalog%202025%20NEW%20.pdf"
+  status = 301
+
+[[redirects]]
+  from = "/FuelFoods-Catalog-2025-NEW.pdf"
+  to = "/images/FuelFoods%20Catalog%202025%20NEW%20.pdf"
+  status = 301
+
 # SPA fallback for client-side routing
 [[redirects]]
   from = "/*"
