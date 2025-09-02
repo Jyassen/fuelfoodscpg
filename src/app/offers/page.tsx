@@ -130,7 +130,7 @@ export default function OffersPage() {
                   clipRule="evenodd"
                 />
               </svg>
-              Free shipping forever
+              Member perks forever
             </div>
             <div className="flex items-center text-sm">
               <svg
@@ -345,7 +345,7 @@ export default function OffersPage() {
                 </h3>
                 <p className="text-gray-600 mb-2">
                   Share the health! Refer friends and you both get $10 off your
-                  next order plus free shipping.
+                  next order.
                 </p>
                 <p className="text-sm text-purple-600 font-medium">
                   Unlimited referrals • No expiration

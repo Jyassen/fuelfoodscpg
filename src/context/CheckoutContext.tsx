@@ -8,6 +8,7 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
 
 import {
   CheckoutData,
@@ -661,12 +662,32 @@ export function CheckoutProvider({
         throw new Error('Please complete all required fields');
       }
 
-      // Simulate order processing
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      // Create Stripe Checkout session
+      const res = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          planType: (state.items.find(i => i.type === 'subscription')?.product?.id || '')
+            .replace('subscription_', '') || 'starter',
+          quantity: state.items.reduce((sum, i) => sum + i.quantity, 0) || 1,
+          allowPromotionCodes: true,
+          mode: 'subscription',
+          metadata: {
+            email: state.customerInfo.email,
+          },
+        }),
+      });
 
-      // Mark as complete
-      dispatch({ type: 'SET_CURRENT_STEP', payload: 'complete' });
-      dispatch({ type: 'MARK_STEP_COMPLETED', payload: 'complete' });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err?.error || 'Failed to start checkout');
+      }
+
+      const { id } = await res.json();
+      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+      if (!stripe) throw new Error('Stripe failed to initialize');
+      const { error } = await stripe.redirectToCheckout({ sessionId: id });
+      if (error) throw error;
 
       return true;
     } catch (error) {

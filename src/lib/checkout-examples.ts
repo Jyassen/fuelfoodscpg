@@ -96,7 +96,7 @@ const EXAMPLE_PRODUCTS: Record<string, FuelFoodsProduct> = {
         tier: 'family',
         discount: 10,
         minCommitment: 4,
-        benefits: ['10% discount', 'Free shipping'],
+        benefits: ['10% discount', 'Flexible delivery'],
         price: 11.69,
         originalPrice: 12.99,
       },

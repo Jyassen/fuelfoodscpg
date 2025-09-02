@@ -71,14 +71,14 @@ export default function BrassicaBlendPage() {
             </p>
           </div>
 
-          <div className="bg-purple-50 p-6 rounded-lg">
+          <div className="bg-fuelfoods-green-50 p-6 rounded-lg border border-fuelfoods-green-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">
               Health Benefits
             </h3>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
                 <svg
-                  className="w-5 h-5 text-purple-500 mr-2"
+                  className="w-5 h-5 text-fuelfoods-green-500 mr-2"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -92,7 +92,7 @@ export default function BrassicaBlendPage() {
               </li>
               <li className="flex items-center">
                 <svg
-                  className="w-5 h-5 text-purple-500 mr-2"
+                  className="w-5 h-5 text-fuelfoods-green-500 mr-2"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -106,7 +106,7 @@ export default function BrassicaBlendPage() {
               </li>
               <li className="flex items-center">
                 <svg
-                  className="w-5 h-5 text-purple-500 mr-2"
+                  className="w-5 h-5 text-fuelfoods-green-500 mr-2"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -120,7 +120,7 @@ export default function BrassicaBlendPage() {
               </li>
               <li className="flex items-center">
                 <svg
-                  className="w-5 h-5 text-purple-500 mr-2"
+                  className="w-5 h-5 text-fuelfoods-green-500 mr-2"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -143,12 +143,11 @@ export default function BrassicaBlendPage() {
               <span className="text-sm text-gray-500">Weekly delivery</span>
             </div>
 
-            <button className="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+            <button className="w-full bg-fuelfoods-green-500 hover:bg-fuelfoods-green-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors">
               Add to Cart
             </button>
 
             <div className="text-center text-sm text-gray-500">
-              <p>🚚 Free delivery on orders over $25</p>
               <p>📦 Fresh weekly deliveries</p>
               <p>♻️ Sustainable packaging</p>
             </div>
@@ -221,19 +220,19 @@ export default function BrassicaBlendPage() {
           </h2>
           <ul className="space-y-3 text-gray-600">
             <li className="flex items-start">
-              <span className="text-purple-500 mr-2">•</span>
+              <span className="text-fuelfoods-green-600 mr-2">•</span>
               Daily health supplementation
             </li>
             <li className="flex items-start">
-              <span className="text-purple-500 mr-2">•</span>
+              <span className="text-fuelfoods-green-600 mr-2">•</span>
               Cancer prevention diets
             </li>
             <li className="flex items-start">
-              <span className="text-purple-500 mr-2">•</span>
+              <span className="text-fuelfoods-green-600 mr-2">•</span>
               Detox programs
             </li>
             <li className="flex items-start">
-              <span className="text-purple-500 mr-2">•</span>
+              <span className="text-fuelfoods-green-600 mr-2">•</span>
               Anti-inflammatory meals
             </li>
           </ul>
@@ -245,19 +244,19 @@ export default function BrassicaBlendPage() {
           </h2>
           <ul className="space-y-3 text-gray-600">
             <li className="flex items-start">
-              <span className="text-purple-500 mr-2">•</span>
+              <span className="text-fuelfoods-green-600 mr-2">•</span>
               Mild to moderate spiciness
             </li>
             <li className="flex items-start">
-              <span className="text-purple-500 mr-2">•</span>
+              <span className="text-fuelfoods-green-600 mr-2">•</span>
               Earthy, robust flavors
             </li>
             <li className="flex items-start">
-              <span className="text-purple-500 mr-2">•</span>
+              <span className="text-fuelfoods-green-600 mr-2">•</span>
               Slightly peppery finish
             </li>
             <li className="flex items-start">
-              <span className="text-purple-500 mr-2">•</span>
+              <span className="text-fuelfoods-green-600 mr-2">•</span>
               Complements savory dishes
             </li>
           </ul>

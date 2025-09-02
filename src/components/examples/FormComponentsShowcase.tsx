@@ -307,7 +307,7 @@ export default function FormComponentsShowcase() {
 
                 <ValidationMessage
                   type="info"
-                  message="All subscriptions include free shipping and can be modified or cancelled anytime"
+                  message="All subscriptions can be modified or cancelled anytime"
                 />
               </FormSection>
 

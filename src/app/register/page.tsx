@@ -310,7 +310,7 @@ export default function RegisterPage() {
             </div>
             <h4 className="font-semibold text-gray-900 mb-2">Save Money</h4>
             <p className="text-sm text-gray-600">
-              Subscriber discounts and free shipping on all orders
+              Subscriber discounts and flexible delivery
             </p>
           </div>
           <div className="text-center">

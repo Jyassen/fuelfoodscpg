@@ -3,9 +3,9 @@ import Link from 'next/link';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'About Us - FuelFoods CPG',
+  title: 'Our Story: Why We Started FuelFoods - Fresh Microgreens NYC',
   description:
-    'Learn about FuelFoods CPG and our mission to provide premium microgreens and pet grass.',
+    'NYC\'s freshest microgreens grown by local Black-owned farm. Learn how we\'re making healthy eating simple for thousands of New Yorkers. Try your first pack!',
 };
 
 export default function AboutPage() {
@@ -16,54 +16,29 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
           <div>
             <h1 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-[1.05] tracking-tight">
-              FuelFoods: A True Pandemic Business Driven by Passion and Purpose
+              We Started FuelFoods Because Healthy Eating Was Too Hard, Too Expensive, and Too Time-Consuming
             </h1>
             <div className="space-y-5 text-gray-800">
               <p>
-                In a world turned upside down by the pandemic, I, along with my
-                fellow lifelong vegetarian and recent biohacker, embarked on an
-                extraordinary journey. I'm Jada, and the other half of this
-                sibling duo is Jamal. Together, we founded FuelFoods.
+                <strong>Like you, we were tired of buying expensive vegetables that went bad before we could eat them. Tired of trying to figure out what supplements actually worked. Tired of feeling guilty about not eating enough vegetables.</strong>
               </p>
               <p>
-                Before 2020, I was busy building my own digital marketing
-                agency, while Jamal worked as an insurance broker, helping
-                seniors access quality healthcare. However, when the pandemic
-                struck, both of our businesses suffered setbacks. Witnessing the
-                devastating impact of pre-existing conditions and the lack of
-                overall health, especially in communities of color, filled us
-                with a deep sense of urgency.
+                I'm Jada, and this is my brother Jamal. We're lifelong New Yorkers who discovered something amazing in 2020 that changed everything for us—and now for thousands of our neighbors.
               </p>
               <p>
-                In the fall of 2020, a door opened, leading us to the
-                fascinating world of indoor farming. Our curiosity was piqued
-                when we discovered the incredible potential of microgreens—these
-                tiny plants boasted up to 40 times more nutrition than their
-                fully grown counterparts. Inspired by this discovery and driven
-                by our desire to make a difference, we embarked on a journey to
-                convert our modest 285-square-foot garage into a thriving indoor
-                farm.
+                When the pandemic hit, we watched people get sicker and sicker, especially in our community. We saw how expensive "healthy" food was, how quickly fresh produce spoiled, and how confusing all the nutrition advice had become. There had to be a better way.
               </p>
               <p>
-                Our mission was clear: to combat the chronic disease epidemic
-                plaguing America. With rigorous research and countless trial
-                runs, we honed our skills and transformed our garage into a
-                fully functioning indoor farm. Today, we feel fortunate to
-                supply our nutrient-rich microgreens to several neighborhoods
-                across NYC, partnering with esteemed restaurants and grocery
-                stores.
+                <strong>Then we discovered microgreens.</strong> These tiny plants pack up to 40x more nutrition than regular vegetables, taste incredible, stay fresh for days, and you can grow them anywhere. We converted our garage into a farm and started growing the most nutrient-dense food in NYC.
               </p>
               <p>
-                We take immense pride in knowing that thousands of New Yorkers
-                now have access to our fresh produce. FuelFoods has become a
-                symbol of health and empowerment, providing individuals with the
-                opportunity to nourish their bodies with nature's finest
-                offerings.
+                Today, we grow fresh microgreens for over 10,000 New Yorkers and 30+ restaurants. No more wilted salads. No more expensive supplements that don't work. No more confusion about what to eat.
               </p>
               <p>
-                Join us on this transformative journey. Together, let's fuel our
-                bodies, elevate our communities, and make a lasting impact on
-                the health and well-being of all.
+                <strong>Just real food that makes you feel amazing, delivered fresh to your door.</strong>
+              </p>
+              <p className="text-lg font-semibold text-fuelfoods-green-600">
+                Join the movement. Your future self will thank you.
               </p>
               {/* No CTA in this first panel per request */}
             </div>

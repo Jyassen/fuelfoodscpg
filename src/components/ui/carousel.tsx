@@ -21,6 +21,9 @@ type CarouselProps = {
   setApi?: (api: CarouselApi) => void;
   autoplay?: boolean;
   autoplayInterval?: number; // ms
+  // Optional classes to apply to arrows based on current slide index
+  // Example: ['bg-orange-500', 'bg-green-600', 'bg-yellow-400']
+  arrowClassesByIndex?: string[];
 };
 
 type CarouselContextProps = {
@@ -30,6 +33,8 @@ type CarouselContextProps = {
   scrollNext: () => void;
   canScrollPrev: boolean;
   canScrollNext: boolean;
+  selectedIndex: number;
+  arrowClassesByIndex?: string[];
 } & CarouselProps;
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
@@ -51,6 +56,7 @@ function Carousel({
   plugins,
   autoplay = false,
   autoplayInterval = 5000,
+  arrowClassesByIndex,
   className,
   children,
   ...props
@@ -64,11 +70,15 @@ function Carousel({
   );
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const onSelect = React.useCallback((api: CarouselApi) => {
     if (!api) return;
     setCanScrollPrev(api.canScrollPrev());
     setCanScrollNext(api.canScrollNext());
+    try {
+      setSelectedIndex(api.selectedScrollSnap());
+    } catch {}
   }, []);
 
   const scrollPrev = React.useCallback(() => {
@@ -132,6 +142,8 @@ function Carousel({
         scrollNext,
         canScrollPrev,
         canScrollNext,
+        selectedIndex,
+        arrowClassesByIndex,
       }}
     >
       <div
@@ -193,7 +205,8 @@ function CarouselPrevious({
   size = 'icon',
   ...props
 }: React.ComponentProps<typeof Button>) {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+  const { orientation, scrollPrev, canScrollPrev, selectedIndex, arrowClassesByIndex } = useCarousel();
+  const dynamicClass = arrowClassesByIndex?.[selectedIndex] ?? '';
 
   return (
     <Button
@@ -201,10 +214,11 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        'absolute size-8 rounded-full',
+        'absolute size-8 rounded-full z-50 pointer-events-auto shadow-lg mix-blend-normal',
         orientation === 'horizontal'
           ? 'top-1/2 -left-12 -translate-y-1/2'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
+        dynamicClass,
         className
       )}
       disabled={!canScrollPrev}
@@ -223,7 +237,8 @@ function CarouselNext({
   size = 'icon',
   ...props
 }: React.ComponentProps<typeof Button>) {
-  const { orientation, scrollNext, canScrollNext } = useCarousel();
+  const { orientation, scrollNext, canScrollNext, selectedIndex, arrowClassesByIndex } = useCarousel();
+  const dynamicClass = arrowClassesByIndex?.[selectedIndex] ?? '';
 
   return (
     <Button
@@ -231,10 +246,11 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        'absolute size-8 rounded-full',
+        'absolute size-8 rounded-full z-50 pointer-events-auto shadow-lg mix-blend-normal',
         orientation === 'horizontal'
           ? 'top-1/2 -right-12 -translate-y-1/2'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
+        dynamicClass,
         className
       )}
       disabled={!canScrollNext}

@@ -215,7 +215,7 @@ function generateSubscriptionOptions(productData: any): SubscriptionOption[] {
       originalPrice: basePrice,
       benefits: [
         `${Math.max(discount, subscriptionDiscount)}% off regular price`,
-        'Free shipping on all orders',
+        'Flexible delivery schedule',
         'Flexible delivery schedule',
         'Cancel anytime',
       ],

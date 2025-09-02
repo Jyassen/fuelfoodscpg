@@ -44,6 +44,12 @@ export default function RootLayout({
       >
         <FuelFoodsProvider>
           <div className="min-h-screen flex flex-col">
+            {/* Sitewide top banner - placed above navigation */}
+            <div className="bg-black text-white text-center py-3 px-4">
+              <p className="text-sm font-medium">
+                Now Shipping Exclusively To The Northeast!
+              </p>
+            </div>
             <Header />
             <main className="flex-grow">{children}</main>
             <Footer />

@@ -461,7 +461,7 @@ export const SUBSCRIPTION_PLANS = {
     frequencies: ['bi-weekly', 'monthly'],
     benefits: [
       '10% off all orders',
-      'Free shipping on orders over $35',
+      'Fast delivery',
       'Flexible delivery schedule',
       'Cancel anytime',
     ],
@@ -476,7 +476,7 @@ export const SUBSCRIPTION_PLANS = {
     frequencies: ['weekly', 'bi-weekly', 'monthly'],
     benefits: [
       '15% off all orders',
-      'Free shipping on all orders',
+      'Member discounts',
       'Priority customer support',
       'Flexible delivery schedule',
       'Mix and match products',
@@ -494,7 +494,7 @@ export const SUBSCRIPTION_PLANS = {
     frequencies: ['weekly', 'bi-weekly'],
     benefits: [
       '20% off all orders',
-      'Free shipping on all orders',
+      'Member discounts',
       'Priority customer support',
       'Early access to new products',
       'Exclusive recipes and tips',
@@ -512,7 +512,7 @@ export const SUBSCRIPTION_PLANS = {
     frequencies: ['weekly', 'bi-weekly'],
     benefits: [
       '25% off all orders',
-      'Free shipping on all orders',
+      'Priority support',
       'Dedicated account manager',
       'Custom delivery schedule',
       'Invoice billing available',
@@ -664,21 +664,21 @@ export const TESTIMONIALS = [
 // ============================================================================
 
 export const SEO_DEFAULTS = {
-  title: SITE_CONFIG.name,
-  description: SITE_CONFIG.description,
+  title: 'Get 40x More Nutrition in Every Bite - Fresh Microgreens Delivered NYC | FuelFoods',
+  description: 'Get fresh microgreens delivered weekly to your NYC door. 40x more nutrition than regular vegetables. Free shipping, cancel anytime. Start your health journey today!',
   keywords: [
-    'microgreens',
-    'fresh vegetables',
-    'organic greens',
-    'healthy eating',
-    'nutrition',
-    'superfood',
-    'vitamins',
-    'antioxidants',
-    'local delivery',
-    'subscription',
-    'meal prep',
-    'healthy lifestyle',
+    'fresh microgreens delivered NYC',
+    'healthy meal delivery NYC',
+    'fresh vegetables delivered',
+    'microgreens subscription',
+    'superfood delivery',
+    '40x more nutrition',
+    'organic vegetables delivery NYC',
+    'healthy snacks delivered',
+    'microgreens delivery New York',
+    'fresh microgreens subscription',
+    'organic microgreens NYC',
+    'healthy vegetables delivered weekly',
   ],
   openGraph: {
     type: 'website',

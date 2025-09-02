@@ -148,7 +148,6 @@ export default function GreenMedleyPage() {
             </button>
 
             <div className="text-center text-sm text-gray-500">
-              <p>🚚 Free delivery on orders over $25</p>
               <p>📦 Fresh weekly deliveries</p>
               <p>♻️ Sustainable packaging</p>
             </div>

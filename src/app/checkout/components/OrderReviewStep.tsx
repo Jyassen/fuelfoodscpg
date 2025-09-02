@@ -41,8 +41,7 @@ export default function OrderReviewStep({
     try {
       const success = await processOrder();
       if (success) {
-        // Redirect to thank you page will be handled by the checkout context
-        window.location.href = '/checkout/success';
+        // processOrder will start Stripe Checkout redirect
       }
     } catch (error) {
       console.error('Order placement failed:', error);

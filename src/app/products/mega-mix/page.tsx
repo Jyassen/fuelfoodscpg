@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Mega Mix - Premium Microgreens | FuelFoods CPG',
+  title: 'Mega Mix: The Ultimate Daily Nutrition Boost - 9 Vegetables in One Pack | FuelFoods',
   description:
-    'Our signature Mega Mix combines the finest microgreens for maximum nutrition and flavor. Perfect for salads, smoothies, and healthy meals.',
+    'Mega Mix microgreens: Your daily dose of 9 vegetables in one pack. Natural energy boost, immune support, anti-aging properties. Delivered fresh weekly to NYC. Order now with free shipping!',
 };
 
 export default function MegaMixPage() {
@@ -146,7 +146,6 @@ export default function MegaMixPage() {
             </button>
 
             <div className="text-center text-sm text-gray-500">
-              <p>🚚 Free delivery on orders over $25</p>
               <p>📦 Fresh weekly deliveries</p>
               <p>♻️ Sustainable packaging</p>
             </div>

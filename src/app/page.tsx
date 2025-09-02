@@ -9,39 +9,22 @@ import Link from 'next/link';
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-      {/* Alert Banner */}
-      <div className="bg-black text-white text-center py-3 px-4">
-        <p className="text-sm font-medium">
-          Now Shipping Exclusively To The Northeast!
-        </p>
-      </div>
-
-      {/* Hero Section - Matching Screenshot Design Exactly */}
-      <section className="relative bg-[#eeeff1] min-h-[700px] overflow-hidden">
-        {/* Radial blend: white near hero image, fading to the #eeeff1 section bg */}
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(80%_70%_at_75%_50%,white_0%,rgba(255,255,255,0.9)_35%,rgba(255,255,255,0.6)_55%,transparent_85%)]" />
+      {/* Hero Section */}
+      <section className="relative bg-white min-h-[700px] overflow-hidden">
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex flex-col lg:flex-row items-center lg:justify-start lg:gap-0 min-h-[700px] pt-2 lg:pt-4">
             {/* Left Content - Matching Screenshot Layout */}
             <div className="w-full lg:w-[35%] text-left py-6 lg:py-20 lg:pr-0">
               <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black text-gray-900 mb-4 leading-[0.95] tracking-tight">
-                <span className="whitespace-nowrap">
-                  Microgreens{' '}
-                  <span className="text-fuelfoods-green-500 font-black">
-                    BIG
-                  </span>
-                </span>
+                Get 40x More Nutrition
                 <br />
-                where it{' '}
-                <span className="italic text-orange-500 font-bold">counts</span>
+                in Every{' '}
+                <span className="italic text-orange-500 font-bold">Bite</span>
               </h1>
 
               <p className="text-base lg:text-lg text-gray-700 mb-6 leading-snug max-w-[480px]">
-                With up to 40 times the nutrients of full grown veggies, our
-                microgreens are packed with essential vitamins, minerals, and
-                antioxidants that will have you feeling great and keep you
-                fueled throughout the day!
+                Skip the guesswork of healthy eating. Our microgreens pack 40x more vitamins and nutrients than regular vegetables, delivered fresh from our NYC farm to your door in 48 hours.
               </p>
 
               {/* Feature checkmarks - Matching Screenshot Style */}
@@ -59,7 +42,7 @@ export default function HomePage() {
                     />
                   </svg>
                   <span className="text-gray-800 text-[15px] font-medium">
-                    Grown to Order
+                    40x More Nutrition Than Regular Vegetables
                   </span>
                 </div>
                 <div className="flex items-center">
@@ -75,7 +58,7 @@ export default function HomePage() {
                     />
                   </svg>
                   <span className="text-gray-800 text-[15px] font-medium">
-                    Harvested Fresh
+                    Grown Fresh, Delivered Weekly to Your Door
                   </span>
                 </div>
                 <div className="flex items-center">
@@ -91,7 +74,7 @@ export default function HomePage() {
                     />
                   </svg>
                   <span className="text-gray-800 text-[15px] font-medium">
-                    Delivered Straight to Your Door
+                    No Shopping, No Prep, No Waste Required
                   </span>
                 </div>
               </div>
@@ -102,23 +85,19 @@ export default function HomePage() {
                   href="#plans"
                   className="inline-flex items-center justify-center bg-[#136834] hover:bg-[#0f5429] text-white font-extrabold px-8 py-3 rounded-full text-base uppercase tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 border border-transparent"
                 >
-                  Get Your Greens
+                  Start My Health Journey
                 </a>
               </div>
             </div>
 
-            {/* Right Product Packages - Exactly as in Screenshot */}
-            <div className="w-full lg:w-[65%] flex justify-center lg:justify-end items-center mt-8 lg:mt-0 relative lg:pr-8">
+            {/* Right visual */}
+            <div className="w-full lg:w-[65%] flex justify-center lg:justify-end items-center mt-8 lg:mt-0 relative lg:pr-0">
               <div className="relative z-10">
                 <img
-                  src="/images/hero_main.png"
-                  alt="Brassica Blend, Mega Mix, and Sunnies Snacks packages"
-                  className="w-full lg:w-[90%] max-w-none h-auto object-contain drop-shadow-xl lg:translate-x-6"
+                  src="/images/hero copy.png"
+                  alt="FuelFoods hero"
+                  className="w-full lg:w-[130%] max-w-none h-auto object-contain drop-shadow-xl lg:-translate-x-20"
                 />
-                {/* Feather the image into the page background on the right to remove color seam */}
-                <div className="pointer-events-none absolute inset-y-0 right-0 w-[35%] bg-gradient-to-r from-transparent via-white/85 to-white" />
-                {/* Slight top fade to white to help blend lighter microgreen shadows */}
-                <div className="pointer-events-none absolute -top-2 left-0 right-0 h-24 bg-gradient-to-t from-transparent to-white/90" />
               </div>
             </div>
           </div>
@@ -129,15 +108,13 @@ export default function HomePage() {
       <section className="relative bg-white py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left copy: three condensed blocks */}
-          <div className="space-y-6 relative z-10">
+          <div className="space-y-6 relative z-10 lg:pr-24 xl:pr-32">
             <div>
               <h2 className="text-3xl lg:text-5xl font-extrabold text-[#e56322] mb-3">
                 What Are Microgreens?
               </h2>
               <p className="text-base text-gray-800 leading-snug max-w-2xl">
-                All the vegetables we know and love, harvested very early in
-                their growth cycle when they are at their highest concentration
-                of nutrients!
+                Think of them as baby vegetables with superpowers. Microgreens are harvested when they are tiny but pack up to 40x more nutrition than full-grown vegetables. It is like getting a multivitamin, but it is actually food that tastes great.
               </p>
             </div>
 
@@ -146,13 +123,7 @@ export default function HomePage() {
                 Why Microgreens?
               </h2>
               <p className="text-base text-gray-800 leading-snug max-w-2xl">
-                Diets rich in nutrient dense vegetables have been shown to
-                reduce the risk of chronic disease like heart disease or
-                diabetes. Each pack is curated with a variety of micro-greens to
-                offer a full spectrum of vitamins, minerals and antioxidants.
-                Since our microgreen packs are whole foods you get the whole
-                benefits of the plants as nature intended! Extracts, pills and
-                powder supplements can't match up to the real stuff.
+                Ever struggle to eat enough vegetables? We get it. Life is busy, fresh produce spoils, and salads get boring. Microgreens solve all of that. Just one pack gives you the nutrition of an entire salad without the prep, waste, or bland taste. Plus, they actually make your meals more delicious.
               </p>
             </div>
 
@@ -161,24 +132,21 @@ export default function HomePage() {
                 How To Use Your Microgreen Packs?
               </h2>
               <p className="text-base text-gray-800 leading-snug max-w-2xl">
-                Add your favorite microgreen pack to your meal, whether at home
-                or on the go. Create nutritious and delicious smoothies, juices,
-                salads, sandwiches and bowls and more! Get as creative as you'd
-                like!
+                Using microgreens is easier than you think. Toss them on anything for instant nutrition and flavor. Add your favorite microgreen pack to smoothies, salads, sandwiches, bowls and more! Get as creative as you would like.
               </p>
             </div>
           </div>
 
-          {/* Right visual: banner-1.png - positioned at center-right where cursor indicates */}
-          <div className="relative">
+          {/* Right visual */}
+          <div className="relative z-0">
             <img
-              src="/images/banner-1.png"
+              src="/images/singlewithgreens_final.png"
               alt="Microgreens bursting from package"
-              className="hidden lg:block absolute top-1/2 right-0 w-full h-auto object-contain scale-150 origin-center-right z-0 -translate-y-1/2"
+              className="hidden lg:block absolute top-1/2 right-0 w-full h-auto object-contain scale-[1.8] origin-center-right z-0 -translate-y-1/2"
             />
             {/* Fallback for small screens */}
             <img
-              src="/images/banner-1.png"
+              src="/images/singlewithgreens_final.png"
               alt="Microgreens bursting from package"
               className="block lg:hidden w-full max-w-[700px] h-auto object-contain mx-auto"
             />
@@ -202,15 +170,18 @@ export default function HomePage() {
           <div className="relative mt-6">
             <Carousel
               opts={{ loop: true, align: 'start' }}
-              autoplay
-              autoplayInterval={6000}
+              arrowClassesByIndex={[
+                'bg-orange-500 text-white hover:bg-orange-600 ring-2 ring-white/90',
+                'bg-[#178641] text-white hover:bg-[#136834] ring-2 ring-white/90',
+                'bg-yellow-400 text-yellow-900 hover:bg-yellow-500 ring-2 ring-white/90',
+              ]}
               className="w-full overflow-visible"
             >
               <CarouselContent>
                 {/* Mega Mix Slide */}
                 <CarouselItem>
                   <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[600px]">
-                    <div>
+                    <div className="pl-8 md:pl-10 lg:pl-14">
                       <div className="mb-6">
                         <span className="inline-block bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Most Popular
@@ -219,9 +190,8 @@ export default function HomePage() {
                           Mega Mix
                         </h3>
                         <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                          Antioxidant powerhouse. Immune support.
-                          Detoxification. Bone and heart health.
-                          Anti-inflammatory properties. Eye health.
+                          <strong>The Ultimate Daily Nutrition Boost</strong><br/>
+                          Your daily dose of 9 different vegetables in one convenient pack. Boost energy, support immunity, and feel your best naturally. Perfect for smoothies, salads, or eating straight from the pack.
                         </p>
                         <div className="mb-4">
                           <div className="text-xl font-extrabold text-gray-900 mb-2">
@@ -252,25 +222,25 @@ export default function HomePage() {
                           <div className="flex items-center">
                             <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                             <span className="text-orange-700">
-                              40x more vitamins
+                              9 vegetables in one pack
                             </span>
                           </div>
                           <div className="flex items-center">
                             <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                             <span className="text-orange-700">
-                              9 different veggies
+                              Natural energy boost
                             </span>
                           </div>
                           <div className="flex items-center">
                             <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                             <span className="text-orange-700">
-                              Immune support
+                              Immune system support
                             </span>
                           </div>
                           <div className="flex items-center">
                             <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                             <span className="text-orange-700">
-                              Anti-inflammatory
+                              Anti-aging properties
                             </span>
                           </div>
                         </div>
@@ -308,16 +278,15 @@ export default function HomePage() {
                     </div>
                     <div>
                       <div className="mb-6">
-                        <span className="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
+                        <span className="inline-block bg-[#dcfce7] text-[#136834] px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Power Blend
                         </span>
                         <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                           Brassica Blend
                         </h3>
                         <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                          Cancer‑fighting properties. Antioxidant and
-                          anti‑inflammatory effects. Detoxification. Sustained
-                          energy. Mineral support.
+                          <strong>The Anti-Inflammatory Powerhouse</strong><br/>
+                          Nature's way to reduce inflammation, fight aging, and keep your body strong. These cruciferous microgreens are packed with compounds that help your body heal and recover faster.
                         </p>
                         <div className="mb-4">
                           <div className="text-xl font-extrabold text-gray-900 mb-2">
@@ -338,33 +307,33 @@ export default function HomePage() {
                           </p>
                         </div>
                       </div>
-                      <div className="bg-purple-50 p-6 rounded-xl border border-purple-200 mb-8">
-                        <h4 className="text-lg font-semibold text-purple-800 mb-3">
+                      <div className="bg-[#f0fdf4] p-6 rounded-xl border border-[#bbf7d0] mb-8">
+                        <h4 className="text-lg font-semibold text-[#136834] mb-3">
                           Key Benefits:
                         </h4>
                         <div className="grid grid-cols-2 gap-3 text-sm">
                           <div className="flex items-center">
-                            <div className="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
-                            <span className="text-purple-700">
-                              Highest sulforaphane
+                            <div className="w-2 h-2 bg-[#178641] rounded-full mr-2"></div>
+                            <span className="text-[#136834]">
+                              Reduces inflammation naturally
                             </span>
                           </div>
                           <div className="flex items-center">
-                            <div className="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
-                            <span className="text-purple-700">
-                              Anti-inflammatory
+                            <div className="w-2 h-2 bg-[#178641] rounded-full mr-2"></div>
+                            <span className="text-[#136834]">
+                              Supports muscle recovery
                             </span>
                           </div>
                           <div className="flex items-center">
-                            <div className="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
-                            <span className="text-purple-700">
-                              Immune support
+                            <div className="w-2 h-2 bg-[#178641] rounded-full mr-2"></div>
+                            <span className="text-[#136834]">
+                              Boosts mental clarity
                             </span>
                           </div>
                           <div className="flex items-center">
-                            <div className="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
-                            <span className="text-purple-700">
-                              Cancer-fighting
+                            <div className="w-2 h-2 bg-[#178641] rounded-full mr-2"></div>
+                            <span className="text-[#136834]">
+                              Promotes healthy aging
                             </span>
                           </div>
                         </div>
@@ -372,7 +341,7 @@ export default function HomePage() {
                       <div className="flex gap-4">
                         <a
                           href="#plans"
-                          className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block text-center"
+                          className="bg-[#178641] hover:bg-[#136834] text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block text-center"
                         >
                           Order Now
                         </a>
@@ -384,7 +353,7 @@ export default function HomePage() {
                 {/* Sunnies Snacks Slide */}
                 <CarouselItem>
                   <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[520px]">
-                    <div>
+                    <div className="pl-8 md:pl-10 lg:pl-14">
                       <div className="mb-6">
                         <span className="inline-block bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Crunchy & Delicious
@@ -393,8 +362,8 @@ export default function HomePage() {
                           Sunnies Snacks
                         </h3>
                         <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                          Vitamin and mineral rich. Vitality and energy. Skin
-                          and eye health. Antioxidant support.
+                          <strong>The Perfect Healthy Snack</strong><br/>
+                          Crunchy, delicious, and packed with nutrients that give you glowing skin and lasting energy. These sunflower microgreens taste great and make you feel amazing.
                         </p>
                         <div className="mb-4">
                           <div className="text-xl font-extrabold text-gray-900 mb-2">
@@ -424,25 +393,25 @@ export default function HomePage() {
                           <div className="flex items-center">
                             <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
                             <span className="text-yellow-700">
-                              Healthy snacking
+                              Satisfying crunch like nuts
                             </span>
                           </div>
                           <div className="flex items-center">
                             <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
                             <span className="text-yellow-700">
-                              Salad toppers
+                              Glowing, healthy skin
                             </span>
                           </div>
                           <div className="flex items-center">
                             <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
                             <span className="text-yellow-700">
-                              Sandwich crunch
+                              Sustained natural energy
                             </span>
                           </div>
                           <div className="flex items-center">
                             <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
                             <span className="text-yellow-700">
-                              Smoothie bowls
+                              Actually tastes delicious
                             </span>
                           </div>
                         </div>
@@ -468,8 +437,8 @@ export default function HomePage() {
                   </div>
                 </CarouselItem>
               </CarouselContent>
-              <CarouselPrevious className="-left-6" />
-              <CarouselNext className="-right-6" />
+              <CarouselPrevious variant="brand" className="-left-6 size-12 shadow-lg border-0 z-20 ring-2 ring-white/90" />
+              <CarouselNext variant="brand" className="-right-6 size-12 shadow-lg border-0 z-20 ring-2 ring-white/90" />
             </Carousel>
           </div>
         </div>
@@ -478,7 +447,7 @@ export default function HomePage() {
       {/* Choose Your Subscription Section - Enhanced Design */}
       <section
         id="plans"
-        className="bg-gradient-to-br from-fuelfoods-green-500 to-fuelfoods-green-600 pt-12 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        className="bg-gradient-to-br from-fuelfoods-green-500 to-fuelfoods-green-600 pt-4 pb-6 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-28 md:scroll-mt-32"
       >
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -507,44 +476,42 @@ export default function HomePage() {
         </div>
 
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <div className="mb-12">
+          <div className="mb-6">
             <span className="inline-block bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide mb-4">
               Subscription Plans
             </span>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Choose Your Plan
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
+              Choose Your Health Journey
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Select the best option to support your wellness goals and start
-              your journey to better health.
+              Starting at just $15 per pack
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-6 items-stretch">
+          <div className="grid md:grid-cols-3 gap-3 lg:gap-3 items-stretch">
             {/* Starter Plan */}
-            <div className="bg-white rounded-2xl p-8 shadow-[0_16px_48px_6px_rgba(34,94,20,0.35)] hover:shadow-[0_28px_70px_12px_rgba(34,94,20,0.45)] transition-all duration-300 transform hover:-translate-y-2 relative flex flex-col h-full">
-              <div className="mb-6 h-56 flex items-end justify-center">
+            <div className="bg-white rounded-2xl p-4 shadow-[0_12px_34px_4px_rgba(34,94,20,0.30)] hover:shadow-[0_22px_56px_10px_rgba(34,94,20,0.40)] transition-all duration-300 transform hover:-translate-y-[2px] relative flex flex-col h-full">
+              <div className="mb-1.5 h-28 flex items-end justify-center">
                 <img
-                  src="/images/imgpsh_fullsize_anim-3-1-1.png"
+                  src="/images/sunniesfinal.png"
                   alt="Starter Plan - 3 Pack"
                   className="max-h-full w-auto object-contain"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-1.5 text-center">
                 Starter Packs
               </h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold text-gray-900">$15</span>
-                <span className="text-lg text-gray-600">per pack</span>
+              <div className="mb-2">
+                <span className="text-2xl font-bold text-gray-900">$15</span>
+                <span className="text-base text-gray-600">per pack</span>
               </div>
-              <p className="text-gray-600 mb-6">
-                Get the ball rolling on your health journey!
+              <p className="text-gray-600 mb-3">
+                Perfect for first-timers. No commitment needed.
               </p>
 
-              <div className="space-y-3 mb-8 text-left">
+              <div className="space-y-1.5 mb-4 text-left">
                 <div className="text-gray-700 mb-2">
-                  Select as many delicious 3.5oz micro packs you'd like, we
-                  recommend all of them!
+                  Choose any 1 pack
                 </div>
                 <div className="flex items-center">
                   <svg
@@ -592,38 +559,38 @@ export default function HomePage() {
 
               <Link
                 href="/configure/starter"
-                className="mt-auto w-full bg-gray-900 text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors text-lg inline-flex items-center justify-center"
+                className="mt-auto w-full bg-[#178641] hover:bg-[#136834] text-white py-2.5 rounded-xl font-semibold transition-colors text-base inline-flex items-center justify-center"
               >
                 Get Started
               </Link>
             </div>
 
             {/* Pro Plan - Most Popular */}
-            <div className="bg-white rounded-2xl p-8 shadow-[0_16px_48px_6px_rgba(34,94,20,0.35)] hover:shadow-[0_28px_70px_12px_rgba(34,94,20,0.45)] transition-all duration-300 transform hover:-translate-y-2 relative border-4 border-[#c0c0c0] flex flex-col h-full">
+            <div className="bg-white rounded-2xl p-4 shadow-[0_12px_34px_4px_rgba(34,94,20,0.30)] hover:shadow-[0_22px_56px_10px_rgba(34,94,20,0.40)] transition-all duration-300 transform hover:-translate-y-[2px] relative border-4 border-[#c0c0c0] flex flex-col h-full">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide shadow-lg">
                 Most Popular
               </div>
 
-              <div className="mb-6 h-56 flex items-end justify-center">
+              <div className="mb-1.5 h-28 flex items-end justify-center">
                 <img
-                  src="/images/image-2-4.png"
+                  src="/images/3packfinal.png"
                   alt="Pro Plan - 3 Pack Weekly"
                   className="max-h-full w-auto object-contain"
                 />
               </div>
 
-              <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-1.5 text-center">
                 Pro Member
               </h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold text-gray-900">$45</span>
-                <span className="text-lg text-gray-600">/week</span>
+              <div className="mb-2">
+                <span className="text-2xl font-bold text-gray-900">$45</span>
+                <span className="text-base text-gray-600">/week</span>
               </div>
-              <p className="text-gray-600 mb-6">
-                Start your commitment to health and build momentum!
+              <p className="text-gray-600 mb-3">
+                3 packs delivered weekly. Save money vs one-time purchases.
               </p>
 
-              <div className="space-y-3 mb-8 text-left">
+              <div className="space-y-1.5 mb-4 text-left">
                 <div className="flex items-center">
                   <svg
                     className="w-5 h-5 text-fuelfoods-green-500 mr-3 flex-shrink-0"
@@ -640,7 +607,7 @@ export default function HomePage() {
                     Three 3.5oz freshly harvested micro packs delivered weekly
                   </span>
                 </div>
-                <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+                <div className="bg-yellow-50 p-2 rounded-lg border border-yellow-200">
                   <div className="text-center text-yellow-800 font-semibold mb-2">
                     BONUS INCLUDES
                   </div>
@@ -717,31 +684,31 @@ export default function HomePage() {
 
               <Link
                 href="/configure/pro"
-                className="mt-auto w-full bg-gradient-to-r from-gray-200 to-gray-400 text-gray-900 py-4 rounded-xl font-bold hover:from-gray-300 hover:to-gray-500 transition-all duration-300 text-lg shadow-lg inline-flex items-center justify-center"
+                className="mt-auto w-full bg-[#e56322] hover:bg-[#d05a1e] text-white py-2.5 rounded-xl font-bold transition-colors text-base shadow-lg inline-flex items-center justify-center"
               >
                 Start Pro Plan
               </Link>
             </div>
 
             {/* Elite Plan */}
-            <div className="bg-white rounded-2xl p-8 shadow-[0_16px_48px_6px_rgba(34,94,20,0.35)] hover:shadow-[0_28px_70px_12px_rgba(34,94,20,0.45)] transition-all duration-300 transform hover:-translate-y-2 relative border-4 border-yellow-400 flex flex-col h-full">
-              <div className="mb-6 h-56 flex items-end justify-center">
+            <div className="bg-white rounded-2xl p-4 shadow-[0_12px_34px_4px_rgba(34,94,20,0.30)] hover:shadow-[0_22px_56px_10px_rgba(34,94,20,0.40)] transition-all duration-300 transform hover:-translate-y-[2px] relative border-4 border-yellow-400 flex flex-col h-full">
+              <div className="mb-1.5 h-28 flex items-end justify-center">
                 <img
-                  src="/images/5-pack1.webp"
+                  src="/images/5packfinal.png"
                   alt="Elite Plan - 5 Pack Weekly"
                   className="max-h-full w-auto object-contain"
                 />
               </div>
 
-              <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-1.5 text-center">
                 Elite Member
               </h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold text-gray-900">$75</span>
-                <span className="text-lg text-gray-600">/week</span>
+              <div className="mb-2.5">
+                <span className="text-2xl font-bold text-gray-900">$75</span>
+                <span className="text-base text-gray-600">/week</span>
               </div>
-              <p className="text-gray-600 mb-6">
-                Take your health to the next level and optimize your lifestyle!
+              <p className="text-gray-600 mb-3">
+                5 packs delivered weekly. Maximum variety and nutrition.
               </p>
 
               <div className="space-y-3 mb-8 text-left">
@@ -872,11 +839,22 @@ export default function HomePage() {
 
               <Link
                 href="/configure/elite"
-                className="mt-auto w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 py-4 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 text-lg shadow-lg inline-flex items-center justify-center"
+                className="mt-auto w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 py-2.5 rounded-xl font-bold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 text-base shadow-lg inline-flex items-center justify-center"
               >
                 Start Elite Plan
               </Link>
             </div>
+          </div>
+          
+          {/* Risk Reversal Section */}
+          <div className="mt-12 bg-yellow-50 border border-yellow-200 rounded-2xl p-8 max-w-4xl mx-auto text-center">
+            <div className="text-2xl font-bold text-yellow-800 mb-4">
+              100% Satisfaction Guaranteed
+            </div>
+            <p className="text-yellow-700 text-lg">
+              Not happy with your first delivery? We will refund every penny and let you keep the greens.<br/>
+              <span className="font-semibold">Cancel anytime. No commitment needed.</span>
+            </p>
           </div>
         </div>
       </section>
@@ -885,10 +863,10 @@ export default function HomePage() {
       <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
-            The Ultimate Superfood
+            Why Microgreens Beat Every Other Superfood
           </h2>
           <h3 className="text-xl lg:text-2xl font-semibold text-gray-700 mb-10">
-            Here to power you through your busy lifestyle.
+            All the benefits of expensive supplements, but it's actually delicious food
           </h3>
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
@@ -931,11 +909,10 @@ export default function HomePage() {
                 </svg>
               </div>
               <h4 className="text-base font-bold text-gray-900 mb-1">
-                Nutritional Powerhouse
+                More Nutrition Than Any Pill
               </h4>
               <p className="text-gray-700 text-sm">
-                Packed with vitamins A, C, K, B and minerals for daily energy
-                and resilience.
+                One pack of our microgreens has more nutrition than expensive multivitamins and your body actually absorbs it because it is real food, not synthetic chemicals.
               </p>
             </div>
             <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
@@ -954,11 +931,10 @@ export default function HomePage() {
                 </svg>
               </div>
               <h4 className="text-base font-bold text-gray-900 mb-1">
-                Antioxidant Boost
+                Stronger Immune System
               </h4>
               <p className="text-gray-700 text-sm">
-                Support your body’s defenses and recovery from everyday
-                stressors.
+                Packed with immune-boosting compounds that help your body fight off whatever is going around the office or subway.
               </p>
             </div>
             <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
@@ -975,10 +951,10 @@ export default function HomePage() {
                 </svg>
               </div>
               <h4 className="text-base font-bold text-gray-900 mb-1">
-                Versatile & Convenient
+                All-Day Natural Energy
               </h4>
               <p className="text-gray-700 text-sm">
-                Toss into salads, sandwiches, bowls, or smoothies in seconds.
+                Real nutrients give you steady energy that lasts all day with no caffeine crash or sugar highs and lows.
               </p>
             </div>
             <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
@@ -996,10 +972,10 @@ export default function HomePage() {
                 </svg>
               </div>
               <h4 className="text-base font-bold text-gray-900 mb-1">
-                Gut Health Support
+                Glowing Skin & Hair
               </h4>
               <p className="text-gray-700 text-sm">
-                Fiber and phytonutrients that help keep things balanced.
+                The antioxidants and vitamins that make you glow from the inside out. Better than any expensive skincare routine.
               </p>
             </div>
             <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
@@ -1017,19 +993,15 @@ export default function HomePage() {
                 </svg>
               </div>
               <h4 className="text-base font-bold text-gray-900 mb-1">
-                Phytonutrient Rich
+                Reduce Inflammation Fast
               </h4>
               <p className="text-gray-700 text-sm">
-                Sulforaphane and anthocyanins for anti‑inflammatory support.
+                Natural anti-inflammatory compounds help reduce joint pain, muscle soreness, and that general blah feeling.
               </p>
             </div>
           </div>
 
-          <div className="mt-10 text-gray-700">
-            <p className="text-base lg:text-lg">
-              No chemicals. No additives. Just food.
-            </p>
-          </div>
+          
         </div>
       </section>
 
@@ -1038,13 +1010,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-4xl lg:text-5xl font-bold text-fuelfoods-green-500 mb-4">
-              Fresh Greens Delivered Weekly
+              Why New Yorkers Choose FuelFoods
             </h2>
             <p className="text-lg text-gray-700 max-w-4xl mx-auto">
-              Choose from our carefully curated tasty microgreen mixes designed
-              to unlock the benefits of biodiversity your body needs the most.
-              It’s easy, subscribe today and you’ll never have to worry about
-              running out of your favorite blend.
+              Join the easiest healthy eating movement in NYC
             </p>
           </div>
 
@@ -1074,9 +1043,7 @@ export default function HomePage() {
                     />
                   </svg>
                   <span>
-                    Locally grown and harvested for ultimate freshness, ensuring
-                    you receive the highest quality microgreens every single
-                    week.
+                    <strong>Never run out of fresh greens again.</strong> We grow and harvest specifically for your delivery, so you always get the freshest nutrition without grocery store trips.
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -1092,9 +1059,7 @@ export default function HomePage() {
                     />
                   </svg>
                   <span>
-                    Say goodbye to mystery ingredients. We use only organic,
-                    non‑GMO seeds and practices, free from harmful pesticides,
-                    fertilizers, or chemicals.
+                    <strong>No more wilted vegetables.</strong> We use only organic, non-GMO seeds and pesticide-free growing practices, so you are getting pure nutrition without any nasty chemicals.
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -1110,8 +1075,7 @@ export default function HomePage() {
                     />
                   </svg>
                   <span>
-                    Add a wider variety of greens to your diet, with up to 13
-                    different nutrient‑rich veggies in one pack.
+                    <strong>13 different vegetables in one convenient pack.</strong> Get more variety in your diet without buying and wasting multiple types of produce.
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -1127,8 +1091,7 @@ export default function HomePage() {
                     />
                   </svg>
                   <span>
-                    Skip the grocery store frenzy and enjoy the convenience of
-                    regular deliveries for effortless nutrition.
+                    <strong>Skip the grocery store nutrition aisle.</strong> Get your vitamins from real food delivered to your door, not synthetic pills that your body cannot absorb properly.
                   </span>
                 </li>
               </ul>
@@ -1359,24 +1322,24 @@ export default function HomePage() {
               Ready to join our community of health-conscious customers?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/configure/starter"
-                className="inline-flex items-center justify-center bg-gray-900 text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]"
+              <a
+                href="#plans"
+                className="inline-flex items-center justify-center bg-[#178641] hover:bg-[#136834] text-white px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]"
               >
                 Try a Pack
-              </Link>
-              <Link
-                href="/configure/pro"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-gray-200 to-gray-400 text-gray-900 px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]"
+              </a>
+              <a
+                href="#plans"
+                className="inline-flex items-center justify-center bg-[#e56322] hover:bg-[#d05a1e] text-white px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]"
               >
                 Go Pro with 3
-              </Link>
-              <Link
-                href="/configure/elite"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-10 py-4 rounded-full font-bold text-lg hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]"
+              </a>
+              <a
+                href="#plans"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-8 py-3 rounded-full font-bold text-lg hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]"
               >
                 Commit, Go Elite
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -1449,25 +1412,23 @@ export default function HomePage() {
           <div className="bg-white rounded-2xl p-8 md:p-10 mb-8 grid md:grid-cols-2 lg:gap-10 gap-6 items-center">
             <div>
               <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-left">
-                Let Food Be Thy Medicine
+                Your Health Shouldn't Be Complicated
               </h3>
               <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-left">
-                Everyone wants to be healthy but the information and choices
-                available for us is so confusing it leaves us stuck! It's time
-                to make health and nutrition simple so you can be your best you.
-                Here at FuelFoods Industries we are aggressively dedicated to
-                finding the best practices to optimize human health, the natural
-                way.
+                Like you, we were tired of buying expensive vegetables that went bad before we could eat them. Tired of trying to figure out what supplements actually worked. Tired of feeling guilty about not eating enough vegetables.
+              </p>
+              <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-left">
+                Then we discovered microgreens in 2020 and everything changed. These tiny plants pack 40x more nutrition than regular vegetables, taste amazing, and last for days in your fridge. No more waste, no more guilt, no more confusion.
               </p>
               <p className="text-base lg:text-lg text-gray-900 font-semibold text-left">
-                Join us on our mission to transform health through nutrition!
+                <strong>Join the movement. Your future self will thank you.</strong>
               </p>
               <div className="mt-6 text-left">
                 <Link
                   href="/about-us"
                   className="inline-flex items-center justify-center bg-[#178641] hover:bg-[#136834] text-white font-extrabold text-base md:text-lg px-8 py-3 rounded-full shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#178641]"
                 >
-                  Learn Our Story
+                  Start My Health Journey Today
                 </Link>
               </div>
             </div>
