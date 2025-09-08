@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "supabase": {
+      "command": "/Users/base/.npm-global/bin/mcp-server-supabase",
+      "args": [
+        "--read-only",
+        "--project-ref=yauxsjsexkigtdozuhri"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "<personal-access-token>"
+      }
+    }
+  }
+}

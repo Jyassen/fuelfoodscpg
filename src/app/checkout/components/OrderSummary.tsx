@@ -307,7 +307,7 @@ export default function OrderSummary({
           </div>
         </div>
 
-        {/* Money Back Guarantee */}
+        {/* Delivery Date */}
         <div className="mt-4 bg-green-50 border border-green-200 rounded-lg p-3">
           <div className="flex items-start space-x-2">
             <svg
@@ -317,17 +317,33 @@ export default function OrderSummary({
             >
               <path
                 fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                 clipRule="evenodd"
               />
             </svg>
             <div>
               <h4 className="text-xs font-medium text-green-900">
-                Freshness Guarantee
+                Your Delivery Date
               </h4>
               <p className="text-xs text-green-700 mt-1">
-                Not satisfied? We'll replace your order or provide a full
-                refund.
+                Order now and you'll receive your greens {(() => {
+                  if (typeof window === 'undefined') return 'soon';
+                  const today = new Date();
+                  const day = today.getDay(); // 0 Sun ... 6 Sat
+                  const targets = [1, 4]; // Monday, Thursday
+                  const diffs = targets
+                    .map(t => (t - day + 7) % 7)
+                    .filter(d => d > 0)
+                    .sort((a, b) => a - b);
+                  const delta = diffs[0] ?? 7; // if today is Mon/Thu, show next delivery
+                  const next = new Date(today);
+                  next.setDate(today.getDate() + delta);
+                  return next.toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    month: 'short',
+                    day: 'numeric',
+                  });
+                })()}
               </p>
             </div>
           </div>

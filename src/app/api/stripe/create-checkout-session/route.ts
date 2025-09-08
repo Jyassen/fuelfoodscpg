@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { stripe } from '@/lib/stripe/server';
+import { getStripe } from '@/lib/stripe/server';
 import { resolveSubscriptionPriceId } from '@/lib/stripe/prices';
 
 export async function POST(req: Request) {
@@ -38,6 +38,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Only subscription mode supported for now' }, { status: 400 });
     }
 
+    const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
       mode,
       line_items,

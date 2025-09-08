@@ -68,22 +68,11 @@ export function OrderSummary({
 
   return (
     <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-      <h3 className="text-lg font-semibold text-gray-900 mb-1">Summary</h3>
-      {planType !== 'starter' && (
-        <p className="text-sm text-gray-600 mb-3">
-          {`Select exactly ${planConfig.packsRequired} packs to continue. ${Math.max(planConfig.packsRequired - selectedVarieties.reduce((s, v) => s + v.quantity, 0), 0)} left.`}
-        </p>
-      )}
       <div className="space-y-6">
-        {/* Delivery cadence info */}
-        <div className="text-sm text-gray-700">
-          Deliveries Mondays & Thursdays
-        </div>
-
         {/* Selected Items */}
         <div>
           <h4 className="font-semibold text-gray-900 mb-3">
-            {planType === 'starter' ? 'Your Packs' : 'Your Selection'}
+            {planType === 'starter' ? 'Your Packs' : 'Your Selections'}
           </h4>
           <div className="space-y-3">
             {selectedVarieties.length > 0 ? (
@@ -202,10 +191,15 @@ export function OrderSummary({
               <LoadingSpinner size="sm" color="white" className="mr-2" />
               Adding to Cart...
             </div>
+          ) : selectedVarieties.length === 0 ? (
+            <div className="flex items-center justify-center">
+              <ShoppingCart className="w-5 h-5 mr-2" />
+              Add ({planType === 'starter' ? '1+' : planConfig.packsRequired}) to Cart
+            </div>
           ) : (
             <div className="flex items-center justify-center">
               <ShoppingCart className="w-5 h-5 mr-2" />
-              Add to Cart • ${total.toFixed(2)}
+              Add to Cart
             </div>
           )}
         </Button>

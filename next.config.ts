@@ -35,6 +35,9 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
 
+  // Transpile ESM packages that may not be pre-compiled
+  transpilePackages: ['@supabase/ssr'],
+
   // Webpack optimization
   webpack: (config, { dev, isServer }) => {
     // Production optimizations
@@ -87,8 +90,8 @@ const nextConfig: NextConfig = {
               key: 'Content-Security-Policy',
               value:
                 process.env.NODE_ENV === 'development'
-                  ? "default-src 'self' 'unsafe-eval' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:;"
-                  : "default-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self'; frame-src 'self';",
+                  ? "default-src 'self' 'unsafe-eval' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://*.supabase.co https://api.stripe.com ws://localhost:* wss://*.supabase.co;"
+                  : "default-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://*.supabase.co https://api.stripe.com wss://*.supabase.co; frame-src 'self';",
             },
           ],
         },

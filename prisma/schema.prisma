@@ -1,0 +1,230 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// NextAuth.js required tables
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// Core user model with FuelFoods-specific fields
+model User {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  emailVerified    DateTime? @map("email_verified")
+  hashedPassword   String?   @map("hashed_password")
+  firstName        String?   @map("first_name") @db.VarChar(100)
+  lastName         String?   @map("last_name") @db.VarChar(100)
+  phone            String?   @db.VarChar(20)
+  marketingOptIn   Boolean   @default(false) @map("marketing_opt_in")
+  stripeCustomerId String?   @unique @map("stripe_customer_id")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  accounts      Account[]
+  sessions      Session[]
+  addresses     Address[]
+  orders        Order[]
+  subscriptions UserSubscription[]
+  preferences   UserPreferences?
+
+  @@map("users")
+}
+
+// User preferences for notifications and settings
+model UserPreferences {
+  id                          String  @id @default(cuid())
+  userId                      String  @unique @map("user_id")
+  emailMarketing              Boolean @default(true) @map("email_marketing")
+  emailOrderUpdates           Boolean @default(true) @map("email_order_updates")
+  emailDeliveryNotifications  Boolean @default(true) @map("email_delivery_notifications")
+  smsNotifications            Boolean @default(false) @map("sms_notifications")
+  language                    String  @default("en") @db.VarChar(5)
+  timezone                    String  @default("America/New_York") @db.VarChar(50)
+  createdAt                   DateTime @default(now()) @map("created_at")
+  updatedAt                   DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}
+
+// Address model for billing and shipping
+model Address {
+  id        String      @id @default(cuid())
+  userId    String      @map("user_id")
+  type      AddressType
+  firstName String      @map("first_name") @db.VarChar(100)
+  lastName  String      @map("last_name") @db.VarChar(100)
+  company   String?     @db.VarChar(255)
+  address1  String      @db.VarChar(255)
+  address2  String?     @db.VarChar(255)
+  city      String      @db.VarChar(100)
+  state     String      @db.VarChar(50)
+  zipCode   String      @map("zip_code") @db.VarChar(20)
+  country   String      @default("US") @db.VarChar(2)
+  isDefault Boolean     @default(false) @map("is_default")
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
+
+  // Relations
+  user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  billingOrders   Order[] @relation("BillingAddress")
+  shippingOrders  Order[] @relation("ShippingAddress")
+
+  @@map("addresses")
+}
+
+// User subscription tracking
+model UserSubscription {
+  id                   String    @id @default(cuid())
+  userId               String    @map("user_id")
+  stripeSubscriptionId String    @unique @map("stripe_subscription_id")
+  planType             PlanType  @map("plan_type")
+  status               String    @db.VarChar(20)
+  currentPeriodStart   DateTime? @map("current_period_start")
+  currentPeriodEnd     DateTime? @map("current_period_end")
+  cancelAtPeriodEnd    Boolean   @default(false) @map("cancel_at_period_end")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_subscriptions")
+}
+
+// Order tracking
+model Order {
+  id                     String   @id @default(cuid())
+  userId                 String   @map("user_id")
+  orderNumber            String   @unique @map("order_number") @db.VarChar(50)
+  stripeSessionId        String?  @unique @map("stripe_session_id")
+  stripePaymentIntentId  String?  @unique @map("stripe_payment_intent_id")
+  status                 OrderStatus @default(PENDING)
+  subtotal               Decimal     @db.Decimal(10, 2)
+  taxAmount              Decimal     @default(0) @map("tax_amount") @db.Decimal(10, 2)
+  shippingAmount         Decimal     @default(0) @map("shipping_amount") @db.Decimal(10, 2)
+  total                  Decimal     @db.Decimal(10, 2)
+  billingAddressId       String?     @map("billing_address_id")
+  shippingAddressId      String?     @map("shipping_address_id")
+  createdAt              DateTime    @default(now()) @map("created_at")
+  updatedAt              DateTime    @updatedAt @map("updated_at")
+
+  // Relations
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items           OrderItem[]
+  billingAddress  Address? @relation("BillingAddress", fields: [billingAddressId], references: [id])
+  shippingAddress Address? @relation("ShippingAddress", fields: [shippingAddressId], references: [id])
+
+  @@map("orders")
+}
+
+// Order items
+model OrderItem {
+  id                  String  @id @default(cuid())
+  orderId             String  @map("order_id")
+  productName         String  @map("product_name") @db.VarChar(255)
+  productImage        String? @map("product_image") @db.VarChar(500)
+  quantity            Int
+  unitPrice           Decimal @map("unit_price") @db.Decimal(10, 2)
+  totalPrice          Decimal @map("total_price") @db.Decimal(10, 2)
+  subscriptionDetails Json?   @map("subscription_details")
+  createdAt           DateTime @default(now()) @map("created_at")
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@map("order_items")
+}
+
+// Password reset tokens
+model PasswordResetToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+  @@map("password_reset_tokens")
+}
+
+// Email verification tokens (separate from NextAuth verification)
+model EmailVerificationToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+  @@map("email_verification_tokens")
+}
+
+// Enums
+enum AddressType {
+  BILLING
+  SHIPPING
+
+  @@map("address_type")
+}
+
+enum PlanType {
+  STARTER
+  PRO
+  ELITE
+
+  @@map("plan_type")
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+
+  @@map("order_status")
+}

@@ -104,52 +104,132 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Condensed Info Section: What/Why/How with side image */}
-      <section className="relative bg-white py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left copy: three condensed blocks */}
-          <div className="space-y-6 relative z-10 lg:pr-24 xl:pr-32">
-            <div>
-              <h2 className="text-3xl lg:text-5xl font-extrabold text-[#e56322] mb-3">
-                What Are Microgreens?
-              </h2>
-              <p className="text-base text-gray-800 leading-snug max-w-2xl">
-                Think of them as baby vegetables with superpowers. Microgreens are harvested when they are tiny but pack up to 40x more nutrition than full-grown vegetables. It is like getting a multivitamin, but it is actually food that tastes great.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-3xl lg:text-5xl font-extrabold text-black mb-3">
-                Why Microgreens?
-              </h2>
-              <p className="text-base text-gray-800 leading-snug max-w-2xl">
-                Ever struggle to eat enough vegetables? We get it. Life is busy, fresh produce spoils, and salads get boring. Microgreens solve all of that. Just one pack gives you the nutrition of an entire salad without the prep, waste, or bland taste. Plus, they actually make your meals more delicious.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-3xl lg:text-5xl font-extrabold text-[#448319] mb-3">
-                How To Use Your Microgreen Packs?
-              </h2>
-              <p className="text-base text-gray-800 leading-snug max-w-2xl">
-                Using microgreens is easier than you think. Toss them on anything for instant nutrition and flavor. Add your favorite microgreen pack to smoothies, salads, sandwiches, bowls and more! Get as creative as you would like.
-              </p>
-            </div>
+      {/* Interactive What/Why/How Section with Image */}
+      <section className="relative bg-white py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Microgreens Made Simple
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Everything you need to know in 30 seconds
+            </p>
           </div>
 
-          {/* Right visual */}
-          <div className="relative z-0">
-            <img
-              src="/images/singlewithgreens_final.png"
-              alt="Microgreens bursting from package"
-              className="hidden lg:block absolute top-1/2 right-0 w-full h-auto object-contain scale-[1.8] origin-center-right z-0 -translate-y-1/2"
-            />
-            {/* Fallback for small screens */}
-            <img
-              src="/images/singlewithgreens_final.png"
-              alt="Microgreens bursting from package"
-              className="block lg:hidden w-full max-w-[700px] h-auto object-contain mx-auto"
-            />
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Interactive Cards */}
+            <div className="space-y-6">
+              {/* What Card */}
+              <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-bl-2xl opacity-50"></div>
+                <div className="relative z-10 flex items-start">
+                  <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                    <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 2a3 3 0 0 0-3 3c0 1.5 1.5 3 3 3s3-1.5 3-3a3 3 0 0 0-3-3Z" />
+                      <path d="M12 8c-3 0-6 2-6 5v7h12v-7c0-3-3-5-6-5Z" />
+                      <path d="M8 13h8" />
+                      <path d="M8 17h8" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-orange-600 mb-3">What Are Microgreens?</h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-2"></div>
+                        <span className="text-gray-700 text-sm">Baby vegetables with superpowers</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-2"></div>
+                        <span className="text-gray-700 text-sm">40x more nutrition than regular veggies</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-2"></div>
+                        <span className="text-gray-700 text-sm">Like a multivitamin that tastes great</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Why Card */}
+              <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-bl-2xl opacity-50"></div>
+                <div className="relative z-10 flex items-start">
+                  <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                    <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 12l2 2 4-4" />
+                      <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
+                      <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
+                      <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3" />
+                      <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-yellow-600 mb-3">Why Microgreens?</h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                        <span className="text-gray-700 text-sm">No more wilted vegetables</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                        <span className="text-gray-700 text-sm">Skip boring salad prep</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                        <span className="text-gray-700 text-sm">Actually makes food taste better</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* How Card */}
+              <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-bl-2xl opacity-50"></div>
+                <div className="relative z-10 flex items-start">
+                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                    <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 9V5a3 3 0 0 0-6 0v4" />
+                      <rect x="2" y="9" width="20" height="12" rx="2" ry="2" />
+                      <circle cx="12" cy="15" r="1" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-green-600 mb-3">How To Use Your Microgreen Packs?</h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2"></div>
+                        <span className="text-gray-700 text-sm">Toss on smoothies & salads</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2"></div>
+                        <span className="text-gray-700 text-sm">Add to sandwiches & bowls</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2"></div>
+                        <span className="text-gray-700 text-sm">Eat straight from the pack</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Original Image */}
+            <div className="relative">
+              <img
+                src="/images/singlewithgreens_final.png"
+                alt="Microgreens bursting from package"
+                className="hidden lg:block absolute top-1/2 right-0 w-full h-auto object-contain scale-[1.8] origin-center-right z-0 -translate-y-1/2"
+              />
+              {/* Fallback for small screens */}
+              <img
+                src="/images/singlewithgreens_final.png"
+                alt="Microgreens bursting from package"
+                className="block lg:hidden w-full max-w-[700px] h-auto object-contain mx-auto"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -567,7 +647,7 @@ export default function HomePage() {
 
             {/* Pro Plan - Most Popular */}
             <div className="bg-white rounded-2xl p-4 shadow-[0_12px_34px_4px_rgba(34,94,20,0.30)] hover:shadow-[0_22px_56px_10px_rgba(34,94,20,0.40)] transition-all duration-300 transform hover:-translate-y-[2px] relative border-4 border-[#c0c0c0] flex flex-col h-full">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide shadow-lg">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg">
                 Most Popular
               </div>
 
@@ -1043,7 +1123,7 @@ export default function HomePage() {
                     />
                   </svg>
                   <span>
-                    <strong>Never run out of fresh greens again.</strong> We grow and harvest specifically for your delivery, so you always get the freshest nutrition without grocery store trips.
+                    <strong>Fresh nutrition delivered weekly.</strong> We grow and harvest specifically for your delivery, so you always get the freshest nutrition without grocery store trips.
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -1059,7 +1139,7 @@ export default function HomePage() {
                     />
                   </svg>
                   <span>
-                    <strong>No more wilted vegetables.</strong> We use only organic, non-GMO seeds and pesticide-free growing practices, so you are getting pure nutrition without any nasty chemicals.
+                    <strong>Organic, pesticide-free growing.</strong> We use only organic, non-GMO seeds and pesticide-free growing practices, so you are getting pure nutrition without any nasty chemicals.
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -1075,7 +1155,7 @@ export default function HomePage() {
                     />
                   </svg>
                   <span>
-                    <strong>13 different vegetables in one convenient pack.</strong> Get more variety in your diet without buying and wasting multiple types of produce.
+                    <strong>Maximum variety in every pack.</strong> Get more variety in your diet without buying and wasting multiple types of produce.
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -1091,12 +1171,12 @@ export default function HomePage() {
                     />
                   </svg>
                   <span>
-                    <strong>Skip the grocery store nutrition aisle.</strong> Get your vitamins from real food delivered to your door, not synthetic pills that your body cannot absorb properly.
+                    <strong>Real food, not synthetic supplements.</strong> Get your vitamins from real food delivered to your door, not synthetic pills that your body cannot absorb properly.
                   </span>
                 </li>
               </ul>
 
-              <div className="mt-10">
+              <div className="mt-10 text-center">
                 <a
                   href="#plans"
                   aria-label="Choose Your Greens"
@@ -1123,8 +1203,7 @@ export default function HomePage() {
               Real Stories from Real Customers
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Join thousands of satisfied customers who have transformed their
-              health with our fresh microgreens
+              See why our customers give us a 5-star rating for our fresh microgreens
             </p>
           </div>
 
@@ -1132,7 +1211,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-16">
             <div className="text-center">
               <div className="text-3xl font-bold text-fuelfoods-green-500 mb-2">
-                4.9★
+                5★
               </div>
               <div className="text-gray-600 font-medium">Average Rating</div>
             </div>
@@ -1254,17 +1333,18 @@ export default function HomePage() {
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 mb-12">
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-fuelfoods-green-100 rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
                   <svg
-                    className="w-8 h-8 text-fuelfoods-green-500"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                    className="w-8 h-8"
+                    fill="none"
+                    stroke="#178641"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -1276,13 +1356,17 @@ export default function HomePage() {
               </div>
 
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
                   <svg
-                    className="w-8 h-8 text-blue-500"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                    className="w-8 h-8 text-orange-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -1294,17 +1378,19 @@ export default function HomePage() {
               </div>
 
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
                   <svg
-                    className="w-8 h-8 text-purple-500"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                    className="w-8 h-8 text-blue-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                      clipRule="evenodd"
-                    />
+                    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z" />
+                    <path d="M12 6v6l4 2" />
+                    <path d="M16 8a6 6 0 0 0-6-6" />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -1346,69 +1432,8 @@ export default function HomePage() {
       </section>
 
       {/* About Section - Enhanced */}
-      <section className="bg-gradient-to-br from-gray-900 to-gray-800 py-20 px-4 sm:px-6 lg:px-8 text-white relative overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern
-                id="about-grid"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 20 0 L 0 0 0 20"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="1"
-                />
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#about-grid)" />
-          </svg>
-        </div>
-
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <div className="mb-8">
-            <h2 className="text-4xl lg:text-6xl font-bold mb-6">Our Mission</h2>
-            <div className="w-24 h-1 bg-fuelfoods-green-500 mx-auto mb-8"></div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-fuelfoods-green-400 mb-2">
-                Our Vision
-              </div>
-              <p className="text-gray-300 leading-relaxed">
-                Making nutrition simple and accessible for everyone through the
-                power of fresh, nutrient-dense microgreens.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-fuelfoods-green-400 mb-2">
-                Our Promise
-              </div>
-              <p className="text-gray-300 leading-relaxed">
-                Delivering the freshest, highest quality microgreens with
-                unmatched customer service and expert guidance.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-fuelfoods-green-400 mb-2">
-                Our Impact
-              </div>
-              <p className="text-gray-300 leading-relaxed">
-                Helping thousands improve their health naturally while
-                supporting sustainable, local agriculture practices.
-              </p>
-            </div>
-          </div>
-
+      <section className="bg-gradient-to-br from-gray-900 to-gray-800 py-20 px-4 sm:px-6 lg:px-8 text-white">
+        <div className="max-w-6xl mx-auto text-center">
           <div className="bg-white rounded-2xl p-8 md:p-10 mb-8 grid md:grid-cols-2 lg:gap-10 gap-6 items-center">
             <div>
               <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-left">
@@ -1423,12 +1448,12 @@ export default function HomePage() {
               <p className="text-base lg:text-lg text-gray-900 font-semibold text-left">
                 <strong>Join the movement. Your future self will thank you.</strong>
               </p>
-              <div className="mt-6 text-left">
+              <div className="mt-6 text-center">
                 <Link
                   href="/about-us"
                   className="inline-flex items-center justify-center bg-[#178641] hover:bg-[#136834] text-white font-extrabold text-base md:text-lg px-8 py-3 rounded-full shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#178641]"
                 >
-                  Start My Health Journey Today
+                  Learn More
                 </Link>
               </div>
             </div>

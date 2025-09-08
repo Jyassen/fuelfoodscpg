@@ -1,14 +1,14 @@
 import Stripe from 'stripe';
 
-const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
-
-if (!STRIPE_SECRET_KEY) {
-  // We avoid throwing at import time in production environments where envs might be injected later.
-  // Route handlers should still validate and throw a clear error if missing.
-  // eslint-disable-next-line no-console
-  console.warn('[stripe] STRIPE_SECRET_KEY is not set');
+/**
+ * Lazily initialize Stripe to avoid build-time errors when env vars
+ * are not available during static analysis/compilation on hosts.
+ */
+export function getStripe(): Stripe {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    throw new Error('[stripe] STRIPE_SECRET_KEY is not set');
+  }
+  return new Stripe(key);
 }
-
-export const stripe = new Stripe(STRIPE_SECRET_KEY || '');
-
 

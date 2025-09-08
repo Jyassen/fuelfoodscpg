@@ -100,6 +100,16 @@ export function VarietySelector({
           accent: 'text-yellow-600',
           badge: 'bg-yellow-100 text-yellow-800',
         };
+      case 'green':
+        return {
+          gradient: 'from-green-50 to-green-100',
+          border: 'border-green-200',
+          button: 'bg-green-600 hover:bg-green-700 text-white',
+          buttonSecondary:
+            'border-green-300 text-green-700 hover:bg-green-50',
+          accent: 'text-green-600',
+          badge: 'bg-green-100 text-green-800',
+        };
       default:
         return {
           gradient: 'from-gray-50 to-gray-100',
@@ -250,13 +260,6 @@ export function VarietySelector({
 
                 {/* Quantity Controls */}
                 <div className="flex flex-col items-center lg:items-end space-y-4">
-                  <div className="text-center lg:text-right">
-                    <div className="text-xs text-gray-500">Price per pack</div>
-                    <div className="text-lg font-bold text-gray-900">
-                      ${variety.price}
-                    </div>
-                  </div>
-
                   <div className="flex items-center space-x-4">
                     <button
                       onClick={() => handleQuantityChange(varietyId as any, -1)}
@@ -283,22 +286,13 @@ export function VarietySelector({
                       <Plus className="w-4 h-4" />
                     </button>
                   </div>
-
-                  {quantity > 0 && (
-                    <div className="text-center lg:text-right">
-                      <div className="text-xs text-gray-500">Subtotal</div>
-                      <div className="text-base font-bold text-gray-900">
-                        ${(quantity * variety.price).toFixed(2)}
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
 
               {/* Expanded Details */}
               {isExpanded && (
                 <div className="mt-6 pt-6 border-t border-gray-200">
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-3 gap-6">
                     <div>
                       <h5 className="font-semibold text-gray-900 mb-3">
                         Nutritional Benefits:
@@ -377,7 +371,7 @@ export function VarietySelector({
                           <>
                             <li className="flex items-start">
                               <svg
-                                className="w-4 h-4 text-purple-500 mr-2 mt-0.5 flex-shrink-0"
+                                className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -391,7 +385,7 @@ export function VarietySelector({
                             </li>
                             <li className="flex items-start">
                               <svg
-                                className="w-4 h-4 text-purple-500 mr-2 mt-0.5 flex-shrink-0"
+                                className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -405,7 +399,7 @@ export function VarietySelector({
                             </li>
                             <li className="flex items-start">
                               <svg
-                                className="w-4 h-4 text-purple-500 mr-2 mt-0.5 flex-shrink-0"
+                                className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -462,6 +456,151 @@ export function VarietySelector({
                                 />
                               </svg>
                               Smoothie bowl toppers
+                            </li>
+                          </>
+                        )}
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-gray-900 mb-3">
+                        Ingredients:
+                      </h5>
+                      <ul className="space-y-2 text-sm text-gray-700">
+                        {varietyId === 'mega-mix' && (
+                          <>
+                            <li className="flex items-start">
+                              <svg
+                                className="w-4 h-4 text-orange-500 mr-2 mt-0.5 flex-shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Green & Purple Daikon Radish
+                            </li>
+                            <li className="flex items-start">
+                              <svg
+                                className="w-4 h-4 text-orange-500 mr-2 mt-0.5 flex-shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Green & Pak Choi
+                            </li>
+                            <li className="flex items-start">
+                              <svg
+                                className="w-4 h-4 text-orange-500 mr-2 mt-0.5 flex-shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Kohlrabi, Purple Mustard, Mizuna
+                            </li>
+                            <li className="flex items-start">
+                              <svg
+                                className="w-4 h-4 text-orange-500 mr-2 mt-0.5 flex-shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Sweet Peas, Beets
+                            </li>
+                          </>
+                        )}
+                        {varietyId === 'brassica-blend' && (
+                          <>
+                            <li className="flex items-start">
+                              <svg
+                                className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Broccoli
+                            </li>
+                            <li className="flex items-start">
+                              <svg
+                                className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Purple Mustard
+                            </li>
+                            <li className="flex items-start">
+                              <svg
+                                className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Kohlrabi
+                            </li>
+                            <li className="flex items-start">
+                              <svg
+                                className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Sunflower
+                            </li>
+                          </>
+                        )}
+                        {varietyId === 'sunnies-snacks' && (
+                          <>
+                            <li className="flex items-start">
+                              <svg
+                                className="w-4 h-4 text-yellow-500 mr-2 mt-0.5 flex-shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Micro Sunflower Shoots
                             </li>
                           </>
                         )}

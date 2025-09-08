@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { SEO_DEFAULTS } from '@/lib/constants';
 import { FuelFoodsProvider } from '@/context';
+import { AuthProvider } from '@/components/auth/AuthContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -42,19 +43,21 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <FuelFoodsProvider>
-          <div className="min-h-screen flex flex-col">
-            {/* Sitewide top banner - placed above navigation */}
-            <div className="bg-black text-white text-center py-3 px-4">
-              <p className="text-sm font-medium">
-                Now Shipping Exclusively To The Northeast!
-              </p>
+        <AuthProvider>
+          <FuelFoodsProvider>
+            <div className="min-h-screen flex flex-col">
+              {/* Sitewide top banner - placed above navigation */}
+              <div className="bg-black text-white text-center py-3 px-4">
+                <p className="text-sm font-medium">
+                  Now Shipping Exclusively To The Northeast!
+                </p>
+              </div>
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <Footer />
             </div>
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
-        </FuelFoodsProvider>
+          </FuelFoodsProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -743,7 +743,7 @@ export const MICROGREENS_VARIETIES: Record<
   'brassica-blend': {
     id: 'brassica-blend',
     name: 'Brassica Blend',
-    theme: 'purple',
+    theme: 'green',
     description:
       'A collection of cruciferous microgreens known for their detox properties',
     image: '/images/brassica-blend-product.png',
