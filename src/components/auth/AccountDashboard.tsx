@@ -47,84 +47,46 @@ interface DashboardData {
   }[];
 }
 
-const mockDashboardData: DashboardData = {
-  user: {
-    firstName: 'adminfuelfoods',
-    email: 'admin@fuelfoods.store',
-    totalOrders: 12,
-    activeSubscriptions: 2,
-    totalSaved: 324,
-    nextDelivery: {
-      date: 'Monday, August 7th',
-      items: ['Mega Mix', 'Tummies Pet Grass']
-    }
-  },
-  recentOrders: [
-    {
-      id: '1234',
-      orderNumber: '#1234',
-      date: 'July 31, 2024',
-      items: ['Mega Mix', 'Brassica Blend'],
-      total: 27.98,
-      status: 'delivered'
-    },
-    {
-      id: '1233',
-      orderNumber: '#1233', 
-      date: 'July 24, 2024',
-      items: ['Tummies Pet Grass (3-Pack)'],
-      total: 24.99,
-      status: 'delivered'
-    },
-    {
-      id: '1232',
-      orderNumber: '#1232',
-      date: 'July 17, 2024', 
-      items: ['Green Medley', 'Mega Mix'],
-      total: 24.98,
-      status: 'delivered'
-    }
-  ],
-  activeSubscriptions: [
-    {
-      id: 'sub1',
-      name: 'Mega Mix - Weekly',
-      frequency: 'Weekly',
-      price: 12.99,
-      nextDelivery: 'Monday, Aug 7th',
-      status: 'active',
-      color: 'green'
-    },
-    {
-      id: 'sub2', 
-      name: 'Tummies Pet Grass (3-Pack) - Weekly',
-      frequency: 'Weekly',
-      price: 24.99,
-      nextDelivery: 'Monday, Aug 7th',
-      status: 'active',
-      color: 'blue'
-    }
-  ]
-};
-
 export default function AccountDashboard() {
   const { user } = useAuth();
-  const [dashboardData, setDashboardData] = useState<DashboardData>(mockDashboardData);
+  const [dashboardData, setDashboardData] = useState<DashboardData>(() => ({
+    user: {
+      firstName: user?.firstName || '',
+      email: user?.email || '',
+      totalOrders: user?.totalOrders || 0,
+      activeSubscriptions: user?.subscriptions?.filter(s => s.status === 'active').length || 0,
+      totalSaved: 0,
+      nextDelivery: undefined,
+    },
+    recentOrders: [],
+    activeSubscriptions: [],
+  }));
   const [loading, setLoading] = useState(false);
 
   // In production, this would fetch real data
   useEffect(() => {
     if (user) {
-      // Update mock data with real user info
       setDashboardData(prev => ({
         ...prev,
         user: {
           ...prev.user,
           firstName: user.firstName,
           email: user.email,
-          totalOrders: user.totalOrders || prev.user.totalOrders,
-          activeSubscriptions: user.subscriptions?.filter(s => s.status === 'active').length || prev.user.activeSubscriptions
-        }
+          totalOrders: user.totalOrders || 0,
+          activeSubscriptions: user.subscriptions?.filter(s => s.status === 'active').length || 0,
+        },
+        activeSubscriptions: (user.subscriptions || [])
+          .filter(s => s.status === 'active')
+          .map(s => ({
+            id: s.id,
+            name: `${s.plan.name} - ${s.plan.frequency.charAt(0).toUpperCase()}${s.plan.frequency.slice(1)}`,
+            frequency: s.plan.frequency,
+            price: s.plan.price,
+            nextDelivery: s.nextDelivery ? new Date(s.nextDelivery).toLocaleDateString() : 'Not scheduled',
+            status: 'active' as const,
+            color: 'green' as const,
+          })),
+        recentOrders: [],
       }));
     }
   }, [user]);

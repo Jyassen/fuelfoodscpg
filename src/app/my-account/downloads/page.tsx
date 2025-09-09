@@ -16,49 +16,12 @@ interface DownloadItem {
   downloadUrl: string;
 }
 
-// Mock data - replace with real API call
-const mockDownloads: DownloadItem[] = [
-  {
-    id: '1',
-    type: 'invoice',
-    title: 'Invoice #1234',
-    description: 'Order from July 31, 2024',
-    date: 'July 31, 2024',
-    fileSize: '125 KB',
-    downloadUrl: '/downloads/invoice-1234.pdf'
-  },
-  {
-    id: '2',
-    type: 'receipt',
-    title: 'Receipt #1233',
-    description: 'Tummies Pet Grass purchase',
-    date: 'July 24, 2024',
-    fileSize: '98 KB',
-    downloadUrl: '/downloads/receipt-1233.pdf'
-  },
-  {
-    id: '3',
-    type: 'guide',
-    title: 'Microgreens Growing Guide',
-    description: 'Complete guide to growing microgreens at home',
-    date: 'July 1, 2024',
-    fileSize: '2.3 MB',
-    downloadUrl: '/downloads/growing-guide.pdf'
-  },
-  {
-    id: '4',
-    type: 'certificate',
-    title: 'Organic Certification',
-    description: 'Our organic farming certification documents',
-    date: 'June 15, 2024',
-    fileSize: '456 KB',
-    downloadUrl: '/downloads/organic-cert.pdf'
-  }
-];
+// Initialize with no downloads; real data will populate later
+const initialDownloads: DownloadItem[] = [];
 
 function DownloadsContent() {
   const { user, loading } = useRequireAuth();
-  const [downloads] = useState<DownloadItem[]>(mockDownloads);
+  const [downloads] = useState<DownloadItem[]>(initialDownloads);
   const [filter, setFilter] = useState<string>('all');
 
   if (loading) {

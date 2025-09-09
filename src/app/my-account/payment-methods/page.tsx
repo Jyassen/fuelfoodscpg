@@ -23,45 +23,12 @@ interface PaymentMethod {
   };
 }
 
-// Mock data - replace with real Stripe API call
-const mockPaymentMethods: PaymentMethod[] = [
-  {
-    id: '1',
-    type: 'card',
-    brand: 'visa',
-    last4: '4242',
-    expiryMonth: 12,
-    expiryYear: 2025,
-    isDefault: true,
-    billingAddress: {
-      name: 'John Doe',
-      line1: '123 Main St',
-      city: 'Boston',
-      state: 'MA',
-      postalCode: '02101'
-    }
-  },
-  {
-    id: '2',
-    type: 'card',
-    brand: 'mastercard',
-    last4: '5555',
-    expiryMonth: 8,
-    expiryYear: 2026,
-    isDefault: false,
-    billingAddress: {
-      name: 'John Doe',
-      line1: '456 Business Ave',
-      city: 'Cambridge',
-      state: 'MA',
-      postalCode: '02139'
-    }
-  }
-];
+// Initialize with no payment methods; will integrate with Stripe later
+const initialPaymentMethods: PaymentMethod[] = [];
 
 function PaymentMethodsContent() {
   const { user, loading } = useRequireAuth();
-  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>(mockPaymentMethods);
+  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>(initialPaymentMethods);
   const [isLoading, setIsLoading] = useState(false);
 
   if (loading) {

@@ -26,66 +26,12 @@ interface Order {
   };
 }
 
-// Mock data - replace with real API call
-const mockOrders: Order[] = [
-  {
-    id: '1',
-    orderNumber: '#1234',
-    date: 'July 31, 2024',
-    status: 'delivered',
-    items: [
-      { name: 'Mega Mix', quantity: 1, price: 14.99 },
-      { name: 'Brassica Blend', quantity: 1, price: 12.99 }
-    ],
-    total: 27.98,
-    trackingNumber: 'TRK123456789',
-    deliveryAddress: {
-      street: '123 Main St',
-      city: 'Boston',
-      state: 'MA',
-      zipCode: '02101'
-    }
-  },
-  {
-    id: '2',
-    orderNumber: '#1233',
-    date: 'July 24, 2024',
-    status: 'delivered',
-    items: [
-      { name: 'Tummies Pet Grass (3-Pack)', quantity: 1, price: 24.99 }
-    ],
-    total: 24.99,
-    trackingNumber: 'TRK123456788',
-    deliveryAddress: {
-      street: '123 Main St',
-      city: 'Boston',
-      state: 'MA',
-      zipCode: '02101'
-    }
-  },
-  {
-    id: '3',
-    orderNumber: '#1232',
-    date: 'July 17, 2024',
-    status: 'delivered',
-    items: [
-      { name: 'Green Medley', quantity: 1, price: 12.49 },
-      { name: 'Mega Mix', quantity: 1, price: 12.49 }
-    ],
-    total: 24.98,
-    trackingNumber: 'TRK123456787',
-    deliveryAddress: {
-      street: '123 Main St',
-      city: 'Boston',
-      state: 'MA',
-      zipCode: '02101'
-    }
-  }
-];
+// Initialize with no orders; wire real data later
+const initialOrders: Order[] = [];
 
 function OrdersContent() {
   const { user, loading } = useRequireAuth();
-  const [orders, setOrders] = useState<Order[]>(mockOrders);
+  const [orders, setOrders] = useState<Order[]>(initialOrders);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
   if (loading) {
@@ -102,6 +48,12 @@ function OrdersContent() {
   if (!user) {
     return null;
   }
+
+  useEffect(() => {
+    // When wired, fetch orders from backend; for now, ensure empty if none
+    // setOrders(fetchOrdersForUser(user.id))
+    setOrders([]);
+  }, [user]);
 
   const getStatusColor = (status: string) => {
     switch (status) {

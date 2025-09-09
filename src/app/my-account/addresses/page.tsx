@@ -24,40 +24,12 @@ interface Address {
   isDefault: boolean;
 }
 
-// Mock data - replace with real API call
-const mockAddresses: Address[] = [
-  {
-    id: '1',
-    type: 'shipping',
-    firstName: 'John',
-    lastName: 'Doe',
-    address1: '123 Main Street',
-    address2: 'Apt 4B',
-    city: 'Boston',
-    state: 'MA',
-    postalCode: '02101',
-    country: 'US',
-    phone: '(555) 123-4567',
-    isDefault: true
-  },
-  {
-    id: '2',
-    type: 'billing',
-    firstName: 'John',
-    lastName: 'Doe',
-    company: 'FuelFoods Inc',
-    address1: '456 Business Ave',
-    city: 'Cambridge',
-    state: 'MA',
-    postalCode: '02139',
-    country: 'US',
-    isDefault: true
-  }
-];
+// Initialize with no addresses; will be populated from user profile/API later
+const initialAddresses: Address[] = [];
 
 function AddressesContent() {
   const { user, loading } = useRequireAuth();
-  const [addresses, setAddresses] = useState<Address[]>(mockAddresses);
+  const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
   const [showForm, setShowForm] = useState(false);
   const [editingAddress, setEditingAddress] = useState<Address | null>(null);
   const [formData, setFormData] = useState<Partial<Address>>({
@@ -80,6 +52,13 @@ function AddressesContent() {
   if (!user) {
     return null;
   }
+
+  useEffect(() => {
+    // Populate from authenticated user if available
+    if (user?.addresses && user.addresses.length > 0) {
+      setAddresses(user.addresses as unknown as Address[]);
+    }
+  }, [user]);
 
   const handleAddNew = () => {
     setEditingAddress(null);
