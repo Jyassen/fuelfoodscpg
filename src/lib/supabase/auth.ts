@@ -35,7 +35,7 @@ export const registerUser = async (data: RegisterData): Promise<AuthResponse> =>
           first_name: data.firstName,
           last_name: data.lastName,
           phone: data.phone || null,
-          marketing_emails: data.marketingEmails || false,
+          marketing_emails: data.marketingEmails ?? false,
         }
       }
     })
@@ -60,6 +60,7 @@ export const registerUser = async (data: RegisterData): Promise<AuthResponse> =>
           phone: data.phone || null,
           email_verified: false,
           stripe_customer_id: null,
+          marketing_emails: data.marketingEmails ?? false,
         }
       ])
 
@@ -78,6 +79,7 @@ export const registerUser = async (data: RegisterData): Promise<AuthResponse> =>
         email: authData.user.email,
         firstName: data.firstName,
         lastName: data.lastName,
+        marketingEmails: data.marketingEmails ?? false,
         emailVerified: authData.user.email_confirmed_at ? new Date(authData.user.email_confirmed_at) : null,
       }
     }
@@ -130,6 +132,7 @@ export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
         phone: profile?.phone,
         emailVerified: authData.user.email_confirmed_at ? new Date(authData.user.email_confirmed_at) : null,
         stripeCustomerId: profile?.stripe_customer_id,
+        marketingEmails: profile?.marketing_emails ?? false,
       }
     }
   } catch (error: any) {
@@ -209,6 +212,7 @@ export const getCurrentUser = async () => {
       phone: profile?.phone,
       emailVerified: user.email_confirmed_at ? new Date(user.email_confirmed_at) : null,
       stripeCustomerId: profile?.stripe_customer_id,
+      marketingEmails: profile?.marketing_emails ?? false,
     }
   } catch (error) {
     console.error('Get current user error:', error)

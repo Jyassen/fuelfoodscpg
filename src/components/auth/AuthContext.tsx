@@ -14,6 +14,7 @@ export interface User {
   phone?: string;
   emailVerified: boolean;
   stripeCustomerId?: string;
+  marketingEmails?: boolean;
   addresses: Address[];
   subscriptions: Subscription[];
   totalOrders: number;
@@ -82,6 +83,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     phone: u.phone ?? undefined,
     emailVerified: !!u.emailVerified,
     stripeCustomerId: u.stripeCustomerId ?? undefined,
+    marketingEmails: u.marketingEmails ?? false,
     addresses: [],
     subscriptions: [],
     totalOrders: 0,
@@ -165,6 +167,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (data.firstName !== undefined) updates.first_name = data.firstName;
       if (data.lastName !== undefined) updates.last_name = data.lastName;
       if (data.phone !== undefined) updates.phone = data.phone;
+      if (data.marketingEmails !== undefined) updates.marketing_emails = data.marketingEmails;
 
       if (Object.keys(updates).length === 0) {
         return { success: true };
