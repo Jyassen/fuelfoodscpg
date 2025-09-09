@@ -428,7 +428,7 @@ export type OrderStatus =
 export interface MicrogreensVariety {
   id: 'mega-mix' | 'brassica-blend' | 'sunnies-snacks';
   name: string;
-  theme: 'orange' | 'purple' | 'yellow';
+  theme: 'orange' | 'purple' | 'yellow' | 'green';
   description: string;
   image: string;
   price: number;
