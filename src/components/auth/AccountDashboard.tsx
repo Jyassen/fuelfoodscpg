@@ -75,19 +75,30 @@ export default function AccountDashboard() {
           totalOrders: user.totalOrders || 0,
           activeSubscriptions: user.subscriptions?.filter(s => s.status === 'active').length || 0,
         },
-        activeSubscriptions: (user.subscriptions || [])
-          .filter(s => s.status === 'active')
-          .map(s => ({
-            id: s.id,
-            name: `${s.plan.name} - ${s.plan.frequency.charAt(0).toUpperCase()}${s.plan.frequency.slice(1)}`,
-            frequency: s.plan.frequency,
-            price: s.plan.price,
-            nextDelivery: s.nextDelivery ? new Date(s.nextDelivery).toLocaleDateString() : 'Not scheduled',
-            status: 'active' as const,
-            color: 'green' as const,
-          })),
+        activeSubscriptions: [],
         recentOrders: [],
       }));
+
+      // Fetch live subscriptions from API
+      fetch(`/api/account/subscriptions?userId=${encodeURIComponent(user.id)}`)
+        .then(r => r.json())
+        .then(data => {
+          if (Array.isArray(data.subscriptions)) {
+            setDashboardData(prev => ({
+              ...prev,
+              activeSubscriptions: data.subscriptions.map((s: any) => ({
+                id: s.id,
+                name: 'Subscription',
+                frequency: 'Weekly',
+                price: s.price ?? 0,
+                nextDelivery: s.current_period_end ? new Date(s.current_period_end).toLocaleDateString() : '—',
+                status: 'active' as const,
+                color: 'green' as const,
+              })),
+            }));
+          }
+        })
+        .catch(() => void 0);
     }
   }, [user]);
 

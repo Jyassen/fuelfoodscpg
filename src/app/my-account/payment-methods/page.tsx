@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { AuthProvider, useRequireAuth } from '@/components/auth/AuthContext';
 import AccountSidebar from '@/components/auth/AccountSidebar';
 import { CreditCard, Plus, Edit, Trash2, Shield, AlertCircle } from 'lucide-react';
@@ -45,6 +45,29 @@ function PaymentMethodsContent() {
   if (!user) {
     return null;
   }
+
+  // Load payment methods from API
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`/api/account/payment-methods?userId=${encodeURIComponent(user.id)}`);
+        const data = await res.json();
+        if (Array.isArray(data.paymentMethods)) {
+          setPaymentMethods(
+            data.paymentMethods.map((m: any) => ({
+              id: m.id,
+              type: 'card',
+              brand: (m.brand || 'unknown') as any,
+              last4: m.last4 || '****',
+              expiryMonth: m.expiryMonth || 0,
+              expiryYear: m.expiryYear || 0,
+              isDefault: false,
+            }))
+          );
+        }
+      } catch {}
+    })();
+  }, [user.id]);
 
   const getBrandIcon = (brand: string) => {
     // In a real app, you'd use actual card brand icons

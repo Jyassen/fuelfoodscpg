@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { getStripe } from '@/lib/stripe/server';
+import { supabaseServer } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic'; // ensure no caching
 
@@ -34,8 +35,31 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
 
 // Handle customer events
 async function handleCustomerUpdated(customer: Stripe.Customer) {
-  // Temporarily disabled DB writes during migration to Supabase
-  console.log('[webhook] customer.updated received:', customer.id);
+  try {
+    const email = (customer.email || '').toLowerCase();
+    if (!email) return;
+    // Upsert stripe_customer_id into profiles by email
+    const { data: profile } = await supabaseServer
+      .from('profiles')
+      .select('id, stripe_customer_id')
+      .eq('email', email)
+      .maybeSingle();
+
+    if (!profile) {
+      // No matching profile, skip silently
+      return;
+    }
+
+    if (profile.stripe_customer_id !== customer.id) {
+      const { error } = await supabaseServer
+        .from('profiles')
+        .update({ stripe_customer_id: customer.id })
+        .eq('id', profile.id);
+      if (error) throw error;
+    }
+  } catch (e) {
+    console.error('[webhook] failed to sync customer to profiles:', e);
+  }
 }
 
 export async function POST(req: Request) {

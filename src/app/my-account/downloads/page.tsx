@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { AuthProvider, useRequireAuth } from '@/components/auth/AuthContext';
 import AccountSidebar from '@/components/auth/AccountSidebar';
 import { Download, FileText, Calendar, Eye } from 'lucide-react';
@@ -21,7 +21,7 @@ const initialDownloads: DownloadItem[] = [];
 
 function DownloadsContent() {
   const { user, loading } = useRequireAuth();
-  const [downloads] = useState<DownloadItem[]>(initialDownloads);
+  const [downloads, setDownloads] = useState<DownloadItem[]>(initialDownloads);
   const [filter, setFilter] = useState<string>('all');
 
   if (loading) {
@@ -38,6 +38,29 @@ function DownloadsContent() {
   if (!user) {
     return null;
   }
+
+  // Load invoices as downloads
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`/api/account/invoices?userId=${encodeURIComponent(user.id)}`);
+        const data = await res.json();
+        if (Array.isArray(data.invoices)) {
+          setDownloads(
+            data.invoices.map((inv: any) => ({
+              id: inv.id,
+              type: 'invoice',
+              title: `Invoice ${inv.number || inv.id}`,
+              description: new Date(inv.created).toLocaleDateString(),
+              date: new Date(inv.created).toLocaleDateString(),
+              fileSize: '',
+              downloadUrl: inv.invoice_pdf || inv.hosted_invoice_url || '#',
+            }))
+          );
+        }
+      } catch {}
+    })();
+  }, [user.id]);
 
   const getTypeIcon = (type: string) => {
     switch (type) {
