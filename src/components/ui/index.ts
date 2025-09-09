@@ -62,5 +62,4 @@ export {
   SelectValue,
 } from './select';
 export { Separator } from './separator';
-export { Toaster } from './sonner';
 export { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
