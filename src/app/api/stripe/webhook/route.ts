@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import Stripe from 'stripe';
 import { getStripe } from '@/lib/stripe/server';
-import { prisma } from '@/lib/db/prisma';
 
 export const dynamic = 'force-dynamic'; // ensure no caching
 
@@ -15,119 +14,14 @@ function generateOrderNumber(): string {
 
 // Handle checkout session completed
 async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
-  try {
-    console.log('Processing checkout session:', session.id);
-
-    // Find user by Stripe customer ID
-    const user = await prisma.user.findUnique({
-      where: { stripeCustomerId: session.customer as string },
-    });
-
-    if (!user) {
-      console.error('User not found for customer:', session.customer);
-      return;
-    }
-
-    // Create order record
-    const order = await prisma.order.create({
-      data: {
-        userId: user.id,
-        orderNumber: generateOrderNumber(),
-        stripeSessionId: session.id,
-        stripePaymentIntentId: session.payment_intent as string,
-        status: 'PROCESSING',
-        subtotal: (session.amount_subtotal || 0) / 100,
-        taxAmount: (session.total_details?.amount_tax || 0) / 100,
-        shippingAmount: (session.total_details?.amount_shipping || 0) / 100,
-        total: (session.amount_total || 0) / 100,
-      },
-    });
-
-    // If this is a subscription, handle subscription creation
-    if (session.mode === 'subscription' && session.subscription) {
-      await handleSubscriptionCreated({
-        id: session.subscription as string,
-        customer: session.customer as string,
-        status: 'active',
-        current_period_start: Math.floor(Date.now() / 1000),
-        current_period_end: Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60), // 30 days
-        cancel_at_period_end: false,
-        items: {
-          data: [
-            {
-              price: {
-                id: '',
-                metadata: session.metadata || {},
-              },
-            },
-          ],
-        },
-        metadata: session.metadata || {},
-      } as any);
-    }
-
-    console.log('Order created:', order.orderNumber);
-  } catch (error) {
-    console.error('Error handling checkout session completed:', error);
-    throw error;
-  }
+  // Temporarily disabled DB writes during migration to Supabase
+  console.log('[webhook] checkout.session.completed received:', session.id);
 }
 
 // Handle subscription lifecycle events
 async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
-  try {
-    console.log('Processing subscription created:', subscription.id);
-
-    // Find user by Stripe customer ID
-    const user = await prisma.user.findUnique({
-      where: { stripeCustomerId: subscription.customer as string },
-    });
-
-    if (!user) {
-      console.error('User not found for customer:', subscription.customer);
-      return;
-    }
-
-    // Extract plan type from subscription metadata or price ID
-    let planType: 'STARTER' | 'PRO' | 'ELITE' = 'STARTER';
-    
-    if (subscription.metadata?.planType) {
-      planType = subscription.metadata.planType.toUpperCase() as 'STARTER' | 'PRO' | 'ELITE';
-    } else {
-      // Determine plan type from price ID
-      const priceId = subscription.items.data[0]?.price?.id;
-      if (priceId === process.env.STRIPE_PRICE_PRO) {
-        planType = 'PRO';
-      } else if (priceId === process.env.STRIPE_PRICE_ELITE) {
-        planType = 'ELITE';
-      }
-    }
-
-    // Create or update subscription record
-    await prisma.userSubscription.upsert({
-      where: { stripeSubscriptionId: subscription.id },
-      create: {
-        userId: user.id,
-        stripeSubscriptionId: subscription.id,
-        planType,
-        status: subscription.status,
-        currentPeriodStart: new Date(subscription.current_period_start * 1000),
-        currentPeriodEnd: new Date(subscription.current_period_end * 1000),
-        cancelAtPeriodEnd: subscription.cancel_at_period_end,
-      },
-      update: {
-        status: subscription.status,
-        currentPeriodStart: new Date(subscription.current_period_start * 1000),
-        currentPeriodEnd: new Date(subscription.current_period_end * 1000),
-        cancelAtPeriodEnd: subscription.cancel_at_period_end,
-      },
-    });
-
-    console.log('Subscription processed:', subscription.id);
-  } catch (error) {
-    console.error('Error handling subscription:', error);
-    throw error;
-  }
+  // Temporarily disabled DB writes during migration to Supabase
+  console.log('[webhook] customer.subscription.created received:', subscription.id);
 }
 
 async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
@@ -135,43 +29,14 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
 }
 
 async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
-  try {
-    console.log('Processing subscription deleted:', subscription.id);
-
-    await prisma.userSubscription.update({
-      where: { stripeSubscriptionId: subscription.id },
-      data: {
-        status: 'cancelled',
-        cancelAtPeriodEnd: true,
-      },
-    });
-
-    console.log('Subscription cancelled:', subscription.id);
-  } catch (error) {
-    console.error('Error handling subscription deletion:', error);
-    throw error;
-  }
+  // Temporarily disabled DB writes during migration to Supabase
+  console.log('[webhook] customer.subscription.deleted received:', subscription.id);
 }
 
 // Handle customer events
 async function handleCustomerUpdated(customer: Stripe.Customer) {
-  try {
-    console.log('Processing customer updated:', customer.id);
-
-    await prisma.user.update({
-      where: { stripeCustomerId: customer.id },
-      data: {
-        firstName: customer.name?.split(' ')[0] || undefined,
-        lastName: customer.name?.split(' ').slice(1).join(' ') || undefined,
-        phone: customer.phone || undefined,
-      },
-    });
-
-    console.log('Customer updated:', customer.id);
-  } catch (error) {
-    console.error('Error handling customer update:', error);
-    // Don't throw - customer updates are not critical
-  }
+  // Temporarily disabled DB writes during migration to Supabase
+  console.log('[webhook] customer.updated received:', customer.id);
 }
 
 export async function POST(req: Request) {
