@@ -79,7 +79,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
     // Real-time password strength validation
     if (field === 'password' && typeof value === 'string') {
       const strength = validatePassword(value).strength;
-      setPasswordStrength(strength);
+      setPasswordStrength(strength ?? null);
     }
   };
 
