@@ -4,52 +4,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { useRouter } from 'next/navigation';
 import { registerUser, loginUser, logoutUser, getCurrentUser, onAuthStateChange, resendVerificationEmail as resendVerification } from '@/lib/supabase/auth'
 import type { RegisterData } from '@/lib/supabase/auth'
-
-// User type definition
-export interface User {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  phone?: string;
-  emailVerified: boolean;
-  stripeCustomerId?: string;
-  marketingEmails?: boolean;
-  addresses: Address[];
-  subscriptions: Subscription[];
-  totalOrders: number;
-  totalSpent: number;
-}
-
-export interface Address {
-  id: string;
-  type: 'shipping' | 'billing';
-  firstName: string;
-  lastName: string;
-  company?: string;
-  address1: string;
-  address2?: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  country: string;
-  phone?: string;
-  isDefault: boolean;
-}
-
-export interface Subscription {
-  id: string;
-  stripeSubscriptionId: string;
-  status: 'active' | 'canceled' | 'past_due' | 'paused';
-  plan: {
-    id: string;
-    name: string;
-    price: number;
-    frequency: 'weekly' | 'bi-weekly' | 'monthly';
-  };
-  nextDelivery?: Date;
-  createdAt: Date;
-}
+import type { User } from '@/types/auth'
 
 // Auth context type
 interface AuthContextType {
@@ -65,8 +20,6 @@ interface AuthContextType {
   resendVerificationEmail: (email: string) => Promise<{ success: boolean; error?: string }>
 }
 
-// RegisterData comes from Supabase auth helpers
-
 // Create context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -74,21 +27,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-
-  const normalizeUser = (u: any): User => ({
-    id: u.id,
-    email: u.email ?? '',
-    firstName: u.firstName ?? '',
-    lastName: u.lastName ?? '',
-    phone: u.phone ?? undefined,
-    emailVerified: !!u.emailVerified,
-    stripeCustomerId: u.stripeCustomerId ?? undefined,
-    marketingEmails: u.marketingEmails ?? false,
-    addresses: [],
-    subscriptions: [],
-    totalOrders: 0,
-    totalSpent: 0,
-  });
 
   // Check authentication status on mount
   useEffect(() => {
@@ -99,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(true);
     try {
       const currentUser = await getCurrentUser();
-      if (currentUser) setUser(normalizeUser(currentUser));
+      if (currentUser) setUser(currentUser);
     } catch (error) {
       console.error('Auth initialization error:', error);
     } finally {
@@ -108,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     // Listen for auth changes
     const { data: { subscription } } = onAuthStateChange((user) => {
-      if (user) setUser(normalizeUser(user));
+      if (user) setUser(user as User);
       else setUser(null);
     });
 
@@ -120,7 +58,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       const result = await loginUser({ email, password, rememberMe });
       if (result.success && result.user) {
-        setUser(normalizeUser(result.user));
+        setUser(result.user as User);
         return { success: true };
       } else {
         return { success: false, error: result.error || 'Login failed' };
@@ -138,7 +76,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       const result = await registerUser(data);
       if (result.success && result.user) {
-        setUser(normalizeUser(result.user));
+        setUser(result.user as User);
         return { success: true };
       } else {
         return { success: false, error: result.error || 'Registration failed' };
@@ -187,7 +125,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       const refreshed = await getCurrentUser();
-      if (refreshed) setUser(normalizeUser(refreshed));
+      if (refreshed) setUser(refreshed);
       return { success: true };
     } catch (error) {
       console.error('Profile update error:', error);
@@ -198,15 +136,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const changePassword = async (data: { currentPassword: string; newPassword: string }): Promise<{ success: boolean; error?: string }> => {
     try {
       const { supabase } = await import('@/lib/supabase/client');
-      
-      const { error } = await supabase.auth.updateUser({
-        password: data.newPassword
-      });
-
+      const { error } = await supabase.auth.updateUser({ password: data.newPassword });
       if (error) {
         return { success: false, error: error.message };
       }
-
       return { success: true };
     } catch (error) {
       console.error('Password change error:', error);
@@ -217,7 +150,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const refreshUser = async () => {
     try {
       const current = await getCurrentUser();
-      if (current) setUser(normalizeUser(current));
+      if (current) setUser(current);
     } catch (error) {
       console.error('User refresh error:', error);
     }

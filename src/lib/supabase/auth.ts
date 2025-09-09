@@ -1,5 +1,6 @@
 import { supabase } from './client'
 import { AuthError, User } from '@supabase/supabase-js'
+import { mapProfileToUser, type AuthUserLike } from '@/types/auth'
 
 export interface AuthResponse {
   success: boolean
@@ -69,19 +70,27 @@ export const registerUser = async (data: RegisterData): Promise<AuthResponse> =>
       // Don't fail registration if profile creation fails
     }
 
-    // 3. Create Stripe customer (optional - can be done later)
-    // This would be handled by your existing Stripe webhook
+    const mapped = mapProfileToUser(
+      {
+        id: authData.user.id,
+        email: authData.user.email,
+        email_confirmed_at: authData.user.email_confirmed_at ?? null,
+      },
+      {
+        first_name: data.firstName,
+        last_name: data.lastName,
+        phone: data.phone || null,
+        stripe_customer_id: null,
+        email_verified: false,
+        marketing_emails: data.marketingEmails ?? false,
+        id: authData.user.id,
+        email: data.email,
+      } as any
+    )
 
     return {
       success: true,
-      user: {
-        id: authData.user.id,
-        email: authData.user.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        marketingEmails: data.marketingEmails ?? false,
-        emailVerified: authData.user.email_confirmed_at ? new Date(authData.user.email_confirmed_at) : null,
-      }
+      user: mapped,
     }
   } catch (error: any) {
     console.error('Registration error:', error)
@@ -93,7 +102,6 @@ export const registerUser = async (data: RegisterData): Promise<AuthResponse> =>
 export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
   try {
     console.log('Attempting login for:', data.email)
-    
     const { data: authData, error } = await supabase.auth.signInWithPassword({
       email: data.email,
       password: data.password,
@@ -122,18 +130,18 @@ export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
       console.error('Profile fetch error:', profileError)
     }
 
-    return {
-      success: true,
-      user: {
+    const mapped = mapProfileToUser(
+      {
         id: authData.user.id,
         email: authData.user.email,
-        firstName: profile?.first_name,
-        lastName: profile?.last_name,
-        phone: profile?.phone,
-        emailVerified: authData.user.email_confirmed_at ? new Date(authData.user.email_confirmed_at) : null,
-        stripeCustomerId: profile?.stripe_customer_id,
-        marketingEmails: profile?.marketing_emails ?? false,
-      }
+        email_confirmed_at: authData.user.email_confirmed_at ?? null,
+      },
+      profile as any
+    )
+
+    return {
+      success: true,
+      user: mapped,
     }
   } catch (error: any) {
     console.error('Login error details:', {
@@ -142,15 +150,14 @@ export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
       name: error.name,
       cause: error.cause
     })
-    
-    // Check if it's a network error
+
     if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
       return { 
         success: false, 
         error: 'Network connection error. Please check your internet connection and try again.' 
       }
     }
-    
+
     return { success: false, error: error.message || 'Login failed' }
   }
 }
@@ -159,11 +166,9 @@ export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
 export const logoutUser = async (): Promise<AuthResponse> => {
   try {
     const { error } = await supabase.auth.signOut()
-    
     if (error) {
       return { success: false, error: error.message }
     }
-
     return { success: true }
   } catch (error: any) {
     console.error('Logout error:', error)
@@ -192,28 +197,24 @@ export const resendVerificationEmail = async (email: string): Promise<{ success:
 export const getCurrentUser = async () => {
   try {
     const { data: { user } } = await supabase.auth.getUser()
-    
     if (!user) {
       return null
     }
 
-    // Get user profile
     const { data: profile } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', user.id)
       .single()
 
-    return {
-      id: user.id,
-      email: user.email,
-      firstName: profile?.first_name,
-      lastName: profile?.last_name,
-      phone: profile?.phone,
-      emailVerified: user.email_confirmed_at ? new Date(user.email_confirmed_at) : null,
-      stripeCustomerId: profile?.stripe_customer_id,
-      marketingEmails: profile?.marketing_emails ?? false,
-    }
+    return mapProfileToUser(
+      {
+        id: user.id,
+        email: user.email,
+        email_confirmed_at: user.email_confirmed_at ?? null,
+      },
+      profile as any
+    )
   } catch (error) {
     console.error('Get current user error:', error)
     return null

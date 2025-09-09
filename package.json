@@ -2,9 +2,13 @@
   "name": "fuelfoodscpg",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.18.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "npm run type-check && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
