@@ -7,4 +7,5 @@ export { default as ProfileManager } from './ProfileManager';
 export { default as ProtectedRoute } from './ProtectedRoute';
 
 // Types
-export type { User, Address, Subscription, RegisterData } from './AuthContext';
+export type { User, Address, Subscription } from '@/types/auth';
+export type { RegisterData } from '@/lib/supabase/auth';

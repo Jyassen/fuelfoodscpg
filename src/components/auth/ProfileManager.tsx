@@ -23,7 +23,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FormField } from '@/components/form/FormField';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { useAuth, type User as AuthUser } from './AuthContext';
+import { useAuth } from './AuthContext';
+import type { User as AuthUser } from '@/types/auth';
 import { validateEmail, validateName, validatePhone, validatePassword } from './validation';
 
 export interface ProfileFormData {
@@ -102,7 +103,7 @@ const ProfileManager: React.FC<ProfileManagerProps> = ({
   const [notificationsLoading, setNotificationsLoading] = useState(false);
   const [notificationsSuccess, setNotificationsSuccess] = useState(false);
   
-  const [currentTab, setCurrentTab] = useState(activeTab);
+  const [currentTab, setCurrentTab] = useState<'profile' | 'security' | 'notifications'>(activeTab);
 
   // Initialize form data from user
   useEffect(() => {
@@ -123,7 +124,7 @@ const ProfileManager: React.FC<ProfileManagerProps> = ({
   }, [user]);
 
   // Handle tab changes
-  const handleTabChange = (tab: string) => {
+  const handleTabChange = (tab: 'profile' | 'security' | 'notifications') => {
     setCurrentTab(tab);
     if (onTabChange) {
       onTabChange(tab);

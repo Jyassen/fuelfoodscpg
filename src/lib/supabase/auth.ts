@@ -73,7 +73,7 @@ export const registerUser = async (data: RegisterData): Promise<AuthResponse> =>
     const mapped = mapProfileToUser(
       {
         id: authData.user.id,
-        email: authData.user.email,
+        email: authData.user.email ?? null,
         email_confirmed_at: authData.user.email_confirmed_at ?? null,
       },
       {
@@ -133,7 +133,7 @@ export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
     const mapped = mapProfileToUser(
       {
         id: authData.user.id,
-        email: authData.user.email,
+        email: authData.user.email ?? null,
         email_confirmed_at: authData.user.email_confirmed_at ?? null,
       },
       profile as any
@@ -210,7 +210,7 @@ export const getCurrentUser = async () => {
     return mapProfileToUser(
       {
         id: user.id,
-        email: user.email,
+        email: user.email ?? null,
         email_confirmed_at: user.email_confirmed_at ?? null,
       },
       profile as any
