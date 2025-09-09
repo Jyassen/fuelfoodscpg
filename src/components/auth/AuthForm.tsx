@@ -133,11 +133,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
     try {
       if (isLogin) {
-        await login({
-          email: formData.email,
-          password: formData.password,
-          rememberMe: formData.rememberMe
-        });
+        await login(formData.email, formData.password, formData.rememberMe);
       } else {
         await register({
           email: formData.email,
