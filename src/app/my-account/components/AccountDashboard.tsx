@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/auth/AuthContext';
 import { ApiResponse } from '@/lib/auth/types';
-import LoadingSpinner from '@/components/form/LoadingSpinner';
+import { LoadingSpinner } from '@/components/form';
 import AccountSidebar from './AccountSidebar';
 import WelcomeSection from './WelcomeSection';
 import QuickStats from './QuickStats';
@@ -106,7 +106,7 @@ export default function AccountDashboard() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <LoadingSpinner size="large" />
+        <LoadingSpinner size="lg" />
       </div>
     );
   }

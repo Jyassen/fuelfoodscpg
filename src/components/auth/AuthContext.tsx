@@ -58,6 +58,7 @@ interface AuthContextType {
   register: (data: RegisterData) => Promise<{ success: boolean; error?: string }>;
   logout: () => Promise<void>;
   updateProfile: (data: Partial<User>) => Promise<{ success: boolean; error?: string }>;
+  changePassword: (data: { currentPassword: string; newPassword: string }) => Promise<{ success: boolean; error?: string }>;
   refreshUser: () => Promise<void>;
   isAuthenticated: boolean;
   resendVerificationEmail: (email: string) => Promise<{ success: boolean; error?: string }>
@@ -191,6 +192,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const changePassword = async (data: { currentPassword: string; newPassword: string }): Promise<{ success: boolean; error?: string }> => {
+    try {
+      const { supabase } = await import('@/lib/supabase/client');
+      
+      const { error } = await supabase.auth.updateUser({
+        password: data.newPassword
+      });
+
+      if (error) {
+        return { success: false, error: error.message };
+      }
+
+      return { success: true };
+    } catch (error) {
+      console.error('Password change error:', error);
+      return { success: false, error: 'Network error. Please try again.' };
+    }
+  };
+
   const refreshUser = async () => {
     try {
       const current = await getCurrentUser();
@@ -207,6 +227,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     register,
     logout,
     updateProfile,
+    changePassword,
     refreshUser,
     isAuthenticated: !!user,
     resendVerificationEmail: resendVerification,

@@ -30,7 +30,7 @@ interface NotificationSettings {
 }
 
 function ProfileContent() {
-  const { user, loading, updateProfile } = useAuth();
+  const { user, loading, updateProfile, changePassword } = useAuth();
   const [activeTab, setActiveTab] = useState('profile');
   const [profileData, setProfileData] = useState<ProfileFormData>({
     firstName: '',
@@ -116,7 +116,7 @@ function ProfileContent() {
     setIsSaving(true);
 
     try {
-      const result = await updateProfile({
+      const result = await changePassword({
         currentPassword: securityData.currentPassword,
         newPassword: securityData.newPassword,
       });
