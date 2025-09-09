@@ -38,27 +38,8 @@ const nextConfig: NextConfig = {
   // Transpile ESM packages that may not be pre-compiled
   transpilePackages: ['@supabase/ssr'],
 
-  // Webpack optimization
-  webpack: (config, { dev, isServer }) => {
-    // Production optimizations
-    if (!dev) {
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all',
-            },
-          },
-        },
-      };
-    }
-
-    return config;
-  },
+  // Webpack: use Next.js defaults to avoid mixing client chunks into server runtime
+  webpack: (config) => config,
 
   // Compiler options
   compiler: {
