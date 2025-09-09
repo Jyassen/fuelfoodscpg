@@ -124,8 +124,10 @@ const ProfileManager: React.FC<ProfileManagerProps> = ({
   }, [user]);
 
   // Handle tab changes
-  const handleTabChange = (tab: 'profile' | 'security' | 'notifications') => {
-    setCurrentTab(tab);
+  const handleTabChange = (tab: string) => {
+    if (tab === 'profile' || tab === 'security' || tab === 'notifications') {
+      setCurrentTab(tab);
+    }
     if (onTabChange) {
       onTabChange(tab);
     }

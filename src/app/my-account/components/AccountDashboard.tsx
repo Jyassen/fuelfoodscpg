@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/auth/AuthContext';
-import { ApiResponse } from '@/lib/auth/types';
 import { LoadingSpinner } from '@/components/form';
 import AccountSidebar from './AccountSidebar';
 import WelcomeSection from './WelcomeSection';
