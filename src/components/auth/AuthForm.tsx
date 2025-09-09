@@ -95,7 +95,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
     // Password validation
     const passwordValidation = validatePassword(formData.password);
     if (!passwordValidation.isValid) {
-      newErrors.password = passwordValidation.errors[0];
+      newErrors.password = passwordValidation.errors?.[0] || passwordValidation.error || 'Invalid password';
     }
 
     if (isRegister) {
