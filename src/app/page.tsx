@@ -277,15 +277,15 @@ export default function HomePage() {
                 {/* Mega Mix Slide */}
                 <CarouselItem>
                   <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[600px]">
-                    <div className="text-center lg:text-left pl-4 md:pl-6 lg:pl-14">
-                      <div className="mb-6">
+                    <div className="pl-4 md:pl-6 lg:pl-14">
+                      <div className="mb-6 text-center lg:text-left">
                         <span className="inline-block bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Most Popular
                         </span>
                         <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                           Mega Mix
                         </h3>
-                        <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                        <p className="text-lg text-gray-700 mb-6 leading-relaxed text-left">
                           <strong>The Ultimate Daily Nutrition Boost</strong><br/>
                           Your daily dose of 9 different vegetables in one convenient pack. Boost energy, support immunity, and feel your best naturally. Perfect for smoothies, salads, or eating straight from the pack.
                         </p>
@@ -383,15 +383,15 @@ export default function HomePage() {
                         className="w-full max-w-[520px] h-auto object-contain mx-auto rounded-2xl shadow-2xl"
                       />
                     </div>
-                    <div className="text-center lg:text-left">
-                      <div className="mb-6">
+                    <div>
+                      <div className="mb-6 text-center lg:text-left">
                         <span className="inline-block bg-[#dcfce7] text-[#136834] px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Power Blend
                         </span>
                         <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                           Brassica Blend
                         </h3>
-                        <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                        <p className="text-lg text-gray-700 mb-6 leading-relaxed text-left">
                           <strong>The Anti-Inflammatory Powerhouse</strong><br/>
                           Nature's way to reduce inflammation, fight aging, and keep your body strong. These cruciferous microgreens are packed with compounds that help your body heal and recover faster.
                         </p>
@@ -469,15 +469,15 @@ export default function HomePage() {
                 {/* Sunnies Snacks Slide */}
                 <CarouselItem>
                   <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[520px]">
-                    <div className="text-center lg:text-left pl-4 md:pl-6 lg:pl-14">
-                      <div className="mb-6">
+                    <div className="pl-4 md:pl-6 lg:pl-14">
+                      <div className="mb-6 text-center lg:text-left">
                         <span className="inline-block bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Crunchy & Delicious
                         </span>
                         <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                           Sunnies Snacks
                         </h3>
-                        <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                        <p className="text-lg text-gray-700 mb-6 leading-relaxed text-left">
                           <strong>The Perfect Healthy Snack</strong><br/>
                           Crunchy, delicious, and packed with nutrients that give you glowing skin and lasting energy. These sunflower microgreens taste great and make you feel amazing.
                         </p>
@@ -635,7 +635,7 @@ export default function HomePage() {
                 Perfect for first-timers. No commitment needed.
               </p>
 
-              <div className="space-y-1.5 mb-4 text-center lg:text-left">
+              <div className="space-y-1.5 mb-4 text-left">
                 <div className="text-gray-700 mb-2">
                   Choose any 1 pack
                 </div>
@@ -716,7 +716,7 @@ export default function HomePage() {
                 3 packs delivered weekly. Save money vs one-time purchases.
               </p>
 
-              <div className="space-y-1.5 mb-4 text-center lg:text-left">
+              <div className="space-y-1.5 mb-4 text-left">
                 <div className="flex items-center">
                   <svg
                     className="w-5 h-5 text-fuelfoods-green-500 mr-3 flex-shrink-0"
@@ -1020,7 +1020,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-center lg:text-left">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
                 <svg
                   className="w-5 h-5"
@@ -1041,7 +1041,7 @@ export default function HomePage() {
                 One pack of our microgreens has more nutrition than expensive multivitamins and your body actually absorbs it because it is real food, not synthetic chemicals.
               </p>
             </div>
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-center lg:text-left">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
                 <svg
                   className="w-5 h-5"
@@ -1063,7 +1063,7 @@ export default function HomePage() {
                 Packed with immune-boosting compounds that help your body fight off whatever is going around the office or subway.
               </p>
             </div>
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-center lg:text-left">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
                 <svg
                   className="w-5 h-5"
@@ -1083,7 +1083,7 @@ export default function HomePage() {
                 Real nutrients give you steady energy that lasts all day with no caffeine crash or sugar highs and lows.
               </p>
             </div>
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-center lg:text-left">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
                 <svg
                   className="w-5 h-5"
@@ -1104,7 +1104,7 @@ export default function HomePage() {
                 The antioxidants and vitamins that make you glow from the inside out. Better than any expensive skincare routine.
               </p>
             </div>
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-center lg:text-left">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
                 <svg
                   className="w-5 h-5"
@@ -1504,13 +1504,13 @@ export default function HomePage() {
             
             <div className="grid md:grid-cols-2 lg:gap-10 gap-6 items-center">
               <div>
-                <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-center md:text-left">
+                <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-left">
                   Like you, we were tired of buying expensive vegetables that went bad before we could eat them. Tired of trying to figure out what supplements actually worked. Tired of feeling guilty about not eating enough vegetables.
                 </p>
-                <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-center md:text-left">
+                <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-left">
                   Then we discovered microgreens in 2020 and everything changed. These tiny plants pack 40x more nutrition than regular vegetables, taste amazing, and last for days in your fridge. No more waste, no more guilt, no more confusion.
                 </p>
-                <p className="text-base lg:text-lg text-gray-900 font-semibold text-center md:text-left">
+                <p className="text-base lg:text-lg text-gray-900 font-semibold text-left">
                   <strong>Join the movement. Your future self will thank you.</strong>
                 </p>
                 <div className="mt-6 text-center">
