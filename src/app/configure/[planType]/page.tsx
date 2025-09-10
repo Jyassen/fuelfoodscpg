@@ -45,8 +45,17 @@ export default function PackageConfigurationPage() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      // Show floating cart when scrolled down 300px or more
-      setShowFloatingCart(scrollY > 300);
+      
+      // Find the order summary sidebar element
+      const orderSummary = document.querySelector('.sticky');
+      if (orderSummary) {
+        const summaryRect = orderSummary.getBoundingClientRect();
+        // Show floating cart when the static order summary is not visible at the bottom
+        setShowFloatingCart(summaryRect.bottom < windowHeight * 0.8);
+      } else {
+        // Fallback: show after scrolling down significantly
+        setShowFloatingCart(scrollY > windowHeight);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -314,35 +323,15 @@ export default function PackageConfigurationPage() {
       {showFloatingCart && (
         <div className="fixed bottom-4 left-4 right-4 z-50 lg:hidden">
           <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4">
-            <div className="flex items-center justify-between mb-3">
-              <div>
-                <p className="text-sm font-medium text-gray-900">
-                  {planType === 'starter' 
-                    ? `${totalSelectedPacks} pack${totalSelectedPacks !== 1 ? 's' : ''} selected`
-                    : `${totalSelectedPacks}/${planConfig.packsRequired} packs selected`
-                  }
-                </p>
-                <p className="text-xs text-gray-600">
-                  {planType === 'starter' 
-                    ? 'Add 1+ packs to continue'
-                    : remainingPacks > 0 
-                      ? `Choose ${remainingPacks} more pack${remainingPacks !== 1 ? 's' : ''}`
-                      : 'Ready to add to cart!'
-                  }
-                </p>
-              </div>
-              <div className="text-right">
-                <p className="text-lg font-bold text-gray-900">
-                  ${(varietySelections.reduce((sum, selection) => {
-                    const variety = MICROGREENS_VARIETIES[selection.varietyId];
-                    return sum + selection.quantity * variety.price;
-                  }, 0) + 10 + ((varietySelections.reduce((sum, selection) => {
-                    const variety = MICROGREENS_VARIETIES[selection.varietyId];
-                    return sum + selection.quantity * variety.price;
-                  }, 0) + 10) * 0.03)).toFixed(2)}
-                </p>
-                <p className="text-xs text-gray-600">Total</p>
-              </div>
+            <div className="mb-3">
+              <p className="text-sm font-medium text-gray-900 text-center">
+                {planType === 'starter' 
+                  ? `${totalSelectedPacks} pack${totalSelectedPacks !== 1 ? 's' : ''} selected • Add 1+ packs to continue`
+                  : remainingPacks > 0 
+                    ? `${totalSelectedPacks}/${planConfig.packsRequired} packs selected • Choose ${remainingPacks} more`
+                    : `${totalSelectedPacks}/${planConfig.packsRequired} packs selected • Ready to add to cart!`
+                }
+              </p>
             </div>
             <Button
               onClick={handleAddToCart}

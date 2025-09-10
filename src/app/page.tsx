@@ -115,15 +115,15 @@ export default function HomePage() {
       </section>
 
       {/* Interactive What/Why/How Section with Image */}
-      <section className="relative bg-white py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative bg-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-4 lg:mb-12">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 lg:mb-4">
+          <div className="text-center mb-2 lg:mb-12">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-12 lg:mb-4">
               Microgreens Made Simple
             </h2>
             
             {/* Mobile Image - Shows after headline on mobile */}
-            <div className="lg:hidden w-full flex justify-center mb-8">
+            <div className="lg:hidden w-full flex justify-center mb-12">
               <div className="relative">
                 <img
                   src="/images/singlewithgreens_final.png"
@@ -133,12 +133,12 @@ export default function HomePage() {
               </div>
             </div>
             
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 lg:mb-0">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12 lg:mb-0">
               Everything you need to know in 30 seconds
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Interactive Cards */}
             <div className="space-y-6">
               {/* What Card */}
