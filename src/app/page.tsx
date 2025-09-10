@@ -255,7 +255,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Discover Our Microgreen Varieties
+              Discover Our Premium Microgreens
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Each blend is carefully crafted to deliver maximum nutrition and
@@ -607,7 +607,7 @@ export default function HomePage() {
               Subscription Plans
             </span>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
-              Choose Your Health Journey
+              Choose Your Perfect Plan
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Starting at just $15 per pack
@@ -989,7 +989,7 @@ export default function HomePage() {
       <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
-            Why Microgreens Beat Every Other Superfood
+            Why Microgreens Beat Every Superfood
           </h2>
           <h3 className="text-xl lg:text-2xl font-semibold text-gray-700 mb-10">
             All the benefits of expensive supplements, but it's actually delicious food
@@ -1136,7 +1136,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-4xl lg:text-5xl font-bold text-fuelfoods-green-500 mb-4">
-              Why New Yorkers Choose FuelFoods
+              Why New Yorkers choose FuelFoods
             </h2>
             <p className="text-lg text-gray-700 max-w-4xl mx-auto">
               Join the easiest healthy eating movement in NYC
@@ -1246,7 +1246,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Real Stories from Real Customers
+              Real Stories from NYC Customers
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               See why our customers give us a 5-star rating for our fresh microgreens
