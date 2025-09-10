@@ -28,6 +28,7 @@ export default function PackageConfigurationPage() {
   >([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [showFloatingCart, setShowFloatingCart] = useState(false);
 
   // Initialize with empty selections first
   useEffect(() => {
@@ -37,6 +38,19 @@ export default function PackageConfigurationPage() {
       { varietyId: 'sunnies-snacks', quantity: 0 },
     ];
     setVarietySelections(initialSelections);
+  }, []);
+
+  // Handle scroll to show/hide floating cart
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      // Show floating cart when scrolled down 300px or more
+      setShowFloatingCart(scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Extract and validate planType safely
@@ -295,6 +309,62 @@ export default function PackageConfigurationPage() {
           </div>
         </div>
       </div>
+
+      {/* Floating Cart Button */}
+      {showFloatingCart && (
+        <div className="fixed bottom-4 left-4 right-4 z-50 lg:hidden">
+          <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <p className="text-sm font-medium text-gray-900">
+                  {planType === 'starter' 
+                    ? `${totalSelectedPacks} pack${totalSelectedPacks !== 1 ? 's' : ''} selected`
+                    : `${totalSelectedPacks}/${planConfig.packsRequired} packs selected`
+                  }
+                </p>
+                <p className="text-xs text-gray-600">
+                  {planType === 'starter' 
+                    ? 'Add 1+ packs to continue'
+                    : remainingPacks > 0 
+                      ? `Choose ${remainingPacks} more pack${remainingPacks !== 1 ? 's' : ''}`
+                      : 'Ready to add to cart!'
+                  }
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-lg font-bold text-gray-900">
+                  ${(varietySelections.reduce((sum, selection) => {
+                    const variety = MICROGREENS_VARIETIES[selection.varietyId];
+                    return sum + selection.quantity * variety.price;
+                  }, 0) + 10 + ((varietySelections.reduce((sum, selection) => {
+                    const variety = MICROGREENS_VARIETIES[selection.varietyId];
+                    return sum + selection.quantity * variety.price;
+                  }, 0) + 10) * 0.03)).toFixed(2)}
+                </p>
+                <p className="text-xs text-gray-600">Total</p>
+              </div>
+            </div>
+            <Button
+              onClick={handleAddToCart}
+              disabled={!((planType === 'starter' ? totalSelectedPacks > 0 : totalSelectedPacks === planConfig.packsRequired)) || isLoading}
+              fullWidth
+              className="h-12 text-base font-semibold bg-gray-900 text-white hover:bg-gray-800"
+            >
+              {isLoading ? (
+                <div className="flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                  Adding...
+                </div>
+              ) : (
+                <div className="flex items-center justify-center">
+                  <ShoppingCart className="w-5 h-5 mr-2" />
+                  Add to Cart
+                </div>
+              )}
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

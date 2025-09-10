@@ -117,13 +117,13 @@ export default function HomePage() {
       {/* Interactive What/Why/How Section with Image */}
       <section className="relative bg-white py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 lg:mb-12">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 lg:mb-4">
+          <div className="text-center mb-4 lg:mb-12">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 lg:mb-4">
               Microgreens Made Simple
             </h2>
             
             {/* Mobile Image - Shows after headline on mobile */}
-            <div className="lg:hidden w-full flex justify-center mb-4">
+            <div className="lg:hidden w-full flex justify-center mb-8">
               <div className="relative">
                 <img
                   src="/images/singlewithgreens_final.png"
@@ -133,7 +133,7 @@ export default function HomePage() {
               </div>
             </div>
             
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6 lg:mb-0">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 lg:mb-0">
               Everything you need to know in 30 seconds
             </p>
           </div>
@@ -1480,40 +1480,61 @@ export default function HomePage() {
       {/* About Section - Enhanced */}
       <section className="bg-gradient-to-br from-gray-900 to-gray-800 py-20 px-4 sm:px-6 lg:px-8 text-white">
         <div className="max-w-6xl mx-auto text-center">
-          <div className="bg-white rounded-2xl p-8 md:p-10 mb-8 grid md:grid-cols-2 lg:gap-10 gap-6 items-center">
-            <div>
-              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-left">
+          <div className="bg-white rounded-2xl p-8 md:p-10 mb-8">
+            <div className="text-center md:text-left">
+              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
                 Your Health Shouldn't Be Complicated
               </h3>
-              <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-left">
-                Like you, we were tired of buying expensive vegetables that went bad before we could eat them. Tired of trying to figure out what supplements actually worked. Tired of feeling guilty about not eating enough vegetables.
-              </p>
-              <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-left">
-                Then we discovered microgreens in 2020 and everything changed. These tiny plants pack 40x more nutrition than regular vegetables, taste amazing, and last for days in your fridge. No more waste, no more guilt, no more confusion.
-              </p>
-              <p className="text-base lg:text-lg text-gray-900 font-semibold text-left">
-                <strong>Join the movement. Your future self will thank you.</strong>
-              </p>
-              <div className="mt-6 text-center">
-                <Link
-                  href="/about-us"
-                  className="inline-flex items-center justify-center bg-[#178641] hover:bg-[#136834] text-white font-extrabold text-base md:text-lg px-8 py-3 rounded-full shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#178641]"
-                >
-                  Learn More
-                </Link>
+              
+              {/* Mobile Video - Shows after title on mobile */}
+              <div className="md:hidden w-full mb-6">
+                <div className="w-full h-[240px] sm:h-[300px] overflow-hidden rounded-xl shadow-2xl">
+                  <video
+                    suppressHydrationWarning
+                    className="w-full h-full object-cover object-center"
+                    src="/images/About-Us-tiktok-1.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
               </div>
             </div>
-            <div className="w-full">
-              <div className="w-full h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] overflow-hidden rounded-xl shadow-2xl">
-                <video
-                  suppressHydrationWarning
-                  className="w-full h-full object-cover object-center"
-                  src="/images/About-Us-tiktok-1.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
+            
+            <div className="grid md:grid-cols-2 lg:gap-10 gap-6 items-center">
+              <div>
+                <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-center md:text-left">
+                  Like you, we were tired of buying expensive vegetables that went bad before we could eat them. Tired of trying to figure out what supplements actually worked. Tired of feeling guilty about not eating enough vegetables.
+                </p>
+                <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-center md:text-left">
+                  Then we discovered microgreens in 2020 and everything changed. These tiny plants pack 40x more nutrition than regular vegetables, taste amazing, and last for days in your fridge. No more waste, no more guilt, no more confusion.
+                </p>
+                <p className="text-base lg:text-lg text-gray-900 font-semibold text-center md:text-left">
+                  <strong>Join the movement. Your future self will thank you.</strong>
+                </p>
+                <div className="mt-6 text-center">
+                  <Link
+                    href="/about-us"
+                    className="inline-flex items-center justify-center bg-[#178641] hover:bg-[#136834] text-white font-extrabold text-base md:text-lg px-8 py-3 rounded-full shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#178641]"
+                  >
+                    Learn More
+                  </Link>
+                </div>
+              </div>
+              {/* Desktop Video - Hidden on mobile */}
+              <div className="hidden md:block w-full">
+                <div className="w-full h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] overflow-hidden rounded-xl shadow-2xl">
+                  <video
+                    suppressHydrationWarning
+                    className="w-full h-full object-cover object-center"
+                    src="/images/About-Us-tiktok-1.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
               </div>
             </div>
           </div>

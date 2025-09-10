@@ -11,19 +11,34 @@ export default function Header() {
   return (
     <header className="bg-white shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <img
-                src="/images/logo.png"
-                alt="FuelFoods Logo"
-                className="h-16 w-16 rounded-full"
+        <div className="flex items-center h-16">
+          {/* Mobile menu button - Left side */}
+          <button
+            type="button"
+            className="md:hidden text-gray-700 hover:text-fuelfoods-green-500 mr-4"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={
+                  isMenuOpen
+                    ? 'M6 18L18 6M6 6l12 12'
+                    : 'M4 6h16M4 12h16M4 18h16'
+                }
               />
-            </Link>
-          </div>
+            </svg>
+          </button>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Left side */}
           <nav className="hidden md:flex space-x-6">
             {NAVIGATION_ITEMS.slice(0, 5).map(item => (
               <div key={item.title} className="relative group">
@@ -52,7 +67,18 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* User Actions */}
+          {/* Logo - Center */}
+          <div className="flex-1 flex justify-center">
+            <Link href="/" className="flex items-center">
+              <img
+                src="/images/logo.png"
+                alt="FuelFoods Logo"
+                className="h-16 w-16 rounded-full"
+              />
+            </Link>
+          </div>
+
+          {/* User Actions - Right side */}
           <div className="flex items-center space-x-4">
             <Link
               href="/cart"
@@ -63,36 +89,10 @@ export default function Header() {
             </Link>
             <a
               href="/#plans"
-              className="bg-fuelfoods-green-500 text-white px-6 py-3 rounded-full hover:bg-fuelfoods-green-600 transition-colors text-sm font-bold uppercase tracking-wide"
+              className="hidden md:inline-block bg-fuelfoods-green-500 text-white px-6 py-3 rounded-full hover:bg-fuelfoods-green-600 transition-colors text-sm font-bold uppercase tracking-wide"
             >
               ORDER NOW
             </a>
-
-            {/* Mobile menu button */}
-            <button
-              type="button"
-              className="md:hidden text-gray-700 hover:text-fuelfoods-green-500"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d={
-                    isMenuOpen
-                      ? 'M6 18L18 6M6 6l12 12'
-                      : 'M4 6h16M4 12h16M4 18h16'
-                  }
-                />
-              </svg>
-            </button>
           </div>
         </div>
 
