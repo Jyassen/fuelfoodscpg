@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter, Montserrat, Poppins } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -7,14 +7,25 @@ import { SEO_DEFAULTS } from '@/lib/constants';
 import { FuelFoodsProvider } from '@/context';
 import { AuthProvider } from '@/components/auth/AuthContext';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+// Typography system fonts
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
   subsets: ['latin'],
+  weight: ['700'], // Bold for headlines
+  display: 'swap',
+});
+
+const poppins = Poppins({
+  variable: '--font-poppins',
+  subsets: ['latin'],
+  weight: ['500'], // Medium for subheadlines
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -41,7 +52,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${montserrat.variable} ${poppins.variable} font-inter antialiased`}
       >
         <AuthProvider>
           <FuelFoodsProvider>

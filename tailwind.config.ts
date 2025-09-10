@@ -17,6 +17,16 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        // Typography system
+        'headline': ['var(--font-montserrat)', 'system-ui', 'sans-serif'], // Headlines: Montserrat Bold
+        'subheadline': ['var(--font-poppins)', 'system-ui', 'sans-serif'], // Subheadlines: Poppins Medium  
+        'body': ['var(--font-inter)', 'system-ui', 'sans-serif'], // Body: Inter Regular
+        // Keep original font families for components that might reference them
+        'inter': ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        'montserrat': ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        'poppins': ['var(--font-poppins)', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
