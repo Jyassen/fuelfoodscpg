@@ -117,13 +117,13 @@ export default function HomePage() {
       {/* Interactive What/Why/How Section with Image */}
       <section className="relative bg-white py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 lg:mb-4">
+          <div className="text-center mb-8 lg:mb-12">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 lg:mb-4">
               Microgreens Made Simple
             </h2>
             
             {/* Mobile Image - Shows after headline on mobile */}
-            <div className="lg:hidden w-full flex justify-center my-6">
+            <div className="lg:hidden w-full flex justify-center mb-4">
               <div className="relative">
                 <img
                   src="/images/singlewithgreens_final.png"
@@ -133,12 +133,12 @@ export default function HomePage() {
               </div>
             </div>
             
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6 lg:mb-0">
               Everything you need to know in 30 seconds
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             {/* Left: Interactive Cards */}
             <div className="space-y-6">
               {/* What Card */}
@@ -277,7 +277,7 @@ export default function HomePage() {
                 {/* Mega Mix Slide */}
                 <CarouselItem>
                   <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[600px]">
-                    <div className="text-center lg:text-left pl-8 md:pl-10 lg:pl-14">
+                    <div className="text-center lg:text-left pl-4 md:pl-6 lg:pl-14">
                       <div className="mb-6">
                         <span className="inline-block bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Most Popular
@@ -350,7 +350,7 @@ export default function HomePage() {
                           </div>
                         </div>
                       </div>
-                      <div className="flex gap-4">
+                      <div className="flex justify-center lg:justify-start gap-4">
                         <a
                           href="#plans"
                           className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block text-center"
@@ -454,7 +454,7 @@ export default function HomePage() {
                           </div>
                         </div>
                       </div>
-                      <div className="flex gap-4">
+                      <div className="flex justify-center lg:justify-start gap-4">
                         <a
                           href="#plans"
                           className="bg-[#178641] hover:bg-[#136834] text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block text-center"
@@ -469,7 +469,7 @@ export default function HomePage() {
                 {/* Sunnies Snacks Slide */}
                 <CarouselItem>
                   <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[520px]">
-                    <div className="text-center lg:text-left pl-8 md:pl-10 lg:pl-14">
+                    <div className="text-center lg:text-left pl-4 md:pl-6 lg:pl-14">
                       <div className="mb-6">
                         <span className="inline-block bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Crunchy & Delicious
@@ -541,7 +541,7 @@ export default function HomePage() {
                           </div>
                         </div>
                       </div>
-                      <div className="flex gap-4">
+                      <div className="flex justify-center lg:justify-start gap-4">
                         <a
                           href="#plans"
                           className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block text-center"
