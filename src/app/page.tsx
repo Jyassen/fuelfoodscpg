@@ -15,14 +15,23 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex flex-col lg:flex-row items-center lg:justify-start lg:gap-0 min-h-[700px] pt-2 lg:pt-4">
-            {/* Left Content - Matching Screenshot Layout */}
+            {/* Mobile Layout: Headline -> Image -> Content */}
             <div className="w-full lg:w-[35%] text-left py-6 lg:py-20 lg:pr-0">
-              <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black text-gray-900 mb-4 leading-[0.95] tracking-tight">
-                Get 40x More Nutrition
-                <br />
-                in Every{' '}
-                <span className="italic text-orange-500 font-bold">Bite</span>
+              <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black text-gray-900 mb-4 lg:mb-4 leading-[0.95] tracking-tight">
+                <span className="block lg:inline">Get 40x More Nutrition</span>
+                <br className="hidden lg:block" />
+                <span className="block lg:inline">in Every{' '}
+                <span className="italic text-orange-500 font-bold">Bite</span></span>
               </h1>
+
+              {/* Mobile Hero Image - Shows between headline and content on mobile */}
+              <div className="lg:hidden w-full flex justify-center my-6">
+                <img
+                  src="/images/hero copy.png"
+                  alt="FuelFoods hero"
+                  className="w-full max-w-sm h-auto object-contain drop-shadow-xl"
+                />
+              </div>
 
               <p className="text-base lg:text-lg text-gray-700 mb-6 leading-snug max-w-[480px]">
                 Skip the guesswork of healthy eating. Our microgreens pack 40x more vitamins and nutrients than regular vegetables, delivered fresh from our NYC farm to your door in 48 hours.
@@ -91,8 +100,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right visual */}
-            <div className="w-full lg:w-[65%] flex justify-center lg:justify-end items-center mt-8 lg:mt-0 relative lg:pr-0">
+            {/* Desktop Right visual - Hidden on mobile */}
+            <div className="hidden lg:flex w-full lg:w-[65%] justify-center lg:justify-end items-center mt-8 lg:mt-0 relative lg:pr-0">
               <div className="relative z-10">
                 <img
                   src="/images/hero copy.png"
@@ -109,9 +118,21 @@ export default function HomePage() {
       <section className="relative bg-white py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 lg:mb-4">
               Microgreens Made Simple
             </h2>
+            
+            {/* Mobile Image - Shows after headline on mobile */}
+            <div className="lg:hidden w-full flex justify-center my-6">
+              <div className="relative">
+                <img
+                  src="/images/singlewithgreens_final.png"
+                  alt="Fresh Microgreens"
+                  className="w-full max-w-md h-auto object-contain scale-[1.8]"
+                />
+              </div>
+            </div>
+            
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Everything you need to know in 30 seconds
             </p>
@@ -217,18 +238,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: Original Image */}
-            <div className="relative">
+            {/* Right: Original Image - Desktop only */}
+            <div className="relative hidden lg:block">
               <img
                 src="/images/singlewithgreens_final.png"
                 alt="Microgreens bursting from package"
-                className="hidden lg:block absolute top-1/2 right-0 w-full h-auto object-contain scale-[1.8] origin-center-right z-0 -translate-y-1/2"
-              />
-              {/* Fallback for small screens */}
-              <img
-                src="/images/singlewithgreens_final.png"
-                alt="Microgreens bursting from package"
-                className="block lg:hidden w-full max-w-[700px] h-auto object-contain mx-auto"
+                className="absolute top-1/2 right-0 w-full h-auto object-contain scale-[1.8] origin-center-right z-0 -translate-y-1/2"
               />
             </div>
           </div>
@@ -274,6 +289,15 @@ export default function HomePage() {
                           <strong>The Ultimate Daily Nutrition Boost</strong><br/>
                           Your daily dose of 9 different vegetables in one convenient pack. Boost energy, support immunity, and feel your best naturally. Perfect for smoothies, salads, or eating straight from the pack.
                         </p>
+                        
+                        {/* Mobile Image - Shows after title and description on mobile */}
+                        <div className="lg:hidden w-full flex justify-center my-6">
+                          <img
+                            src="/images/megamixsidebyside.jpg"
+                            alt="Mega Mix microgreens side by side comparison"
+                            className="w-full max-w-sm h-auto object-contain mx-auto rounded-2xl shadow-2xl"
+                          />
+                        </div>
                         <div className="mb-4">
                           <div className="text-xl font-extrabold text-gray-900 mb-2">
                             Nutrients:
@@ -335,7 +359,8 @@ export default function HomePage() {
                         </a>
                       </div>
                     </div>
-                    <div>
+                    {/* Desktop Image - Hidden on mobile */}
+                    <div className="hidden lg:block">
                       <div className="relative flex items-center justify-center">
                         <img
                           src="/images/megamixsidebyside.jpg"
@@ -350,7 +375,8 @@ export default function HomePage() {
                 {/* Brassica Blend Slide */}
                 <CarouselItem>
                   <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[520px]">
-                    <div className="relative order-2 lg:order-1 lg:order-none flex items-center justify-center">
+                    {/* Desktop Image - Hidden on mobile */}
+                    <div className="relative order-2 lg:order-1 lg:order-none flex items-center justify-center hidden lg:block">
                       <img
                         src="/images/brassicablendsidebyside.jpg"
                         alt="Brassica Blend microgreens variety"
@@ -369,6 +395,15 @@ export default function HomePage() {
                           <strong>The Anti-Inflammatory Powerhouse</strong><br/>
                           Nature's way to reduce inflammation, fight aging, and keep your body strong. These cruciferous microgreens are packed with compounds that help your body heal and recover faster.
                         </p>
+                        
+                        {/* Mobile Image - Shows after title and description on mobile */}
+                        <div className="lg:hidden w-full flex justify-center my-6">
+                          <img
+                            src="/images/brassicablendsidebyside.jpg"
+                            alt="Brassica Blend microgreens variety"
+                            className="w-full max-w-sm h-auto object-contain mx-auto rounded-2xl shadow-2xl"
+                          />
+                        </div>
                         <div className="mb-4">
                           <div className="text-xl font-extrabold text-gray-900 mb-2">
                             Nutrients:
@@ -446,6 +481,15 @@ export default function HomePage() {
                           <strong>The Perfect Healthy Snack</strong><br/>
                           Crunchy, delicious, and packed with nutrients that give you glowing skin and lasting energy. These sunflower microgreens taste great and make you feel amazing.
                         </p>
+                        
+                        {/* Mobile Image - Shows after title and description on mobile */}
+                        <div className="lg:hidden w-full flex justify-center my-6">
+                          <img
+                            src="/images/sunniessidebyside.jpg"
+                            alt="Sunnies Snacks sunflower microgreens"
+                            className="w-full max-w-sm h-auto object-contain mx-auto rounded-2xl shadow-2xl"
+                          />
+                        </div>
                         <div className="mb-4">
                           <div className="text-xl font-extrabold text-gray-900 mb-2">
                             Nutrients:
@@ -506,7 +550,8 @@ export default function HomePage() {
                         </a>
                       </div>
                     </div>
-                    <div>
+                    {/* Desktop Image - Hidden on mobile */}
+                    <div className="hidden lg:block">
                       <div className="relative flex items-center justify-center">
                         <img
                           src="/images/sunniessidebyside.jpg"
