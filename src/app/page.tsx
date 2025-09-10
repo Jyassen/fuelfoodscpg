@@ -1409,24 +1409,24 @@ export default function HomePage() {
               Ready to join our community of health-conscious customers?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#plans"
+              <Link
+                href="/configure/starter"
                 className="inline-flex items-center justify-center bg-[#178641] hover:bg-[#136834] text-white px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]"
               >
                 Try a Pack
-              </a>
-              <a
-                href="#plans"
+              </Link>
+              <Link
+                href="/configure/pro"
                 className="inline-flex items-center justify-center bg-[#e56322] hover:bg-[#d05a1e] text-white px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]"
               >
                 Go Pro with 3
-              </a>
-              <a
-                href="#plans"
+              </Link>
+              <Link
+                href="/configure/elite"
                 className="inline-flex items-center justify-center bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-8 py-3 rounded-full font-bold text-lg hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.16)]"
               >
                 Commit, Go Elite
-              </a>
+              </Link>
             </div>
           </div>
         </div>
