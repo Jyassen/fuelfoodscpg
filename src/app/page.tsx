@@ -95,7 +95,7 @@ export default function HomePage() {
                   href="#plans"
                   className="inline-flex items-center justify-center bg-[#136834] hover:bg-[#0f5429] text-white font-extrabold px-8 py-3 rounded-full text-base uppercase tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 border border-transparent"
                 >
-                  Start My Health Journey
+                  Get Your Greens
                 </a>
               </div>
             </div>
@@ -118,12 +118,12 @@ export default function HomePage() {
       <section className="relative bg-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-2 lg:mb-12">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-12 lg:mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 lg:mb-4">
               Microgreens Made Simple
             </h2>
             
             {/* Mobile Image - Shows after headline on mobile */}
-            <div className="lg:hidden w-full flex justify-center mb-12">
+            <div className="lg:hidden w-full flex justify-center mb-16">
               <div className="relative">
                 <img
                   src="/images/singlewithgreens_final.png"
@@ -133,7 +133,7 @@ export default function HomePage() {
               </div>
             </div>
             
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12 lg:mb-0">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-16 lg:mb-0">
               Everything you need to know in 30 seconds
             </p>
           </div>
