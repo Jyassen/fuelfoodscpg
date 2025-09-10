@@ -16,7 +16,7 @@ export default function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex flex-col lg:flex-row items-center lg:justify-start lg:gap-0 min-h-[700px] pt-2 lg:pt-4">
             {/* Mobile Layout: Headline -> Image -> Content */}
-            <div className="w-full lg:w-[35%] text-left py-6 lg:py-20 lg:pr-0">
+            <div className="w-full lg:w-[35%] text-center lg:text-left py-6 lg:py-20 lg:pr-0">
               <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black text-gray-900 mb-4 lg:mb-4 leading-[0.95] tracking-tight">
                 <span className="block lg:inline">Get 40x More Nutrition</span>
                 <br className="hidden lg:block" />
@@ -277,7 +277,7 @@ export default function HomePage() {
                 {/* Mega Mix Slide */}
                 <CarouselItem>
                   <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[600px]">
-                    <div className="pl-8 md:pl-10 lg:pl-14">
+                    <div className="text-center lg:text-left pl-8 md:pl-10 lg:pl-14">
                       <div className="mb-6">
                         <span className="inline-block bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Most Popular
@@ -383,7 +383,7 @@ export default function HomePage() {
                         className="w-full max-w-[520px] h-auto object-contain mx-auto rounded-2xl shadow-2xl"
                       />
                     </div>
-                    <div>
+                    <div className="text-center lg:text-left">
                       <div className="mb-6">
                         <span className="inline-block bg-[#dcfce7] text-[#136834] px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Power Blend
@@ -469,7 +469,7 @@ export default function HomePage() {
                 {/* Sunnies Snacks Slide */}
                 <CarouselItem>
                   <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[520px]">
-                    <div className="pl-8 md:pl-10 lg:pl-14">
+                    <div className="text-center lg:text-left pl-8 md:pl-10 lg:pl-14">
                       <div className="mb-6">
                         <span className="inline-block bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wide mb-3">
                           Crunchy & Delicious
@@ -635,7 +635,7 @@ export default function HomePage() {
                 Perfect for first-timers. No commitment needed.
               </p>
 
-              <div className="space-y-1.5 mb-4 text-left">
+              <div className="space-y-1.5 mb-4 text-center lg:text-left">
                 <div className="text-gray-700 mb-2">
                   Choose any 1 pack
                 </div>
@@ -716,7 +716,7 @@ export default function HomePage() {
                 3 packs delivered weekly. Save money vs one-time purchases.
               </p>
 
-              <div className="space-y-1.5 mb-4 text-left">
+              <div className="space-y-1.5 mb-4 text-center lg:text-left">
                 <div className="flex items-center">
                   <svg
                     className="w-5 h-5 text-fuelfoods-green-500 mr-3 flex-shrink-0"
@@ -837,7 +837,7 @@ export default function HomePage() {
                 5 packs delivered weekly. Maximum variety and nutrition.
               </p>
 
-              <div className="space-y-3 mb-8 text-left">
+              <div className="space-y-3 mb-8 text-center lg:text-left">
                 <div className="flex items-center">
                   <svg
                     className="w-5 h-5 text-fuelfoods-green-500 mr-3 flex-shrink-0"
@@ -1020,7 +1020,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-center lg:text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
                 <svg
                   className="w-5 h-5"
@@ -1041,7 +1041,7 @@ export default function HomePage() {
                 One pack of our microgreens has more nutrition than expensive multivitamins and your body actually absorbs it because it is real food, not synthetic chemicals.
               </p>
             </div>
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-center lg:text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
                 <svg
                   className="w-5 h-5"
@@ -1063,7 +1063,7 @@ export default function HomePage() {
                 Packed with immune-boosting compounds that help your body fight off whatever is going around the office or subway.
               </p>
             </div>
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-center lg:text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
                 <svg
                   className="w-5 h-5"
@@ -1083,7 +1083,7 @@ export default function HomePage() {
                 Real nutrients give you steady energy that lasts all day with no caffeine crash or sugar highs and lows.
               </p>
             </div>
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-center lg:text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
                 <svg
                   className="w-5 h-5"
@@ -1104,7 +1104,7 @@ export default function HomePage() {
                 The antioxidants and vitamins that make you glow from the inside out. Better than any expensive skincare routine.
               </p>
             </div>
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-left">
+            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(23,134,65,0.06)] hover:shadow-[0_18px_42px_rgba(23,134,65,0.12)] transition-shadow h-full text-center lg:text-left">
               <div className="w-10 h-10 rounded-lg bg-fuelfoods-green-100 text-fuelfoods-green-600 flex items-center justify-center mb-4">
                 <svg
                   className="w-5 h-5"
