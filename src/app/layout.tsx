@@ -37,9 +37,11 @@ export const metadata: Metadata = {
   openGraph: SEO_DEFAULTS.openGraph,
   twitter: SEO_DEFAULTS.twitter,
   icons: {
-    icon: '/images/logo.png',
-    shortcut: '/images/logo.png',
-    apple: '/images/logo.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: '/apple-icon.png',
   },
 };
 
