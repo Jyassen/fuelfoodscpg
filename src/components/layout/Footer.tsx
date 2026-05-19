@@ -1,5 +1,7 @@
 'use client';
+
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, type FormEvent } from 'react';
 
 export default function Footer() {
@@ -44,9 +46,11 @@ export default function Footer() {
           {/* Left: Logo + Disclaimer */}
           <div>
             <Link href="/" className="flex items-center mb-4">
-              <img
+              <Image
                 src="/images/logo.png"
                 alt="FuelFoods Logo"
+                width={56}
+                height={56}
                 className="h-14 w-14 rounded-full"
               />
             </Link>

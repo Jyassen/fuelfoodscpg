@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { ShoppingCart } from 'lucide-react';
 import { NAVIGATION_ITEMS } from '@/lib/constants';
@@ -70,9 +71,11 @@ export default function Header() {
           {/* Logo - Center */}
           <div className="flex-1 flex justify-center">
             <Link href="/" className="flex items-center">
-              <img
+              <Image
                 src="/images/logo.png"
                 alt="FuelFoods Logo"
+                width={64}
+                height={64}
                 className="h-16 w-16 rounded-full"
               />
             </Link>

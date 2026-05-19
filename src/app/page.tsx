@@ -1,4 +1,5 @@
 "use client";
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import {
   Carousel,
   CarouselContent,
@@ -26,9 +27,13 @@ export default function HomePage() {
 
               {/* Mobile Hero Image - Shows between headline and content on mobile */}
               <div className="lg:hidden w-full flex justify-center my-6">
-                <img
+                <OptimizedImage
                   src="/images/hero copy.png"
                   alt="FuelFoods hero"
+                  width={1920}
+                  height={960}
+                  priority
+                  sizes="(max-width: 1024px) 90vw, 0px"
                   className="w-full max-w-sm h-auto object-contain drop-shadow-xl"
                 />
               </div>
@@ -103,9 +108,13 @@ export default function HomePage() {
             {/* Desktop Right visual - Hidden on mobile */}
             <div className="hidden lg:flex w-full lg:w-[65%] justify-center lg:justify-end items-center mt-8 lg:mt-0 relative lg:pr-0">
               <div className="relative z-10">
-                <img
+                <OptimizedImage
                   src="/images/hero copy.png"
                   alt="FuelFoods hero"
+                  width={1920}
+                  height={960}
+                  priority
+                  sizes="(max-width: 1024px) 0px, 60vw"
                   className="w-full lg:w-[130%] max-w-none h-auto object-contain drop-shadow-xl lg:-translate-x-20"
                 />
               </div>
@@ -124,11 +133,13 @@ export default function HomePage() {
             
             {/* Mobile Image - Shows after headline on mobile */}
             <div className="lg:hidden w-full flex justify-center mb-16">
-              <div className="relative">
-                <img
+              <div className="relative w-full max-w-md aspect-[640/305]">
+                <OptimizedImage
                   src="/images/singlewithgreens_final.png"
                   alt="Fresh Microgreens"
-                  className="w-full max-w-md h-auto object-contain scale-[1.8]"
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 0px"
+                  className="object-contain scale-[1.8]"
                 />
               </div>
             </div>
@@ -239,11 +250,13 @@ export default function HomePage() {
             </div>
 
             {/* Right: Original Image - Desktop only */}
-            <div className="relative hidden lg:block">
-              <img
+            <div className="relative hidden lg:block h-[480px] w-full">
+              <OptimizedImage
                 src="/images/singlewithgreens_final.png"
                 alt="Microgreens bursting from package"
-                className="absolute top-1/2 right-0 w-full h-auto object-contain scale-[1.8] origin-center-right z-0 -translate-y-1/2"
+                fill
+                sizes="50vw"
+                className="object-contain object-right scale-[1.8] origin-right"
               />
             </div>
           </div>
@@ -292,9 +305,13 @@ export default function HomePage() {
                         
                         {/* Mobile Image - Shows after title and description on mobile */}
                         <div className="lg:hidden w-full flex justify-center my-6">
-                          <img
+                          <OptimizedImage
                             src="/images/megamixsidebyside.jpg"
                             alt="Mega Mix microgreens side by side comparison"
+                            width={500}
+                            height={500}
+                            loading="lazy"
+                            sizes="(max-width: 1024px) 90vw, 0px"
                             className="w-full max-w-sm h-auto object-contain mx-auto rounded-2xl shadow-2xl"
                           />
                         </div>
@@ -362,9 +379,13 @@ export default function HomePage() {
                     {/* Desktop Image - Hidden on mobile */}
                     <div className="hidden lg:block">
                       <div className="relative flex items-center justify-center">
-                        <img
+                        <OptimizedImage
                           src="/images/megamixsidebyside.jpg"
                           alt="Mega Mix microgreens side by side comparison"
+                          width={500}
+                          height={500}
+                          loading="lazy"
+                          sizes="520px"
                           className="w-full max-w-[520px] h-auto object-contain mx-auto rounded-2xl shadow-2xl"
                         />
                       </div>
@@ -377,9 +398,13 @@ export default function HomePage() {
                   <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[520px]">
                     {/* Desktop Image - Hidden on mobile */}
                     <div className="relative order-2 lg:order-1 lg:order-none flex items-center justify-center hidden lg:block">
-                      <img
+                      <OptimizedImage
                         src="/images/brassicablendsidebyside.jpg"
                         alt="Brassica Blend microgreens variety"
+                        width={500}
+                        height={500}
+                        loading="lazy"
+                        sizes="520px"
                         className="w-full max-w-[520px] h-auto object-contain mx-auto rounded-2xl shadow-2xl"
                       />
                     </div>
@@ -398,9 +423,13 @@ export default function HomePage() {
                         
                         {/* Mobile Image - Shows after title and description on mobile */}
                         <div className="lg:hidden w-full flex justify-center my-6">
-                          <img
+                          <OptimizedImage
                             src="/images/brassicablendsidebyside.jpg"
                             alt="Brassica Blend microgreens variety"
+                            width={500}
+                            height={500}
+                            loading="lazy"
+                            sizes="(max-width: 1024px) 90vw, 0px"
                             className="w-full max-w-sm h-auto object-contain mx-auto rounded-2xl shadow-2xl"
                           />
                         </div>
@@ -484,9 +513,13 @@ export default function HomePage() {
                         
                         {/* Mobile Image - Shows after title and description on mobile */}
                         <div className="lg:hidden w-full flex justify-center my-6">
-                          <img
+                          <OptimizedImage
                             src="/images/sunniessidebyside.jpg"
                             alt="Sunnies Snacks sunflower microgreens"
+                            width={500}
+                            height={500}
+                            loading="lazy"
+                            sizes="(max-width: 1024px) 90vw, 0px"
                             className="w-full max-w-sm h-auto object-contain mx-auto rounded-2xl shadow-2xl"
                           />
                         </div>
@@ -553,9 +586,13 @@ export default function HomePage() {
                     {/* Desktop Image - Hidden on mobile */}
                     <div className="hidden lg:block">
                       <div className="relative flex items-center justify-center">
-                        <img
+                        <OptimizedImage
                           src="/images/sunniessidebyside.jpg"
                           alt="Sunnies Snacks sunflower microgreens"
+                          width={500}
+                          height={500}
+                          loading="lazy"
+                          sizes="520px"
                           className="w-full max-w-[520px] h-auto object-contain mx-auto rounded-2xl shadow-2xl"
                         />
                       </div>
@@ -617,10 +654,14 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-3 lg:gap-3 items-stretch">
             {/* Starter Plan */}
             <div className="bg-white rounded-2xl p-4 shadow-[0_12px_34px_4px_rgba(34,94,20,0.30)] hover:shadow-[0_22px_56px_10px_rgba(34,94,20,0.40)] transition-all duration-300 transform hover:-translate-y-[2px] relative flex flex-col h-full">
-              <div className="mb-1.5 h-28 flex items-end justify-center">
-                <img
+              <div className="mb-1.5 h-28 flex items-end justify-center relative">
+                <OptimizedImage
                   src="/images/sunniesfinal.png"
                   alt="Starter Plan - 3 Pack"
+                  width={1920}
+                  height={1920}
+                  loading="lazy"
+                  sizes="200px"
                   className="max-h-full w-auto object-contain"
                 />
               </div>
@@ -697,10 +738,14 @@ export default function HomePage() {
                 Most Popular
               </div>
 
-              <div className="mb-1.5 h-28 flex items-end justify-center">
-                <img
+              <div className="mb-1.5 h-28 flex items-end justify-center relative">
+                <OptimizedImage
                   src="/images/3packfinal.png"
                   alt="Pro Plan - 3 Pack Weekly"
+                  width={1920}
+                  height={960}
+                  loading="lazy"
+                  sizes="200px"
                   className="max-h-full w-auto object-contain"
                 />
               </div>
@@ -818,10 +863,14 @@ export default function HomePage() {
 
             {/* Elite Plan */}
             <div className="bg-white rounded-2xl p-4 shadow-[0_12px_34px_4px_rgba(34,94,20,0.30)] hover:shadow-[0_22px_56px_10px_rgba(34,94,20,0.40)] transition-all duration-300 transform hover:-translate-y-[2px] relative border-4 border-yellow-400 flex flex-col h-full">
-              <div className="mb-1.5 h-28 flex items-end justify-center">
-                <img
+              <div className="mb-1.5 h-28 flex items-end justify-center relative">
+                <OptimizedImage
                   src="/images/5packfinal.png"
                   alt="Elite Plan - 5 Pack Weekly"
+                  width={1920}
+                  height={960}
+                  loading="lazy"
+                  sizes="200px"
                   className="max-h-full w-auto object-contain"
                 />
               </div>
@@ -996,25 +1045,34 @@ export default function HomePage() {
           </h3>
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_24px_80px_12px_rgba(229,99,34,0.22)]">
-              <img
+            <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_24px_80px_12px_rgba(229,99,34,0.22)] relative h-64">
+              <OptimizedImage
                 src="/images/bikerider.png"
                 alt="Biker fueling performance with microgreens"
-                className="w-full h-64 object-cover filter drop-shadow-[0_40px_90px_rgba(229,99,34,0.5)]"
+                fill
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover filter drop-shadow-[0_40px_90px_rgba(229,99,34,0.5)]"
               />
             </div>
-            <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_24px_80px_12px_rgba(229,99,34,0.22)]">
-              <img
+            <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_24px_80px_12px_rgba(229,99,34,0.22)] relative h-64">
+              <OptimizedImage
                 src="/images/gymdrinker.png"
                 alt="Gym-goer recovering with nutrient-dense greens"
-                className="w-full h-64 object-cover filter drop-shadow-[0_40px_90px_rgba(229,99,34,0.5)]"
+                fill
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover filter drop-shadow-[0_40px_90px_rgba(229,99,34,0.5)]"
               />
             </div>
-            <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_24px_80px_12px_rgba(229,99,34,0.22)]">
-              <img
+            <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_24px_80px_12px_rgba(229,99,34,0.22)] relative h-64">
+              <OptimizedImage
                 src="/images/runners.png"
                 alt="Runners energized by whole-food nutrition"
-                className="w-full h-64 object-cover filter drop-shadow-[0_40px_90px_rgba(229,99,34,0.5)]"
+                fill
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover filter drop-shadow-[0_40px_90px_rgba(229,99,34,0.5)]"
               />
             </div>
           </div>
@@ -1145,11 +1203,14 @@ export default function HomePage() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left visual */}
-            <div className="relative">
-              <img
+            <div className="relative w-full max-w-2xl mx-auto aspect-[1850/1185]">
+              <OptimizedImage
                 src="/images/5-pack3.png"
                 alt="FuelFoods microgreen packs"
-                className="w-full max-w-2xl h-auto object-contain mx-auto"
+                fill
+                loading="lazy"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain"
               />
             </div>
 
@@ -1485,25 +1546,10 @@ export default function HomePage() {
               <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
                 Your Health Shouldn't Be Complicated
               </h3>
-              
-              {/* Mobile Video - Shows after title on mobile */}
-              <div className="md:hidden w-full mb-6">
-                <div className="w-full h-[240px] sm:h-[300px] overflow-hidden rounded-xl shadow-2xl">
-                  <video
-                    suppressHydrationWarning
-                    className="w-full h-full object-cover object-center"
-                    src="/images/About-Us-tiktok-1.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
-                </div>
-              </div>
             </div>
             
             <div className="grid md:grid-cols-2 lg:gap-10 gap-6 items-center">
-              <div>
+              <div className="order-2 md:order-1">
                 <p className="text-lg lg:text-xl text-gray-900 mb-6 leading-relaxed text-left">
                   Like you, we were tired of buying expensive vegetables that went bad before we could eat them. Tired of trying to figure out what supplements actually worked. Tired of feeling guilty about not eating enough vegetables.
                 </p>
@@ -1522,8 +1568,7 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-              {/* Desktop Video - Hidden on mobile */}
-              <div className="hidden md:block w-full">
+              <div className="order-1 md:order-2 w-full">
                 <div className="w-full h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] overflow-hidden rounded-xl shadow-2xl">
                   <video
                     suppressHydrationWarning
@@ -1533,6 +1578,7 @@ export default function HomePage() {
                     muted
                     loop
                     playsInline
+                    preload="metadata"
                   />
                 </div>
               </div>
