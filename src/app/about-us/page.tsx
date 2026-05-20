@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import React from 'react';
+import AboutUsVideo from '@/components/ui/AboutUsVideo';
 
 export const metadata: Metadata = {
   title: 'Our Story: Why We Started FuelFoods - Fresh Microgreens NYC',
@@ -45,15 +46,7 @@ export default function AboutPage() {
           </div>
           <div className="lg:sticky lg:top-24">
             <div className="w-full h-[260px] sm:h-[360px] lg:h-[520px] overflow-hidden rounded-2xl shadow-2xl">
-              <video
-                suppressHydrationWarning
-                className="w-full h-full object-cover object-center"
-                src="/images/About-Us-tiktok-1.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
+              <AboutUsVideo />
             </div>
           </div>
         </div>

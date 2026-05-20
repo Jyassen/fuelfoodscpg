@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import Link from 'next/link';
+import AboutUsVideo from '@/components/ui/AboutUsVideo';
 export default function HomePage() {
   return (
     <div className="min-h-screen">
@@ -1570,16 +1571,7 @@ export default function HomePage() {
               </div>
               <div className="order-1 md:order-2 w-full">
                 <div className="w-full h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] overflow-hidden rounded-xl shadow-2xl">
-                  <video
-                    suppressHydrationWarning
-                    className="w-full h-full object-cover object-center"
-                    src="/images/About-Us-tiktok-1.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                  />
+                  <AboutUsVideo />
                 </div>
               </div>
             </div>
