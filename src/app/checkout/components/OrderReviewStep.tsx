@@ -24,7 +24,6 @@ export default function OrderReviewStep({
     items,
     customerInfo,
     shippingInfo,
-    paymentInfo,
     billingInfo,
     pricing,
     selectedShippingOption,
@@ -48,12 +47,6 @@ export default function OrderReviewStep({
     } finally {
       setIsPlacingOrder(false);
     }
-  };
-
-  const formatCardNumber = (cardNumber: string) => {
-    if (!cardNumber) return '';
-    const lastFour = cardNumber.slice(-4);
-    return `•••• •••• •••• ${lastFour}`;
   };
 
   const formatAddress = (info: any) => {
@@ -188,28 +181,14 @@ export default function OrderReviewStep({
               Payment Method
             </h3>
             <div className="space-y-2 text-sm">
-              {paymentInfo.methodType === 'credit_card' ||
-              paymentInfo.methodType === 'debit_card' ? (
-                <>
-                  <p>
-                    <span className="font-medium">Card:</span>{' '}
-                    {formatCardNumber(paymentInfo.cardNumber || '')}
-                  </p>
-                  <p>
-                    <span className="font-medium">Name:</span>{' '}
-                    {paymentInfo.cardholderName}
-                  </p>
-                  <p>
-                    <span className="font-medium">Expires:</span>{' '}
-                    {paymentInfo.expiryMonth}/
-                    {paymentInfo.expiryYear?.slice(-2)}
-                  </p>
-                </>
-              ) : (
-                <p>
-                  <span className="font-medium">Payment Method:</span> PayPal
-                </p>
-              )}
+              <p>
+                <span className="font-medium">Payment Method:</span> Stripe
+                Checkout
+              </p>
+              <p className="text-gray-600">
+                Card details are entered on Stripe’s secure page. We never
+                store card numbers.
+              </p>
             </div>
           </div>
 

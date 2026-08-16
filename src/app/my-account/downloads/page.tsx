@@ -43,7 +43,7 @@ function DownloadsContent() {
   React.useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`/api/account/invoices?userId=${encodeURIComponent(user.id)}`);
+        const res = await fetch('/api/account/invoices', { credentials: 'include' });
         const data = await res.json();
         if (Array.isArray(data.invoices)) {
           setDownloads(

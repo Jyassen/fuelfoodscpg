@@ -1,23 +1,20 @@
 import { NextResponse } from 'next/server';
 import { getStripe } from '@/lib/stripe/server';
-import { supabaseServer } from '@/lib/supabase/server';
+import { getAuthedStripeCustomer } from '@/lib/auth/account';
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(req.url);
-    const userId = searchParams.get('userId');
-    if (!userId) return NextResponse.json({ error: 'userId required' }, { status: 400 });
-
-    const { data: profile, error: profileError } = await supabaseServer
-      .from('profiles')
-      .select('stripe_customer_id')
-      .eq('id', userId)
-      .single();
-    if (profileError) throw profileError;
-    if (!profile?.stripe_customer_id) return NextResponse.json({ invoices: [] });
+    const result = await getAuthedStripeCustomer();
+    if (result.error) return result.error;
+    if (!result.stripeCustomerId) {
+      return NextResponse.json({ invoices: [] });
+    }
 
     const stripe = getStripe();
-    const invoices = await stripe.invoices.list({ customer: profile.stripe_customer_id, limit: 20 });
+    const invoices = await stripe.invoices.list({
+      customer: result.stripeCustomerId,
+      limit: 20,
+    });
     const mapped = invoices.data.map(inv => ({
       id: inv.id,
       number: inv.number,
@@ -29,10 +26,11 @@ export async function GET(req: Request) {
       created: inv.created ? new Date(inv.created * 1000).toISOString() : null,
     }));
     return NextResponse.json({ invoices: mapped });
-  } catch (e: any) {
+  } catch (e) {
     console.error('[account/invoices] error:', e);
-    return NextResponse.json({ error: e.message || 'Failed to fetch invoices' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to fetch invoices' },
+      { status: 500 }
+    );
   }
 }
-
-

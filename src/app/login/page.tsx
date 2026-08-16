@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { AuthProvider, useAuth } from '@/components/auth/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,9 +12,18 @@ import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Loader2, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
+function safeRedirectPath(value: string | null): string {
+  if (!value || !value.startsWith('/') || value.startsWith('//')) {
+    return '/my-account';
+  }
+  return value;
+}
+
 function LoginForm() {
   const { login, loading, isAuthenticated } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = safeRedirectPath(searchParams.get('redirect'));
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -27,9 +36,9 @@ function LoginForm() {
   // Redirect if already logged in
   useEffect(() => {
     if (isAuthenticated && !loading) {
-      router.push('/my-account');
+      router.push(redirectTo);
     }
-  }, [isAuthenticated, loading, router]);
+  }, [isAuthenticated, loading, router, redirectTo]);
 
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
@@ -68,7 +77,7 @@ function LoginForm() {
         toast.success('Welcome back!', {
           description: 'You have successfully logged in.',
         });
-        router.push('/my-account');
+        router.push(redirectTo);
       } else {
         toast.error('Login failed', {
           description: result.error || 'Please check your credentials and try again.',
@@ -301,7 +310,9 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <AuthProvider>
-      <LoginForm />
+      <Suspense fallback={null}>
+        <LoginForm />
+      </Suspense>
     </AuthProvider>
   );
 }

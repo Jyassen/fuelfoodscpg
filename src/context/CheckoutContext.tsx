@@ -665,16 +665,15 @@ export function CheckoutProvider({
       // Create Stripe Checkout session
       const res = await fetch('/api/stripe/create-checkout-session', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           planType: (state.items.find(i => i.type === 'subscription')?.product?.id || '')
             .replace('subscription_', '') || 'starter',
-          quantity: state.items.reduce((sum, i) => sum + i.quantity, 0) || 1,
-          allowPromotionCodes: true,
-          mode: 'subscription',
-          metadata: {
-            email: state.customerInfo.email,
-          },
+          quantity: Math.min(
+            12,
+            Math.max(1, state.items.reduce((sum, i) => sum + i.quantity, 0) || 1)
+          ),
         }),
       });
 

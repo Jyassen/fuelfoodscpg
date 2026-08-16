@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
+import { clientIp, rateLimit } from '@/lib/auth/rate-limit';
 
 type MailchimpList = {
   id: string;
 };
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const getAuthHeader = () => {
   const apiKey = process.env.MAILCHIMP_API_KEY;
@@ -24,7 +27,6 @@ async function resolveAudienceId(): Promise<string> {
   ) {
     return process.env.MAILCHIMP_AUDIENCE_ID.trim();
   }
-  // Fallback: pick the first list
   const dc = getDataCenter();
   const res = await fetch(`https://${dc}.api.mailchimp.com/3.0/lists`, {
     headers: { Authorization: getAuthHeader() },
@@ -41,15 +43,23 @@ async function resolveAudienceId(): Promise<string> {
 
 export async function POST(req: Request) {
   try {
-    const { email, firstName } = await req.json();
-    if (!email || typeof email !== 'string') {
+    const ip = clientIp(req);
+    if (!rateLimit(`subscribe:${ip}`, 5, 60 * 60 * 1000)) {
+      return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+    }
+
+    const body = await req.json().catch(() => null);
+    const email = typeof body?.email === 'string' ? body.email.trim() : '';
+    const firstName =
+      typeof body?.firstName === 'string' ? body.firstName.slice(0, 80) : '';
+
+    if (!email || !EMAIL_PATTERN.test(email) || email.length > 254) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
     const dc = getDataCenter();
     const listId = await resolveAudienceId();
 
-    // Try create new member
     const createRes = await fetch(
       `https://${dc}.api.mailchimp.com/3.0/lists/${listId}/members`,
       {
@@ -61,7 +71,7 @@ export async function POST(req: Request) {
         body: JSON.stringify({
           email_address: email,
           status: 'subscribed',
-          merge_fields: { FNAME: firstName ?? '' },
+          merge_fields: { FNAME: firstName },
         }),
       }
     );
@@ -72,7 +82,6 @@ export async function POST(req: Request) {
 
     const error = await createRes.json().catch(() => ({}));
     if (error?.title === 'Member Exists') {
-      // Update existing member
       const crypto = await import('crypto');
       const hash = crypto
         .createHash('md5')
@@ -88,26 +97,16 @@ export async function POST(req: Request) {
           },
           body: JSON.stringify({
             status: 'subscribed',
-            merge_fields: { FNAME: firstName ?? '' },
+            merge_fields: { FNAME: firstName },
           }),
         }
       );
       if (patchRes.ok) return NextResponse.json({ ok: true, updated: true });
-      const patchError = await patchRes.text();
-      return NextResponse.json(
-        { error: patchError || 'Failed to update member' },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
     }
 
-    return NextResponse.json(
-      { error: error?.detail || 'Failed to subscribe' },
-      { status: 500 }
-    );
-  } catch (e: any) {
-    return NextResponse.json(
-      { error: e?.message || 'Server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
+  } catch {
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }

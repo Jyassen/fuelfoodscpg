@@ -119,7 +119,14 @@ export function getAllWordPressPages(): WordPressPage[] {
  */
 export function getWordPressPageBySlug(slug: string): WordPressPage | null {
   try {
-    const filePath = path.join(CONTENT_PATHS.pages, `${slug}.md`);
+    if (!/^[a-zA-Z0-9_-]+$/.test(slug)) {
+      return null;
+    }
+    const pagesRoot = path.resolve(CONTENT_PATHS.pages);
+    const filePath = path.resolve(pagesRoot, `${slug}.md`);
+    if (!filePath.startsWith(pagesRoot + path.sep)) {
+      return null;
+    }
 
     if (!fs.existsSync(filePath)) {
       return null;
@@ -142,7 +149,7 @@ export function getWordPressPageBySlug(slug: string): WordPressPage | null {
 export async function markdownToHtml(markdown: string): Promise<string> {
   const processor = remark()
     .use(remarkGfm) // GitHub Flavored Markdown
-    .use(remarkHtml, { sanitize: false });
+    .use(remarkHtml);
 
   const result = await processor.process(markdown);
   return result.toString();

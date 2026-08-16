@@ -1,6 +1,10 @@
+import { notFound } from 'next/navigation';
 import FormComponentsShowcase from '@/components/examples/FormComponentsShowcase';
 
 export default function FormDemoPage() {
+  if (process.env.NODE_ENV === 'production') {
+    notFound();
+  }
   return <FormComponentsShowcase />;
 }
 

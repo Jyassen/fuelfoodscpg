@@ -30,7 +30,8 @@ interface NotificationSettings {
 }
 
 function ProfileContent() {
-  const { user, loading, updateProfile, changePassword } = useAuth();
+  const { user, loading } = useRequireAuth();
+  const { updateProfile, changePassword } = useAuth();
   const [activeTab, setActiveTab] = useState('profile');
   const [profileData, setProfileData] = useState<ProfileFormData>({
     firstName: '',

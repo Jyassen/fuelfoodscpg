@@ -1,5 +1,4 @@
 import { supabase } from './client'
-import { AuthError, User } from '@supabase/supabase-js'
 import { mapProfileToUser, type AuthUserLike } from '@/types/auth'
 
 export interface AuthResponse {
@@ -101,16 +100,12 @@ export const registerUser = async (data: RegisterData): Promise<AuthResponse> =>
 // Login user
 export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
   try {
-    console.log('Attempting login for:', data.email)
     const { data: authData, error } = await supabase.auth.signInWithPassword({
       email: data.email,
       password: data.password,
     })
 
-    console.log('Supabase auth response:', { authData, error })
-
     if (error) {
-      console.error('Supabase auth error:', error)
       return { success: false, error: error.message }
     }
 

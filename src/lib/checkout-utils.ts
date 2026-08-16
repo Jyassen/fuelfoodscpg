@@ -409,25 +409,6 @@ export function validateCheckoutData(
     ['methodType']
   );
 
-  // Additional payment validation for card payments
-  if (
-    data.paymentInfo.methodType === 'credit_card' ||
-    data.paymentInfo.methodType === 'debit_card'
-  ) {
-    const cardFields = [
-      'cardholderName',
-      'cardNumber',
-      'expiryMonth',
-      'expiryYear',
-      'cvv',
-    ] as const;
-    for (const field of cardFields) {
-      if (!data.paymentInfo[field]) {
-        paymentErrors.push(`${field} is required for card payments`);
-      }
-    }
-  }
-
   errors.paymentInfo = paymentErrors;
 
   // Validate cart items

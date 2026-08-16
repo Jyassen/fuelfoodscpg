@@ -1,23 +1,20 @@
 import { NextResponse } from 'next/server';
 import { getStripe } from '@/lib/stripe/server';
-import { supabaseServer } from '@/lib/supabase/server';
+import { getAuthedStripeCustomer } from '@/lib/auth/account';
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(req.url);
-    const userId = searchParams.get('userId');
-    if (!userId) return NextResponse.json({ error: 'userId required' }, { status: 400 });
-
-    const { data: profile, error: profileError } = await supabaseServer
-      .from('profiles')
-      .select('stripe_customer_id')
-      .eq('id', userId)
-      .single();
-    if (profileError) throw profileError;
-    if (!profile?.stripe_customer_id) return NextResponse.json({ paymentMethods: [] });
+    const result = await getAuthedStripeCustomer();
+    if (result.error) return result.error;
+    if (!result.stripeCustomerId) {
+      return NextResponse.json({ paymentMethods: [] });
+    }
 
     const stripe = getStripe();
-    const methods = await stripe.paymentMethods.list({ customer: profile.stripe_customer_id, type: 'card' });
+    const methods = await stripe.paymentMethods.list({
+      customer: result.stripeCustomerId,
+      type: 'card',
+    });
     const mapped = methods.data.map(m => ({
       id: m.id,
       brand: m.card?.brand || 'unknown',
@@ -26,10 +23,11 @@ export async function GET(req: Request) {
       expiryYear: m.card?.exp_year || null,
     }));
     return NextResponse.json({ paymentMethods: mapped });
-  } catch (e: any) {
+  } catch (e) {
     console.error('[account/payment-methods] error:', e);
-    return NextResponse.json({ error: e.message || 'Failed to fetch payment methods' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to fetch payment methods' },
+      { status: 500 }
+    );
   }
 }
-
-

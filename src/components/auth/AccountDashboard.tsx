@@ -80,7 +80,7 @@ export default function AccountDashboard() {
       }));
 
       // Fetch live subscriptions from API
-      fetch(`/api/account/subscriptions?userId=${encodeURIComponent(user.id)}`)
+      fetch('/api/account/subscriptions', { credentials: 'include' })
         .then(r => r.json())
         .then(data => {
           if (Array.isArray(data.subscriptions)) {

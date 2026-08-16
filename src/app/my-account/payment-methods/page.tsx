@@ -50,7 +50,7 @@ function PaymentMethodsContent() {
   React.useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`/api/account/payment-methods?userId=${encodeURIComponent(user.id)}`);
+        const res = await fetch('/api/account/payment-methods', { credentials: 'include' });
         const data = await res.json();
         if (Array.isArray(data.paymentMethods)) {
           setPaymentMethods(
