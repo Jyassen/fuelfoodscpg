@@ -128,6 +128,11 @@ const nextConfig: NextConfig = {
           permanent: true,
         },
         {
+          source: '/Privacy_Policy_FuelFoods.pdf',
+          destination: '/privacy-policy',
+          permanent: true,
+        },
+        {
           source: '/shop',
           destination: '/configure/starter',
           permanent: true,

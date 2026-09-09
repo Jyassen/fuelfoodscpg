@@ -161,14 +161,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="/Privacy_Policy_FuelFoods.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/privacy-policy"
                   className="text-gray-300 hover:text-fuelfoods-green-500 transition-colors"
                 >
                   PRIVACY POLICY
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
