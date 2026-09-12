@@ -66,7 +66,7 @@ const TESTIMONIALS = [
 const INSIDE = [
   {
     title: 'Harvest-to-door in 48 hours.',
-    body: 'Microgreens lose nutrition by the day after cutting. Most “fresh” produce is days or weeks old by the time you unpack it. Your FuelFoods box goes from harvest to your door within 48 hours — you’ll see the difference before you taste it.',
+    body: 'Microgreens lose nutrition by the day after cutting. Most “fresh” produce is days or weeks old by the time you unpack it. Your FuelFoods box goes from harvest to your door within 48 hours. You’ll see the difference before you taste it.',
   },
   {
     title: 'Up to 40x the nutrients of regular vegetables.',
@@ -86,7 +86,7 @@ const INSIDE = [
   },
   {
     title: 'A recipe guide, a newsletter, and member pricing.',
-    body: 'The people who’ve never used microgreens get their answers before they have to ask — without adding a minute of work.',
+    body: 'The people who’ve never used microgreens get their answers before they have to ask, without adding a minute of work.',
   },
   {
     title:
@@ -160,7 +160,7 @@ function Hero() {
           </div>
           <p className="mx-auto mt-5 max-w-[540px] font-subheadline text-base leading-snug text-gray-700 lg:mx-0 lg:text-lg">
             Skip the mystery powder. Get fresh-harvested microgreens you can
-            actually see, taste, and trust — delivered weekly and ready for
+            actually see, taste, and trust. Delivered weekly and ready for
             whatever you&apos;re already eating.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
@@ -228,7 +228,7 @@ function Lead() {
           getting pushed to tomorrow.
         </p>
         <p>
-          Six days later you&apos;re throwing half of it in the trash — wilted
+          Six days later you&apos;re throwing half of it in the trash: wilted
           lettuce, limp greens, a kale you never got around to. And somewhere
           underneath, a low-grade guilt that you eat like someone who
           doesn&apos;t care about their body, even though you care a lot.
@@ -239,8 +239,8 @@ function Lead() {
         </p>
         <p>Your problem is logistics.</p>
         <p>
-          Healthy eating demands recurring, unpaid labor — planning meals,
-          shopping, prepping, cooking, and eating food before it rots — stacked
+          Healthy eating demands recurring, unpaid labor: planning meals,
+          shopping, prepping, cooking, and eating food before it rots, stacked
           on top of a calendar that&apos;s already fully committed.
         </p>
         <blockquote className="border-l-4 border-[#e56322] py-1 pl-5 font-headline text-2xl font-bold leading-snug text-gray-900 sm:text-3xl">
@@ -271,7 +271,7 @@ function Handled() {
             <p>
               You&apos;ve been in meetings since 9. You have twenty minutes
               before you need to leave again. The last thing you want to do is
-              cook — and you don&apos;t.
+              cook, and you don&apos;t.
             </p>
             <p>
               You reach for the dinner you were going to eat anyway, and tear
@@ -284,7 +284,7 @@ function Handled() {
             <p>
               You toss half of it into a wrap or a salad. The rest you fold into
               whatever&apos;s on your plate. You&apos;ve just added the
-              nutrition of nine different vegetables to your meal — and it took
+              nutrition of nine different vegetables to your meal, and it took
               less than five minutes.
             </p>
             <p>
@@ -335,7 +335,7 @@ function MealMoments() {
           </div>
           <p className="max-w-2xl font-body text-lg leading-relaxed text-gray-700 lg:justify-self-end">
             Sandwich. Smoothie. Salad. Dinner. Open the pack, add a handful,
-            keep moving. FuelFlow is built around food you already eat—not a
+            keep moving. FuelFlow is built around food you already eat, not a
             meal plan you have to reorganize your life around.
           </p>
         </div>
@@ -416,8 +416,8 @@ function FuelFlow() {
           </h2>
           <p className="mt-4 font-body text-lg text-gray-700">
             So let&apos;s skip the adjectives and show you <em>how</em> this
-            actually happens — because the difference is the system behind the
-            box. FuelFlow runs in three steps.
+            actually happens. The difference is the system behind the box.
+            FuelFlow runs in three steps.
           </p>
         </div>
 
@@ -494,7 +494,7 @@ function FuelFlow() {
               </h3>
               <p className="mt-3 font-body text-gray-700">
                 Your packs arrive on a fixed weekly cadence, matched to how you
-                actually eat — into a smoothie, onto a sandwich, over a bowl, or
+                actually eat: into a smoothie, onto a sandwich, over a bowl, or
                 tossed into a salad. No new recipe, no new tool, no new skill to
                 learn.
               </p>
@@ -709,7 +709,7 @@ function WhatsInside() {
     <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div className="mx-auto grid max-w-7xl items-start gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div>
-          <Slip>What&apos;s inside — and why</Slip>
+          <Slip>What&apos;s inside, and why</Slip>
           <h2 className="font-headline mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             The labor is gone. The nutrition isn&apos;t.
           </h2>
@@ -792,8 +792,7 @@ function Fork() {
             </h3>
             <p className="mt-4 font-body leading-relaxed text-gray-600">
               Buy the produce, mean well, and quietly throw out the wilted half
-              every single week — while the guilt compounds along with the
-              waste.
+              every single week while the guilt compounds along with the waste.
             </p>
           </article>
           <article className="rounded-2xl border-2 border-fuelfoods-green-500 bg-white p-8 shadow-[0_12px_36px_rgba(23,134,65,0.12)]">
@@ -805,7 +804,7 @@ function Fork() {
             </h3>
             <p className="mt-4 font-body leading-relaxed text-gray-700">
               A box that lands on schedule, packs that take five minutes to add
-              to a meal, and the nutrition of nine vegetables a day — with the
+              to a meal, and the nutrition of nine vegetables a day, with the
               effort removed from the equation entirely.
             </p>
           </article>
@@ -872,7 +871,7 @@ function Guarantees() {
         <p className="mx-auto mt-8 max-w-3xl text-center font-body text-gray-700">
           We take the freshness risk because that&apos;s <em>our</em> job. And
           we make leaving easy because earning your renewal beats trapping you
-          in a charge you forgot about — every single month.
+          in a charge you forgot about every single month.
         </p>
       </div>
     </section>

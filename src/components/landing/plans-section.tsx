@@ -36,8 +36,13 @@ export function PlansSection() {
               Starter Packs
             </h3>
             <p className="mb-2 text-center">
-              <span className="font-headline text-2xl font-bold text-gray-900">$15</span>
-              <span className="font-body text-base text-gray-600"> per pack</span>
+              <span className="font-headline text-2xl font-bold text-gray-900">
+                $15
+              </span>
+              <span className="font-body text-base text-gray-600">
+                {' '}
+                per pack
+              </span>
             </p>
             <p className="mb-4 font-body text-gray-600">
               Perfect for first-timers. No commitment needed.
@@ -63,7 +68,7 @@ export function PlansSection() {
             <div className="mb-2 flex h-28 items-end justify-center">
               <Image
                 src="/images/3packfinal.png"
-                alt="Pro plan — three FuelFoods packs"
+                alt="Pro plan with three FuelFoods packs"
                 width={1920}
                 height={960}
                 sizes="200px"
@@ -74,7 +79,9 @@ export function PlansSection() {
               Pro Member
             </h3>
             <p className="mb-2 text-center">
-              <span className="font-headline text-2xl font-bold text-gray-900">$45</span>
+              <span className="font-headline text-2xl font-bold text-gray-900">
+                $45
+              </span>
               <span className="font-body text-base text-gray-600">/week</span>
             </p>
             <p className="mb-4 font-body text-gray-600">
@@ -92,12 +99,12 @@ export function PlansSection() {
               <ul className="space-y-2">
                 <PlanCheck tone="yellow">Microgreens Recipe Guide</PlanCheck>
                 <PlanCheck tone="yellow">
-                  Weekly newsletter with health tips, recipes, offers, and member
-                  discounts
+                  Weekly newsletter with health tips, recipes, offers, and
+                  member discounts
                 </PlanCheck>
                 <PlanCheck tone="yellow">
-                  Free session with a licensed nutritionist and a personalized meal
-                  plan
+                  Free session with a licensed nutritionist and a personalized
+                  meal plan
                 </PlanCheck>
                 <PlanCheck tone="yellow">
                   Free admission to regional FuelFoods wellness events
@@ -116,7 +123,7 @@ export function PlansSection() {
             <div className="mb-2 flex h-28 items-end justify-center">
               <Image
                 src="/images/5packfinal.png"
-                alt="Elite plan — five FuelFoods packs"
+                alt="Elite plan with five FuelFoods packs"
                 width={1920}
                 height={960}
                 sizes="200px"
@@ -127,7 +134,9 @@ export function PlansSection() {
               Elite Member
             </h3>
             <p className="mb-2 text-center">
-              <span className="font-headline text-2xl font-bold text-gray-900">$75</span>
+              <span className="font-headline text-2xl font-bold text-gray-900">
+                $75
+              </span>
               <span className="font-body text-base text-gray-600">/week</span>
             </p>
             <p className="mb-4 font-body text-gray-600">
@@ -148,7 +157,8 @@ export function PlansSection() {
                   Early access to new exclusive products
                 </PlanCheck>
                 <PlanCheck tone="yellow">
-                  Exclusive discounts on participating health vendors (coming soon)
+                  Exclusive discounts on participating health vendors (coming
+                  soon)
                 </PlanCheck>
               </ul>
             </div>
