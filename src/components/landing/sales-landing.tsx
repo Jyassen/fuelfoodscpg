@@ -159,9 +159,9 @@ function Hero() {
             />
           </div>
           <p className="mx-auto mt-5 max-w-[540px] font-subheadline text-base leading-snug text-gray-700 lg:mx-0 lg:text-lg">
-            Fresh-harvested microgreens land on your doorstep every week — up to
-            40x the nutrients of regular vegetables, ready to toss into whatever
-            you&apos;re already eating.
+            Skip the mystery powder. Get fresh-harvested microgreens you can
+            actually see, taste, and trust — delivered weekly and ready for
+            whatever you&apos;re already eating.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
             <CtaLink href="#plans" size="lg" arrow>
@@ -512,6 +512,8 @@ function FuelFlow() {
               image="/images/megamixsidebyside.jpg"
               badge="Daily coverage"
               badgeClass="bg-orange-100 text-orange-700"
+              benefitClass="border-orange-200 bg-orange-50 text-orange-800"
+              benefits={['Vitamin C + K', 'Antioxidants', 'Sulforaphane']}
               name="Mega Mix"
               job="Nine vegetables in one pack. The default daily formula."
             />
@@ -519,6 +521,8 @@ function FuelFlow() {
               image="/images/brassicablendsidebyside.jpg"
               badge="Recovery"
               badgeClass="bg-[#dcfce7] text-[#136834]"
+              benefitClass="border-green-200 bg-green-50 text-green-800"
+              benefits={['Sulforaphane', 'Vitamin K', 'Anti-inflammatory']}
               name="Brassica"
               job="The recovery blend. Inflammation, healing, come-back days."
             />
@@ -526,6 +530,8 @@ function FuelFlow() {
               image="/images/sunniessidebyside.jpg"
               badge="Skin & energy"
               badgeClass="bg-yellow-100 text-yellow-800"
+              benefitClass="border-yellow-200 bg-yellow-50 text-yellow-900"
+              benefits={['High protein', 'Vitamin E', 'Crunchy texture']}
               name="Sunnies"
               job="Crunchy sunflower shoots for skin, energy, and actual flavor."
             />
@@ -593,12 +599,16 @@ function BlendCard({
   image,
   badge,
   badgeClass,
+  benefitClass,
+  benefits,
   name,
   job,
 }: {
   image: string;
   badge: string;
   badgeClass: string;
+  benefitClass: string;
+  benefits: readonly string[];
   name: string;
   job: string;
 }) {
@@ -623,6 +633,19 @@ function BlendCard({
           {name}
         </h3>
         <p className="mt-2 font-body text-gray-700">{job}</p>
+        <ul
+          className="mt-4 flex flex-wrap gap-2"
+          aria-label={`${name} benefits`}
+        >
+          {benefits.map(benefit => (
+            <li
+              key={benefit}
+              className={`rounded-full border px-3 py-1.5 font-subheadline text-xs font-semibold ${benefitClass}`}
+            >
+              {benefit}
+            </li>
+          ))}
+        </ul>
       </div>
     </article>
   );
