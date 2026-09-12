@@ -13,7 +13,7 @@ const GREENS = [
   { src: '/images/Broccoli.png', label: 'Broccoli' },
   { src: '/images/Sunflowers.png', label: 'Sunflower' },
   { src: '/images/Arugula.png', label: 'Arugula' },
-  { src: '/images/Broccoli-1.png', label: 'Brassica' },
+  { src: '/images/Kale-Trio.png', label: 'Kale' },
 ] as const;
 
 const MEAL_MOMENTS = [
@@ -65,68 +65,37 @@ const TESTIMONIALS = [
 
 const INSIDE = [
   {
-    title: 'Harvest-to-door in 48 hours.',
-    body: 'Microgreens lose nutrition by the day after cutting. Most “fresh” produce is days or weeks old by the time you unpack it. Your FuelFoods box goes from harvest to your door within 48 hours. You’ll see the difference before you taste it.',
+    title: 'Harvested and delivered within 48 hours.',
+    body: 'Peak-cut greens, not produce that spent a week in transit.',
   },
   {
     title: 'Up to 40x the nutrients of regular vegetables.',
-    body: 'Not a slogan; a measurable claim, tied to the named vitamin and mineral profile printed on every blend. You’re not getting “more greens.” You’re getting meaningfully denser ones, with a specific reason behind them.',
+    body: 'More nutrition in a smaller, easier daily serving.',
   },
   {
-    title: 'Preselected blends instead of a mystery box.',
-    body: 'No 5pm “what do I even do with this” decision. Each blend has a single named job, so you pick once and the thinking is over.',
+    title: 'Three blends with clear jobs.',
+    body: 'Pick daily coverage, recovery, or a high-protein crunch.',
   },
   {
-    title: 'No shopping, no prep, no waste.',
-    body: 'Toss on, add to, or sprinkle into whatever you’re already making. This is the offer’s sharpest line, so we’ll say it plainly: the labor is gone.',
+    title: 'No prep.',
+    body: 'Open the pack. Add a handful. Eat.',
   },
   {
-    title: 'Weekly fixed cadence.',
-    body: 'You don’t re-decide every week. The delivery is the habit.',
-  },
-  {
-    title: 'A recipe guide, a newsletter, and member pricing.',
-    body: 'The people who’ve never used microgreens get their answers before they have to ask, without adding a minute of work.',
-  },
-  {
-    title:
-      'A free session with a licensed nutritionist, plus a personalized meal plan.',
-    body: 'Most boxes of greens end at the doorstep. Yours comes with a plan built for you, so the first week isn’t a guessing game.',
-  },
-  {
-    title: 'Early access to new products and member events.',
-    body: 'Because a subscription should get better the longer you stay, not feel like a bill you forgot.',
+    title: 'Delivered every week.',
+    body: 'Your fridge stays stocked without another decision.',
   },
 ] as const;
-
-function Slip({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="font-subheadline text-xs font-medium uppercase tracking-[0.22em] text-fuelfoods-green-500">
-      {children}
-    </p>
-  );
-}
-
-function Letter({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="mx-auto max-w-[680px] space-y-5 font-body text-lg leading-[1.75] text-gray-700">
-      {children}
-    </div>
-  );
-}
 
 export function SalesLanding() {
   return (
     <div className="min-h-screen bg-white pb-24 md:pb-0">
       <Hero />
-      <ProofBar />
       <Lead />
       <Handled />
       <MealMoments />
-      <FuelFlow />
+      <FuelFoodsSystem />
       <Testimonials />
       <WhatsInside />
-      <Fork />
       <PlansSection />
       <Guarantees />
       <StickyCta />
@@ -139,8 +108,7 @@ function Hero() {
     <section className="relative overflow-hidden bg-white">
       <div className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-12 pt-8 sm:px-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.9fr)] lg:gap-8 lg:px-8 lg:pb-16 lg:pt-10">
         <div className="text-center lg:text-left">
-          <Slip>Daily vegetables, handled</Slip>
-          <h1 className="font-headline mt-4 text-4xl font-bold leading-[1.02] tracking-tight text-gray-900 sm:text-5xl lg:text-[48px] xl:text-[54px]">
+          <h1 className="font-headline text-[32px] font-bold leading-[1.02] tracking-tight text-gray-900 sm:text-5xl lg:text-[48px] xl:text-[54px]">
             <span className="block">
               Eat <span className="italic text-[#e56322]">9</span> vegetables a
               day
@@ -188,117 +156,49 @@ function Hero() {
   );
 }
 
-function ProofBar() {
-  const items = [
-    { k: '48 hrs', v: 'Harvest to door' },
-    { k: '40x', v: 'The nutrients of regular vegetables' },
-    { k: '5 min', v: 'To add to a meal you already eat' },
-    { k: '$15', v: 'A pack · pause anytime' },
-  ];
-  return (
-    <section className="border-y border-fuelfoods-green-100 bg-fuelfoods-green-50">
-      <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 sm:px-6 lg:grid-cols-4 lg:px-8">
-        {items.map(item => (
-          <div key={item.k} className="text-center lg:text-left">
-            <dt className="font-headline text-2xl font-bold text-fuelfoods-green-500">
-              {item.k}
-            </dt>
-            <dd className="mt-1 font-body text-sm text-gray-700">{item.v}</dd>
-          </div>
-        ))}
-      </dl>
-    </section>
-  );
-}
-
 function Lead() {
   return (
-    <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <Letter>
-        <Slip>The real problem</Slip>
-        <p>You buy vegetables with the best intentions.</p>
-        <p>
-          You get home on a Sunday. You fill the crisper. You tell yourself{' '}
-          <em>this</em> is the week.
-        </p>
-        <p>
-          Then Wednesday comes and you&apos;re staring at a schedule that ate
-          your one free hour, a fridge full of produce that&apos;s already
-          softening, and a to-do list where &ldquo;eat better&rdquo; keeps
-          getting pushed to tomorrow.
-        </p>
-        <p>
-          Six days later you&apos;re throwing half of it in the trash: wilted
-          lettuce, limp greens, a kale you never got around to. And somewhere
-          underneath, a low-grade guilt that you eat like someone who
-          doesn&apos;t care about their body, even though you care a lot.
-        </p>
-        <p>
-          Here&apos;s the part nobody tells you: eating well was never your
-          problem.
-        </p>
-        <p>Your problem is logistics.</p>
-        <p>
-          Healthy eating demands recurring, unpaid labor: planning meals,
-          shopping, prepping, cooking, and eating food before it rots, stacked
-          on top of a calendar that&apos;s already fully committed.
-        </p>
-        <blockquote className="border-l-4 border-[#e56322] py-1 pl-5 font-headline text-2xl font-bold leading-snug text-gray-900 sm:text-3xl">
-          That&apos;s a logistics problem wearing a health problem&apos;s
-          clothes.
-        </blockquote>
-        <p>
-          And logistics problems don&apos;t get solved with more willpower. They
-          get solved by removing the work.
-        </p>
-      </Letter>
+    <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <div className="mx-auto max-w-3xl text-center">
+        <h2 className="font-headline text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+          Your problem isn&apos;t discipline.
+          <span className="block text-[#e56322]">It&apos;s logistics.</span>
+        </h2>
+        <div className="mx-auto mt-6 max-w-2xl space-y-3 font-body text-lg leading-relaxed text-gray-700">
+          <p>
+            You buy vegetables. Wednesday gets busy. Sunday, half get tossed.
+          </p>
+          <p>
+            Planning, shopping, chopping, and beating the expiration date is
+            work.
+          </p>
+          <p className="font-headline text-xl font-bold text-gray-900">
+            FuelFoods removes the work.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }
 
 function Handled() {
   return (
-    <section className="bg-[#0a3418] px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-24">
+    <section className="bg-[#0a3418] px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
         <div>
-          <p className="font-subheadline text-xs font-medium uppercase tracking-[0.22em] text-yellow-400">
-            Your vegetables, handled
-          </p>
-          <h2 className="font-headline mt-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-            Imagine your Tuesday at 6pm.
+          <h2 className="font-headline text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+            Tuesday, 6pm.
+            <span className="block text-yellow-400">Dinner is handled.</span>
           </h2>
-          <div className="mt-6 space-y-5 font-body text-lg leading-relaxed text-white/85">
+          <div className="mt-6 space-y-3 font-body text-lg leading-relaxed text-white/85">
+            <p>Eat what you were already going to eat.</p>
+            <p>Tear open a pack. Add a handful.</p>
             <p>
-              You&apos;ve been in meetings since 9. You have twenty minutes
-              before you need to leave again. The last thing you want to do is
-              cook, and you don&apos;t.
+              Nine vegetables. Less than five minutes. Nothing wilting in the
+              crisper.
             </p>
-            <p>
-              You reach for the dinner you were going to eat anyway, and tear
-              open a pack of FuelFoods microgreens.
-            </p>
-            <p>
-              No chopping. No measuring. No wondering which green does what or
-              whether you&apos;re getting enough.
-            </p>
-            <p>
-              You toss half of it into a wrap or a salad. The rest you fold into
-              whatever&apos;s on your plate. You&apos;ve just added the
-              nutrition of nine different vegetables to your meal, and it took
-              less than five minutes.
-            </p>
-            <p>
-              A week passes. No wilted produce in the crisper. No guilt. No
-              &ldquo;healthy week&rdquo; that collapsed on Wednesday.
-            </p>
-            <p className="font-headline text-2xl font-bold text-white">
-              You didn&apos;t force yourself to be the kind of person who eats
-              well. The effort just . . . disappeared.
-            </p>
-            <p>
-              That&apos;s what &ldquo;daily vegetables, handled&rdquo; actually
-              feels like. And there&apos;s a reason it works, when letting
-              another grocery delivery sit in the fridge didn&apos;t.
+            <p className="pt-2 font-headline text-2xl font-bold text-white">
+              The effort disappears. The habit stays.
             </p>
           </div>
           <div className="mt-8">
@@ -328,15 +228,16 @@ function MealMoments() {
       <div className="mx-auto max-w-7xl">
         <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <div>
-            <Slip>No new recipe. No new skill.</Slip>
-            <h2 className="mt-4 max-w-xl font-headline text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-              Whatever is already on the menu, add the greens.
+            <h2 className="max-w-xl font-headline text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+              Keep the meal.
+              <span className="block text-fuelfoods-green-500">
+                Add the greens.
+              </span>
             </h2>
           </div>
           <p className="max-w-2xl font-body text-lg leading-relaxed text-gray-700 lg:justify-self-end">
-            Sandwich. Smoothie. Salad. Dinner. Open the pack, add a handful,
-            keep moving. FuelFlow is built around food you already eat, not a
-            meal plan you have to reorganize your life around.
+            Sandwich. Smoothie. Salad. Dinner. Open the pack. Add a handful.
+            Keep moving.
           </p>
         </div>
 
@@ -405,19 +306,20 @@ function MealMoments() {
   );
 }
 
-function FuelFlow() {
+function FuelFoodsSystem() {
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-3xl text-center">
-          <Slip>The FuelFlow Delivery System</Slip>
-          <h2 className="font-headline mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-            Most greens sellers hand you the same leafy box.
+          <h2 className="font-headline text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+            Grown here. Packed fresh.
+            <span className="block text-fuelfoods-green-500">
+              Ready to eat.
+            </span>
           </h2>
           <p className="mt-4 font-body text-lg text-gray-700">
-            So let&apos;s skip the adjectives and show you <em>how</em> this
-            actually happens. The difference is the system behind the box.
-            FuelFlow runs in three steps.
+            FuelFoods gets microgreens from harvest to your door within 48
+            hours.
           </p>
         </div>
 
@@ -437,12 +339,11 @@ function FuelFlow() {
                 1 · Grow
               </p>
               <h3 className="font-headline mt-2 text-xl font-bold text-gray-900">
-                Harvested at the peak, not early to survive shipping.
+                Harvested at the peak.
               </h3>
               <p className="mt-3 font-body text-gray-700">
-                We harvest every pack days after germination, the exact moment
-                nutrient density spikes. That&apos;s the window when microgreens
-                can carry up to 40x the nutrients of the mature vegetable.
+                Cut days after germination, when microgreens are at their most
+                nutrient-dense.
               </p>
             </div>
           </article>
@@ -463,13 +364,10 @@ function FuelFlow() {
                 2 · Formula
               </p>
               <h3 className="font-headline mt-2 text-xl font-bold text-gray-900">
-                The blends do the math for you.
+                Blended with a purpose.
               </h3>
               <p className="mt-3 font-body text-gray-700">
-                You don&apos;t need to know which green helps with what, or
-                measure a single serving. Each preselected blend is engineered
-                to hit your daily targets across nine or more vegetables on its
-                own.
+                Each pack combines greens with one clear job.
               </p>
             </div>
           </article>
@@ -490,22 +388,21 @@ function FuelFlow() {
                 3 · Feed
               </p>
               <h3 className="font-headline mt-2 text-xl font-bold text-gray-900">
-                It slots into a habit you already have.
+                Add them anywhere.
               </h3>
               <p className="mt-3 font-body text-gray-700">
-                Your packs arrive on a fixed weekly cadence, matched to how you
-                actually eat: into a smoothie, onto a sandwich, over a bowl, or
-                tossed into a salad. No new recipe, no new tool, no new skill to
-                learn.
+                No prep. No recipe. Just open and add.
               </p>
             </div>
           </article>
         </div>
 
         <div className="mt-16">
-          <p className="text-center font-body text-lg text-gray-700">
-            Name the job, we&apos;ve built the blend. You choose the outcome.
-            The system handles the rest.
+          <h2 className="text-center font-headline text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Three blends. Three jobs.
+          </h2>
+          <p className="mt-3 text-center font-body text-lg text-gray-700">
+            Pick what you need.
           </p>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             <BlendCard
@@ -539,7 +436,9 @@ function FuelFlow() {
         </div>
 
         <div className="mt-16">
-          <Slip>Nine vegetables. Zero chopping.</Slip>
+          <h3 className="font-headline text-2xl font-bold text-gray-900">
+            Nine vegetables. Zero chopping.
+          </h3>
           <div className="mt-6 grid grid-cols-3 gap-4 sm:grid-cols-9">
             {GREENS.map(green => (
               <figure key={green.label} className="text-center">
@@ -559,36 +458,6 @@ function FuelFlow() {
               </figure>
             ))}
           </div>
-        </div>
-
-        <div className="mt-14 grid gap-4 md:grid-cols-3">
-          {[
-            {
-              src: '/images/bikerider.png',
-              alt: 'Cyclist fueled by whole-food nutrition',
-            },
-            {
-              src: '/images/gymdrinker.png',
-              alt: 'Gym-goer recovering with nutrient-dense greens',
-            },
-            {
-              src: '/images/runners.png',
-              alt: 'Runners who slot greens into an existing habit',
-            },
-          ].map(shot => (
-            <div
-              key={shot.src}
-              className="relative h-52 overflow-hidden rounded-2xl border border-gray-100 shadow-[0_24px_80px_12px_rgba(229,99,34,0.18)]"
-            >
-              <Image
-                src={shot.src}
-                alt={shot.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover"
-              />
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -656,8 +525,7 @@ function Testimonials() {
     <section className="bg-fuelfoods-green-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl text-center">
-          <Slip>From people who already opened the pack</Slip>
-          <h2 className="font-headline mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="font-headline text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             The work disappeared. The habit didn&apos;t.
           </h2>
         </div>
@@ -709,8 +577,7 @@ function WhatsInside() {
     <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div className="mx-auto grid max-w-7xl items-start gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div>
-          <Slip>What&apos;s inside, and why</Slip>
-          <h2 className="font-headline mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="font-headline text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             The labor is gone. The nutrition isn&apos;t.
           </h2>
           <ul className="mt-10 space-y-7">
@@ -772,74 +639,13 @@ function WhatsInside() {
   );
 }
 
-function Fork() {
-  return (
-    <section className="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div className="mx-auto max-w-5xl">
-        <div className="text-center">
-          <Slip>Where you are now</Slip>
-          <h2 className="font-headline mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Right now you&apos;ve got two options.
-          </h2>
-        </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <article className="rounded-2xl border border-gray-200 bg-white p-8">
-            <p className="font-subheadline text-xs font-medium uppercase tracking-[0.2em] text-gray-400">
-              Option 1
-            </p>
-            <h3 className="font-headline mt-3 text-2xl font-bold text-gray-500">
-              Keep doing what you&apos;ve been doing.
-            </h3>
-            <p className="mt-4 font-body leading-relaxed text-gray-600">
-              Buy the produce, mean well, and quietly throw out the wilted half
-              every single week while the guilt compounds along with the waste.
-            </p>
-          </article>
-          <article className="rounded-2xl border-2 border-fuelfoods-green-500 bg-white p-8 shadow-[0_12px_36px_rgba(23,134,65,0.12)]">
-            <p className="font-subheadline text-xs font-medium uppercase tracking-[0.2em] text-fuelfoods-green-500">
-              Option 2
-            </p>
-            <h3 className="font-headline mt-3 text-2xl font-bold text-gray-900">
-              Let the system handle it.
-            </h3>
-            <p className="mt-4 font-body leading-relaxed text-gray-700">
-              A box that lands on schedule, packs that take five minutes to add
-              to a meal, and the nutrition of nine vegetables a day, with the
-              effort removed from the equation entirely.
-            </p>
-          </article>
-        </div>
-        <div className="mt-12 text-center">
-          <p className="font-headline text-2xl font-bold text-gray-900">
-            It&apos;s $15 a pack.{' '}
-            <span className="text-fuelfoods-green-500">
-              Subscribe and your first month ships free.
-            </span>
-          </p>
-          <p className="mx-auto mt-4 max-w-xl font-body text-lg text-gray-700">
-            If you&apos;re the kind of person who buys greens with good
-            intentions every week, you already know what Option 1 costs. Try
-            Option 2 instead.
-          </p>
-          <div className="mt-8">
-            <CtaLink href="#plans" size="lg" arrow>
-              Start your subscription
-            </CtaLink>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Guarantees() {
   return (
-    <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+    <section className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <Slip>Our guarantees</Slip>
-          <h2 className="font-headline mt-4 text-3xl font-bold text-gray-900">
-            We take the freshness risk. Leaving is easy.
+          <h2 className="font-headline text-3xl font-bold text-gray-900">
+            Fresh or replaced. Pause anytime.
           </h2>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -852,9 +658,7 @@ function Guarantees() {
               The Freshness Guarantee
             </h3>
             <p className="mt-3 font-body leading-relaxed text-gray-700">
-              If any pack arrives wilted, less than peak, or late past our
-              48-hour harvest-to-door promise, we replace that pack free. No
-              questions, no returns.
+              Wilted or late? We replace it. No questions.
             </p>
           </article>
           <article className="rounded-2xl border border-yellow-200 bg-yellow-50 p-8">
@@ -863,16 +667,10 @@ function Guarantees() {
               Pause or cancel anytime
             </h3>
             <p className="mt-3 font-body leading-relaxed text-gray-700">
-              No lock-in, no retention gauntlet, no surprise renewal. If
-              it&apos;s not working, you stop. That&apos;s the whole policy.
+              No lock-in. No retention gauntlet. Stop when you want.
             </p>
           </article>
         </div>
-        <p className="mx-auto mt-8 max-w-3xl text-center font-body text-gray-700">
-          We take the freshness risk because that&apos;s <em>our</em> job. And
-          we make leaving easy because earning your renewal beats trapping you
-          in a charge you forgot about every single month.
-        </p>
       </div>
     </section>
   );

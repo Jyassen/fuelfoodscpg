@@ -10,9 +10,6 @@ export function PlansSection() {
       className="relative scroll-mt-28 overflow-hidden bg-gradient-to-br from-fuelfoods-green-500 to-fuelfoods-green-600 px-4 py-16 sm:px-6 lg:px-8 md:scroll-mt-32"
     >
       <div className="relative z-10 mx-auto max-w-7xl text-center">
-        <span className="mb-4 inline-block rounded-full bg-white/20 px-4 py-2 font-subheadline text-sm font-medium uppercase tracking-[0.18em] text-white">
-          Start your subscription
-        </span>
         <h2 className="font-headline mb-3 text-3xl font-bold text-white lg:text-4xl">
           It&apos;s $15 a pack
         </h2>
