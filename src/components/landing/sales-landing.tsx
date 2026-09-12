@@ -187,8 +187,8 @@ function Handled() {
       <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
         <div>
           <h2 className="font-headline text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-            Tuesday, 6pm.
-            <span className="block text-yellow-400">Dinner is handled.</span>
+            Dinner, upgraded
+            <span className="block text-yellow-400">in five minutes.</span>
           </h2>
           <div className="mt-6 space-y-3 font-body text-lg leading-relaxed text-white/85">
             <p>Eat what you were already going to eat.</p>
