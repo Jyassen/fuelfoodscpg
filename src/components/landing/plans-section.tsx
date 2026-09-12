@@ -7,7 +7,7 @@ export function PlansSection() {
   return (
     <section
       id="plans"
-      className="relative scroll-mt-28 overflow-hidden bg-gradient-to-br from-fuelfoods-green-500 to-fuelfoods-green-600 px-4 py-16 sm:px-6 lg:px-8 md:scroll-mt-32"
+      className="relative scroll-mt-28 overflow-hidden bg-fuelfoods-green-500 px-4 py-16 sm:px-6 lg:px-8 md:scroll-mt-32"
     >
       <div className="relative z-10 mx-auto max-w-7xl text-center">
         <h2 className="font-headline mb-3 text-3xl font-bold text-white lg:text-4xl">
