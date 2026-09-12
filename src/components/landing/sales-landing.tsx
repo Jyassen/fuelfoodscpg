@@ -16,6 +16,29 @@ const GREENS = [
   { src: '/images/Broccoli-1.png', label: 'Brassica' },
 ] as const;
 
+const MEAL_MOMENTS = [
+  {
+    src: '/images/magnific/sandwich-greens.webp',
+    alt: 'Sunnies microgreens being added to a breakfast sandwich',
+    label: 'On the sandwich you already ordered',
+  },
+  {
+    src: '/images/magnific/smoothie-greens.webp',
+    alt: 'FuelFoods microgreens being poured into a berry smoothie',
+    label: 'Into the smoothie already in the blender',
+  },
+  {
+    src: '/images/magnific/salad-greens.webp',
+    alt: 'Fresh microgreens in a simple salad bowl',
+    label: 'Over a five-minute salad',
+  },
+  {
+    src: '/images/magnific/burrata.webp',
+    alt: 'Burrata and tomatoes finished with colorful microgreens',
+    label: 'Or straight onto dinner',
+  },
+] as const;
+
 const TESTIMONIALS = [
   {
     quote:
@@ -66,7 +89,8 @@ const INSIDE = [
     body: 'The people who’ve never used microgreens get their answers before they have to ask — without adding a minute of work.',
   },
   {
-    title: 'A free session with a licensed nutritionist, plus a personalized meal plan.',
+    title:
+      'A free session with a licensed nutritionist, plus a personalized meal plan.',
     body: 'Most boxes of greens end at the doorstep. Yours comes with a plan built for you, so the first week isn’t a guessing game.',
   },
   {
@@ -98,6 +122,7 @@ export function SalesLanding() {
       <ProofBar />
       <Lead />
       <Handled />
+      <MealMoments />
       <FuelFlow />
       <Testimonials />
       <WhatsInside />
@@ -117,7 +142,8 @@ function Hero() {
           <Slip>Daily vegetables, handled</Slip>
           <h1 className="font-headline mt-4 text-4xl font-bold leading-[1.02] tracking-tight text-gray-900 sm:text-5xl lg:text-[48px] xl:text-[54px]">
             <span className="block">
-              Eat <span className="italic text-[#e56322]">9</span> vegetables a day
+              Eat <span className="italic text-[#e56322]">9</span> vegetables a
+              day
             </span>
             <span className="block">without touching a cutting board.</span>
           </h1>
@@ -207,7 +233,10 @@ function Lead() {
           underneath, a low-grade guilt that you eat like someone who
           doesn&apos;t care about their body, even though you care a lot.
         </p>
-        <p>Here&apos;s the part nobody tells you: eating well was never your problem.</p>
+        <p>
+          Here&apos;s the part nobody tells you: eating well was never your
+          problem.
+        </p>
         <p>Your problem is logistics.</p>
         <p>
           Healthy eating demands recurring, unpaid labor — planning meals,
@@ -254,9 +283,9 @@ function Handled() {
             </p>
             <p>
               You toss half of it into a wrap or a salad. The rest you fold into
-              whatever&apos;s on your plate. You&apos;ve just added the nutrition
-              of nine different vegetables to your meal — and it took less than
-              five minutes.
+              whatever&apos;s on your plate. You&apos;ve just added the
+              nutrition of nine different vegetables to your meal — and it took
+              less than five minutes.
             </p>
             <p>
               A week passes. No wilted produce in the crisper. No guilt. No
@@ -293,6 +322,89 @@ function Handled() {
   );
 }
 
+function MealMoments() {
+  return (
+    <section className="overflow-hidden bg-[#f7f4ee] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+          <div>
+            <Slip>No new recipe. No new skill.</Slip>
+            <h2 className="mt-4 max-w-xl font-headline text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+              Whatever is already on the menu, add the greens.
+            </h2>
+          </div>
+          <p className="max-w-2xl font-body text-lg leading-relaxed text-gray-700 lg:justify-self-end">
+            Sandwich. Smoothie. Salad. Dinner. Open the pack, add a handful,
+            keep moving. FuelFlow is built around food you already eat—not a
+            meal plan you have to reorganize your life around.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-4 md:grid-cols-12 md:grid-rows-2">
+          <figure className="group relative min-h-[460px] overflow-hidden rounded-3xl bg-black md:col-span-5 md:row-span-2 md:min-h-[680px]">
+            <Image
+              src="/images/magnific/family-smoothie.webp"
+              alt="FuelFoods Mega Mix beside a berry smoothie in a family kitchen"
+              fill
+              sizes="(max-width: 768px) 100vw, 42vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-6 pb-6 pt-20 text-white">
+              <figcaption className="font-headline text-2xl font-bold">
+                One pack. A whole table.
+              </figcaption>
+              <p className="mt-1 font-body text-sm text-white/80">
+                The easiest healthy habit is the one everyone can share.
+              </p>
+            </div>
+          </figure>
+
+          <div className="grid gap-4 sm:grid-cols-2 md:col-span-7 md:row-span-2">
+            {MEAL_MOMENTS.map(moment => (
+              <figure
+                key={moment.src}
+                className="group relative min-h-[310px] overflow-hidden rounded-3xl bg-gray-900"
+              >
+                <Image
+                  src={moment.src}
+                  alt={moment.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-5 pb-5 pt-16">
+                  <figcaption className="font-subheadline text-sm font-medium text-white">
+                    {moment.label}
+                  </figcaption>
+                </div>
+              </figure>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-black/10 pt-8 font-subheadline text-sm font-medium text-gray-700">
+          <span>No chopping</span>
+          <span
+            aria-hidden="true"
+            className="h-1 w-1 rounded-full bg-[#e56322]"
+          />
+          <span>No measuring</span>
+          <span
+            aria-hidden="true"
+            className="h-1 w-1 rounded-full bg-[#e56322]"
+          />
+          <span>No extra grocery trip</span>
+          <span
+            aria-hidden="true"
+            className="h-1 w-1 rounded-full bg-[#e56322]"
+          />
+          <span>Less than five minutes</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FuelFlow() {
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
@@ -303,9 +415,9 @@ function FuelFlow() {
             Most greens sellers hand you the same leafy box.
           </h2>
           <p className="mt-4 font-body text-lg text-gray-700">
-            So let&apos;s skip the adjectives and show you{' '}
-            <em>how</em> this actually happens — because the difference is the
-            system behind the box. FuelFlow runs in three steps.
+            So let&apos;s skip the adjectives and show you <em>how</em> this
+            actually happens — because the difference is the system behind the
+            box. FuelFlow runs in three steps.
           </p>
         </div>
 
@@ -445,9 +557,18 @@ function FuelFlow() {
 
         <div className="mt-14 grid gap-4 md:grid-cols-3">
           {[
-            { src: '/images/bikerider.png', alt: 'Cyclist fueled by whole-food nutrition' },
-            { src: '/images/gymdrinker.png', alt: 'Gym-goer recovering with nutrient-dense greens' },
-            { src: '/images/runners.png', alt: 'Runners who slot greens into an existing habit' },
+            {
+              src: '/images/bikerider.png',
+              alt: 'Cyclist fueled by whole-food nutrition',
+            },
+            {
+              src: '/images/gymdrinker.png',
+              alt: 'Gym-goer recovering with nutrient-dense greens',
+            },
+            {
+              src: '/images/runners.png',
+              alt: 'Runners who slot greens into an existing habit',
+            },
           ].map(shot => (
             <div
               key={shot.src}
@@ -544,7 +665,9 @@ function Testimonials() {
                   <p className="font-headline text-sm font-bold text-gray-900">
                     {item.author}
                   </p>
-                  <p className="font-body text-sm text-gray-500">{item.location}</p>
+                  <p className="font-body text-sm text-gray-500">
+                    {item.location}
+                  </p>
                 </div>
                 <span className="rounded bg-fuelfoods-green-50 px-2 py-1 font-subheadline text-[11px] font-medium text-fuelfoods-green-600">
                   {item.highlight}
@@ -589,8 +712,8 @@ function WhatsInside() {
             ))}
           </ul>
         </div>
-        <div className="lg:sticky lg:top-28">
-          <div className="rounded-2xl bg-fuelfoods-green-50 p-6">
+        <div className="space-y-4 lg:sticky lg:top-28">
+          <div className="overflow-hidden rounded-2xl bg-fuelfoods-green-50 p-6">
             <Image
               src="/images/singlewithgreens_final.png"
               alt="Mega Mix pouch surrounded by harvested microgreens"
@@ -599,6 +722,26 @@ function WhatsInside() {
               sizes="(max-width: 1024px) 100vw, 40vw"
               className="h-auto w-full object-contain"
             />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <figure className="relative aspect-square overflow-hidden rounded-2xl bg-white shadow-[0_12px_30px_rgba(23,134,65,0.10)]">
+              <Image
+                src="/images/magnific/open-mega-mix.webp"
+                alt="An open Mega Mix pouch overflowing with fresh microgreens"
+                fill
+                sizes="(max-width: 1024px) 50vw, 20vw"
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative aspect-square overflow-hidden rounded-2xl bg-white shadow-[0_12px_30px_rgba(23,134,65,0.10)]">
+              <Image
+                src="/images/magnific/scallops.webp"
+                alt="A finished plate of scallops topped with microgreens"
+                fill
+                sizes="(max-width: 1024px) 50vw, 20vw"
+                className="object-cover"
+              />
+            </figure>
           </div>
         </div>
       </div>
@@ -626,7 +769,8 @@ function Fork() {
             </h3>
             <p className="mt-4 font-body leading-relaxed text-gray-600">
               Buy the produce, mean well, and quietly throw out the wilted half
-              every single week — while the guilt compounds along with the waste.
+              every single week — while the guilt compounds along with the
+              waste.
             </p>
           </article>
           <article className="rounded-2xl border-2 border-fuelfoods-green-500 bg-white p-8 shadow-[0_12px_36px_rgba(23,134,65,0.12)]">
@@ -678,7 +822,10 @@ function Guarantees() {
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           <article className="rounded-2xl border border-fuelfoods-green-100 bg-fuelfoods-green-50 p-8">
-            <Shield className="h-8 w-8 text-fuelfoods-green-500" aria-hidden="true" />
+            <Shield
+              className="h-8 w-8 text-fuelfoods-green-500"
+              aria-hidden="true"
+            />
             <h3 className="font-headline mt-4 text-xl font-bold text-gray-900">
               The Freshness Guarantee
             </h3>
@@ -694,8 +841,8 @@ function Guarantees() {
               Pause or cancel anytime
             </h3>
             <p className="mt-3 font-body leading-relaxed text-gray-700">
-              No lock-in, no retention gauntlet, no surprise renewal. If it&apos;s
-              not working, you stop. That&apos;s the whole policy.
+              No lock-in, no retention gauntlet, no surprise renewal. If
+              it&apos;s not working, you stop. That&apos;s the whole policy.
             </p>
           </article>
         </div>
