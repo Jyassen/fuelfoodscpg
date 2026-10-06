@@ -37,10 +37,7 @@ export function getAllBlogPosts(): BlogPost[] {
         const filePath = path.join(postsDir, fileName);
         return parseBlogPost(filePath);
       })
-      .sort(
-        (a, b) =>
-          new Date(b.date).getTime() - new Date(a.date).getTime()
-      );
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return posts;
   } catch (error) {
@@ -90,12 +87,12 @@ export function getBlogPostBySlug(slug: string): BlogPost | null {
  */
 export function getPublishedBlogPostBySlug(slug: string): BlogPost | null {
   const post = getBlogPostBySlug(slug);
-  
+
   // Only return published posts in production
   if (post && (process.env.NODE_ENV === 'production' && post.status !== 'publish')) {
     return null;
   }
-  
+
   return post;
 }
 
@@ -143,7 +140,7 @@ export function getBlogPostsByCategory(category: string): BlogPost[] {
  */
 export function getBlogPostsByTag(tag: string): BlogPost[] {
   const posts = getPublishedBlogPosts();
-  return posts.filter(post => 
+  return posts.filter(post =>
     post.tags.some(t => t.toLowerCase() === tag.toLowerCase())
   );
 }
