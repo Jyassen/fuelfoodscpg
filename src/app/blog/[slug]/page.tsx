@@ -5,15 +5,16 @@ import { getPublishedBlogPostBySlug, getPublishedBlogPosts } from '@/lib/blog';
 import { markdownToHtml } from '@/lib/content-parser';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const post = getPublishedBlogPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPublishedBlogPostBySlug(slug);
 
   if (!post) {
     return {
@@ -44,7 +45,8 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const post = getPublishedBlogPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPublishedBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
