@@ -3,7 +3,7 @@ title: "How to Use Microgreens: Creative Ways to Add Nutrition to Every Meal"
 slug: how-to-use-microgreens
 date: 2024-01-20
 modified: 2024-01-20
-status: draft
+status: publish
 excerpt: "From smoothies to gourmet dishes, discover creative and delicious ways to incorporate microgreens into your daily meals."
 author: "Fuel Foods Team"
 category: "Recipes"

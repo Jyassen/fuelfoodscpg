@@ -3,7 +3,7 @@ title: "Microgreens Nutrition: The Science Behind These Nutritional Powerhouses"
 slug: microgreens-nutrition
 date: 2024-01-25
 modified: 2024-01-25
-status: draft
+status: publish
 excerpt: "Dive deep into the nutritional profile of microgreens and discover why these tiny greens pack such a powerful nutritional punch."
 author: "Fuel Foods Team"
 category: "Nutrition"

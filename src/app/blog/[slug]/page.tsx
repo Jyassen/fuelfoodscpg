@@ -10,7 +10,9 @@ interface PageProps {
   };
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const post = getPublishedBlogPostBySlug(params.slug);
 
   if (!post) {
@@ -36,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export async function generateStaticParams() {
   const posts = getPublishedBlogPosts();
-  return posts.map((post) => ({
+  return posts.map(post => ({
     slug: post.slug,
   }));
 }
@@ -78,9 +80,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Article Header */}
         <header className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {post.title}
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
 
           {/* Meta Information */}
           <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-6">
@@ -108,7 +108,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           {/* Tags */}
           {post.tags && post.tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
+              {post.tags.map(tag => (
                 <span
                   key={tag}
                   className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
@@ -144,7 +144,8 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="mt-12 p-6 bg-[#F1F8E9] rounded-lg border border-[#7CB342]/20">
           <h3 className="text-2xl font-bold mb-3">Ready to Get Started?</h3>
           <p className="text-gray-700 mb-4">
-            Experience the nutrition and flavor of fresh microgreens delivered to your door every week.
+            Experience the nutrition and flavor of fresh microgreens delivered
+            to your door every week.
           </p>
           <Link
             href="/configure/weekly"

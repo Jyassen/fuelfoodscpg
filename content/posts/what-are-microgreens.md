@@ -3,7 +3,7 @@ title: "What Are Microgreens? A Complete Guide to These Nutritional Powerhouses"
 slug: what-are-microgreens
 date: 2024-01-15
 modified: 2024-01-15
-status: draft
+status: publish
 excerpt: "Discover what microgreens are, how they differ from sprouts, and why they're becoming a staple in kitchens and restaurants worldwide."
 author: "Fuel Foods Team"
 category: "Education"

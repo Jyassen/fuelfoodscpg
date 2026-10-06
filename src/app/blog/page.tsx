@@ -4,7 +4,8 @@ import { getPublishedBlogPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
   title: 'Blog | Fuel Foods',
-  description: 'Learn about microgreens, nutrition, recipes, and healthy living from the Fuel Foods blog.',
+  description:
+    'Learn about microgreens, nutrition, recipes, and healthy living from the Fuel Foods blog.',
 };
 
 export default function BlogPage() {
@@ -32,22 +33,19 @@ export default function BlogPage() {
           </div>
         ) : (
           <div className="space-y-12">
-            {posts.map((post) => (
+            {posts.map(post => (
               <article
                 key={post.slug}
                 className="border-b border-gray-200 pb-12 last:border-b-0"
               >
                 {/* Post Header */}
                 <div className="mb-4">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group"
-                  >
+                  <Link href={`/blog/${post.slug}`} className="group">
                     <h2 className="text-3xl font-bold mb-3 group-hover:text-[#7CB342] transition-colors">
                       {post.title}
                     </h2>
                   </Link>
-                  
+
                   {/* Meta Information */}
                   <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
                     <time dateTime={post.date}>
@@ -82,7 +80,7 @@ export default function BlogPage() {
                 {/* Tags */}
                 {post.tags && post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags.map((tag) => (
+                    {post.tags.map(tag => (
                       <span
                         key={tag}
                         className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
