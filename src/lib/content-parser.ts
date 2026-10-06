@@ -18,10 +18,10 @@ import type {
 // ============================================================================
 
 export const CONTENT_PATHS = {
-  pages: path.join(process.cwd(), '../../content/pages'),
-  posts: path.join(process.cwd(), '../../content/posts'),
-  images: path.join(process.cwd(), '../../content/images'),
-  root: path.join(process.cwd(), '../../content'),
+  pages: path.join(process.cwd(), 'content/pages'),
+  posts: path.join(process.cwd(), 'content/posts'),
+  images: path.join(process.cwd(), 'content/images'),
+  root: path.join(process.cwd(), 'content'),
 } as const;
 
 // ============================================================================
