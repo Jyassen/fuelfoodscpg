@@ -1,14 +1,22 @@
 ---
-title: "Microgreens Delivery NYC | Harvest-Fresh from Fuel Foods"
-slug: "nyc-microgreens-delivery"
-description: "NYC-grown microgreens delivered to your door across the 5 boroughs, Long Island, NJ, and CT. Weekly packs — Mega Mix, Brassica Blend, Sunnies Snacks."
-excerpt: "Harvest-fresh microgreens to your door across NYC, Long Island, NJ, and CT — weekly packs that match apartment fridge life."
-date: "2026-10-06"
-status: "publish"
-author: "Fuel Foods Team"
-category: "Local"
-tags: [NYC, microgreens delivery, subscription, Long Island, New Jersey, Connecticut]
-featured_image: "/images/blog/microgreens-delivery.png"
+title: 'Microgreens Delivery NYC | Harvest-Fresh from Fuel Foods'
+slug: 'nyc-microgreens-delivery'
+description: 'NYC-grown microgreens delivered to your door across the 5 boroughs, Long Island, NJ, and CT. Weekly packs — Mega Mix, Brassica Blend, Sunnies Snacks.'
+excerpt: 'Harvest-fresh microgreens to your door across NYC, Long Island, NJ, and CT — weekly packs that match apartment fridge life.'
+date: '2026-10-06'
+status: 'publish'
+author: 'Fuel Foods Team'
+category: 'Local'
+tags:
+  [
+    NYC,
+    microgreens delivery,
+    subscription,
+    Long Island,
+    New Jersey,
+    Connecticut,
+  ]
+featured_image: '/images/blog/microgreens-delivery.png'
 ---
 
 # Fresh Microgreens Delivery in NYC
@@ -23,7 +31,7 @@ National context, soft and careful: public health tracking has long found that *
 
 Harvest-to-door is cut timing → delivery window. Fuel Foods markets roughly **24–48 hours** from harvest to your door on [fuelfoods.store](https://fuelfoods.store). That shorter chain is why flavor and texture often beat greens that sat through a long wholesale path before they ever met your shelf.
 
-Who it’s for: apartment pros who already believe greens matter and are choosing *which* system to buy — Fuel vs CSA vs meal kit vs another Whole Foods run. The offer wins the **selection decision**, not the education decision. Plant you put on the plate — salad, smoothie, eggs, desk snack — not a powder you take. For the honest nutrition framing (density by weight ≠ portion on your fork; no universal 40× as article fact), read [microgreens nutrition](/blog/microgreens-nutrition).
+Who it’s for: apartment pros who already believe greens matter and are choosing _which_ system to buy — Fuel vs CSA vs meal kit vs another Whole Foods run. The offer wins the **selection decision**, not the education decision. Plant you put on the plate — salad, smoothie, eggs, desk snack — not a powder you take. For the honest nutrition framing (density by weight ≠ portion on your fork; no universal 40× as article fact), read [microgreens nutrition](/blog/microgreens-nutrition).
 
 Culinary buyers and restaurant kitchens: different channel, different specs — go to [culinary.fuelfoods.store](https://culinary.fuelfoods.store).
 
@@ -44,11 +52,11 @@ We do not invent ZIP cutoffs, same-day guarantees, or neighborhood ETAs here. Ch
 
 Named consumer packs — not mystery trays:
 
-| Pack | Role | Best first job |
-|------|------|----------------|
-| **Mega Mix** | Everyday mixed topper — **9 vegetables / zero effort** (one handful, no knives; per site) | Eggs, bowls, toast |
-| **Brassica Blend** | Bolder brassica-leaning meals | Savory finish, light smoothies |
-| **Sunnies Snacks** | Crunchy snack / sunflower shoots | Straight from the pack |
+| Pack               | Role                                                                                      | Best first job                 |
+| ------------------ | ----------------------------------------------------------------------------------------- | ------------------------------ |
+| **Mega Mix**       | Everyday mixed topper — **9 vegetables / zero effort** (one handful, no knives; per site) | Eggs, bowls, toast             |
+| **Brassica Blend** | Bolder brassica-leaning meals                                                             | Savory finish, light smoothies |
+| **Sunnies Snacks** | Crunchy snack / sunflower shoots                                                          | Straight from the pack         |
 
 New to the category? [What are microgreens](/blog/what-are-microgreens) covers the basics. The weekday use map lives in [how to use microgreens](/blog/how-to-use-microgreens).
 
@@ -56,10 +64,10 @@ New to the category? [What are microgreens](/blog/what-are-microgreens) covers t
 
 Prices as listed on site (verify at checkout before you subscribe):
 
-| Plan | What you get | Who it’s for |
-|------|--------------|--------------|
-| **Starter** | About **$15 per pack** — choose Mega Mix, Brassica Blend, or Sunnies | First-timers; no weekly commitment |
-| **Pro** | About **$45/week** — three freshly harvested packs delivered weekly | The habit — fridge restocked on rhythm |
+| Plan        | What you get                                                         | Who it’s for                           |
+| ----------- | -------------------------------------------------------------------- | -------------------------------------- |
+| **Starter** | About **$15 per pack** — choose Mega Mix, Brassica Blend, or Sunnies | First-timers; no weekly commitment     |
+| **Pro**     | About **$45/week** — three freshly harvested packs delivered weekly  | The habit — fridge restocked on rhythm |
 
 Satisfaction language on site: not happy with your first delivery? Fuel states a refund-and-keep-the-greens promise, cancel anytime, no commitment. Confirm the live wording on [fuelfoods.store](https://fuelfoods.store) before you rely on it — we don’t invent policy here.
 
@@ -97,7 +105,6 @@ Then keep it boring:
 - **Desk snack** — Sunnies while the stem snaps
 
 That Hungryroot pattern again: fridge starts empty midweek → box arrives → the healthy week doesn’t die on Wednesday. Storage up to **7 days by variety** when handled well matches a weekly cadence.
-
 
 ## Real food on the plate (not another powder)
 

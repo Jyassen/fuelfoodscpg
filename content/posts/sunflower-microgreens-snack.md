@@ -1,14 +1,21 @@
 ---
-title: "Sunflower Microgreens Snack | Sunnies Snacks by Fuel Foods"
-slug: "sunflower-microgreens-snack"
-description: "Sunflower shoots are nutty, crunchy, and easy to eat straight from the pack. Taste, snack ideas, storage for crunch, and how Fuel Foods Sunnies Snacks fit a busy week."
-excerpt: "Sunflower shoots as a real snack — nutty crunch, desk-cold, Sunnies Snacks by Fuel Foods."
-date: "2026-10-06"
-status: "publish"
-author: "Fuel Foods Team"
-category: "Product"
-tags: [sunflower microgreens, sunflower shoots, Sunnies Snacks, healthy snack, crunch]
-featured_image: "/images/blog/sunflower-microgreens.png"
+title: 'Sunflower Microgreens Snack | Sunnies Snacks by Fuel Foods'
+slug: 'sunflower-microgreens-snack'
+description: 'Sunflower shoots are nutty, crunchy, and easy to eat straight from the pack. Taste, snack ideas, storage for crunch, and how Fuel Foods Sunnies Snacks fit a busy week.'
+excerpt: 'Sunflower shoots as a real snack — nutty crunch, desk-cold, Sunnies Snacks by Fuel Foods.'
+date: '2026-10-06'
+status: 'publish'
+author: 'Fuel Foods Team'
+category: 'Product'
+tags:
+  [
+    sunflower microgreens,
+    sunflower shoots,
+    Sunnies Snacks,
+    healthy snack,
+    crunch,
+  ]
+featured_image: '/images/blog/sunflower-microgreens.png'
 ---
 
 # Sunflower Microgreens: The Crunchy Snack (Not Just a Garnish)
@@ -33,7 +40,7 @@ Peppery radish and bold brassicas are different jobs. Those belong on savory fin
 
 Skeptic energy is welcome. The first crunch is the proof — not a testimonial carousel, not a wellness monologue. **If your greens come with a scoop,** you’re in powder-or-pill territory. Sunnies are the plant: stem, leaf, snap — on the plate or straight from the clamshell.
 
-Cultural aside, not a lab claim: kale had a long PR decade. Microgreens earned a quieter lane as *real plant food you actually finish* — especially when the texture competes with chips instead of lecturing them. For density research without the marketing fog, see [microgreens nutrition](/blog/microgreens-nutrition). Concentration by weight is not the same as the handful you ate at your desk.
+Cultural aside, not a lab claim: kale had a long PR decade. Microgreens earned a quieter lane as _real plant food you actually finish_ — especially when the texture competes with chips instead of lecturing them. For density research without the marketing fog, see [microgreens nutrition](/blog/microgreens-nutrition). Concentration by weight is not the same as the handful you ate at your desk.
 
 New to the category? [What are microgreens](/blog/what-are-microgreens) covers harvest stage and how shoots differ from sprouts.
 
@@ -53,7 +60,7 @@ More meal ideas that aren’t snack-only: [how to use microgreens](/blog/how-to-
 
 ## Nutrition (claim-safe, short)
 
-Sunflower shoots are real plant food with flavor and crunch. Nutrient density *by weight* among microgreens is discussed in research and is **variety-specific** — we don’t invent milligram charts on this page.
+Sunflower shoots are real plant food with flavor and crunch. Nutrient density _by weight_ among microgreens is discussed in research and is **variety-specific** — we don’t invent milligram charts on this page.
 
 What this page won’t do:
 
@@ -67,11 +74,11 @@ Growing practices as on site: organic, non-GMO seeds and pesticide-free growing.
 
 ## Pack-role table
 
-| Pack | Role |
-|------|------|
+| Pack               | Role                                                |
+| ------------------ | --------------------------------------------------- |
 | **Sunnies Snacks** | Snack + crunchy salad base (micro sunflower shoots) |
-| **Mega Mix** | Everyday mixed topper (eggs / bowls / toast) |
-| **Brassica Blend** | Bolder brassica-leaning meals / light smoothies |
+| **Mega Mix**       | Everyday mixed topper (eggs / bowls / toast)        |
+| **Brassica Blend** | Bolder brassica-leaning meals / light smoothies     |
 
 Confirm live ingredient lists on [fuelfoods.store](https://fuelfoods.store) before you subscribe — Sunnies are listed as micro sunflower shoots; Mega Mix and Brassica map to their published variety blends.
 
@@ -94,7 +101,6 @@ One-pack mindset:
 Weekly delivery keeps snack stock from becoming a heroic grocery run. Fuel Foods covers NYC’s five boroughs, Long Island, New Jersey, and Connecticut — details in [microgreens delivery NYC](/blog/nyc-microgreens-delivery). Harvest-to-door (~24–48 hours as marketed) means more of the crunch window lands in your fridge.
 
 Cost reframe without moralizing: a Starter pack sits near everyday impulse-snack money — except the outcome is a vegetable that snaps. Go Pro when the pack disappears before Friday and the habit is obvious.
-
 
 ## Why snack-switchers stick (without the sermon)
 

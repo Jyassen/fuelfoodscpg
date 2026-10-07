@@ -1,14 +1,14 @@
 ---
-title: "How to Store Microgreens (Keep Them Fresh, Cut Waste)"
-slug: "how-to-store-microgreens"
-description: "Keep microgreens crisp: dry fridge storage, when to wash, how long they last (up to 7 days by variety), and what to do when they’re past prime — so your Fuel Foods pack doesn’t go to waste."
-excerpt: "Dry fridge storage, wash later, up to 7 days by variety — so your Fuel Foods pack lasts the week."
-date: "2026-10-06"
-status: "publish"
-author: "Fuel Foods Team"
-category: "Guide"
+title: 'How to Store Microgreens (Keep Them Fresh, Cut Waste)'
+slug: 'how-to-store-microgreens'
+description: 'Keep microgreens crisp: dry fridge storage, when to wash, how long they last (up to 7 days by variety), and what to do when they’re past prime — so your Fuel Foods pack doesn’t go to waste.'
+excerpt: 'Dry fridge storage, wash later, up to 7 days by variety — so your Fuel Foods pack lasts the week.'
+date: '2026-10-06'
+status: 'publish'
+author: 'Fuel Foods Team'
+category: 'Guide'
 tags: [microgreens, storage, fridge tips, meal prep, Fuel Foods]
-featured_image: "/images/blog/microgreens-fresh-packs.png"
+featured_image: '/images/blog/microgreens-fresh-packs.png'
 ---
 
 # How to Store Microgreens So They Last All Week
@@ -35,13 +35,13 @@ If you’re new to what these greens even are, start with [what are microgreens]
 4. **Avoid condensation traps.** A warm pack sealed tight sweats. Let it chill first; don’t create a swamp.
 5. **Optional: keep away from ripening fruit** if your fridge layout allows. Ethylene from fruit can speed soft greens along — useful when practical, not a religion.
 
-| Step | Do | Don’t |
-|------|----|-------|
-| Arrival | Fridge within the hour | Leave on the counter overnight |
-| Moisture | Dry paper towel; replace when wet | Store dripping wet |
-| Wash | Rinse right before eating | Wash the whole pack on day one |
-| Container | Breathable or lightly vented if lined | Seal wet greens airtight |
-| Placement | Cold shelf, not the door if it swings warm | Stack under heavy takeout |
+| Step      | Do                                         | Don’t                          |
+| --------- | ------------------------------------------ | ------------------------------ |
+| Arrival   | Fridge within the hour                     | Leave on the counter overnight |
+| Moisture  | Dry paper towel; replace when wet          | Store dripping wet             |
+| Wash      | Rinse right before eating                  | Wash the whole pack on day one |
+| Container | Breathable or lightly vented if lined      | Seal wet greens airtight       |
+| Placement | Cold shelf, not the door if it swings warm | Stack under heavy takeout      |
 
 **Quotable:** Wash later. Store dry. Cold crunch beats slimy regret.
 
@@ -63,7 +63,7 @@ Use the week in layers:
 - **Midweek:** eggs, bowls, sandwiches — the greens still look alive.
 - **Later days:** egg scramble finish, quick pesto, mild smoothie handfuls — texture softens; flavor still works.
 
-Harvest-to-door timing (~24–48 hours as marketed on [fuelfoods.store](https://fuelfoods.store)) means more of those usable days land in *your* fridge, not a long wholesale chain. Phrase carefully: fresher start, not a miracle.
+Harvest-to-door timing (~24–48 hours as marketed on [fuelfoods.store](https://fuelfoods.store)) means more of those usable days land in _your_ fridge, not a long wholesale chain. Phrase carefully: fresher start, not a miracle.
 
 Variety matters. Sturdy sunflower shoots often hold crunch longer than delicate leaf mixes. Soft brassicas and mixed packs vary. “By variety” is the rule — don’t invent day-by-day charts without ops data.
 
@@ -71,7 +71,7 @@ Variety matters. Sturdy sunflower shoots often hold crunch longer than delicate 
 
 - **Slimy / strong off smell / heavy mush** → discard. When in doubt, toss.
 - **Slightly limp, smell fine** → smoothie, pesto, or cooked finish on eggs. The snack job is over; the flavor job isn’t.
-- **Yellowing / drying** → use soon, or freeze *only* for smoothies (salad crunch will not survive).
+- **Yellowing / drying** → use soon, or freeze _only_ for smoothies (salad crunch will not survive).
 
 This is produce judgment, not a diagnosis. Trust your nose and eyes.
 

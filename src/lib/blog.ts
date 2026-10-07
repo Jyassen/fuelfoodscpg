@@ -89,7 +89,11 @@ export function getPublishedBlogPostBySlug(slug: string): BlogPost | null {
   const post = getBlogPostBySlug(slug);
 
   // Only return published posts in production
-  if (post && (process.env.NODE_ENV === 'production' && post.status !== 'publish')) {
+  if (
+    post &&
+    process.env.NODE_ENV === 'production' &&
+    post.status !== 'publish'
+  ) {
     return null;
   }
 
@@ -146,7 +150,9 @@ function parseBlogPost(filePath: string): BlogPost {
  */
 export function getBlogPostsByCategory(category: string): BlogPost[] {
   const posts = getPublishedBlogPosts();
-  return posts.filter(post => post.category.toLowerCase() === category.toLowerCase());
+  return posts.filter(
+    post => post.category.toLowerCase() === category.toLowerCase()
+  );
 }
 
 /**
