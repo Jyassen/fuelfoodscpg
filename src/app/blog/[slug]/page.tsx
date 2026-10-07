@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getPublishedBlogPostBySlug, getPublishedBlogPosts } from '@/lib/blog';
 import { markdownToHtml } from '@/lib/content-parser';
 
@@ -22,6 +23,13 @@ export async function generateMetadata({
     };
   }
 
+  const ogImage = post.featured_image
+    ? {
+        url: post.featured_image,
+        alt: post.title,
+      }
+    : undefined;
+
   return {
     title: `${post.title} | Fuel Foods Blog`,
     description: post.excerpt,
@@ -33,6 +41,7 @@ export async function generateMetadata({
       modifiedTime: post.modified,
       authors: [post.author],
       tags: post.tags,
+      ...(ogImage && { images: [ogImage] }),
     },
   };
 }
@@ -121,6 +130,19 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
           )}
         </header>
+
+        {post.featured_image && (
+          <div className="mb-8 -mx-4 md:mx-0">
+            <Image
+              src={post.featured_image}
+              alt={post.title}
+              width={1200}
+              height={630}
+              className="w-full h-auto rounded-lg"
+              priority
+            />
+          </div>
+        )}
 
         {/* Article Content */}
         <div

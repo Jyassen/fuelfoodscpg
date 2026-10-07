@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getPublishedBlogPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
@@ -38,6 +39,18 @@ export default function BlogPage() {
                 key={post.slug}
                 className="border-b border-gray-200 pb-12 last:border-b-0"
               >
+                {post.featured_image && (
+                  <Link href={`/blog/${post.slug}`} className="mb-6 block">
+                    <Image
+                      src={post.featured_image}
+                      alt={post.title}
+                      width={800}
+                      height={400}
+                      className="h-auto w-full rounded-lg transition-opacity hover:opacity-90"
+                    />
+                  </Link>
+                )}
+
                 {/* Post Header */}
                 <div className="mb-4">
                   <Link href={`/blog/${post.slug}`} className="group">

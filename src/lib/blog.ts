@@ -97,6 +97,20 @@ export function getPublishedBlogPostBySlug(slug: string): BlogPost | null {
 }
 
 /**
+ * Only expose featured images that exist under public/ so next/image
+ * does not fail the production build for frontmatter paths that are
+ * not checked in (January posts keep those paths in markdown).
+ */
+function resolveFeaturedImage(src: unknown): string | undefined {
+  if (typeof src !== 'string' || !src.startsWith('/')) {
+    return undefined;
+  }
+
+  const publicFile = path.join(process.cwd(), 'public', src.replace(/^\//, ''));
+  return fs.existsSync(publicFile) ? src : undefined;
+}
+
+/**
  * Parse a blog post markdown file
  */
 function parseBlogPost(filePath: string): BlogPost {
@@ -121,7 +135,7 @@ function parseBlogPost(filePath: string): BlogPost {
     author: data.author || 'Fuel Foods Team',
     category: data.category || 'Uncategorized',
     tags: Array.isArray(data.tags) ? data.tags : [],
-    featured_image: data.featured_image,
+    featured_image: resolveFeaturedImage(data.featured_image),
     content,
     readingTime,
   };
