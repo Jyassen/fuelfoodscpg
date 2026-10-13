@@ -448,7 +448,6 @@ const ProfileManager: React.FC<ProfileManagerProps> = ({
                   onChange={(e) => handleProfileChange('phone', e.target.value)}
                   error={profileErrors.phone}
                   disabled={profileLoading}
-                  placeholder="(555) 123-4567"
                   helperText="Optional - used for delivery notifications"
                 />
 

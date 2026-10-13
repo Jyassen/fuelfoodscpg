@@ -159,7 +159,6 @@ export default function ShippingAddressStep({
             onValueChange={value => updateCustomerInfo({ phone: value })}
             name="phone"
             autoComplete="tel"
-            placeholder="(555) 123-4567"
             required
             error={errors.customerInfo?.find?.(e => e.includes('phone'))}
           />

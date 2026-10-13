@@ -295,7 +295,6 @@ const AuthForm: React.FC<AuthFormProps> = ({
                   value={formData.phone}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
                   error={errors.phone}
-                  placeholder="(555) 123-4567"
                   disabled={loading}
                 />
               )}

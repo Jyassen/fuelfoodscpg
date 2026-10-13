@@ -257,7 +257,6 @@ function ProfileContent() {
                         onChange={(e) =>
                           setProfileData({ ...profileData, phone: e.target.value })
                         }
-                        placeholder="(555) 123-4567"
                       />
                     </div>
 

@@ -215,7 +215,6 @@ export default function FormComponentsShowcase() {
                 onChange={e => handleInputChange('phone', e.target.value)}
                 error={errors.phone}
                 required
-                placeholder="(555) 123-4567"
                 helperText="For delivery notifications and customer support"
               />
 

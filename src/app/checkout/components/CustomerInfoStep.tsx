@@ -110,7 +110,6 @@ export default function CustomerInfoStep({
         onValueChange={value => handleInputChange('phone', value)}
         name="phone"
         autoComplete="tel"
-        placeholder="(555) 123-4567"
         required
         error={errors.customerInfo.find(e => e.includes('phone'))}
       />
