@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { BUSINESS_INFO } from '@/lib/constants';
 import ContactForm from './ContactForm';
 
 export const metadata: Metadata = {
@@ -43,7 +44,11 @@ export default function ContactPage() {
               </div>
               <div className="ml-4">
                 <h3 className="text-lg font-semibold text-gray-900">Phone</h3>
-                <p className="text-gray-600">347-409-0464</p>
+                <p className="text-gray-600">
+                  <a href="tel:+18886257343" className="hover:text-green-700">
+                    {BUSINESS_INFO.phone}
+                  </a>
+                </p>
               </div>
             </div>
 

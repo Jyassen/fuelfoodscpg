@@ -715,6 +715,7 @@ export const SEO_DEFAULTS = {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
+      telephone: '(888) 625-7343',
       availableLanguage: 'English',
     },
   },
@@ -749,7 +750,7 @@ export const BUSINESS_INFO = {
   name: 'FuelFoods CPG',
   legalName: 'FuelFoods LLC',
   email: 'hello@fuelfoodscpg.com',
-  phone: '(555) 123-4567', // Update with actual phone
+  phone: '(888) 625-7343',
   address: {
     street: '123 Farm Lane', // Update with actual address
     city: 'Your City',
