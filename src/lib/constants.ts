@@ -39,6 +39,11 @@ export const NAVIGATION_ITEMS = [
     description: 'Learn about FuelFoods',
   },
   {
+    title: 'BLOG',
+    href: '/blog',
+    description: 'Microgreens guides and nutrition tips',
+  },
+  {
     title: 'CULINARY',
     href: 'https://culinary.fuelfoods.store/',
     description: 'Recipes and cooking tips',
