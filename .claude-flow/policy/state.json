@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "mode": "legacy",
   "rules": [],
   "budgets": [],
@@ -45,10 +45,50 @@
         "policyHash": "sha256:00b63b2f746eb8b9095bbd5e1dbae4ddd74fd92a6740b72f59f4069fbfda4737"
       },
       "hash": "sha256:283469fbc3e793e8b119b0cc65a2268cd029b4df323c1551fa893ebb5a9b80cf"
+    },
+    {
+      "payload": {
+        "receiptId": "sha256:1800bb75cb69454cf99b1dc7ae00e4c4a2c84549f3c2bb66f33ab40cd7c04462",
+        "previousReceiptHash": "sha256:283469fbc3e793e8b119b0cc65a2268cd029b4df323c1551fa893ebb5a9b80cf",
+        "sequence": 1,
+        "issuedAt": 1795803897770,
+        "request": {
+          "identity": {
+            "id": "legacy-cli",
+            "type": "legacy"
+          },
+          "action": {
+            "type": "mcp.tool.call",
+            "resource": "hooks_session-end",
+            "tool": "hooks_session-end",
+            "server": "ruflo",
+            "network": false,
+            "destructive": false
+          },
+          "context": {
+            "metadata": {
+              "inputDigest": "sha256:c2bd8d3bbe866c8c7ecbffb7867da1bb654554f692bb989d0390bba12735a567"
+            },
+            "now": 1795803897770
+          },
+          "requestId": "c40eb18f-e258-40b8-a89a-2a7f58dcb143"
+        },
+        "decision": {
+          "requestId": "c40eb18f-e258-40b8-a89a-2a7f58dcb143",
+          "outcome": "allowed",
+          "enforcedOutcome": "allowed",
+          "mode": "legacy",
+          "reason": "legacy-default-allow",
+          "matchedRules": [],
+          "obligations": []
+        },
+        "policyHash": "sha256:00b63b2f746eb8b9095bbd5e1dbae4ddd74fd92a6740b72f59f4069fbfda4737"
+      },
+      "hash": "sha256:293a335d9249e88ef4717051016571e04f7d4786f145f5967e466061663d7264"
     }
   ],
   "migratedAt": 1791917153458,
   "migratedFrom": "pre-ADR-324; capabilities=.swarm/memory.db",
-  "ledgerHead": "sha256:283469fbc3e793e8b119b0cc65a2268cd029b4df323c1551fa893ebb5a9b80cf",
-  "ledgerLength": 1
+  "ledgerLength": 2,
+  "ledgerHead": "sha256:293a335d9249e88ef4717051016571e04f7d4786f145f5967e466061663d7264"
 }
