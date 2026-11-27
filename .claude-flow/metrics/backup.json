@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-11-27T19:00:43.226Z",
+  "backedUp": true,
+  "backups": [
+    {
+      "backedUp": true,
+      "path": "/Users/base/Desktop/fuelfoodscpg/.swarm/backups/memory-2026-11-27T19-00-38-787Z.db",
+      "sizeBytes": 475136,
+      "rotatedAway": [],
+      "method": "native-online-backup",
+      "dbPath": "/Users/base/Desktop/fuelfoodscpg/.swarm/memory.db"
+    },
+    {
+      "backedUp": true,
+      "path": "/Users/base/Desktop/fuelfoodscpg/.swarm/backups/store-agentdb-memory.db-2026-11-27T19-00-42-933Z.db",
+      "sizeBytes": 442368,
+      "rotatedAway": [],
+      "method": "native-online-backup",
+      "dbPath": "/Users/base/Desktop/fuelfoodscpg/.swarm/agentdb-memory.db"
+    }
+  ],
+  "path": "/Users/base/Desktop/fuelfoodscpg/.swarm/backups/memory-2026-11-27T19-00-38-787Z.db",
+  "sizeBytes": 917504,
+  "rotatedAway": 0,
+  "method": "native-online-backup"
+}

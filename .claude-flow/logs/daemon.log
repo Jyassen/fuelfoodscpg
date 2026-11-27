@@ -46,3 +46,92 @@
 [2026-11-27T18:31:00.108Z] [INFO] Worker consolidate deferred: CPU load too high: 29.81
 [2026-11-27T18:33:00.149Z] [INFO] Worker testgaps deferred: CPU load too high: 21.37
 [2026-11-27T18:35:00.119Z] [INFO] Worker backup deferred: CPU load too high: 64.64
+[2026-11-27T18:37:00.112Z] [INFO] Worker harness deferred: CPU load too high: 12.56
+[2026-11-27T18:37:00.145Z] [INFO] Worker audit deferred: CPU load too high: 12.56
+[2026-11-27T18:40:00.170Z] [INFO] Worker map deferred: Memory too low: 2.0% free
+[2026-11-27T18:44:00.305Z] [INFO] Starting worker: optimize (1/2 concurrent)
+[2026-11-27T18:44:00.385Z] [INFO] Worker optimize completed in 157ms
+[2026-11-27T18:44:04.240Z] [INFO] Worker map deferred: Memory too low: 1.6% free
+[2026-11-27T18:44:34.244Z] [INFO] Worker audit deferred: Memory too low: 3.2% free
+[2026-11-27T18:45:04.245Z] [INFO] Worker optimize deferred: Memory too low: 1.7% free
+[2026-11-27T18:45:34.246Z] [INFO] Worker consolidate deferred: CPU load too high: 3.26
+[2026-11-27T18:46:04.247Z] [INFO] Worker testgaps deferred: Memory too low: 2.2% free
+[2026-11-27T18:46:34.249Z] [INFO] Worker backup deferred: Memory too low: 2.9% free
+[2026-11-27T18:47:00.155Z] [INFO] Worker audit deferred: Memory too low: 4.3% free
+[2026-11-27T18:47:04.251Z] [INFO] Worker harness deferred: Memory too low: 4.3% free
+[2026-11-27T18:47:34.254Z] [INFO] Worker audit deferred: CPU load too high: 3.72
+[2026-11-27T18:48:04.259Z] [INFO] Worker map deferred: CPU load too high: 3.60
+[2026-11-27T18:48:34.262Z] [INFO] Worker map deferred: Memory too low: 0.4% free
+[2026-11-27T18:49:04.266Z] [INFO] Worker audit deferred: CPU load too high: 4.79
+[2026-11-27T18:49:34.269Z] [INFO] Worker optimize deferred: CPU load too high: 3.86
+[2026-11-27T18:50:04.270Z] [INFO] Worker consolidate deferred: CPU load too high: 3.29
+[2026-11-27T18:50:34.271Z] [INFO] Worker testgaps deferred: CPU load too high: 4.52
+[2026-11-27T18:51:04.275Z] [INFO] Worker backup deferred: CPU load too high: 13.81
+[2026-11-27T18:51:34.280Z] [INFO] Worker audit deferred: CPU load too high: 20.76
+[2026-11-27T18:52:04.368Z] [INFO] Worker harness deferred: CPU load too high: 22.08
+[2026-11-27T18:52:34.393Z] [INFO] Worker audit deferred: CPU load too high: 24.45
+[2026-11-27T18:53:00.185Z] [INFO] Worker testgaps deferred: CPU load too high: 22.54
+[2026-11-27T18:53:04.405Z] [INFO] Worker map deferred: CPU load too high: 24.97
+[2026-11-27T18:53:34.413Z] [INFO] Worker map deferred: CPU load too high: 26.14
+[2026-11-27T18:54:04.421Z] [INFO] Worker audit deferred: CPU load too high: 20.79
+[2026-11-27T18:54:34.429Z] [INFO] Worker optimize deferred: CPU load too high: 20.38
+[2026-11-27T18:55:00.246Z] [INFO] Worker map deferred: CPU load too high: 21.34
+[2026-11-27T18:55:04.437Z] [INFO] Worker consolidate deferred: CPU load too high: 19.80
+[2026-11-27T18:55:34.440Z] [INFO] Worker testgaps deferred: CPU load too high: 21.48
+[2026-11-27T18:56:04.444Z] [INFO] Worker backup deferred: CPU load too high: 20.67
+[2026-11-27T18:56:34.447Z] [INFO] Worker audit deferred: CPU load too high: 17.91
+[2026-11-27T18:57:00.167Z] [INFO] Worker audit deferred: CPU load too high: 15.60
+[2026-11-27T18:57:04.451Z] [INFO] Worker harness deferred: CPU load too high: 14.75
+[2026-11-27T18:57:34.502Z] [INFO] Worker audit deferred: CPU load too high: 10.38
+[2026-11-27T18:58:04.523Z] [INFO] Worker testgaps deferred: CPU load too high: 6.90
+[2026-11-27T18:58:34.527Z] [INFO] Worker map deferred: CPU load too high: 5.12
+[2026-11-27T18:59:04.258Z] [INFO] Worker optimize deferred: CPU load too high: 3.69
+[2026-11-27T18:59:04.529Z] [INFO] Worker map deferred: CPU load too high: 3.69
+[2026-11-27T18:59:34.531Z] [INFO] Worker audit deferred: Memory too low: 4.7% free
+[2026-11-27T19:00:04.533Z] [INFO] Worker optimize deferred: Memory too low: 0.5% free
+[2026-11-27T19:00:35.255Z] [INFO] Starting worker: map (1/2 concurrent)
+[2026-11-27T19:00:35.601Z] [INFO] Worker map completed in 913ms
+[2026-11-27T19:00:37.036Z] [INFO] Starting worker: consolidate (1/2 concurrent)
+[2026-11-27T19:00:37.839Z] [INFO] Starting worker: testgaps (2/2 concurrent)
+[2026-11-27T19:00:38.033Z] [INFO] Consolidate worker: /Users/base/Desktop/fuelfoodscpg/.swarm/memory.db skipped (error: no such column: embedding)
+[2026-11-27T19:00:38.034Z] [INFO] Consolidate worker: /Users/base/Desktop/fuelfoodscpg/.swarm/agentdb-memory.db skipped (no memory_entries)
+[2026-11-27T19:00:38.034Z] [INFO] Consolidate worker: distillation skipped (error: no such column: embedding; no memory_entries)
+[2026-11-27T19:00:38.129Z] [INFO] Worker testgaps completed in 434ms
+[2026-11-27T19:00:38.290Z] [INFO] Worker consolidate completed in 1348ms
+[2026-11-27T19:00:38.742Z] [INFO] Starting worker: backup (1/2 concurrent)
+[2026-11-27T19:00:38.973Z] [INFO] Starting worker: audit (2/2 concurrent)
+[2026-11-27T19:00:39.223Z] [INFO] Starting worker: audit (2/2 concurrent)
+[2026-11-27T19:00:39.472Z] [INFO] Starting worker: harness (3/2 concurrent)
+[2026-11-27T19:00:39.488Z] [INFO] Worker audit completed in 583ms
+[2026-11-27T19:00:39.624Z] [INFO] Worker audit completed in 514ms
+[2026-11-27T19:00:40.068Z] [INFO] Worker harness completed in 710ms
+[2026-11-27T19:00:40.402Z] [INFO] Starting worker: audit (2/2 concurrent)
+[2026-11-27T19:00:40.699Z] [INFO] Starting worker: testgaps (3/2 concurrent)
+[2026-11-27T19:00:40.801Z] [INFO] Worker audit completed in 534ms
+[2026-11-27T19:00:40.956Z] [INFO] Worker testgaps completed in 435ms
+[2026-11-27T19:00:41.176Z] [INFO] Starting worker: map (2/2 concurrent)
+[2026-11-27T19:00:41.402Z] [INFO] Starting worker: optimize (3/2 concurrent)
+[2026-11-27T19:00:41.549Z] [INFO] Worker map completed in 483ms
+[2026-11-27T19:00:41.651Z] [INFO] Worker optimize completed in 331ms
+[2026-11-27T19:00:41.903Z] [INFO] Starting worker: map (2/2 concurrent)
+[2026-11-27T19:00:42.209Z] [INFO] Starting worker: audit (3/2 concurrent)
+[2026-11-27T19:00:42.314Z] [INFO] Worker map completed in 547ms
+[2026-11-27T19:00:42.418Z] [INFO] Worker audit completed in 358ms
+[2026-11-27T19:00:42.702Z] [INFO] Starting worker: optimize (2/2 concurrent)
+[2026-11-27T19:00:42.779Z] [INFO] Worker optimize completed in 157ms
+[2026-11-27T19:00:43.340Z] [INFO] Worker backup completed in 4673ms
+[2026-11-27T19:01:00.189Z] [INFO] Starting worker: consolidate (1/2 concurrent)
+[2026-11-27T19:01:00.207Z] [INFO] Consolidate worker: /Users/base/Desktop/fuelfoodscpg/.swarm/memory.db skipped (error: no such column: embedding)
+[2026-11-27T19:01:00.208Z] [INFO] Consolidate worker: /Users/base/Desktop/fuelfoodscpg/.swarm/agentdb-memory.db skipped (no memory_entries)
+[2026-11-27T19:01:00.208Z] [INFO] Consolidate worker: distillation skipped (error: no such column: embedding; no memory_entries)
+[2026-11-27T19:01:00.243Z] [INFO] Worker consolidate completed in 101ms
+[2026-11-27T19:07:01.666Z] [INFO] Worker audit deferred: CPU load too high: 3.22
+[2026-11-27T19:31:42.527Z] [INFO] Daemon self-shutdown: idle for 1800s (no worker activity)
+[2026-11-27T19:31:42.934Z] [INFO] Stopped worker: map
+[2026-11-27T19:31:42.941Z] [INFO] Stopped worker: audit
+[2026-11-27T19:31:42.984Z] [INFO] Stopped worker: optimize
+[2026-11-27T19:31:42.999Z] [INFO] Stopped worker: consolidate
+[2026-11-27T19:31:43.015Z] [INFO] Stopped worker: testgaps
+[2026-11-27T19:31:43.023Z] [INFO] Stopped worker: backup
+[2026-11-27T19:31:43.041Z] [INFO] Stopped worker: harness
+[2026-11-27T19:31:43.480Z] [INFO] Daemon stopped

@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-11-27T19:00:41.916Z",
+  "projectRoot": "/Users/base/Desktop/fuelfoodscpg",
+  "structure": {
+    "hasPackageJson": true,
+    "hasTsConfig": true,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1795806041916
+}

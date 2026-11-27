@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-11-27T19:01:00.208Z",
+  "distillationEnabled": true,
+  "patternsConsolidated": 0,
+  "memoryCleaned": 0,
+  "duplicatesRemoved": 0,
+  "episodes": 0,
+  "episodeEmbeddings": 0,
+  "patternEmbeddings": 0,
+  "causalEdges": 0,
+  "promoted": 0,
+  "byProvenance": {},
+  "namespaces": [],
+  "dryRun": false,
+  "corrupt": false,
+  "skipped": "error: no such column: embedding; no memory_entries",
+  "stores": [
+    {
+      "dbPath": "/Users/base/Desktop/fuelfoodscpg/.swarm/memory.db",
+      "processed": 0,
+      "patterns": 0,
+      "skipped": "error: no such column: embedding"
+    },
+    {
+      "dbPath": "/Users/base/Desktop/fuelfoodscpg/.swarm/agentdb-memory.db",
+      "processed": 0,
+      "patterns": 0,
+      "skipped": "no memory_entries"
+    }
+  ]
+}
