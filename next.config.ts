@@ -45,7 +45,7 @@ const nextConfig: NextConfig = {
   transpilePackages: ['@supabase/ssr'],
 
   // Webpack: use Next.js defaults to avoid mixing client chunks into server runtime
-  webpack: (config) => config,
+  webpack: config => config,
 
   // Compiler options
   compiler: {

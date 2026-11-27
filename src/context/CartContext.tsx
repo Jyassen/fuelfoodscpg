@@ -220,7 +220,9 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       const { id, config } = action.payload;
 
       const updatedItems = state.items.map(item =>
-        item.id === id ? { ...item, ...config, addedAt: Date.now().toString() } : item
+        item.id === id
+          ? { ...item, ...config, addedAt: Date.now().toString() }
+          : item
       );
 
       const itemCount = updatedItems.reduce(

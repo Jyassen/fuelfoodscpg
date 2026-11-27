@@ -9,7 +9,7 @@ import crypto from 'crypto';
  * The Stripe webhook is authoritative, so we also send Purchase from there.
  *
  * Both sides send the same `event_id`, so Meta deduplicates rather than
- * double-counting. See docs/meta-pixel-setup.md.
+ * double-counting.
  */
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || '';

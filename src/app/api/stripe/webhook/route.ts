@@ -49,7 +49,8 @@ async function sendPurchaseToMeta(session: Stripe.Checkout.Session) {
       email: details?.email,
       phone: details?.phone,
       firstName: nameParts[0],
-      lastName: nameParts.length > 1 ? nameParts[nameParts.length - 1] : undefined,
+      lastName:
+        nameParts.length > 1 ? nameParts[nameParts.length - 1] : undefined,
       city: address?.city,
       state: address?.state,
       zip: address?.postal_code,
@@ -70,7 +71,9 @@ async function sendPurchaseToMeta(session: Stripe.Checkout.Session) {
   });
 }
 
-async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
+async function handleCheckoutSessionCompleted(
+  session: Stripe.Checkout.Session
+) {
   const userId = session.client_reference_id || session.metadata?.user_id;
   const customerId =
     typeof session.customer === 'string'
@@ -81,7 +84,10 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
   await sendPurchaseToMeta(session);
 
   if (!userId || !customerId) {
-    console.log('[webhook] checkout.session.completed missing user or customer', session.id);
+    console.log(
+      '[webhook] checkout.session.completed missing user or customer',
+      session.id
+    );
     return;
   }
   await linkStripeCustomer(userId, customerId);
@@ -101,7 +107,10 @@ export async function POST(req: Request) {
   }
 
   if (!sig) {
-    return NextResponse.json({ error: 'Missing stripe-signature' }, { status: 400 });
+    return NextResponse.json(
+      { error: 'Missing stripe-signature' },
+      { status: 400 }
+    );
   }
 
   let event: Stripe.Event;

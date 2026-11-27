@@ -3,7 +3,8 @@ import Image from 'next/image';
 import ViewContentTracker from '@/components/analytics/ViewContentTracker';
 
 export const metadata: Metadata = {
-  title: 'Mega Mix: The Ultimate Daily Nutrition Boost - 9 Vegetables in One Pack | FuelFoods',
+  title:
+    'Mega Mix: The Ultimate Daily Nutrition Boost - 9 Vegetables in One Pack | FuelFoods',
   description:
     'Mega Mix microgreens: Your daily dose of 9 vegetables in one pack. Natural energy boost, immune support, anti-aging properties. Delivered fresh weekly to NYC. Order now with free shipping!',
 };

@@ -19,7 +19,8 @@ const FB_COOKIE_PATTERN = /^fb[pc]\.[0-9]\.[0-9]+\.[A-Za-z0-9_-]+$/;
 function sanitizeFbCookie(value: unknown): string | undefined {
   if (typeof value !== 'string') return undefined;
   const trimmed = value.trim();
-  if (trimmed.length > 255 || !FB_COOKIE_PATTERN.test(trimmed)) return undefined;
+  if (trimmed.length > 255 || !FB_COOKIE_PATTERN.test(trimmed))
+    return undefined;
   return trimmed;
 }
 
@@ -56,7 +57,11 @@ export async function POST(req: Request) {
     if (!isSubscriptionPlanType(planType)) {
       return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
     }
-    if (!Number.isInteger(quantity) || quantity < 1 || quantity > MAX_QUANTITY) {
+    if (
+      !Number.isInteger(quantity) ||
+      quantity < 1 ||
+      quantity > MAX_QUANTITY
+    ) {
       return NextResponse.json({ error: 'Invalid quantity' }, { status: 400 });
     }
 

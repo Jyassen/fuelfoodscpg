@@ -3,7 +3,11 @@
 import Script from 'next/script';
 import { Suspense, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { META_PIXEL_ID, isPixelEnabled, newEventId } from '@/lib/analytics/meta-pixel';
+import {
+  META_PIXEL_ID,
+  isPixelEnabled,
+  newEventId,
+} from '@/lib/analytics/meta-pixel';
 
 /**
  * Fires PageView on every client-side route change. The base code fires the

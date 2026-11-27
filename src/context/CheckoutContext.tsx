@@ -9,11 +9,7 @@ import React, {
   ReactNode,
 } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
-import {
-  track,
-  getMetaBrowserIds,
-  CURRENCY,
-} from '@/lib/analytics/meta-pixel';
+import { track, getMetaBrowserIds, CURRENCY } from '@/lib/analytics/meta-pixel';
 
 import {
   CheckoutData,
@@ -678,7 +674,7 @@ export function CheckoutProvider({
           item_price: i.unitPrice,
         })),
         num_items: state.items.reduce((sum, i) => sum + i.quantity, 0),
-        value: state.pricing?.total ?? 0,
+        value: state.pricing.total,
         currency: CURRENCY,
       });
 
@@ -692,11 +688,17 @@ export function CheckoutProvider({
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          planType: (state.items.find(i => i.type === 'subscription')?.product?.id || '')
-            .replace('subscription_', '') || 'starter',
+          planType:
+            (
+              state.items.find(i => i.type === 'subscription')?.product?.id ||
+              ''
+            ).replace('subscription_', '') || 'starter',
           quantity: Math.min(
             12,
-            Math.max(1, state.items.reduce((sum, i) => sum + i.quantity, 0) || 1)
+            Math.max(
+              1,
+              state.items.reduce((sum, i) => sum + i.quantity, 0) || 1
+            )
           ),
           fbp,
           fbc,
@@ -709,7 +711,9 @@ export function CheckoutProvider({
       }
 
       const { id } = await res.json();
-      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+      const stripe = await loadStripe(
+        process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+      );
       if (!stripe) throw new Error('Stripe failed to initialize');
       const { error } = await stripe.redirectToCheckout({ sessionId: id });
       if (error) throw error;
@@ -729,7 +733,7 @@ export function CheckoutProvider({
     } finally {
       dispatch({ type: 'SET_PROCESSING', payload: false });
     }
-  }, [state.isValid]);
+  }, [state.isValid, state.items, state.pricing]);
 
   // Utilities
   const getStepProgress = useCallback((): number => {
