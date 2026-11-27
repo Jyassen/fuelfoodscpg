@@ -41,3 +41,8 @@
 [2026-11-27T18:25:00.095Z] [INFO] Lifecycle monitor active (workspace-removal, ttl=43200s, idle=1800s)
 [2026-11-27T18:25:00.147Z] [INFO] Daemon started (PID: 26647, CPUs: 4, workers: 7, maxCpuLoad: 3.2, minFreeMemoryPercent: 5%)
 [2026-11-27T18:25:00.152Z] [INFO] Worker map deferred: CPU load too high: 20.99
+[2026-11-27T18:27:00.131Z] [INFO] Worker audit deferred: CPU load too high: 23.29
+[2026-11-27T18:29:00.158Z] [INFO] Worker optimize deferred: CPU load too high: 43.30
+[2026-11-27T18:31:00.108Z] [INFO] Worker consolidate deferred: CPU load too high: 29.81
+[2026-11-27T18:33:00.149Z] [INFO] Worker testgaps deferred: CPU load too high: 21.37
+[2026-11-27T18:35:00.119Z] [INFO] Worker backup deferred: CPU load too high: 64.64
