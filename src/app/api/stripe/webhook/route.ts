@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { getStripe } from '@/lib/stripe/server';
 import { getSupabaseServiceClient } from '@/lib/supabase/server';
+import { sendMetaEvent } from '@/lib/analytics/meta-capi';
 
 export const dynamic = 'force-dynamic';
 
@@ -22,12 +23,63 @@ async function linkStripeCustomer(userId: string, customerId: string) {
   if (updateError) throw updateError;
 }
 
+/**
+ * Send Purchase to Meta's Conversions API.
+ *
+ * This is the authoritative purchase signal: it fires whether or not the
+ * customer's browser made it back from Stripe's hosted checkout. The success
+ * page sends the same event with the same `event_id` (the Stripe session id),
+ * so Meta deduplicates the pair instead of counting two sales.
+ *
+ * Deliberately only on checkout.session.completed - NOT on invoice renewals.
+ * A subscription renewal is not an ad-driven conversion, and feeding renewals
+ * in would inflate reported ROAS and mislead campaign optimization.
+ */
+async function sendPurchaseToMeta(session: Stripe.Checkout.Session) {
+  const details = session.customer_details;
+  const address = details?.address;
+  const nameParts = (details?.name || '').trim().split(/\s+/);
+
+  await sendMetaEvent({
+    eventName: 'Purchase',
+    eventId: session.id,
+    actionSource: 'website',
+    eventSourceUrl: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://fuelfoods.store'}/checkout/success`,
+    userData: {
+      email: details?.email,
+      phone: details?.phone,
+      firstName: nameParts[0],
+      lastName: nameParts.length > 1 ? nameParts[nameParts.length - 1] : undefined,
+      city: address?.city,
+      state: address?.state,
+      zip: address?.postal_code,
+      country: address?.country,
+      externalId: session.client_reference_id || session.metadata?.user_id,
+      fbp: session.metadata?.fbp,
+      fbc: session.metadata?.fbc,
+    },
+    customData: {
+      // Stripe reports minor units; Meta expects a decimal amount.
+      value: (session.amount_total ?? 0) / 100,
+      currency: (session.currency || 'usd').toUpperCase(),
+      content_type: 'product',
+      ...(session.metadata?.plan_type
+        ? { content_ids: [session.metadata.plan_type] }
+        : {}),
+    },
+  });
+}
+
 async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
   const userId = session.client_reference_id || session.metadata?.user_id;
   const customerId =
     typeof session.customer === 'string'
       ? session.customer
       : session.customer?.id;
+  // Tracking first: a paid order should reach Meta even if the profile link
+  // below is skipped or fails.
+  await sendPurchaseToMeta(session);
+
   if (!userId || !customerId) {
     console.log('[webhook] checkout.session.completed missing user or customer', session.id);
     return;

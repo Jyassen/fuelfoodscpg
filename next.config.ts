@@ -77,8 +77,8 @@ const nextConfig: NextConfig = {
               key: 'Content-Security-Policy',
               value:
                 process.env.NODE_ENV === 'development'
-                  ? "default-src 'self' 'unsafe-eval' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://*.supabase.co https://api.stripe.com ws://localhost:* wss://*.supabase.co; frame-src 'self' https://js.stripe.com https://hooks.stripe.com;"
-                  : "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://*.supabase.co https://api.stripe.com wss://*.supabase.co; frame-src 'self' https://js.stripe.com https://hooks.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
+                  ? "default-src 'self' 'unsafe-eval' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://www.facebook.com; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://*.supabase.co https://api.stripe.com https://www.facebook.com https://connect.facebook.net ws://localhost:* wss://*.supabase.co; frame-src 'self' https://js.stripe.com https://hooks.stripe.com;"
+                  : "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://www.facebook.com; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://*.supabase.co https://api.stripe.com https://www.facebook.com https://connect.facebook.net wss://*.supabase.co; frame-src 'self' https://js.stripe.com https://hooks.stripe.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
             },
           ],
         },

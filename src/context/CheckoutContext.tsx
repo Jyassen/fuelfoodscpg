@@ -9,6 +9,11 @@ import React, {
   ReactNode,
 } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import {
+  track,
+  getMetaBrowserIds,
+  CURRENCY,
+} from '@/lib/analytics/meta-pixel';
 
 import {
   CheckoutData,
@@ -662,6 +667,25 @@ export function CheckoutProvider({
         throw new Error('Please complete all required fields');
       }
 
+      // InitiateCheckout fires here - the last moment we still own the
+      // browser, before Stripe's hosted page takes over.
+      track('InitiateCheckout', {
+        content_ids: state.items.map(i => i.product.id),
+        content_type: 'product',
+        contents: state.items.map(i => ({
+          id: i.product.id,
+          quantity: i.quantity,
+          item_price: i.unitPrice,
+        })),
+        num_items: state.items.reduce((sum, i) => sum + i.quantity, 0),
+        value: state.pricing?.total ?? 0,
+        currency: CURRENCY,
+      });
+
+      // Forwarded to the Conversions API from the Stripe webhook, where the
+      // customer's browser cookies are no longer reachable.
+      const { fbp, fbc } = getMetaBrowserIds();
+
       // Create Stripe Checkout session
       const res = await fetch('/api/stripe/create-checkout-session', {
         method: 'POST',
@@ -674,6 +698,8 @@ export function CheckoutProvider({
             12,
             Math.max(1, state.items.reduce((sum, i) => sum + i.quantity, 0) || 1)
           ),
+          fbp,
+          fbc,
         }),
       });
 

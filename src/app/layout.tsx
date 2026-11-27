@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import { SEO_DEFAULTS } from '@/lib/constants';
 import { FuelFoodsProvider } from '@/context';
 import { AuthProvider } from '@/components/auth/AuthContext';
+import MetaPixel from '@/components/analytics/MetaPixel';
 
 // Typography system fonts
 const inter = Inter({
@@ -56,6 +57,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${inter.variable} ${montserrat.variable} ${poppins.variable} font-inter antialiased`}
       >
+        <MetaPixel />
         <AuthProvider>
           <FuelFoodsProvider>
             <div className="min-h-screen flex flex-col">

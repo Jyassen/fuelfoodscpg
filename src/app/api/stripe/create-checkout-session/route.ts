@@ -9,6 +9,20 @@ import { clientIp, rateLimit } from '@/lib/auth/rate-limit';
 
 const MAX_QUANTITY = 12;
 
+/**
+ * Meta's _fbp/_fbc cookies, stashed on the Stripe session so the webhook can
+ * forward them to the Conversions API. They arrive from the browser, so treat
+ * them as untrusted: accept only the documented shape and cap the length.
+ */
+const FB_COOKIE_PATTERN = /^fb[pc]\.[0-9]\.[0-9]+\.[A-Za-z0-9_-]+$/;
+
+function sanitizeFbCookie(value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const trimmed = value.trim();
+  if (trimmed.length > 255 || !FB_COOKIE_PATTERN.test(trimmed)) return undefined;
+  return trimmed;
+}
+
 function siteOrigin() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fuelfoods.store';
   return siteUrl.replace(/\/$/, '');
@@ -36,6 +50,8 @@ export async function POST(req: Request) {
     const body = await req.json().catch(() => null);
     const planType = body?.planType;
     const quantity = Number(body?.quantity ?? 1);
+    const fbp = sanitizeFbCookie(body?.fbp);
+    const fbc = sanitizeFbCookie(body?.fbc);
 
     if (!isSubscriptionPlanType(planType)) {
       return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
@@ -56,7 +72,12 @@ export async function POST(req: Request) {
       shipping_address_collection: { allowed_countries: ['US'] },
       client_reference_id: user.id,
       customer_email: user.email || undefined,
-      metadata: { user_id: user.id },
+      metadata: {
+        user_id: user.id,
+        plan_type: planType,
+        ...(fbp ? { fbp } : {}),
+        ...(fbc ? { fbc } : {}),
+      },
       success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/checkout`,
     });

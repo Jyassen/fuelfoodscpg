@@ -23,6 +23,7 @@ import {
   calculateOrderPricing,
   updateCheckoutData,
 } from '@/lib/checkout-utils';
+import { track, CURRENCY } from '@/lib/analytics/meta-pixel';
 
 // ============================================================================
 // CART STATE TYPES
@@ -395,6 +396,21 @@ export function CartProvider({
         );
 
         dispatch({ type: 'ADD_ITEM', payload: cartItem });
+
+        track('AddToCart', {
+          content_ids: [cartItem.product.id],
+          content_name: cartItem.product.name,
+          content_type: 'product',
+          contents: [
+            {
+              id: cartItem.product.id,
+              quantity: cartItem.quantity,
+              item_price: cartItem.unitPrice,
+            },
+          ],
+          value: cartItem.totalPrice,
+          currency: CURRENCY,
+        });
       } catch (error) {
         dispatch({
           type: 'SET_ERROR',

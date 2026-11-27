@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
+import ViewContentTracker from '@/components/analytics/ViewContentTracker';
 
 export const metadata: Metadata = {
   title: 'Tummies Pet Grass - Fresh Cat Grass | FuelFoods CPG',
@@ -10,6 +11,11 @@ export const metadata: Metadata = {
 export default function TummiesPetGrassPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <ViewContentTracker
+        contentId="tummies-pet-grass"
+        contentName="Tummies Pet Grass"
+        contentCategory="pet-grass"
+      />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Product Images */}
         <div className="space-y-4">
